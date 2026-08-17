@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, ArrowRight, LayoutGrid, CheckCircle } from 'lucide-react';
 import Card from '../components/Card';
 import { svgs } from '../data/websiteData';
+import Reveal3D from '../components/Reveal3D';
 
 export default function ProductsPage() {
   const [filter, setFilter] = useState('All');
@@ -108,7 +109,7 @@ export default function ProductsPage() {
     <div className="relative pt-20">
       
       {/* HERO SECTION */}
-      <section className="relative py-28 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
+      <section className="relative py-28 px-4 bg-gradient-to-b from-white via-red-100 to-red-500 dark:bg-none dark:bg-bg-secondary border-b border-border-color overflow-hidden">
         {/* Floating background decorative blobs */}
         <motion.div
           animate={{
@@ -190,54 +191,58 @@ export default function ProductsPage() {
 
       {/* PRODUCTS BENTO GRID */}
       <section className="py-16 px-4 bg-bg-primary">
-        <div className="max-w-7xl mx-auto">
-          
-          <motion.div 
-            layout 
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredProducts.map((prod) => (
-                <motion.div
-                  key={prod.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.4 }}
-                  className="h-full"
-                >
-                  <Card
-                    image={prod.image}
-                    category={prod.category}
-                    title={prod.title}
-                    description={prod.description}
-                    onClick={() => {}}
-                  />
-                </motion.div>
-              ))}
-            </AnimatePresence>
-          </motion.div>
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
+            
+            <motion.div 
+              layout 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredProducts.map((prod) => (
+                  <motion.div
+                    key={prod.id}
+                    layout
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    transition={{ duration: 0.4 }}
+                    className="h-full"
+                  >
+                    <Card
+                      image={prod.image}
+                      category={prod.category}
+                      title={prod.title}
+                      description={prod.description}
+                      onClick={() => {}}
+                    />
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+            </motion.div>
 
-        </div>
+          </div>
+        </Reveal3D>
       </section>
 
       {/* FOOTER ACTION BANNER */}
       <section className="py-20 px-4 bg-bg-secondary text-center border-t border-border-color">
-        <div className="max-w-3xl mx-auto">
-          <h2 className="text-3xl font-bold font-display text-text-primary mb-4">
-            Custom Local Dataset Training
-          </h2>
-          <p className="text-text-secondary text-sm mb-8 leading-relaxed max-w-lg mx-auto">
-            We provide private sandboxed deployments configured with custom datasets, giving architecture firms full model data sovereignty.
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all shadow-md"
-          >
-            Request Sandbox Trial <ArrowRight className="h-4.5 w-4.5" />
-          </a>
-        </div>
+        <Reveal3D>
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold font-display text-text-primary mb-4">
+              Custom Local Dataset Training
+            </h2>
+            <p className="text-text-secondary text-sm mb-8 leading-relaxed max-w-lg mx-auto">
+              We provide private sandboxed deployments configured with custom datasets, giving architecture firms full model data sovereignty.
+            </p>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all shadow-md"
+            >
+              Request Sandbox Trial <ArrowRight className="h-4.5 w-4.5" />
+            </a>
+          </div>
+        </Reveal3D>
       </section>
 
     </div>

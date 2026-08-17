@@ -7,6 +7,7 @@ import {
 
 import ThreeWireframe from '../components/ThreeWireframe';
 import Card from '../components/Card';
+import Reveal3D from '../components/Reveal3D';
 import { 
   featuredSolutions, 
   bentoProducts, 
@@ -155,7 +156,8 @@ export default function HomePage({ theme }) {
 
       {/* SECTION 2: AI SOLUTION FINDER */}
       <section id="solution-finder" className="py-24 px-4 bg-bg-tertiary/50 border-b border-border-color">
-        <div className="max-w-5xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-4">
               AI Solution Finder
@@ -260,11 +262,13 @@ export default function HomePage({ theme }) {
             </div>
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 3: BUILT ENVIRONMENT LIFECYCLE (Timeline) */}
       <section id="lifecycle" className="py-24 px-4 bg-bg-secondary border-b border-border-color">
-        <div className="max-w-7xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-4">
               Built Environment Lifecycle
@@ -343,11 +347,13 @@ export default function HomePage({ theme }) {
             </AnimatePresence>
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 4: FEATURED AI SOLUTIONS */}
       <section id="solutions" className="py-24 px-4 bg-bg-primary border-b border-border-color">
-        <div className="max-w-7xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-4">
               Featured AI Solutions
@@ -370,11 +376,13 @@ export default function HomePage({ theme }) {
             ))}
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 5: PRODUCTS BENTO GRID */}
       <section id="products-bento" className="py-24 px-4 bg-bg-tertiary/50 border-b border-border-color">
-        <div className="max-w-7xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-4">
               AI Products Ecosystem
@@ -422,11 +430,13 @@ export default function HomePage({ theme }) {
             })}
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 6: INDUSTRIES WE SERVE */}
       <section id="industries" className="py-24 px-4 bg-bg-secondary border-b border-border-color">
-        <div className="max-w-7xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-4">
               Industries We Serve
@@ -455,11 +465,13 @@ export default function HomePage({ theme }) {
             ))}
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 7: CASE STUDIES CAROUSEL */}
       <section id="case-studies" className="py-24 px-4 bg-bg-primary border-b border-border-color">
-        <div className="max-w-6xl mx-auto ">
+        <Reveal3D>
+          <div className="max-w-6xl mx-auto ">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-4">
               Proven Results
@@ -544,14 +556,16 @@ export default function HomePage({ theme }) {
             </div>
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 8: BEXASIA 2026 EVENT */}
       <section id="bexasia" className="py-24 px-4 bg-bg-secondary border-b border-border-color relative overflow-hidden">
-        {/* Architectural backdrop line */}
-        <div className="absolute top-0 right-0 w-96 h-96 border border-accent/10 rounded-full -mr-20 -mt-20 pointer-events-none" />
-        
-        <div className="max-w-5xl mx-auto bg-gradient-to-r from-accent to-accent-hover rounded-[32px] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
+        <Reveal3D>
+          {/* Architectural backdrop line */}
+          <div className="absolute top-0 right-0 w-96 h-96 border border-accent/10 rounded-full -mr-20 -mt-20 pointer-events-none" />
+          
+          <div className="max-w-5xl mx-auto bg-gradient-to-r from-accent to-accent-hover rounded-[32px] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
           <div className="flex flex-col gap-3 relative z-10 max-w-xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider mb-2 w-max">
               Featured Event
@@ -575,6 +589,7 @@ export default function HomePage({ theme }) {
             </a>
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 9: PARTNERS SLIDER */}

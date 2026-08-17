@@ -2,6 +2,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Building2, ArrowUpRight, HelpCircle, Layers, CheckCircle2 } from 'lucide-react';
 import { svgs } from '../data/websiteData';
+import Reveal3D from '../components/Reveal3D';
 
 export default function IndustriesPage() {
   const industriesList = [
@@ -74,7 +75,7 @@ export default function IndustriesPage() {
     <div className="relative pt-20">
       
       {/* HERO SECTION */}
-      <section className="relative py-28 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
+      <section className="relative py-28 px-4 bg-gradient-to-b from-white via-red-100 to-red-500 dark:bg-none dark:bg-bg-secondary border-b border-border-color overflow-hidden">
         {/* Floating background decorative blobs */}
         <motion.div
           animate={{
@@ -152,7 +153,8 @@ export default function IndustriesPage() {
 
       {/* ALTERNATING INDUSTRIES LIST */}
       <section className="bg-bg-primary">
-        {industriesList.map((ind, idx) => {
+        <Reveal3D>
+          {industriesList.map((ind, idx) => {
           const isEven = idx % 2 === 0;
           return (
             <section
@@ -230,6 +232,7 @@ export default function IndustriesPage() {
             </section>
           );
         })}
+        </Reveal3D>
       </section>
 
     </div>

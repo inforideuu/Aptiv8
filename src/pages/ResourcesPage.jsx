@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Filter, BookOpen, FileText, Video, Calendar, ArrowRight, Eye } from 'lucide-react';
 import { svgs } from '../data/websiteData';
+import Reveal3D from '../components/Reveal3D';
 
 export default function ResourcesPage() {
   const [searchQuery, setSearchQuery] = useState('');
@@ -93,7 +94,7 @@ export default function ResourcesPage() {
     <div className="relative pt-20">
       
       {/* HERO SECTION */}
-      <section className="relative py-28 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
+      <section className="relative py-28 px-4 bg-gradient-to-b from-white via-red-100 to-red-500 dark:bg-none dark:bg-bg-secondary border-b border-border-color overflow-hidden">
         {/* Floating background decorative blobs */}
         <motion.div
           animate={{
@@ -190,7 +191,8 @@ export default function ResourcesPage() {
 
       {/* EDITORIAL CONTENT LAYOUT */}
       <section className="py-16 px-4 bg-bg-primary">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* LEFT COLUMN: Main Editorial Content */}
           <div className="lg:col-span-8 flex flex-col gap-12">
@@ -299,6 +301,7 @@ export default function ResourcesPage() {
           </div>
 
         </div>
+        </Reveal3D>
       </section>
 
     </div>

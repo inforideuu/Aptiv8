@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ArrowRight, Layers, LayoutGrid, CheckCircle } from 'lucide-react';
 import Card from '../components/Card';
 import { featuredSolutions, svgs } from '../data/websiteData';
+import Reveal3D from '../components/Reveal3D';
 
 export default function SolutionsPage() {
   const [selectedStage, setSelectedStage] = useState('planning-design');
@@ -49,7 +50,7 @@ export default function SolutionsPage() {
     <div className="relative pt-20">
       
       {/* HERO SECTION */}
-      <section className="relative py-28 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
+      <section className="relative py-28 px-4 bg-gradient-to-b from-white via-red-100 to-red-500 dark:bg-none dark:bg-bg-secondary border-b border-border-color overflow-hidden">
         {/* Floating background decorative blobs */}
         <motion.div
           animate={{
@@ -112,7 +113,8 @@ export default function SolutionsPage() {
 
       {/* LIFECYCLE HORIZONTAL JOURNEY NAVIGATOR */}
       <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
-        <div className="max-w-7xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
           
           {/* Stage Progress Tracker */}
           <div className="relative flex items-center justify-between gap-4 mb-16 overflow-x-auto pb-6 scrollbar-thin">
@@ -207,11 +209,13 @@ export default function SolutionsPage() {
             ))}
           </AnimatePresence>
         </div>
+        </Reveal3D>
       </section>
 
       {/* HORIZONTAL TIMELINE ROADMAP OF DATA INGESTION */}
       <section className="py-24 px-4 bg-bg-secondary overflow-hidden border-b border-border-color">
-        <div className="max-w-7xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
               Integrated Data Pipeline
@@ -249,11 +253,13 @@ export default function SolutionsPage() {
             ))}
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* FINAL PAGE ACTION CTA */}
       <section className="py-20 px-4 bg-bg-primary text-center">
-        <div className="max-w-2xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-2xl mx-auto">
           <h2 className="text-3xl font-bold font-display text-text-primary mb-4">
             Need a custom integration check?
           </h2>
@@ -267,6 +273,7 @@ export default function SolutionsPage() {
             Request API Documentations <ArrowRight className="h-4.5 w-4.5" />
           </a>
         </div>
+        </Reveal3D>
       </section>
 
     </div>

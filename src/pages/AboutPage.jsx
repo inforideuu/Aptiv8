@@ -5,6 +5,7 @@ import {
   Lightbulb, Zap, TrendingUp, ChevronRight, HelpCircle,
   Briefcase, Cpu, Settings
 } from 'lucide-react';
+import Reveal3D from '../components/Reveal3D';
 
 // Reusable animated counter component that counts on scroll visibility and mouse hover
 function Counter({ endValue, label, duration = 2000 }) {
@@ -262,8 +263,9 @@ export default function AboutPage() {
       </section>
 
       {/* SECTION 2: COMPANY STORY (Interactive Timeline) */}
-      <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
-        <div className="max-w-5xl mx-auto">
+      <section id="journey" className="py-24 px-4 bg-bg-primary border-b border-border-color">
+        <Reveal3D>
+          <div className="max-w-5xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
               Our Journey
@@ -325,52 +327,58 @@ export default function AboutPage() {
             </AnimatePresence>
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 3 & 4: MISSION & VISION (Split Screen Layout) */}
       <section className="grid grid-cols-1 md:grid-cols-2 w-full overflow-hidden border-b border-border-color">
         {/* Our Vision (Left Side) */}
-        <div 
-          className="relative min-h-[380px] flex items-center justify-center p-8 md:p-16 text-center bg-cover bg-center"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80')` }}
-        >
-          {/* Dark Red/Crimson Overlay */}
-          <div className="absolute inset-0 bg-[#3a0b0d]/85 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-r from-red-950/40 to-transparent" />
-          
-          <div className="relative z-10 max-w-md">
-            <h3 className="text-3xl md:text-4xl font-extrabold font-display text-white mb-4 tracking-tight">
-              Our Vision
-            </h3>
-            <p className="text-sm md:text-base text-white/95 leading-relaxed font-light">
-              To be the go-to digital tech company of the Built Environment in Singapore and SE Asia.
-            </p>
+        <Reveal3D>
+          <div 
+            className="relative min-h-[380px] flex items-center justify-center p-8 md:p-16 text-center bg-cover bg-center h-full"
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1200&q=80')` }}
+          >
+            {/* Dark Red/Crimson Overlay */}
+            <div className="absolute inset-0 bg-[#3a0b0d]/85 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-r from-red-950/40 to-transparent" />
+            
+            <div className="relative z-10 max-w-md">
+              <h3 className="text-3xl md:text-4xl font-extrabold font-display text-white mb-4 tracking-tight">
+                Our Vision
+              </h3>
+              <p className="text-sm md:text-base text-white/95 leading-relaxed font-light">
+                To be the go-to digital tech company of the Built Environment in Singapore and SE Asia.
+              </p>
+            </div>
           </div>
-        </div>
+        </Reveal3D>
 
         {/* Our Mission (Right Side) */}
-        <div 
-          className="relative min-h-[380px] flex items-center justify-center p-8 md:p-16 text-center bg-cover bg-center"
-          style={{ backgroundImage: `url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80')` }}
-        >
-          {/* Dark Slate Gray/Black Overlay */}
-          <div className="absolute inset-0 bg-neutral-900/80 mix-blend-multiply" />
-          <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
-          
-          <div className="relative z-10 max-w-md">
-            <h3 className="text-3xl md:text-4xl font-extrabold font-display text-white mb-4 tracking-tight">
-              Our Mission
-            </h3>
-            <p className="text-sm md:text-base text-white/95 leading-relaxed font-light">
-              To use digital technology to drive sustainability, productivity and value for our stakeholders.
-            </p>
+        <Reveal3D>
+          <div 
+            className="relative min-h-[380px] flex items-center justify-center p-8 md:p-16 text-center bg-cover bg-center h-full"
+            style={{ backgroundImage: `url('https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1200&q=80')` }}
+          >
+            {/* Dark Slate Gray/Black Overlay */}
+            <div className="absolute inset-0 bg-neutral-900/80 mix-blend-multiply" />
+            <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
+            
+            <div className="relative z-10 max-w-md">
+              <h3 className="text-3xl md:text-4xl font-extrabold font-display text-white mb-4 tracking-tight">
+                Our Mission
+              </h3>
+              <p className="text-sm md:text-base text-white/95 leading-relaxed font-light">
+                To use digital technology to drive sustainability, productivity and value for our stakeholders.
+              </p>
+            </div>
           </div>
-        </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 5: CORE VALUES */}
       <section className="py-24 px-4 bg-bg-secondary border-b border-border-color">
-        <div className="max-w-7xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
               Core Principles
@@ -399,11 +407,13 @@ export default function AboutPage() {
             })}
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 6: STATISTICS (Animated Counters) */}
       <section className="py-20 px-4 bg-bg-primary border-b border-border-color">
-        <div className="max-w-5xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             <Counter endValue="150+" label="Projects Completed" />
             <Counter endValue="12+" label="AI Solutions" />
@@ -411,11 +421,13 @@ export default function AboutPage() {
             <Counter endValue="8" label="Years Experience" />
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 7: WHY CHOOSE APTIV8 */}
       <section className="py-24 px-4 bg-bg-secondary border-b border-border-color">
-        <div className="max-w-7xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
               Why Enterprise Leaders Partner with Us
@@ -443,11 +455,13 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 8: LEADERSHIP SECTION */}
-      <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
-        <div className="max-w-7xl mx-auto">
+      <section id="team" className="py-24 px-4 bg-bg-primary border-b border-border-color">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
               Leadership Team
@@ -476,12 +490,14 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 9: CTA */}
       <section className="py-24 px-4 bg-bg-secondary text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none" />
-        <div className="max-w-3xl mx-auto relative z-10">
+        <Reveal3D>
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none" />
+          <div className="max-w-3xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-6xl font-extrabold font-display text-text-primary mb-6">
             Let's Build the Future Together
           </h2>
@@ -495,6 +511,7 @@ export default function AboutPage() {
             Connect With Our AI Advisors <ChevronRight className="h-5 w-5" />
           </a>
         </div>
+        </Reveal3D>
       </section>
 
     </div>

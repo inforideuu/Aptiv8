@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, FileText, TrendingUp, CheckCircle, ChevronLeft, ChevronRight, Layers } from 'lucide-react';
 import { svgs } from '../data/websiteData';
+import Reveal3D from '../components/Reveal3D';
 
 export default function CaseStudiesPage() {
   const [activeIndustry, setActiveIndustry] = useState('All');
@@ -110,7 +111,7 @@ export default function CaseStudiesPage() {
     <div className="relative pt-20">
       
       {/* HERO SECTION */}
-      <section className="relative py-28 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
+      <section className="relative py-28 px-4 bg-gradient-to-b from-white via-red-100 to-red-500 dark:bg-none dark:bg-bg-secondary border-b border-border-color overflow-hidden">
         {/* Floating background decorative blobs */}
         <motion.div
           animate={{
@@ -192,7 +193,8 @@ export default function CaseStudiesPage() {
 
       {/* CAROUSEL SECTION */}
       <section className="py-16 px-4 bg-bg-primary border-b border-border-color">
-        <div className="max-w-6xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-6xl mx-auto">
           {filteredStudies.length > 0 ? (
             <div className="relative bg-bg-secondary border border-border-color rounded-[32px] p-8 md:p-12 shadow-xl">
               
@@ -317,11 +319,13 @@ export default function CaseStudiesPage() {
             </div>
           )}
         </div>
+        </Reveal3D>
       </section>
 
       {/* GLOBAL ENTERPRISE METRICS */}
       <section className="py-20 px-4 bg-bg-secondary">
-        <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+        <Reveal3D>
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
           <div className="p-6">
             <span className="text-4xl md:text-5xl font-extrabold font-display text-accent block mb-2">99.8%</span>
             <span className="text-sm font-semibold uppercase tracking-wider text-text-secondary">Check Validation Accuracy</span>
@@ -335,6 +339,7 @@ export default function CaseStudiesPage() {
             <span className="text-sm font-semibold uppercase tracking-wider text-text-secondary">Faster Tender Spec Prep</span>
           </div>
         </div>
+        </Reveal3D>
       </section>
 
     </div>

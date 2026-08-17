@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Clock, MapPin, Send, HelpCircle, Sparkles, Calendar, BookOpen, Layers, CheckCircle2 } from 'lucide-react';
+import Reveal3D from '../components/Reveal3D';
 
 export default function ContactPage() {
   // Requirement Analyzer State
@@ -78,7 +79,7 @@ export default function ContactPage() {
     <div className="relative pt-20">
       
       {/* HERO SECTION */}
-      <section className="relative py-28 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
+      <section className="relative py-28 px-4 bg-gradient-to-b from-white via-red-100 to-red-500 dark:bg-none dark:bg-bg-secondary border-b border-border-color overflow-hidden">
         {/* Floating background decorative blobs */}
         <motion.div
           animate={{
@@ -141,7 +142,8 @@ export default function ContactPage() {
 
       {/* CORE CONSULTATION COLUMNS */}
       <section className="py-20 px-4 bg-bg-primary border-b border-border-color">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* LEFT: Project Requirement Analyzer */}
           <div className="lg:col-span-7 bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm">
@@ -349,11 +351,13 @@ export default function ContactPage() {
           </div>
 
         </div>
+        </Reveal3D>
       </section>
 
       {/* FAQ SECTION */}
       <section className="py-24 px-4 bg-bg-secondary">
-        <div className="max-w-4xl mx-auto">
+        <Reveal3D>
+          <div className="max-w-4xl mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold font-display text-text-primary mb-4">FAQ</h2>
             <p className="text-text-secondary text-sm max-w-xs mx-auto">
@@ -388,6 +392,7 @@ export default function ContactPage() {
             ))}
           </div>
         </div>
+        </Reveal3D>
       </section>
 
     </div>

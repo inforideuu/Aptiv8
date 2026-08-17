@@ -126,7 +126,7 @@ export default function HomePage({ theme }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-text-primary max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             Transforming architecture, engineering, construction, facilities management, infrastructure, and real estate through custom-trained artificial intelligence models.
           </motion.p>
@@ -385,7 +385,7 @@ export default function HomePage({ theme }) {
           </div>
 
           {/* Bento Grid layout */}
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-6 gap-6 grid-flow-row-dense">
             {bentoProducts.map((prod, idx) => {
               // Map sizes to grid columns
               let gridClass = 'md:col-span-3 h-[400px]';
@@ -459,7 +459,7 @@ export default function HomePage({ theme }) {
 
       {/* SECTION 7: CASE STUDIES CAROUSEL */}
       <section id="case-studies" className="py-24 px-4 bg-bg-primary border-b border-border-color">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-6xl mx-auto ">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-4">
               Proven Results
@@ -469,7 +469,7 @@ export default function HomePage({ theme }) {
             </p>
           </div>
 
-          <div className="relative bg-bg-secondary border border-border-color rounded-[32px] p-8 md:p-12 shadow-xl">
+          <div className="relative bg-bg-secondary border border-border-color rounded-[32px] p-8 md:p-12 shadow-2xl">
             <AnimatePresence mode="wait">
               {caseStudies.map((cs, idx) => {
                 if (idx !== currentCase) return null;
@@ -483,7 +483,7 @@ export default function HomePage({ theme }) {
                     className="grid grid-cols-1 lg:grid-cols-2 gap-12"
                   >
                     {/* Problem / Solution details */}
-                    <div className="flex flex-col gap-6">
+                    <div className="border border-border-color bg-bg-tertiary/40 rounded-2xl p-6 flex flex-col justify-center gap-6">
                       <div>
                         <span className="text-[10px] uppercase tracking-widest text-accent font-bold font-display mb-1 block">
                           Case Study 0{idx + 1}

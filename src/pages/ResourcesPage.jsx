@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Search, Filter, BookOpen, FileText, Video, Calendar, ArrowRight, Eye } from 'lucide-react';
 import { svgs } from '../data/websiteData';
 
@@ -85,16 +86,62 @@ export default function ResourcesPage() {
     return matchesSearch && matchesCat;
   });
 
-  const featured = resources.find(r => r.featured);
-  const trendingList = resources.filter(r => r.trending);
+  const featured = filteredResources.find(r => r.featured) || filteredResources[0];
+  const trendingList = filteredResources.filter(r => r.trending);
 
   return (
     <div className="relative pt-20">
       
       {/* HERO SECTION */}
-      <section className="relative py-20 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(37,99,235,0.05),transparent_60%)] pointer-events-none" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+      <section className="relative py-28 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
+        {/* Floating background decorative blobs */}
+        <motion.div
+          animate={{
+            y: [-15, 15, -15],
+            x: [-10, 10, -10],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-10 left-10 w-32 h-32 rounded-full bg-accent/10 blur-2xl pointer-events-none"
+        />
+        <motion.div
+          animate={{
+            y: [20, -20, 20],
+            x: [15, -15, 15],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute bottom-10 right-10 w-44 h-44 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"
+        />
+        
+        {/* Subtle grid backdrop */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.08),transparent_70%)] pointer-events-none" />
+        
+        {/* Futuristic Blueprint Grid Backdrop */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+        
+        {/* Pinging blueprint node lights */}
+        <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 rounded-full bg-accent/60 animate-ping pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 rounded-full bg-indigo-400/60 animate-ping pointer-events-none [animation-delay:1.5s]" />
+        <div className="absolute top-1/3 right-1/3 w-1 h-1 rounded-full bg-accent/40 animate-ping pointer-events-none [animation-delay:0.8s]" />
+
+        <motion.div
+          animate={{
+            y: [0, -12, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="max-w-4xl mx-auto text-center relative z-10"
+        >
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-glow border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-6 font-display">
             Singapore Hub & Resources
           </span>
@@ -104,11 +151,45 @@ export default function ResourcesPage() {
           <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
             GEO-optimized publications, research papers, and technical documentations on BCA Green Mark, building codes, and AI integration.
           </p>
+        </motion.div>
+      </section>
+
+      {/* SEARCH & FILTER BAR */}
+      <section className="py-6 px-4 bg-bg-secondary border-b border-border-color sticky top-20 z-20 backdrop-blur-md bg-bg-secondary/90">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+          {/* Categories Horizontal Selector */}
+          <div className="flex flex-wrap gap-2 items-center">
+            {categories.map(cat => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2.5 rounded-full text-xs font-semibold uppercase tracking-wider transition-all cursor-pointer ${
+                  activeCategory === cat
+                    ? 'bg-accent text-white shadow-sm'
+                    : 'bg-bg-primary text-text-secondary border border-border-color hover:border-accent/40'
+                }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
+
+          {/* Search Input */}
+          <div className="relative w-full md:max-w-xs shrink-0">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search resources..."
+              className="w-full bg-bg-primary text-text-primary border border-border-color rounded-full pl-10 pr-4 py-2.5 text-xs focus:outline-none focus:border-accent"
+            />
+            <Search className="absolute left-3.5 top-3.5 h-4 w-4 text-text-secondary" />
+          </div>
         </div>
       </section>
 
       {/* EDITORIAL CONTENT LAYOUT */}
-      <section className="py-20 px-4 bg-bg-primary">
+      <section className="py-16 px-4 bg-bg-primary">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* LEFT COLUMN: Main Editorial Content */}
@@ -149,7 +230,7 @@ export default function ResourcesPage() {
               </h3>
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {filteredResources.filter(r => !r.featured).map(res => (
+                {filteredResources.filter(r => r.id !== (featured ? featured.id : null)).map(res => (
                   <div key={res.id} className="bg-bg-secondary border border-border-color rounded-3xl overflow-hidden group hover:border-accent transition-colors flex flex-col justify-between shadow-sm">
                     <div>
                       <div className="aspect-[16/10] overflow-hidden relative">
@@ -193,42 +274,6 @@ export default function ResourcesPage() {
           {/* RIGHT COLUMN: Sidebar Filters & Trending */}
           <div className="lg:col-span-4 flex flex-col gap-8">
             
-            {/* Search Component */}
-            <div className="p-6 bg-bg-secondary border border-border-color rounded-3xl shadow-sm">
-              <h4 className="font-display font-bold text-sm text-text-primary mb-4">Search Resources</h4>
-              <div className="relative">
-                <input
-                  type="text"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  placeholder="BCA code, CMMS, Revit..."
-                  className="w-full bg-bg-primary text-text-primary border border-border-color rounded-xl pl-10 pr-4 py-2.5 text-sm focus:outline-none focus:border-accent"
-                />
-                <Search className="absolute left-3.5 top-3.5 h-4.5 w-4.5 text-text-secondary" />
-              </div>
-            </div>
-
-            {/* Category Filter list */}
-            <div className="p-6 bg-bg-secondary border border-border-color rounded-3xl shadow-sm">
-              <h4 className="font-display font-bold text-sm text-text-primary mb-4">Categories</h4>
-              <div className="flex flex-col gap-2">
-                {categories.map(cat => (
-                  <button
-                    key={cat}
-                    onClick={() => setActiveCategory(cat)}
-                    className={`w-full text-left px-3 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer flex items-center justify-between ${
-                      activeCategory === cat
-                        ? 'bg-accent/10 text-accent font-bold'
-                        : 'text-text-secondary hover:bg-bg-primary hover:text-text-primary'
-                    }`}
-                  >
-                    <span>{cat}</span>
-                    {activeCategory === cat && <CheckCircleIcon />}
-                  </button>
-                ))}
-              </div>
-            </div>
-
             {/* Trending Resources list */}
             <div className="p-6 bg-bg-secondary border border-border-color rounded-3xl shadow-sm">
               <h4 className="font-display font-bold text-sm text-text-primary mb-6 flex items-center gap-1.5">

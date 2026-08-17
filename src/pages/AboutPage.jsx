@@ -1,42 +1,74 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Building2, Users, Award, ShieldCheck, Heart, 
-  Lightbulb, Zap, TrendingUp, ChevronRight, HelpCircle 
+  Lightbulb, Zap, TrendingUp, ChevronRight, HelpCircle,
+  Briefcase, Cpu, Settings
 } from 'lucide-react';
 
-// Reusable animated counter component
+// Reusable animated counter component that counts on scroll visibility and mouse hover
 function Counter({ endValue, label, duration = 2000 }) {
   const [count, setCount] = useState(0);
+  const [hasTriggered, setHasTriggered] = useState(false);
+  const elementRef = useRef(null);
 
-  useEffect(() => {
+  const end = parseInt(endValue.replace(/\D/g, ''), 10);
+  const suffix = endValue.replace(/[0-9]/g, '');
+
+  const startCounting = () => {
     let start = 0;
-    const end = parseInt(endValue.replace(/\D/g, ''), 10);
-    if (start === end) return;
-
+    setCount(0);
     const totalMiliseconds = duration;
     const incrementTime = Math.max(Math.floor(totalMiliseconds / end), 20);
     
     const timer = setInterval(() => {
       start += 1;
-      setCount(start);
-      if (start === end) {
+      if (start >= end) {
+        setCount(end);
         clearInterval(timer);
+      } else {
+        setCount(start);
       }
     }, incrementTime);
 
     return () => clearInterval(timer);
-  }, [endValue, duration]);
+  };
 
-  const suffix = endValue.replace(/[0-9]/g, '');
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasTriggered) {
+          setHasTriggered(true);
+          startCounting();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [end, hasTriggered]);
+
+  const handleMouseEnter = () => {
+    startCounting();
+  };
 
   return (
-    <div className="flex flex-col items-center justify-center p-6 bg-bg-secondary border border-border-color rounded-2xl shadow-sm">
-      <span className="text-4xl md:text-5xl font-extrabold font-display text-accent mb-2">
+    <div
+      ref={elementRef}
+      onMouseEnter={handleMouseEnter}
+      className="flex flex-col items-center justify-center p-6 bg-bg-secondary border border-border-color rounded-2xl shadow-sm transition-all duration-300 hover:border-accent hover:shadow-lg cursor-pointer transform hover:-translate-y-1"
+    >
+      <span className="text-4xl md:text-5xl font-extrabold font-display text-accent mb-2 select-none">
         {count}
         {suffix}
       </span>
-      <span className="text-sm font-semibold text-text-secondary uppercase tracking-wider text-center">
+      <span className="text-sm font-semibold text-text-secondary uppercase tracking-wider text-center select-none">
         {label}
       </span>
     </div>
@@ -126,19 +158,19 @@ export default function AboutPage() {
       name: 'Dr. Aaron Chen',
       role: 'Chief Executive Officer',
       bio: 'Former senior BIM director at Bentley Systems with 15+ years engineering expertise.',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80'
+      icon: Briefcase
     },
     {
       name: 'Sarah Lim',
       role: 'Chief AI Architect',
       bio: 'PhD in Cognitive Architecture from NUS. Leads training of local building compliance models.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80'
+      icon: Cpu
     },
     {
       name: 'Devin Marcus',
       role: 'Head of Product Operations',
       bio: 'Former Autodesk integration lead. Manages CMMS and BIM pipeline API distributions.',
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=800&q=80'
+      icon: Settings
     }
   ];
 
@@ -146,11 +178,57 @@ export default function AboutPage() {
     <div className="relative pt-20">
       
       {/* SECTION 1: HERO SECTION */}
-      <section className="relative py-24 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
-        {/* Subtle grid backdrop */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.05),transparent_70%)] pointer-events-none" />
+      <section className="relative py-28 px-4 bg-gradient-to-b from-white via-red-100 to-red-500 dark:bg-none dark:bg-bg-secondary border-b border-border-color overflow-hidden"
+>
+        {/* Floating background decorative blobs */}
+        <motion.div
+          animate={{
+            y: [-15, 15, -15],
+            x: [-10, 10, -10],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-10 left-10 w-32 h-32 rounded-full bg-accent/10 blur-2xl pointer-events-none"
+        />
+        <motion.div
+          animate={{
+            y: [20, -20, 20],
+            x: [15, -15, 15],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute bottom-10 right-10 w-44 h-44 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"
+        />
         
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        {/* Subtle grid backdrop */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.08),transparent_70%)] pointer-events-none" />
+        
+        {/* Futuristic Blueprint Grid Backdrop */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+        
+        {/* Pinging blueprint node lights */}
+        <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 rounded-full bg-accent/60 animate-ping pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 rounded-full bg-indigo-400/60 animate-ping pointer-events-none [animation-delay:1.5s]" />
+        <div className="absolute top-1/3 right-1/3 w-1 h-1 rounded-full bg-accent/40 animate-ping pointer-events-none [animation-delay:0.8s]" />
+        
+        {/* Main Floating Wrapper */}
+        <motion.div
+          animate={{
+            y: [0, -12, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="max-w-4xl mx-auto text-center relative z-10"
+        >
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -180,7 +258,7 @@ export default function AboutPage() {
           >
             Since 2018, Aptiv8 has been helping organizations accelerate digital transformation through industry-first, custom-trained AI solutions.
           </motion.p>
-        </div>
+        </motion.div>
       </section>
 
       {/* SECTION 2: COMPANY STORY (Interactive Timeline) */}
@@ -381,8 +459,10 @@ export default function AboutPage() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {leadership.map((l, idx) => (
-              <div key={idx} className="bg-bg-secondary border border-border-color rounded-2xl p-6 flex flex-col items-center text-center shadow-sm">
-                <img src={l.image} alt={l.name} className="w-24 h-24 rounded-full object-cover mb-4 border-2 border-accent" />
+              <div key={idx} className="bg-bg-secondary border border-border-color rounded-2xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-accent/40 transition-all duration-300 group">
+                <div className="w-16 h-16 rounded-2xl bg-accent/5 border border-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                  <l.icon className="h-7 w-7" />
+                </div>
                 <h3 className="font-display font-bold text-lg text-text-primary">
                   {l.name}
                 </h3>

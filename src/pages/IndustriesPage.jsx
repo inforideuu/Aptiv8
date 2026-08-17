@@ -74,9 +74,55 @@ export default function IndustriesPage() {
     <div className="relative pt-20">
       
       {/* HERO SECTION */}
-      <section className="relative py-20 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.06),transparent_60%)] pointer-events-none" />
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+      <section className="relative py-28 px-4 bg-bg-secondary border-b border-border-color overflow-hidden">
+        {/* Floating background decorative blobs */}
+        <motion.div
+          animate={{
+            y: [-15, 15, -15],
+            x: [-10, 10, -10],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute top-10 left-10 w-32 h-32 rounded-full bg-accent/10 blur-2xl pointer-events-none"
+        />
+        <motion.div
+          animate={{
+            y: [20, -20, 20],
+            x: [15, -15, 15],
+          }}
+          transition={{
+            duration: 10,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="absolute bottom-10 right-10 w-44 h-44 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"
+        />
+        
+        {/* Subtle grid backdrop */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.08),transparent_70%)] pointer-events-none" />
+        
+        {/* Futuristic Blueprint Grid Backdrop */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+        
+        {/* Pinging blueprint node lights */}
+        <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 rounded-full bg-accent/60 animate-ping pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 rounded-full bg-indigo-400/60 animate-ping pointer-events-none [animation-delay:1.5s]" />
+        <div className="absolute top-1/3 right-1/3 w-1 h-1 rounded-full bg-accent/40 animate-ping pointer-events-none [animation-delay:0.8s]" />
+
+        <motion.div
+          animate={{
+            y: [0, -12, 0],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+          className="max-w-4xl mx-auto text-center relative z-10"
+        >
           <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-glow border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-6 font-display">
             Target Industries
           </span>
@@ -86,7 +132,7 @@ export default function IndustriesPage() {
           <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
             Tailored AI systems addressing specific zoning, structural safety, and operational challenges across the physical asset spectrum.
           </p>
-        </div>
+        </motion.div>
       </section>
 
       {/* QUICK NAV BAR */}

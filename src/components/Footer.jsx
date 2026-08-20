@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-footer-bg text-white border-t border-red-700/40 pt-16 pb-8 rounded-t-[48px] md:rounded-t-[64px] relative overflow-hidden">
+    <footer id="contact" className="bg-footer-bg dark:bg-slate-950 text-white border-t border-red-700/40 dark:border-slate-800/80 pt-16 pb-8 rounded-t-[48px] md:rounded-t-[64px] relative overflow-hidden">
       {/* Subtle overlay grid for tech feel */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_60%)] pointer-events-none" />
       
@@ -47,12 +47,13 @@ export default function Footer() {
               Quick Links
             </h4>
             <ul className="flex flex-col gap-3 text-sm text-white/80">
-              <li><a href="#solutions" className="hover:text-white transition-colors">Solutions</a></li>
-              <li><a href="#lifecycle" className="hover:text-white transition-colors">Lifecycle Timeline</a></li>
-              <li><a href="#products-bento" className="hover:text-white transition-colors">Bento Grid</a></li>
-              <li><a href="#industries" className="hover:text-white transition-colors">Industries</a></li>
-              <li><a href="#case-studies" className="hover:text-white transition-colors">Case Studies</a></li>
-              <li><a href="#chatbot-section" className="hover:text-white transition-colors">AI Knowledge Assistant</a></li>
+              <li><a href="/about" className="hover:text-white transition-colors">About Us</a></li>
+              <li><a href="/services" className="hover:text-white transition-colors">Services Offered</a></li>
+              <li><a href="/projects" className="hover:text-white transition-colors">Co-Developed Projects</a></li>
+              <li><a href="/solutions" className="hover:text-white transition-colors">Solutions</a></li>
+              <li><a href="/products" className="hover:text-white transition-colors">AI Products Suite</a></li>
+              <li><a href="/case-studies" className="hover:text-white transition-colors">Case Studies</a></li>
+              <li><a href="/industries" className="hover:text-white transition-colors">Industries</a></li>
             </ul>
           </div>
 

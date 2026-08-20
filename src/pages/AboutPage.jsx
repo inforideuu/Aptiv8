@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Building2, Users, Award, ShieldCheck, Heart, 
   Lightbulb, Zap, TrendingUp, ChevronRight, HelpCircle,
-  Briefcase, Cpu, Settings
+  Briefcase, Cpu, Settings, Sparkles
 } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
 
@@ -84,7 +84,7 @@ export default function AboutPage() {
     {
       year: '2018',
       title: 'Company Founded',
-      description: 'Aptiv8 IT Solutions was established in Singapore, building the foundations for digitalization in construction and architectural workflows.',
+      description: 'Aptiv8 was incorporated in 2018 and Singapore based. It is led by built environment domain experts with decades of experience in the built environment across the value chain and lifecycle.',
       icon: Building2
     },
     {
@@ -234,9 +234,9 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-glow border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-6 font-display"
+            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-950/25 border border-red-200 dark:border-red-800/40 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-wider mb-6 font-display"
           >
-            About Aptiv8 IT Solutions
+            ABOUT APTIV8 IT SOLUTIONS
           </motion.div>
 
           <motion.h1
@@ -246,7 +246,7 @@ export default function AboutPage() {
             className="text-4xl md:text-6xl font-extrabold font-display tracking-tight text-text-primary mb-6"
           >
             Engineering the Future of the <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-hover">
+            <span className="text-red-600 dark:text-red-400">
               Built Environment Through AI
             </span>
           </motion.h1>
@@ -255,78 +255,252 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
+            className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed"
           >
-            Since 2018, Aptiv8 has been helping organizations accelerate digital transformation through industry-first, custom-trained AI solutions.
+            Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products for the Built Environment (BE) sector across Singapore and Malaysia.
           </motion.p>
         </motion.div>
       </section>
 
-      {/* SECTION 2: COMPANY STORY (Interactive Timeline) */}
-      <section id="journey" className="py-24 px-4 bg-bg-primary border-b border-border-color">
-        <Reveal3D>
-          <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
-              Our Journey
-            </h2>
-            <p className="text-text-secondary max-w-md mx-auto">
-              How we scaled from a Singapore tech startup to Southeast Asia's trusted AI partner.
-            </p>
-          </div>
+      {/* SECTION: COMPANY OVERVIEW */}
+      <section className="py-24 px-4 bg-bg-secondary border-b border-border-color relative overflow-hidden">
+        {/* Luxury Background Ambient Glow */}
+        <div className="absolute top-1/4 right-0 w-[400px] h-[400px] rounded-full bg-red-500/5 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 left-0 w-[300px] h-[300px] rounded-full bg-indigo-500/5 blur-[100px] pointer-events-none" />
 
-          <div className="flex flex-col gap-12">
-            {/* Timeline Year selector */}
-            <div className="relative flex justify-between border-b border-border-color pb-4 overflow-x-auto gap-4">
-              {timelineEvents.map(event => (
-                <button
-                  key={event.year}
-                  onClick={() => setActiveYear(event.year)}
-                  className={`flex flex-col items-center gap-2 min-w-[100px] pb-2 relative transition-all cursor-pointer`}
-                >
-                  <span className={`text-lg font-bold font-display ${activeYear === event.year ? 'text-accent scale-110' : 'text-text-secondary/60'}`}>
-                    {event.year}
+        <Reveal3D>
+          <div className="max-w-6xl mx-auto relative z-10">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              <div className="lg:col-span-5 space-y-6">
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/20 border border-red-200/50 dark:border-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-wider font-display">
+                  <Sparkles className="h-3 w-3 animate-pulse" /> Overview
+                </div>
+                <h2 className="text-3xl md:text-5xl font-extrabold font-display text-text-primary leading-tight tracking-tight">
+                  Driving Adoption & <br />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-indigo-500">
+                    Revenue via Agentic AI
                   </span>
-                  {activeYear === event.year && (
-                    <motion.div
-                      layoutId="aboutTimelineBorder"
-                      className="absolute bottom-[-17px] left-0 right-0 h-1 bg-accent"
-                    />
-                  )}
-                </button>
-              ))}
+                </h2>
+                <p className="text-text-secondary leading-relaxed text-sm md:text-base">
+                  Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products for the Built Environment (BE) sector across Singapore and Malaysia. Its priority is delivering widely adopted, revenue-generating Gen AI tools that practitioners—real estate, buildings and infrastructure developers, building and other asset owners, architects, MEP engineers, quantity surveyors (QS), contractors, specialist trade subcontractors, and Integrated Facilities Management (IFM) companies—use in their daily work.
+                </p>
+              </div>
+              
+              <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">
+                {/* Card 1 */}
+                <div className="group relative bg-white/60 dark:bg-bg-primary/40 backdrop-blur-xl p-8 rounded-3xl border border-border-color hover:border-red-500/30 transition-all duration-500 shadow-xl hover:shadow-[0_20px_50px_rgba(239,68,68,0.08)] hover:-translate-y-2">
+                  <div className="absolute top-6 right-8 text-5xl font-extrabold text-slate-100 dark:text-slate-800/20 font-display select-none">
+                    01
+                  </div>
+                  <h3 className="text-lg font-bold font-display text-text-primary mb-4 pr-10">
+                    Relieving Value Chain Bottlenecks
+                  </h3>
+                  <div className="text-xs text-text-secondary space-y-3 leading-relaxed">
+                    <p>
+                      The BE value chain — from design, through tendering, construction, operations & maintenance, and real estate management — is characterized by significant pain points. They are regulatory complexity, fragmented and non-standardized data, abortive work from late-stage rejections, and low productivity in knowledge-intensive but repetitive compliance and coordination tasks.
+                    </p>
+                    <p>
+                      Aptiv8 positions Agentic AI — where agents reason over deterministic engineering calculations, structured data, and regulatory knowledge — as a path to relieving these bottlenecks at scale.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Card 2 */}
+                <div className="group relative bg-white/60 dark:bg-bg-primary/40 backdrop-blur-xl p-8 rounded-3xl border border-border-color hover:border-indigo-500/30 transition-all duration-500 shadow-xl hover:shadow-[0_20px_50px_rgba(99,102,241,0.08)] hover:-translate-y-2">
+                  <div className="absolute top-6 right-8 text-5xl font-extrabold text-slate-100 dark:text-slate-800/20 font-display select-none">
+                    02
+                  </div>
+                  <h3 className="text-lg font-bold font-display text-text-primary mb-4 pr-10">
+                    Delivery & Cross-Sector Adaptability
+                  </h3>
+                  <div className="text-xs text-text-secondary space-y-3 leading-relaxed">
+                    <p>
+                      Aptiv8 acts as an engineering delivery partner, co-developing Gen AI / Agentic AI projects with domain experts. Some projects are proofs-of-concept already built by Aptiv8; others are in active development or are seeking suitable domain-expert or institutional partners.
+                    </p>
+                    <p>
+                      Aptiv8 also applies the same Generative and Agentic AI platform to other sectors, including customer service, telecommunications, short-term rental/hospitality, and aerospace MRO (Maintenance, Repair and Overhaul).
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal3D>
+      </section>
+
+      {/* SECTION 2: COMPANY STORY (Interactive Timeline) */}
+      <section id="journey" className="py-24 px-4 bg-[#fbfcfe] dark:bg-bg-primary border-b border-border-color relative overflow-hidden">
+        {/* Skyline Background on right */}
+        <div className="absolute right-0 bottom-0 top-0 w-1/3 opacity-[0.03] dark:opacity-[0.01] pointer-events-none bg-[url('https://images.unsplash.com/photo-1542362567-b07eac79094d?auto=format&fit=crop&w=800&q=80')] bg-no-repeat bg-right bg-cover" />
+        
+        {/* Dot patterns */}
+        <div className="absolute left-0 top-0 bottom-0 w-24 bg-[radial-gradient(#ef4444_1px,transparent_1px)] bg-[size:16px_16px] opacity-[0.04] pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 bg-[radial-gradient(#ef4444_1px,transparent_1px)] bg-[size:16px_16px] opacity-[0.04] pointer-events-none" />
+
+        <Reveal3D>
+          <div className="max-w-5xl mx-auto relative z-10">
+            <div className="text-center mb-20">
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <div className="w-6 h-[1.5px] bg-red-500/60" />
+                <span className="text-red-600 dark:text-red-400 text-[10px] font-bold uppercase tracking-widest font-display">
+                  OUR JOURNEY
+                </span>
+                <div className="w-6 h-[1.5px] bg-red-500/60" />
+              </div>
+              <h2 className="text-4xl md:text-5xl font-extrabold font-display text-text-primary tracking-tight mb-2">
+                Company History
+              </h2>
+              <div className="flex justify-center items-center gap-0 mt-3 mb-6">
+                <div className="w-8 h-[3px] bg-red-500 rounded-l" />
+                <div className="w-8 h-[3px] bg-blue-500 rounded-r" />
+              </div>
+              <p className="text-text-secondary max-w-2xl mx-auto leading-relaxed text-sm">
+                Aptiv8 was incorporated in 2018 and Singapore based. It is led by built environment domain experts with decades of experience in the built environment across the value chain and lifecycle.
+              </p>
             </div>
 
-            {/* Timeline details output */}
-            <AnimatePresence mode="wait">
-              {timelineEvents.filter(e => e.year === activeYear).map(event => {
-                const IconComponent = event.icon;
-                return (
-                  <motion.div
-                    key={event.year}
-                    initial={{ opacity: 0, y: 15 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -15 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-bg-secondary border border-border-color rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-8 shadow-sm"
-                  >
-                    <div className="p-5 rounded-2xl bg-accent-glow text-accent shrink-0">
-                      <IconComponent className="h-10 w-10" />
+            <div className="relative">
+              {/* Central vertical track line (visible on desktop) */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-slate-200 dark:bg-slate-800 rounded-full hidden md:block" />
+              
+              {/* Left track line (visible on mobile) */}
+              <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-slate-200 dark:bg-slate-800 rounded-full md:hidden" />
+
+              <div className="space-y-8 relative">
+                {timelineEvents.map((event, idx) => {
+                  const IconComponent = event.icon;
+                  const isLeft = idx % 2 === 0;
+
+                  // Configure red vs blue theme elements as shown in the user's design image
+                  const isRedTheme = event.year !== '2020' && event.year !== '2026';
+                  const themeColor = isRedTheme ? 'red' : 'blue';
+                  
+                  return (
+                    <div 
+                      key={event.year} 
+                      className={`flex flex-col md:flex-row items-center justify-between relative ${
+                        isLeft ? 'md:flex-row-reverse' : ''
+                      }`}
+                    >
+                      {/* Timeline Center Node */}
+                      <motion.div 
+                        initial={{ scale: 0 }}
+                        whileInView={{ scale: 1 }}
+                        viewport={{ once: true, margin: '-60px' }}
+                        transition={{ type: 'spring', stiffness: 200, damping: 15 }}
+                        className="absolute left-6 md:left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-white dark:bg-slate-900 border-4 border-red-500 z-20 shadow-[0_0_8px_rgba(239,68,68,0.3)]" 
+                      />
+
+                      {/* Card Spacer Column for Grid Alignment */}
+                      <div className="w-full md:w-[45%] hidden md:block" />
+
+                      {/* Timeline Card */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 30, scale: 0.98 }}
+                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                        viewport={{ once: true, margin: '-80px' }}
+                        transition={{ duration: 0.5, ease: 'easeOut' }}
+                        whileHover={{ y: -4, scale: 1.01 }}
+                        className={`w-full md:w-[45%] bg-white dark:bg-slate-900 rounded-3xl py-6 px-7 shadow-sm ml-12 md:ml-0 relative overflow-hidden transition-all duration-300 ${
+                          isRedTheme
+  ? 'border-t-2 border-l-2 border-red-500 border-r border-b border-slate-200/80 dark:border-slate-800/80 shadow-[4px_4px_0px_rgba(239,68,68,0.12)] hover:shadow-[8px_8px_0px_rgba(239,68,68,0.16)]'
+  : 'border-t-2 border-l-2 border-blue-500 border-r border-b border-slate-200/80 dark:border-slate-800/80 shadow-[4px_4px_0px_rgba(59,130,246,0.12)] hover:shadow-[8px_8px_0px_rgba(59,130,246,0.16)]'
+                        }`}
+                      >
+                        {/* Pointer Arrow Bubble Point */}
+                        {isLeft ? (
+                          <div className={`absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white dark:bg-slate-900 border-t border-r ${
+                            isRedTheme ? 'border-red-500/20' : 'border-blue-500/20'
+                          } hidden md:block`} />
+                        ) : (
+                          <div className={`absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white dark:bg-slate-900 border-b border-l ${
+                            isRedTheme ? 'border-red-500/20' : 'border-blue-500/20'
+                          } hidden md:block`} />
+                        )}
+
+                        {/* Year Badge */}
+                        <div className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold mb-3 font-display border ${
+                          isRedTheme 
+                            ? 'bg-red-50/50 dark:bg-red-950/20 border-red-500 text-red-500' 
+                            : 'bg-blue-50/50 dark:bg-blue-950/20 border-blue-500 text-blue-500'
+                        }`}>
+                          {event.year}
+                        </div>
+
+                        {/* Title & Description */}
+                        <div className="flex flex-col sm:flex-row items-start gap-4 relative z-10">
+                          <div className={`p-3.5 rounded-2xl shrink-0 ${
+                            isRedTheme 
+                              ? 'bg-red-50 dark:bg-red-950/30 text-red-500' 
+                              : 'bg-blue-50 dark:bg-blue-950/30 text-blue-500'
+                          }`}>
+                            <IconComponent className="h-6 w-6" />
+                          </div>
+                          <div>
+                            <h3 className="font-display font-extrabold text-base text-text-primary mb-2">
+                              {event.title}
+                            </h3>
+                            <p className="text-text-secondary leading-relaxed text-xs md:text-sm font-light">
+                              {event.description}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Inline Graphic Faint SVGs to Match bottom card vector drawings exactly */}
+                        {event.year === '2018' && (
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
+                            <path d="M0 60 V50 H10 V45 H20 V50 H40 V35 H50 V40 H60 V42 H80 V50 H100 V30 H110 V25 H120 V30 H140 V50 H180 V42 H190 V45 H200 V42 H220 V30 H230 V35 H250 V50 H280 V35 H290 V25 H300 V35 H320 V50 H400 V60 Z" />
+                          </svg>
+                        )}
+                        {event.year === '2020' && (
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-blue-500/5 pointer-events-none" viewBox="0 0 400 60" fill="none" stroke="currentColor" strokeWidth="1">
+                            <circle cx="20" cy="50" r="2" fill="currentColor" />
+                            <circle cx="80" cy="20" r="2" fill="currentColor" />
+                            <circle cx="140" cy="45" r="2" fill="currentColor" />
+                            <circle cx="200" cy="15" r="2" fill="currentColor" />
+                            <circle cx="280" cy="40" r="2" fill="currentColor" />
+                            <circle cx="350" cy="25" r="2" fill="currentColor" />
+                            <line x1="20" y1="50" x2="80" y2="20" />
+                            <line x1="80" y1="20" x2="140" y2="45" />
+                            <line x1="140" y1="45" x2="200" y2="15" />
+                            <line x1="200" y1="15" x2="280" y2="40" />
+                            <line x1="280" y1="40" x2="350" y2="25" />
+                          </svg>
+                        )}
+                        {event.year === '2022' && (
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 pointer-events-none" viewBox="0 0 400 60" fill="none" stroke="currentColor" strokeWidth="1">
+                            <path d="M0 45 Q50 30 100 45 T200 45 T300 45 T400 45" />
+                            <path d="M0 50 Q50 35 100 50 T200 50 T300 50 T400 50" strokeDasharray="3 3" />
+                          </svg>
+                        )}
+                        {event.year === '2024' && (
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
+                            <path d="M50 60 V45 H70 V40 H90 V45 H110 V60 Z M150 60 V35 H180 V60 Z M220 60 V48 H250 V60 Z M300 60 V40 H330 V60 Z" />
+                          </svg>
+                        )}
+                        {event.year === '2026' && (
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-blue-500/5 pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
+                            <path d="M20 60 V45 H40 V60 Z M50 60 V35 H80 V40 H90 V60 Z M120 60 C120 45 160 45 160 60 Z M200 60 A20 20 0 0 1 240 60 Z M260 60 V48 H280 V60 Z M300 60 V40 H320 V35 H340 V60 Z" />
+                          </svg>
+                        )}
+                      </motion.div>
                     </div>
-                    <div>
-                      <h3 className="font-display font-bold text-2xl text-text-primary mb-2">
-                        {event.title}
-                      </h3>
-                      <p className="text-text-secondary leading-relaxed">
-                        {event.description}
-                      </p>
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </AnimatePresence>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Bottom Chevron Logo Node */}
+            <div className="flex flex-col items-center justify-center mt-16 relative z-10">
+              <div className="w-12 h-12 rounded-full bg-white dark:bg-slate-900 border-2 border-red-500 shadow-[0_0_15px_rgba(239,68,68,0.15)] flex items-center justify-center z-20">
+                <span className="text-red-500 font-extrabold text-base transform rotate-180 select-none">V</span>
+              </div>
+              <p className="text-center text-text-secondary max-w-sm mt-6 font-display font-medium text-xs leading-relaxed">
+                Continuing our journey to engineer <br />
+                a smarter, sustainable built environment.
+              </p>
+            </div>
           </div>
-        </div>
         </Reveal3D>
       </section>
 
@@ -347,7 +521,7 @@ export default function AboutPage() {
                 Our Vision
               </h3>
               <p className="text-sm md:text-base text-white/95 leading-relaxed font-light">
-                To be the go-to digital tech company of the Built Environment in Singapore and SE Asia.
+                To be the trusted AI partner in the AEC and FM sectors in Singapore and SE Asia.
               </p>
             </div>
           </div>
@@ -368,7 +542,7 @@ export default function AboutPage() {
                 Our Mission
               </h3>
               <p className="text-sm md:text-base text-white/95 leading-relaxed font-light">
-                To use digital technology to drive sustainability, productivity and value for our stakeholders.
+                To drive AI transformation and innovation in the built environment.
               </p>
             </div>
           </div>
@@ -392,23 +566,35 @@ export default function AboutPage() {
             {coreValues.map((val, idx) => {
               const ValIcon = val.icon;
               return (
-                <div key={idx} className="p-6 bg-bg-primary border border-border-color rounded-2xl hover:border-accent transition-colors group">
-                  <div className="p-3 rounded-xl bg-accent-glow text-accent w-max mb-4">
+                <motion.div 
+                  key={idx} 
+                  whileHover={{ 
+                    y: -10, 
+                    backgroundColor: '#ffffff', 
+                    borderColor: 'rgba(239, 68, 68, 0.8)',
+                    boxShadow: '0 20px 40px rgba(239, 68, 68, 0.08)' 
+                  }}
+                  transition={{ duration: 0.3 }}
+                  className="p-6 bg-bg-primary border border-border-color rounded-2xl group cursor-pointer transition-colors duration-300"
+                >
+                  <div className="p-3 rounded-xl bg-accent-glow text-accent w-max mb-4 group-hover:bg-red-50 group-hover:text-red-500 transition-colors">
                     <ValIcon className="h-6 w-6" />
                   </div>
-                  <h3 className="font-display font-bold text-lg text-text-primary mb-2 group-hover:text-accent transition-colors">
+                  <h3 className="font-display font-bold text-lg text-text-primary mb-2 group-hover:text-slate-900 transition-colors">
                     {val.title}
                   </h3>
-                  <p className="text-xs text-text-secondary leading-relaxed">
+                  <p className="text-xs text-text-secondary leading-relaxed group-hover:text-slate-600 transition-colors">
                     {val.description}
                   </p>
-                </div>
+                </motion.div>
               );
             })}
           </div>
         </div>
         </Reveal3D>
       </section>
+
+
 
       {/* SECTION 6: STATISTICS (Animated Counters) */}
       <section className="py-20 px-4 bg-bg-primary border-b border-border-color">

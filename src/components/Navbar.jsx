@@ -25,6 +25,8 @@ export default function Navbar({ theme, toggleTheme }) {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
+    { name: 'Services Offered', href: '/services' },
+    { name: 'Co-Developed Projects', href: '/projects' },
     { name: 'AI Solutions', href: '/solutions' },
     { name: 'AI Products Suite', href: '/products' },
     { name: 'Case Studies', href: '/case-studies' },

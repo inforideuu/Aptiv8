@@ -2,7 +2,7 @@ import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function Card({ image, category, title, description, onClick, href = '#' }) {
+export default function Card({ image, category, title, description, status, onClick, href = '#' }) {
   return (
     <div
       onClick={onClick}
@@ -23,9 +23,16 @@ export default function Card({ image, category, title, description, onClick, hre
       <div className="p-6 flex flex-col flex-grow justify-between">
         <div>
           {category && (
-            <span className="text-[10px] uppercase tracking-widest text-accent font-semibold mb-2 block font-display">
-              {category}
-            </span>
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <span className="text-[10px] uppercase tracking-widest text-accent font-semibold font-display">
+                {category}
+              </span>
+              {status && (
+                <span className="text-[9px] px-2 py-0.5 rounded-full bg-accent-glow text-accent border border-accent/10 font-semibold font-display truncate max-w-full">
+                  {status}
+                </span>
+              )}
+            </div>
           )}
           <h3 className="text-xl font-bold font-display text-text-primary mb-2 leading-snug group-hover:text-accent transition-colors">
             {title}

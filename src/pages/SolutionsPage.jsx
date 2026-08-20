@@ -232,7 +232,18 @@ export default function SolutionsPage() {
               { title: 'Sensor Twin Link', desc: 'Links site temperature/acoustic data directly to operational twin.' },
               { title: 'Predictive CMMS', desc: 'Drives facility uptime and scans legal lease reviewing logs.' }
             ].map((step, idx) => (
-              <div key={idx} className="flex-1 bg-bg-primary border border-border-color rounded-2xl p-6 relative flex flex-col justify-between group hover:border-accent transition-colors">
+              <motion.div 
+                key={idx} 
+                style={{ transformStyle: 'preserve-3d', perspective: 1000 }}
+                whileHover={{
+                  rotateY: 8,
+                  rotateX: -4,
+                  y: -5,
+                  scale: 1.02,
+                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.06)'
+                }}
+                className="flex-1 bg-bg-primary border border-border-color rounded-2xl p-6 relative flex flex-col justify-between group hover:border-accent transition-all duration-300 cursor-pointer"
+              >
                 <div>
                   <span className="text-3xl font-extrabold text-accent/20 group-hover:text-accent/40 font-display block mb-4">
                     0{idx + 1}
@@ -249,7 +260,7 @@ export default function SolutionsPage() {
                     <ChevronRight className="h-6 w-6 animate-pulse" />
                   </div>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>

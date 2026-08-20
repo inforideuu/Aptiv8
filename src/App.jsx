@@ -12,6 +12,8 @@ import IndustriesPage from './pages/IndustriesPage';
 import PartnersPage from './pages/PartnersPage';
 import ResourcesPage from './pages/ResourcesPage';
 import ContactPage from './pages/ContactPage';
+import ServicesPage from './pages/ServicesPage';
+import ProjectsPage from './pages/ProjectsPage';
 
 // Premium 3D Perspective Reveal Wrapper
 const Page3DReveal = ({ children }) => {
@@ -61,6 +63,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Page3DReveal><HomePage theme={theme} /></Page3DReveal>} />
           <Route path="/about" element={<Page3DReveal><AboutPage /></Page3DReveal>} />
+          <Route path="/services" element={<Page3DReveal><ServicesPage /></Page3DReveal>} />
+          <Route path="/projects" element={<Page3DReveal><ProjectsPage /></Page3DReveal>} />
           <Route path="/solutions" element={<Page3DReveal><SolutionsPage /></Page3DReveal>} />
           <Route path="/products" element={<Page3DReveal><ProductsPage /></Page3DReveal>} />
           <Route path="/case-studies" element={<Page3DReveal><CaseStudiesPage /></Page3DReveal>} />

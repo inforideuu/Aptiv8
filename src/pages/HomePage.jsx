@@ -25,6 +25,23 @@ export default function HomePage({ theme }) {
 
   // Section 3: Horizontal Timeline State
   const [activeStage, setActiveStage] = useState(lifecycleStages[0].id);
+  const [tiltX, setTiltX] = useState(0);
+  const [tiltY, setTiltY] = useState(0);
+
+  const handleTiltMouseMove = (e) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left - box.width / 2;
+    const y = e.clientY - box.top - box.height / 2;
+    // Max 8 degrees tilt for natural 3D look
+    setTiltX(-y / (box.height / 16));
+    setTiltY(x / (box.width / 16));
+  };
+
+  const handleTiltMouseLeave = () => {
+    setTiltX(0);
+    setTiltY(0);
+  };
 
   // Section 7: Case Studies Carousel State
   const [currentCase, setCurrentCase] = useState(0);
@@ -167,7 +184,10 @@ export default function HomePage({ theme }) {
             </p>
           </div>
 
-          <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 md:p-12 shadow-xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+          <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 md:p-12 shadow-xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-start hover:shadow-[0_20px_45px_rgba(227,6,19,0.35),0_8px_20px_rgba(227,6,19,0.12)]
+dark:hover:shadow-[0_20px_45px_rgba(255,59,71,0.30),0_8px_20px_rgba(255,59,71,0.10)]
+hover:border-accent/60
+transition-all duration-500">
             {/* Steps & Selection */}
             <div className="flex flex-col gap-8">
               {/* Question 1 */}
@@ -315,26 +335,42 @@ export default function HomePage({ theme }) {
                   transition={{ duration: 0.4 }}
                   className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
                 >
-                  {/* Left content description */}
-                  <div>
-                    <h3 className="text-3xl font-display font-bold text-text-primary mb-4">
-                      {stage.name} Solutions
-                    </h3>
-                    <p className="text-text-secondary mb-8 leading-relaxed">
-                      {stage.description}
-                    </p>
+                   {/* Left content description styled in premium card with interactive 3D tilt effect */}
+                  <div 
+                    onMouseMove={handleTiltMouseMove}
+                    onMouseLeave={handleTiltMouseLeave}
+                    style={{
+                      transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
+                      transformStyle: 'preserve-3d',
+                      transition: 'transform 0.1s ease-out, background-color 0.4s, border-color 0.4s, box-shadow 0.3s'
+                    }}
+                    className="bg-bg-primary/40 dark:bg-bg-secondary/30 backdrop-blur-md border border-border-color/80 p-6 sm:p-8 md:p-10 rounded-[28px] shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] relative overflow-hidden group hover:shadow-[0_16px_48px_0_rgba(227,6,19,0.06)] hover:border-accent/40 transition-all duration-500"
+                  >
+                    {/* Premium Ambient Light Glow */}
+                    <div className="absolute -top-16 -right-16 w-48 h-48 bg-accent/4 rounded-full blur-3xl pointer-events-none group-hover:bg-accent/8 transition-colors duration-500" />
                     
-                    <h4 className="font-semibold text-sm uppercase tracking-wider text-text-primary mb-4 flex items-center gap-2">
-                      <Layers className="h-4 w-4 text-accent" /> Installed Products & Engine Integrations
-                    </h4>
-                    <ul className="flex flex-col gap-3">
-                      {stage.products.map((prod, i) => (
-                        <li key={i} className="flex items-center gap-3 text-sm text-text-secondary">
-                          <CheckCircle2 className="h-4.5 w-4.5 text-accent shrink-0" />
-                          {prod}
-                        </li>
-                      ))}
-                    </ul>
+                    <div className="relative z-10">
+                      <h3 className="text-2xl md:text-3xl font-display font-extrabold text-text-primary mb-4 leading-tight group-hover:text-accent transition-colors duration-300">
+                        {stage.name} Solutions
+                      </h3>
+                      <p className="text-text-secondary mb-8 leading-relaxed text-sm md:text-base">
+                        {stage.description}
+                      </p>
+                      
+                      <div className="pt-6 border-t border-border-color/50">
+                        <h4 className="font-semibold text-xs md:text-sm uppercase tracking-wider text-text-primary mb-4 flex items-center gap-2">
+                          <Layers className="h-4.5 w-4.5 text-accent animate-pulse" /> Installed Products & Engine Integrations
+                        </h4>
+                        <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                          {stage.products.map((prod, i) => (
+                            <li key={i} className="flex items-center gap-3 text-xs md:text-sm text-text-secondary hover:text-text-primary transition-colors">
+                              <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
+                              <span className="font-medium">{prod}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Right large image */}
@@ -481,7 +517,7 @@ export default function HomePage({ theme }) {
             </p>
           </div>
 
-          <div className="relative bg-bg-secondary border border-border-color rounded-[32px] p-8 md:p-12 shadow-2xl">
+          <div className="relative bg-gradient-to-br from-[#0a1128] via-[#070c1e] to-[#030611] border border-blue-900/40 rounded-[32px] p-8 md:p-12 shadow-2xl shadow-blue-950/20">
             <AnimatePresence mode="wait">
               {caseStudies.map((cs, idx) => {
                 if (idx !== currentCase) return null;
@@ -494,42 +530,42 @@ export default function HomePage({ theme }) {
                     transition={{ duration: 0.4 }}
                     className="grid grid-cols-1 lg:grid-cols-2 gap-12"
                   >
-                    {/* Problem / Solution details */}
-                    <div className="border border-border-color bg-bg-tertiary/40 rounded-2xl p-6 flex flex-col justify-center gap-6">
+                    {/* Problem / Solution details - Red Accent Card */}
+                    <div className="group border border-amber-500/30 bg-amber-500 hover:bg-bg-secondary dark:hover:bg-bg-secondary/45 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-lg transition-all duration-300 cursor-pointer">
                       <div>
-                        <span className="text-[10px] uppercase tracking-widest text-accent font-bold font-display mb-1 block">
+                        <span className="text-[10px] uppercase tracking-widest text-white/80 group-hover:text-accent font-bold font-display mb-1 block transition-colors">
                           Case Study 0{idx + 1}
                         </span>
-                        <h3 className="text-2xl font-bold font-display text-text-primary mb-4">
+                        <h3 className="text-2xl font-bold font-display text-white group-hover:text-text-primary mb-4 transition-colors">
                           Optimizing Built Operations
                         </h3>
                       </div>
 
                       <div>
-                        <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">The Challenge</h4>
-                        <p className="text-sm text-text-secondary">{cs.problem}</p>
+                        <h4 className="text-xs uppercase tracking-wider font-bold text-white/90 group-hover:text-accent mb-1 transition-colors">The Challenge</h4>
+                        <p className="text-sm text-white/80 group-hover:text-text-secondary transition-colors">{cs.problem}</p>
                       </div>
 
                       <div>
-                        <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">Aptiv8 AI Solution</h4>
-                        <p className="text-sm text-text-secondary">{cs.solution}</p>
+                        <h4 className="text-xs uppercase tracking-wider font-bold text-white/90 group-hover:text-accent mb-1 transition-colors">Aptiv8 AI Solution</h4>
+                        <p className="text-sm text-white/80 group-hover:text-text-secondary transition-colors">{cs.solution}</p>
                       </div>
 
                       <div>
-                        <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">Implementation</h4>
-                        <p className="text-sm text-text-secondary">{cs.implementation}</p>
+                        <h4 className="text-xs uppercase tracking-wider font-bold text-white/90 group-hover:text-accent mb-1 transition-colors">Implementation</h4>
+                        <p className="text-sm text-white/80 group-hover:text-text-secondary transition-colors">{cs.implementation}</p>
                       </div>
                     </div>
 
-                    {/* Results / Business Impact */}
-                    <div className="border border-border-color bg-bg-tertiary/40 rounded-2xl p-6 flex flex-col justify-center gap-6">
-                      <div className="border-b border-border-color/60 pb-6">
-                        <span className="text-xs uppercase tracking-wider text-accent font-semibold">Results & Verification</span>
-                        <p className="text-xl font-bold font-display text-text-primary mt-2">{cs.results}</p>
+                    {/* Results / Business Impact - Gold Accent Card */}
+                    <div className="group border border-amber-500/30 bg-amber-500 hover:bg-bg-secondary dark:hover:bg-bg-secondary/45 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-lg transition-all duration-300 cursor-pointer">
+                      <div className="border-b border-white/20 group-hover:border-border-color/60 pb-6 transition-colors">
+                        <span className="text-xs uppercase tracking-wider text-white/90 group-hover:text-amber-600 dark:group-hover:text-amber-400 font-bold font-display transition-colors">Results & Verification</span>
+                        <p className="text-xl font-bold font-display text-white group-hover:text-text-primary mt-2 transition-colors">{cs.results}</p>
                       </div>
                       <div>
-                        <span className="text-xs uppercase tracking-wider text-accent font-semibold">Total Business Impact</span>
-                        <p className="text-xl font-bold font-display text-text-primary mt-2">{cs.impact}</p>
+                        <span className="text-xs uppercase tracking-wider text-white/90 group-hover:text-amber-600 dark:group-hover:text-amber-400 font-bold font-display transition-colors">Total Business Impact</span>
+                        <p className="text-xl font-bold font-display text-white group-hover:text-text-primary mt-2 transition-colors">{cs.impact}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -541,14 +577,14 @@ export default function HomePage({ theme }) {
             <div className="flex justify-end gap-3 mt-8">
               <button
                 onClick={() => setCurrentCase(prev => (prev === 0 ? caseStudies.length - 1 : prev - 1))}
-                className="p-3 rounded-full border border-border-color bg-bg-secondary hover:bg-bg-tertiary text-text-primary transition-colors cursor-pointer"
+                className="p-3 rounded-full border border-blue-800/40 bg-white/5 hover:bg-white/15 text-white transition-colors cursor-pointer"
                 aria-label="Previous Case Study"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={() => setCurrentCase(prev => (prev === caseStudies.length - 1 ? 0 : prev + 1))}
-                className="p-3 rounded-full border border-border-color bg-bg-secondary hover:bg-bg-tertiary text-text-primary transition-colors cursor-pointer"
+                className="p-3 rounded-full border border-blue-800/40 bg-white/5 hover:bg-white/15 text-white transition-colors cursor-pointer"
                 aria-label="Next Case Study"
               >
                 <ChevronRight className="h-5 w-5" />
@@ -633,19 +669,36 @@ export default function HomePage({ theme }) {
             </p>
           </div>
 
-          <div className="bg-bg-secondary border border-border-color rounded-[24px] shadow-xl overflow-hidden flex flex-col h-[500px]">
-            {/* Header */}
-            <div className="bg-bg-primary border-b border-border-color p-4 flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="p-2 rounded-xl bg-accent text-white">
-                  <MessageSquare className="h-5 w-5" />
-                </div>
-                <div>
-                  <h3 className="font-bold text-sm text-text-primary">Aptiv8 AI Engine</h3>
-                  <span className="text-[10px] text-accent font-semibold uppercase tracking-wider">Online</span>
-                </div>
-              </div>
-            </div>
+          <div className="bg-bg-secondary border border-border-color rounded-[24px] shadow-xl overflow-hidden flex flex-col h-[500px] hover:shadow-[0_20px_45px_rgba(227,6,19,0.35),0_8px_20px_rgba(227,6,19,0.12)]
+dark:hover:shadow-[0_20px_45px_rgba(255,59,71,0.30),0_8px_20px_rgba(255,59,71,0.10)]
+hover:border-accent/60
+transition-all duration-500">
+             {/* Header */}
+             <div className="bg-bg-primary border-b border-border-color p-4.5 flex items-center justify-between relative overflow-hidden">
+               {/* Tech scanline background effect */}
+               <div className="absolute inset-0 bg-gradient-to-r from-accent/[0.02] to-transparent pointer-events-none" />
+               
+               <div className="flex items-center gap-3.5 relative z-10">
+                 <div className="relative p-2.5 rounded-xl bg-gradient-to-tr from-accent to-[#ff6a75] text-white shadow-[0_0_20px_rgba(227,6,19,0.3)] dark:shadow-[0_0_20px_rgba(255,59,71,0.35)] flex items-center justify-center">
+                   <MessageSquare className="h-5 w-5 animate-pulse" />
+                   <span className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-emerald-400 border-2 border-bg-primary rounded-full" />
+                 </div>
+                 <div>
+                   <h3 className="font-display font-extrabold text-sm tracking-wider bg-clip-text text-transparent bg-gradient-to-r from-accent via-[#ff6a75] to-amber-500 uppercase">
+                     Aptiv8 AI Engine
+                   </h3>
+                   <div className="flex items-center gap-1.5 mt-0.5">
+                     <span className="relative flex h-2 w-2">
+                       <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                       <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                     </span>
+                     <span className="text-[9px] text-emerald-500 dark:text-emerald-400 font-extrabold uppercase tracking-widest">
+                       Cognitive Core Active
+                     </span>
+                   </div>
+                 </div>
+               </div>
+             </div>
 
             {/* Chat list */}
             <div className="flex-grow p-6 overflow-y-auto flex flex-col gap-4">

@@ -76,6 +76,42 @@ function Counter({ endValue, label, duration = 2000 }) {
   );
 }
 
+// Reusable 3D Tilt Wrapper Component for Core Principles
+function TiltCard({ children, className }) {
+  const [tiltX, setTiltX] = useState(0);
+  const [tiltY, setTiltY] = useState(0);
+
+  const handleMouseMove = (e) => {
+    const card = e.currentTarget;
+    const box = card.getBoundingClientRect();
+    const x = e.clientX - box.left - box.width / 2;
+    const y = e.clientY - box.top - box.height / 2;
+    // Max 10 degrees tilt
+    setTiltX(-y / (box.height / 10));
+    setTiltY(x / (box.width / 10));
+  };
+
+  const handleMouseLeave = () => {
+    setTiltX(0);
+    setTiltY(0);
+  };
+
+  return (
+    <div
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{
+        transform: `perspective(1000px) rotateX(${tiltX}deg) rotateY(${tiltY}deg)`,
+        transformStyle: 'preserve-3d',
+        transition: 'transform 0.1s ease-out, background-color 0.3s, border-color 0.3s, box-shadow 0.3s'
+      }}
+      className={`${className} hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(239,68,68,0.08)] hover:border-red-500/80 hover:bg-white`}
+    >
+      {children}
+    </div>
+  );
+}
+
 export default function AboutPage() {
   // Timeline State
   const [activeYear, setActiveYear] = useState('2018');
@@ -270,59 +306,82 @@ export default function AboutPage() {
 
         <Reveal3D>
           <div className="max-w-6xl mx-auto relative z-10">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-              <div className="lg:col-span-5 space-y-6">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/20 border border-red-200/50 dark:border-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-wider font-display">
-                  <Sparkles className="h-3 w-3 animate-pulse" /> Overview
-                </div>
-                <h2 className="text-3xl md:text-5xl font-extrabold font-display text-text-primary leading-tight tracking-tight">
-                  Driving Adoption & <br />
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-indigo-500">
-                    Revenue via Agentic AI
-                  </span>
-                </h2>
-                <p className="text-text-secondary leading-relaxed text-sm md:text-base">
-                  Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products for the Built Environment (BE) sector across Singapore and Malaysia. Its priority is delivering widely adopted, revenue-generating Gen AI tools that practitioners—real estate, buildings and infrastructure developers, building and other asset owners, architects, MEP engineers, quantity surveyors (QS), contractors, specialist trade subcontractors, and Integrated Facilities Management (IFM) companies—use in their daily work.
-                </p>
-              </div>
+            {/* Single Consolidate Card with image */}
+            <div className="bg-white/60 dark:bg-bg-primary/40 backdrop-blur-xl p-8 md:p-12 rounded-[32px] border border-border-color shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
               
-              <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-8">
-                {/* Card 1 */}
-                <div className="group relative bg-white/60 dark:bg-bg-primary/40 backdrop-blur-xl p-8 rounded-3xl border border-border-color hover:border-red-500/30 transition-all duration-500 shadow-xl hover:shadow-[0_20px_50px_rgba(239,68,68,0.08)] hover:-translate-y-2">
-                  <div className="absolute top-6 right-8 text-5xl font-extrabold text-slate-100 dark:text-slate-800/20 font-display select-none">
-                    01
+              {/* Left Side: 3 Content blocks stacked with dividers */}
+              <div className="lg:col-span-7 flex flex-col justify-between gap-3">
+                {/* Block 1 */}
+                <div className="space-y-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/20 border border-red-200/50 dark:border-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-wider font-display w-max">
+                    <Sparkles className="h-3 w-3 animate-pulse" /> Overview
                   </div>
-                  <h3 className="text-lg font-bold font-display text-text-primary mb-4 pr-10">
+                  <h2 className="text-2xl md:text-3xl font-extrabold font-display text-text-primary leading-tight tracking-tight">
+                    Driving Adoption & <br />
+                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-indigo-500">
+                      Revenue via Agentic AI
+                    </span>
+                  </h2>
+                  <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
+                    Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products for the Built Environment (BE) sector across Singapore and Malaysia. Its priority is delivering widely adopted, revenue-generating Gen AI tools that practitioners—real estate, buildings and infrastructure developers, building and other asset owners, architects, MEP engineers, quantity surveyors (QS), contractors, specialist trade subcontractors, and Integrated Facilities Management (IFM) companies—use in their daily work.
+                  </p>
+                </div>
+
+                <hr className="border-border-color/60 dark:border-slate-800/40" />
+
+                {/* Block 2 */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold font-display text-text-primary">
                     Relieving Value Chain Bottlenecks
                   </h3>
-                  <div className="text-xs text-text-secondary space-y-3 leading-relaxed">
-                    <p>
+                  <div className="text-xs text-text-secondary space-y-3 leading-relaxed text-justify">
+                    <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
                       The BE value chain — from design, through tendering, construction, operations & maintenance, and real estate management — is characterized by significant pain points. They are regulatory complexity, fragmented and non-standardized data, abortive work from late-stage rejections, and low productivity in knowledge-intensive but repetitive compliance and coordination tasks.
                     </p>
-                    <p>
+                    <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
                       Aptiv8 positions Agentic AI — where agents reason over deterministic engineering calculations, structured data, and regulatory knowledge — as a path to relieving these bottlenecks at scale.
                     </p>
                   </div>
                 </div>
 
-                {/* Card 2 */}
-                <div className="group relative bg-white/60 dark:bg-bg-primary/40 backdrop-blur-xl p-8 rounded-3xl border border-border-color hover:border-indigo-500/30 transition-all duration-500 shadow-xl hover:shadow-[0_20px_50px_rgba(99,102,241,0.08)] hover:-translate-y-2">
-                  <div className="absolute top-6 right-8 text-5xl font-extrabold text-slate-100 dark:text-slate-800/20 font-display select-none">
-                    02
-                  </div>
-                  <h3 className="text-lg font-bold font-display text-text-primary mb-4 pr-10">
+                <hr className="border-border-color/60 dark:border-slate-800/40" />
+
+                {/* Block 3 */}
+                <div className="space-y-3">
+                  <h3 className="text-lg font-bold font-display text-text-primary">
                     Delivery & Cross-Sector Adaptability
                   </h3>
-                  <div className="text-xs text-text-secondary space-y-3 leading-relaxed">
-                    <p>
+                  <div className="text-xs text-text-secondary space-y-3 leading-relaxed text-justify">
+                    <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
                       Aptiv8 acts as an engineering delivery partner, co-developing Gen AI / Agentic AI projects with domain experts. Some projects are proofs-of-concept already built by Aptiv8; others are in active development or are seeking suitable domain-expert or institutional partners.
                     </p>
-                    <p>
+                    <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
                       Aptiv8 also applies the same Generative and Agentic AI platform to other sectors, including customer service, telecommunications, short-term rental/hospitality, and aerospace MRO (Maintenance, Repair and Overhaul).
                     </p>
                   </div>
                 </div>
               </div>
+
+              {/* Right Side: Image Placeholder Option */}
+              <div className="lg:col-span-5 relative group min-h-[350px] lg:min-h-full rounded-2xl overflow-hidden border border-border-color/60 bg-slate-900/5 dark:bg-slate-950/25 flex flex-col justify-end">
+                <img 
+                  src="/about-overview.jpg" 
+                  alt="Aptiv8 AI Overview" 
+                  className="absolute inset-0 w-full h-full object-cover opacity-90 group-hover:scale-105 transition-transform duration-700 pointer-events-none" 
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                  }}
+                />
+                {/* Tech blueprint lines overlay */}
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:16px_16px] pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent pointer-events-none" />
+                
+                <div className="relative p-6 z-10 text-white mt-auto">
+                  <span className="text-[10px] uppercase tracking-widest text-accent font-bold mb-1 font-display block">APTIV8 AI ENGINE</span>
+                  <h4 className="text-base font-bold font-display leading-tight">Built Environment Lifecycle Analytics</h4>
+                </div>
+              </div>
+
             </div>
           </div>
         </Reveal3D>
@@ -401,46 +460,50 @@ export default function AboutPage() {
                         viewport={{ once: true, margin: '-80px' }}
                         transition={{ duration: 0.5, ease: 'easeOut' }}
                         whileHover={{ y: -4, scale: 1.01 }}
-                        className={`w-full md:w-[45%] bg-white dark:bg-slate-900 rounded-3xl py-6 px-7 shadow-sm ml-12 md:ml-0 relative overflow-hidden transition-all duration-300 ${
+                        className={`w-full md:w-[45%] bg-white dark:bg-slate-900 rounded-3xl py-6 px-7 shadow-sm ml-12 md:ml-0 relative overflow-hidden transition-all duration-300 group ${
                           isRedTheme
-  ? 'border-t-2 border-l-2 border-red-500 border-r border-b border-slate-200/80 dark:border-slate-800/80 shadow-[4px_4px_0px_rgba(239,68,68,0.12)] hover:shadow-[8px_8px_0px_rgba(239,68,68,0.16)]'
-  : 'border-t-2 border-l-2 border-blue-500 border-r border-b border-slate-200/80 dark:border-slate-800/80 shadow-[4px_4px_0px_rgba(59,130,246,0.12)] hover:shadow-[8px_8px_0px_rgba(59,130,246,0.16)]'
+                            ? 'border-t-2 border-l-2 border-red-500 border-r border-b border-slate-200/80 dark:border-slate-800/80 shadow-[4px_4px_0px_rgba(239,68,68,0.12)] hover:bg-[#e30613] hover:border-red-500/20 hover:shadow-[0_15px_30px_rgba(239,68,68,0.25)]'
+                            : 'border-t-2 border-l-2 border-blue-500 border-r border-b border-slate-200/80 dark:border-slate-800/80 shadow-[4px_4px_0px_rgba(59,130,246,0.12)] hover:bg-blue-600 hover:border-blue-500/20 hover:shadow-[0_15px_30px_rgba(59,130,246,0.25)]'
                         }`}
                       >
                         {/* Pointer Arrow Bubble Point */}
                         {isLeft ? (
-                          <div className={`absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white dark:bg-slate-900 border-t border-r ${
-                            isRedTheme ? 'border-red-500/20' : 'border-blue-500/20'
+                          <div className={`absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white dark:bg-slate-900 border-t border-r transition-colors ${
+                            isRedTheme 
+                              ? 'border-red-500/20 group-hover:bg-[#e30613] group-hover:border-red-500/0' 
+                              : 'border-blue-500/20 group-hover:bg-blue-600 group-hover:border-blue-500/0'
                           } hidden md:block`} />
                         ) : (
-                          <div className={`absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white dark:bg-slate-900 border-b border-l ${
-                            isRedTheme ? 'border-red-500/20' : 'border-blue-500/20'
+                          <div className={`absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white dark:bg-slate-900 border-b border-l transition-colors ${
+                            isRedTheme 
+                              ? 'border-red-500/20 group-hover:bg-[#e30613] group-hover:border-red-500/0' 
+                              : 'border-blue-500/20 group-hover:bg-blue-600 group-hover:border-blue-500/0'
                           } hidden md:block`} />
                         )}
 
                         {/* Year Badge */}
-                        <div className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold mb-3 font-display border ${
+                        <div className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold mb-3 font-display border transition-colors ${
                           isRedTheme 
-                            ? 'bg-red-50/50 dark:bg-red-950/20 border-red-500 text-red-500' 
-                            : 'bg-blue-50/50 dark:bg-blue-950/20 border-blue-500 text-blue-500'
+                            ? 'bg-red-50/50 dark:bg-red-950/20 border-red-500 text-red-500 group-hover:bg-white/25 group-hover:border-white/40 group-hover:text-white' 
+                            : 'bg-blue-50/50 dark:bg-blue-950/20 border-blue-500 text-blue-500 group-hover:bg-white/25 group-hover:border-white/40 group-hover:text-white'
                         }`}>
                           {event.year}
                         </div>
 
                         {/* Title & Description */}
                         <div className="flex flex-col sm:flex-row items-start gap-4 relative z-10">
-                          <div className={`p-3.5 rounded-2xl shrink-0 ${
+                          <div className={`p-3.5 rounded-2xl shrink-0 transition-colors ${
                             isRedTheme 
-                              ? 'bg-red-50 dark:bg-red-950/30 text-red-500' 
-                              : 'bg-blue-50 dark:bg-blue-950/30 text-blue-500'
+                              ? 'bg-red-50 dark:bg-red-950/30 text-red-500 group-hover:bg-white/20 group-hover:text-white' 
+                              : 'bg-blue-50 dark:bg-blue-950/30 text-blue-500 group-hover:bg-white/20 group-hover:text-white'
                           }`}>
                             <IconComponent className="h-6 w-6" />
                           </div>
                           <div>
-                            <h3 className="font-display font-extrabold text-base text-text-primary mb-2">
+                            <h3 className="font-display font-extrabold text-base text-text-primary group-hover:text-white transition-colors mb-2">
                               {event.title}
                             </h3>
-                            <p className="text-text-secondary leading-relaxed text-xs md:text-sm font-light">
+                            <p className="text-text-secondary group-hover:text-white/90 transition-colors leading-relaxed text-xs md:text-sm font-light">
                               {event.description}
                             </p>
                           </div>
@@ -448,12 +511,12 @@ export default function AboutPage() {
 
                         {/* Inline Graphic Faint SVGs to Match bottom card vector drawings exactly */}
                         {event.year === '2018' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
                             <path d="M0 60 V50 H10 V45 H20 V50 H40 V35 H50 V40 H60 V42 H80 V50 H100 V30 H110 V25 H120 V30 H140 V50 H180 V42 H190 V45 H200 V42 H220 V30 H230 V35 H250 V50 H280 V35 H290 V25 H300 V35 H320 V50 H400 V60 Z" />
                           </svg>
                         )}
                         {event.year === '2020' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-blue-500/5 pointer-events-none" viewBox="0 0 400 60" fill="none" stroke="currentColor" strokeWidth="1">
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-blue-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="none" stroke="currentColor" strokeWidth="1">
                             <circle cx="20" cy="50" r="2" fill="currentColor" />
                             <circle cx="80" cy="20" r="2" fill="currentColor" />
                             <circle cx="140" cy="45" r="2" fill="currentColor" />
@@ -468,18 +531,18 @@ export default function AboutPage() {
                           </svg>
                         )}
                         {event.year === '2022' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 pointer-events-none" viewBox="0 0 400 60" fill="none" stroke="currentColor" strokeWidth="1">
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="none" stroke="currentColor" strokeWidth="1">
                             <path d="M0 45 Q50 30 100 45 T200 45 T300 45 T400 45" />
                             <path d="M0 50 Q50 35 100 50 T200 50 T300 50 T400 50" strokeDasharray="3 3" />
                           </svg>
                         )}
                         {event.year === '2024' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
                             <path d="M50 60 V45 H70 V40 H90 V45 H110 V60 Z M150 60 V35 H180 V60 Z M220 60 V48 H250 V60 Z M300 60 V40 H330 V60 Z" />
                           </svg>
                         )}
                         {event.year === '2026' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-blue-500/5 pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
+                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-blue-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
                             <path d="M20 60 V45 H40 V60 Z M50 60 V35 H80 V40 H90 V60 Z M120 60 C120 45 160 45 160 60 Z M200 60 A20 20 0 0 1 240 60 Z M260 60 V48 H280 V60 Z M300 60 V40 H320 V35 H340 V60 Z" />
                           </svg>
                         )}
@@ -566,15 +629,8 @@ export default function AboutPage() {
             {coreValues.map((val, idx) => {
               const ValIcon = val.icon;
               return (
-                <motion.div 
+                <TiltCard 
                   key={idx} 
-                  whileHover={{ 
-                    y: -10, 
-                    backgroundColor: '#ffffff', 
-                    borderColor: 'rgba(239, 68, 68, 0.8)',
-                    boxShadow: '0 20px 40px rgba(239, 68, 68, 0.08)' 
-                  }}
-                  transition={{ duration: 0.3 }}
                   className="p-6 bg-bg-primary border border-border-color rounded-2xl group cursor-pointer transition-colors duration-300"
                 >
                   <div className="p-3 rounded-xl bg-accent-glow text-accent w-max mb-4 group-hover:bg-red-50 group-hover:text-red-500 transition-colors">
@@ -586,7 +642,7 @@ export default function AboutPage() {
                   <p className="text-xs text-text-secondary leading-relaxed group-hover:text-slate-600 transition-colors">
                     {val.description}
                   </p>
-                </motion.div>
+                </TiltCard>
               );
             })}
           </div>

@@ -84,58 +84,89 @@ export default function Navbar({ theme, toggleTheme }) {
         </div>
       </nav>
 
-      {/* Modern minimal slide-out navigation overlay */}
+      {/* Modern minimal slide-out navigation right sidebar */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-40 bg-bg-secondary pt-28 pb-12 px-6 flex flex-col justify-between overflow-y-auto"
-          >
-            {/* Tech grid overlay inside menu */}
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(227,6,19,0.03),transparent_50%)] pointer-events-none" />
+          <>
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-xs"
+              onClick={() => setIsOpen(false)}
+            />
 
-            <div className="max-w-4xl mx-auto w-full relative z-10">
-              <span className="text-[10px] uppercase tracking-widest text-accent font-semibold block mb-8 font-display">
-                Corporate Navigation Directory
-              </span>
+            {/* Right Sidebar Drawer with theme-aware background styling */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 z-50 w-full sm:w-[400px] max-w-full bg-bg-secondary/98 border-l border-border-color shadow-2xl dark:bg-gradient-to-b dark:from-[#0a0d14] dark:via-[#06080d] dark:to-black dark:border-accent/35 dark:shadow-[0_0_50px_rgba(227,6,19,0.15)] p-6 sm:p-8 pt-28 pb-8 flex flex-col justify-between overflow-y-auto"
+            >
+              {/* Tech grid overlay inside sidebar */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(227,6,19,0.03),transparent_50%)] pointer-events-none" />
 
-              {/* Grid of Large Premium Links */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-6">
-                {navLinks.map((link, idx) => (
-                  <motion.div
-                    key={link.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: idx * 0.05 }}
-                  >
-                    <Link
-                      to={link.href}
-                      className="group flex items-center justify-between py-4 border-b border-border-color hover:border-accent transition-colors cursor-pointer"
+              <div className="w-full relative z-10">
+                <span className="text-[10px] uppercase tracking-widest text-accent font-semibold block mb-6 font-display">
+                  Corporate Navigation Directory
+                </span>
+
+                {/* Vertical List of Large Premium Links with staggered animation */}
+                <motion.div 
+                  variants={{
+                    hidden: {},
+                    show: {
+                      transition: {
+                        staggerChildren: 0.05,
+                        delayChildren: 0.08
+                      }
+                    }
+                  }}
+                  initial="hidden"
+                  animate="show"
+                  className="flex flex-col gap-1.5"
+                >
+                  {navLinks.map((link) => (
+                    <motion.div
+                      key={link.name}
+                      variants={{
+                        hidden: { opacity: 0, x: 25 },
+                        show: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 120, damping: 14 } }
+                      }}
                     >
-                      <span className="text-2xl font-extrabold font-display text-text-primary group-hover:text-accent transition-colors">
-                        {link.name}
-                      </span>
-                      <span className="text-xs font-semibold text-accent/0 group-hover:text-accent/100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all font-display">
-                        Explore →
-                      </span>
-                    </Link>
-                  </motion.div>
-                ))}
+                      <Link
+                        to={link.href}
+                        className="group flex items-center justify-between py-2.5 border-b border-border-color/30 dark:border-slate-800/40 hover:border-accent/40 transition-colors cursor-pointer"
+                      >
+                        <span className={`text-lg font-bold font-display group-hover:text-accent transition-colors ${
+                          location.pathname === link.href 
+                            ? 'bg-clip-text text-transparent bg-gradient-to-r from-accent via-[#ff6a75] to-amber-500 font-extrabold drop-shadow-sm' 
+                            : 'text-text-primary dark:text-slate-100'
+                        }`}>
+                          {link.name}
+                        </span>
+                        <span className="text-xs font-semibold text-accent/0 group-hover:text-accent/100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all font-display">
+                          Explore →
+                        </span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </motion.div>
               </div>
-            </div>
 
-            {/* Menu Footer */}
-            <div className="max-w-4xl mx-auto w-full border-t border-border-color/60 pt-8 mt-12 flex flex-col sm:flex-row items-center justify-between text-xs text-text-secondary relative z-10 gap-4">
-              <p>© {new Date().getFullYear()} Aptiv8 IT Solutions Pte Ltd. All rights reserved.</p>
-              <div className="flex gap-6">
-                <span>Singapore Hub: 10 Ubi Techpark</span>
-                <a href="mailto:Admin@Aptiveight.com" className="hover:underline">Admin@Aptiveight.com</a>
+              {/* Sidebar Footer */}
+              <div className="w-full border-t border-border-color/60 pt-6 mt-8 flex flex-col gap-3 text-[11px] text-text-secondary relative z-10">
+                <p>© {new Date().getFullYear()} Aptiv8 IT Solutions. All rights reserved.</p>
+                <div className="flex flex-col gap-1">
+                  <span>Singapore Hub: 10 Ubi Techpark</span>
+                  <a href="mailto:Admin@Aptiveight.com" className="hover:underline text-accent">Admin@Aptiveight.com</a>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
     </>

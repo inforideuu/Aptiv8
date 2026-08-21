@@ -145,9 +145,10 @@ export default function ContactPage() {
         <Reveal3D>
           <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
-          {/* LEFT: Project Requirement Analyzer */}
-          <div className="lg:col-span-7 bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm">
-            <h2 className="text-2xl font-bold font-display text-text-primary mb-6 flex items-center gap-2">
+          {/* LEFT: Project Requirement Analyzer Column */}
+          <div className="lg:col-span-7 flex flex-col gap-8">
+            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5">
+              <h2 className="text-2xl font-bold font-display text-text-primary mb-6 flex items-center gap-2">
               <Sparkles className="h-6 w-6 text-accent animate-pulse" /> Project Requirement Analyzer
             </h2>
             <p className="text-xs text-text-secondary mb-8 leading-relaxed">
@@ -264,13 +265,10 @@ export default function ContactPage() {
               )}
             </AnimatePresence>
 
-          </div>
+            </div>
 
-          {/* RIGHT: Office Info & Book a Meeting */}
-          <div className="lg:col-span-5 flex flex-col gap-8">
-            
-            {/* Office Details */}
-            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs flex flex-col gap-4">
+            {/* Corporate Office details moved to left column below analyzer */}
+            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs flex flex-col gap-4 hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5">
               <h3 className="font-display font-bold text-sm text-text-primary">Corporate Office</h3>
               <div className="flex items-start gap-3 text-text-secondary">
                 <MapPin className="h-5 w-5 text-accent shrink-0 mt-0.5" />
@@ -284,9 +282,71 @@ export default function ContactPage() {
                 <Mail className="h-5 w-5 text-accent shrink-0" />
                 <a href="mailto:Admin@Aptiveight.com" className="hover:underline">Admin@Aptiveight.com</a>
               </div>
+            </div>
 
-              {/* Map embed */}
-              <div className="h-40 rounded-xl overflow-hidden border border-border-color mt-2 relative">
+          </div>
+
+          {/* RIGHT: Book a Meeting & Map Column */}
+          <div className="lg:col-span-5 flex flex-col gap-8">
+
+            {/* Book a Meeting slot */}
+            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5">
+              <h3 className="font-display font-bold text-sm text-text-primary mb-4 flex items-center gap-2">
+                <Calendar className="h-5 w-5 text-accent" /> Book Integration Consultation
+              </h3>
+              <p className="text-text-secondary mb-6 leading-relaxed">
+                Choose a date and SGT time slot to review structural verification scopes with our engineering advisors.
+              </p>
+              
+              {!booked ? (
+                <form onSubmit={handleBookMeeting} className="flex flex-col gap-4">
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Date</label>
+                      <input
+                        type="date"
+                        value={selectedDate}
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                        className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
+                        required
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Time</label>
+                      <select
+                        value={selectedTime}
+                        onChange={(e) => setSelectedTime(e.target.value)}
+                        className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
+                        required
+                      >
+                        <option value="">Select Time</option>
+                        <option value="09:00 AM">09:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="02:00 PM">02:00 PM</option>
+                        <option value="04:00 PM">04:00 PM</option>
+                      </select>
+                    </div>
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-3.5 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 cursor-pointer text-xs uppercase tracking-wider"
+                  >
+                    Confirm Booking <Send className="h-4 w-4" />
+                  </button>
+                </form>
+              ) : (
+                <div className="p-4 bg-accent/5 border border-accent/20 rounded-xl text-center text-text-primary font-semibold flex flex-col items-center gap-2">
+                  <CheckCircle2 className="h-8 w-8 text-accent animate-bounce" />
+                  <span>Consultation Booked for {selectedDate} at {selectedTime}!</span>
+                  <span className="text-[10px] text-text-secondary font-normal">A confirmation calendar invite has been sent to your email.</span>
+                </div>
+              )}
+            </div>
+
+            {/* Office Location Map card */}
+            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs flex flex-col gap-4 hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5">
+              <h3 className="font-display font-bold text-sm text-text-primary">Office Location Map</h3>
+              <div className="h-48 rounded-2xl overflow-hidden border border-border-color relative shadow-inner">
                 <iframe
                   title="Aptiv8 Office Map"
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7907577579124!2d103.89669527588764!3d1.3003887617478065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da17dc00609d57%3A0xc3191f0a35ee124!2sUbi%20Techpark!5e0!3m2!1sen!2ssg!4v1700000000000!5m2!1sen!2ssg"
@@ -295,57 +355,9 @@ export default function ContactPage() {
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
-                  className="absolute inset-0 grayscale opacity-80 dark:invert"
+                  className="absolute inset-0 grayscale opacity-85 dark:invert"
                 ></iframe>
               </div>
-            </div>
-
-            {/* Book a Meeting slot */}
-            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs">
-              <h3 className="font-display font-bold text-sm text-text-primary mb-4 flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-accent" /> Book Integration Consultation
-              </h3>
-
-              {!booked ? (
-                <form onSubmit={handleBookMeeting} className="flex flex-col gap-4">
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-bold text-text-secondary uppercase">Select Date</label>
-                    <input
-                      type="date"
-                      value={selectedDate}
-                      onChange={(e) => setSelectedDate(e.target.value)}
-                      className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 focus:outline-none focus:border-accent w-full"
-                      required
-                    />
-                  </div>
-                  <div className="flex flex-col gap-2">
-                    <label className="text-[10px] font-bold text-text-secondary uppercase">Select Time Slot</label>
-                    <select
-                      value={selectedTime}
-                      onChange={(e) => setSelectedTime(e.target.value)}
-                      className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 focus:outline-none focus:border-accent w-full"
-                      required
-                    >
-                      <option value="">Select Time Slot</option>
-                      <option value="10:00 AM SGT">10:00 AM SGT</option>
-                      <option value="02:00 PM SGT">02:00 PM SGT</option>
-                      <option value="04:00 PM SGT">04:00 PM SGT</option>
-                    </select>
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-3 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors cursor-pointer"
-                  >
-                    Confirm Booking
-                  </button>
-                </form>
-              ) : (
-                <div className="text-center py-6 text-accent font-bold flex flex-col items-center gap-2">
-                  <CheckCircle2 className="h-8 w-8 text-accent animate-bounce" />
-                  <span>Consultation Booked for {selectedDate} at {selectedTime}!</span>
-                  <span className="text-[10px] text-text-secondary font-normal">A confirmation calendar invite has been sent to your email.</span>
-                </div>
-              )}
             </div>
 
           </div>
@@ -367,7 +379,7 @@ export default function ContactPage() {
 
           <div className="flex flex-col gap-4">
             {faqs.map((faq, idx) => (
-              <div key={idx} className="border border-border-color rounded-xl overflow-hidden bg-bg-primary/50">
+              <div key={idx} className="border border-border-color rounded-xl overflow-hidden bg-bg-primary/50 hover:bg-white transition-all duration-300 hover:scale-[1.02] hover:shadow-sm">
                 <button
                   onClick={() => setOpenFAQ(openFAQ === idx ? null : idx)}
                   className="w-full text-left p-5 font-bold font-display text-sm text-text-primary hover:text-accent transition-colors flex justify-between items-center cursor-pointer"

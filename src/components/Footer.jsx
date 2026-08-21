@@ -14,7 +14,7 @@ export default function Footer() {
           {/* Brand and Description */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center">
-              <img src="/logo.png" alt="Aptiv8 IT Solutions" className="h-10 w-auto object-contain brightness-0 invert" />
+              <img src="/logo.png" alt="Aptiv8 IT Solutions" className="h-15 w-auto object-contain brightness-0 invert" />
             </div>
             <p className="text-sm text-white/80 leading-relaxed">
               The Trusted AI Partner for the Built Environment. Developing international-level, custom-trained AI solutions for modern design, engineering, construction, and property operations.

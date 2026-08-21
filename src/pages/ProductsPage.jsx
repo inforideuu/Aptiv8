@@ -314,6 +314,7 @@ export default function ProductsPage() {
                       title={prod.title}
                       status={prod.status}
                       description={prod.description}
+                      isCoreProduct={prod.id === 'sdsa'}
                       onClick={() => {}}
                     />
                   </motion.div>

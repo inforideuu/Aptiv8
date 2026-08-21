@@ -52,7 +52,7 @@ export default function Navbar({ theme, toggleTheme }) {
               <img 
                 src="/logo.png" 
                 alt="Aptiv8 IT Solutions" 
-                className="h-10 w-auto object-contain brightness-100 dark:brightness-110 transition-transform hover:scale-[1.02]" 
+                className="h-20 w-auto object-contain brightness-100 dark:brightness-110 transition-transform hover:scale-[1.02]" 
               />
             </Link>
 

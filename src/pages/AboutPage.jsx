@@ -82,14 +82,23 @@ function TiltCard({ children, className }) {
   const [tiltY, setTiltY] = useState(0);
 
   const handleMouseMove = (e) => {
-    const card = e.currentTarget;
+     const card = e.currentTarget;
     const box = card.getBoundingClientRect();
-    const x = e.clientX - box.left - box.width / 2;
-    const y = e.clientY - box.top - box.height / 2;
-    // Max 10 degrees tilt
-    setTiltX(-y / (box.height / 10));
-    setTiltY(x / (box.width / 10));
+
+    const x = e.clientX - box.left;
+    const y = e.clientY - box.top;
+
+    // Cursor position from -1 to 1
+    const mouseX = (x / box.width - 0.5) * 2;
+    const mouseY = (y / box.height - 0.5) * 2;
+
+    // Stronger 3D rotation
+    const maxTilt = 15;
+
+    setTiltX(-mouseY * maxTilt);
+    setTiltY(mouseX * maxTilt);
   };
+
 
   const handleMouseLeave = () => {
     setTiltX(0);
@@ -215,8 +224,7 @@ export default function AboutPage() {
     <div className="relative pt-20">
       
       {/* SECTION 1: HERO SECTION */}
-      <section className="relative py-28 px-4 hero-mesh-bg border-b border-border-color overflow-hidden"
->
+      <section className="relative py-28 px-4 hero-mesh-bg border-b border-border-color overflow-hidden">
         {/* Floating background decorative blobs */}
         <motion.div
           animate={{
@@ -306,8 +314,8 @@ export default function AboutPage() {
 
         <Reveal3D>
           <div className="max-w-6xl mx-auto relative z-10">
-            {/* Single Consolidate Card with image */}
-            <div className="bg-white/60 dark:bg-bg-primary/40 backdrop-blur-xl p-8 md:p-12 rounded-[32px] border border-border-color shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
+            {/* Single Consolidate Card with image - Hover 3D Red Border and Shadow */}
+            <div className="bg-white/60 dark:bg-bg-primary/40 backdrop-blur-xl p-8 md:p-12 rounded-[32px] border border-border-color shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch hover:shadow-[0_20px_45px_rgba(239,68,68,0.15),_0_6px_0_0_#ef4444] hover:border-red-500 transition-all duration-500 transform hover:-translate-y-2">
               
               {/* Left Side: 3 Content blocks stacked with dividers */}
               <div className="lg:col-span-7 flex flex-col justify-between gap-3">

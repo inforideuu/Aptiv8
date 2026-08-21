@@ -1,8 +1,58 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Play, FileText, TrendingUp, CheckCircle, ChevronLeft, ChevronRight, Layers } from 'lucide-react';
 import { svgs } from '../data/websiteData';
 import Reveal3D from '../components/Reveal3D';
+
+function AnimatedCounterCard({ target, suffix, label }) {
+  const [count, setCount] = useState(0);
+  const [hoverTrigger, setHoverTrigger] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = parseFloat(target);
+    if (isNaN(end)) return;
+    
+    const duration = 1200; // Animation duration in ms
+    const frameRate = 1000 / 60; // 60 FPS
+    const totalFrames = Math.round(duration / frameRate);
+    let frame = 0;
+
+    const timer = setInterval(() => {
+      frame++;
+      const progress = frame / totalFrames;
+      // Ease out quad formula
+      const easeOutQuad = progress * (2 - progress);
+      const current = end * easeOutQuad;
+
+      if (frame >= totalFrames) {
+        clearInterval(timer);
+        setCount(end);
+      } else {
+        setCount(current);
+      }
+    }, frameRate);
+
+    return () => clearInterval(timer);
+  }, [target, hoverTrigger]);
+
+  const isDecimal = target.toString().includes('.');
+  const displayVal = isDecimal ? count.toFixed(1) : Math.floor(count);
+
+  return (
+    <div 
+      onMouseEnter={() => setHoverTrigger(prev => prev + 1)}
+      className="p-8 bg-bg-primary border border-border-color rounded-2xl shadow-sm hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5 group cursor-pointer"
+    >
+      <span className="text-4xl md:text-5xl font-extrabold font-display text-accent block mb-2 transition-colors group-hover:text-red-500">
+        {displayVal}{suffix}
+      </span>
+      <span className="text-xs md:text-sm font-semibold uppercase tracking-wider text-text-secondary transition-colors group-hover:text-text-primary">
+        {label}
+      </span>
+    </div>
+  );
+}
 
 export default function CaseStudiesPage() {
   const [activeIndustry, setActiveIndustry] = useState('All');
@@ -201,43 +251,253 @@ export default function CaseStudiesPage() {
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
                 
                 {/* Left Side: Storytelling Text */}
-                <div className="flex flex-col justify-between gap-6">
-                  <div>
-                    <span className="text-[10px] uppercase tracking-widest text-accent font-bold font-display mb-1 block">
-                      {currentStudy.industry} Case Study
-                    </span>
-                    <h2 className="text-2xl md:text-3xl font-bold font-display text-text-primary mb-6 leading-tight">
-                      {currentStudy.title}
-                    </h2>
-                    
-                    <div className="flex flex-col gap-4 text-sm text-text-secondary leading-relaxed">
-                      <div>
-                        <strong className="text-text-primary font-display block mb-1">The Challenge</strong>
-                        <p>{currentStudy.problem}</p>
-                      </div>
-                      <div>
-                        <strong className="text-text-primary font-display block mb-1">Aptiv8 AI Deployment</strong>
-                        <p>{currentStudy.solution}</p>
-                      </div>
-                      <div>
-                        <strong className="text-text-primary font-display block mb-1">Implementation Workflow</strong>
-                        <p>{currentStudy.implementation}</p>
-                      </div>
-                    </div>
-                  </div>
+                <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.2 }} whileHover={{y: -6,boxShadow:'0 30px 70px rgba(15, 23, 42, 0.10), 0 10px 30px rgba(239, 68, 68, 0.06)',}}transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1],}}
+                className=" group relative flex flex-col justify-between gap-6 bg-white dark:bg-bg-primary border border-border-color rounded-[24px] p-6 md:p-8 overflow-hidden cursor-default transition-colors duration-500">
+  {/* Premium accent border */}
+  <div className="pointer-events-none absolute inset-0 rounded-[24px] border-t-2 border-l-2 border-accent/0 group-hover:border-accent/70 transition-all duration-500"/>
 
-                  {/* Before & After comparison */}
-                  <div className="grid grid-cols-2 gap-4 mt-6 pt-6 border-t border-border-color/60">
-                    <div className="p-4 bg-bg-primary border border-border-color rounded-xl">
-                      <span className="text-[10px] text-text-secondary font-semibold uppercase tracking-wider block">Before Deployment</span>
-                      <span className="text-sm font-bold text-red-500 font-display mt-1 block">{currentStudy.before}</span>
-                    </div>
-                    <div className="p-4 bg-accent/5 border border-accent/20 rounded-xl">
-                      <span className="text-[10px] text-accent font-semibold uppercase tracking-wider block">After Aptiv8 AI</span>
-                      <span className="text-sm font-bold text-accent font-display mt-1 block">{currentStudy.after}</span>
-                    </div>
-                  </div>
-                </div>
+  {/* Soft hover spotlight */}
+  <div className="pointer-events-none absolute -top-32 -right-32 w-80 h-80 rounded-full bg-accent/10 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"/>
+
+  {/* Main content */}
+  <div className="relative z-10">
+
+    {/* Industry label */}
+    <motion.span className="text-[10px] uppercase tracking-[0.18em] text-accent font-bold font-display mb-2 block" whileHover={{x: 3}} transition={{ duration: 0.3 }}>
+      {currentStudy.industry} Case Study
+    </motion.span>
+
+    {/* Title */}
+    <motion.h2 className="text-2xl md:text-3xl font-bold font-display text-text-primary mb-6 leading-tight" style={{transformStyle: 'preserve-3d',}} whileHover={{ x: 3 }} transition={{ duration: 0.35 }}>
+      {currentStudy.title}
+    </motion.h2>
+
+    {/* Case study content */}
+    <div className="flex flex-col gap-5 text-sm text-text-secondary leading-relaxed">
+
+      {/* Challenge */}
+      <motion.div
+        whileHover={{ x: 4 }}
+        transition={{ duration: 0.3 }}
+        className="
+          pl-4
+          border-l-2
+          border-border-color
+          group-hover:border-accent/40
+          transition-colors
+          duration-500
+        "
+      >
+        <strong className="text-text-primary font-display block mb-1">
+          The Challenge
+        </strong>
+
+        <p>{currentStudy.problem}</p>
+      </motion.div>
+
+      {/* AI Deployment */}
+      <motion.div
+        whileHover={{ x: 4 }}
+        transition={{ duration: 0.3 }}
+        className="
+          pl-4
+          border-l-2
+          border-border-color
+          group-hover:border-accent/40
+          transition-colors
+          duration-500
+        "
+      >
+        <strong className="text-text-primary font-display block mb-1">
+          Aptiv8 AI Deployment
+        </strong>
+
+        <p>{currentStudy.solution}</p>
+      </motion.div>
+
+      {/* Implementation */}
+      <motion.div
+        whileHover={{ x: 4 }}
+        transition={{ duration: 0.3 }}
+        className="
+          pl-4
+          border-l-2
+          border-border-color
+          group-hover:border-accent/40
+          transition-colors
+          duration-500
+        "
+      >
+        <strong className="text-text-primary font-display block mb-1">
+          Implementation Workflow
+        </strong>
+
+        <p>{currentStudy.implementation}</p>
+      </motion.div>
+
+    </div>
+  </div>
+
+
+  {/* Before & After */}
+  <div className="
+    relative
+    z-10
+    grid
+    grid-cols-1
+    sm:grid-cols-2
+    gap-4
+    mt-4
+    pt-6
+    border-t
+    border-border-color/60
+  ">
+
+    {/* BEFORE */}
+    <motion.div
+      whileHover={{
+        y: -4,
+        scale: 1.015,
+      }}
+      transition={{
+        duration: 0.35,
+        ease: 'easeOut',
+      }}
+      className="
+        relative
+        overflow-hidden
+        p-4
+        bg-slate-50
+        dark:bg-slate-900/60
+        border
+        border-border-color
+        rounded-xl
+        transition-all
+        duration-500
+        hover:border-red-400/40
+        hover:shadow-lg
+      "
+    >
+      {/* Red indicator */}
+      <div className="
+        absolute
+        top-0
+        left-0
+        w-full
+        h-[2px]
+        bg-red-500
+        scale-x-0
+        origin-left
+        hover:scale-x-100
+        transition-transform
+        duration-500
+      " />
+
+      <span className="
+        text-[10px]
+        text-text-secondary
+        font-semibold
+        uppercase
+        tracking-wider
+        block
+      ">
+        Before Deployment
+      </span>
+
+      <span className="
+        text-sm
+        font-bold
+        text-red-500
+        font-display
+        mt-1
+        block
+      ">
+        {currentStudy.before}
+      </span>
+    </motion.div>
+
+
+    {/* AFTER */}
+    <motion.div
+      whileHover={{
+        y: -4,
+        scale: 1.015,
+      }}
+      transition={{
+        duration: 0.35,
+        ease: 'easeOut',
+      }}
+      className="
+        relative
+        overflow-hidden
+        p-4
+        bg-accent/5
+        dark:bg-accent/10
+        border
+        border-accent/20
+        rounded-xl
+        transition-all
+        duration-500
+        hover:border-accent/50
+        hover:shadow-lg
+      "
+    >
+      {/* Accent indicator */}
+      <div className="
+        absolute
+        top-0
+        left-0
+        w-full
+        h-[2px]
+        bg-accent
+        scale-x-0
+        origin-left
+        group-hover:scale-x-100
+        transition-transform
+        duration-500
+      " />
+
+      <span className="
+        text-[10px]
+        text-accent
+        font-semibold
+        uppercase
+        tracking-wider
+        block
+      ">
+        After Aptiv8 AI
+      </span>
+
+      <span className="
+        text-sm
+        font-bold
+        text-accent
+        font-display
+        mt-1
+        block
+      ">
+        {currentStudy.after}
+      </span>
+    </motion.div>
+
+  </div>
+
+  {/* Bottom animated line */}
+  <div className="
+    absolute
+    bottom-0
+    left-8
+    right-8
+    h-[2px]
+    bg-accent
+    origin-left
+    scale-x-0
+    group-hover:scale-x-100
+    transition-transform
+    duration-700
+  " />
+
+</motion.div>
 
                 {/* Right Side: Media Container (Image / Video Preview & Stats) */}
                 <div className="flex flex-col justify-between gap-8">
@@ -271,18 +531,64 @@ export default function CaseStudiesPage() {
                   </div>
 
                   {/* Results & Business Impact */}
-                  <div className="bg-bg-tertiary/40 border border-border-color rounded-2xl p-6 flex flex-col gap-6 justify-center">
-                    <div>
-                      <span className="text-xs uppercase tracking-wider text-accent font-bold mb-1 block">Results & Verification</span>
-                      <p className="text-lg font-bold font-display text-text-primary leading-snug">{currentStudy.results}</p>
-                    </div>
-                    <div className="pt-4 border-t border-border-color/60">
-                      <span className="text-xs uppercase tracking-wider text-accent font-bold mb-1 block flex items-center gap-1.5">
-                        <TrendingUp className="h-4 w-4 text-accent" /> Total Business Impact
-                      </span>
-                      <p className="text-lg font-bold font-display text-text-primary leading-snug">{currentStudy.impact}</p>
-                    </div>
-                  </div>
+                  <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.3 }} whileHover={{y: -6,boxShadow:'0 24px 50px rgba(15, 23, 42, 0.10), 0 8px 24px rgba(239, 68, 68, 0.06)',}} transition={{duration: 0.5, ease: [0.22, 1, 0.36, 1],}}
+  className="group relative overflow-hidden bg-white dark:bg-bg-tertiary/40 border border-border-color rounded-2xl p-6 flex flex-col gap-6 justify-center transition-colors duration-500">
+  {/* Premium accent edge */}
+  <div className="absolute inset-0 rounded-2xl border-t-2 border-l-2 border-accent/0 group-hover:border-accent/60 pointer-events-none transition-all duration-500"/>
+
+  {/* Subtle spotlight */}
+  <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-accent/10 blur-3xl opacity-0 group-hover:opacity-100 pointer-events-none transition-opacity duration-700"/>
+
+  {/* Results */}
+  <motion.div className="relative z-10" whileHover={{ x: 4 }} transition={{ duration: 0.3 }}>
+    <span className="text-xs uppercase tracking-[0.16em] text-accent font-bold mb-2 block">
+      Results & Verification
+    </span>
+
+    <p className="text-lg font-bold font-display text-text-primary leading-snug">{currentStudy.results}</p>
+  </motion.div>
+
+  {/* Divider */}
+  <div className="relative z-10 h-px bg-border-color/60 overflow-hidden">
+    <div className="absolute inset-y-0 left-0 w-0 bg-accent group-hover:w-full transition-all duration-700" />
+  </div>
+
+  {/* Business Impact */}
+  <motion.div
+    className="relative z-10" 
+    whileHover={{ x: 4 }}
+    transition={{ duration: 0.3 }}
+  >
+    <span className="text-xs uppercase tracking-[0.16em] text-accent font-bold mb-2 flex items-center gap-2">
+      <span className="flex items-center justify-center w-7 h-7 rounded-lg bg-accent/10 border border-accent/20 group-hover:bg-accent transition-all duration-500">
+        <TrendingUp className="h-4 w-4 text-accent transition-colors duration-500"/>
+      </span>
+
+      Total Business Impact
+    </span>
+
+    <p className="text-lg font-bold font-display text-text-primary leading-snug ">
+      {currentStudy.impact}
+    </p>
+  </motion.div>
+
+
+  {/* Bottom accent */}
+  <div className="
+    absolute
+    bottom-0
+    left-6
+    right-6
+    h-[2px]
+    bg-accent
+    origin-left
+    scale-x-0
+    group-hover:scale-x-100
+    transition-transform
+    duration-700
+  " />
+
+</motion.div>
 
                 </div>
 
@@ -325,20 +631,11 @@ export default function CaseStudiesPage() {
       {/* GLOBAL ENTERPRISE METRICS */}
       <section className="py-20 px-4 bg-bg-secondary">
         <Reveal3D>
-          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-          <div className="p-6">
-            <span className="text-4xl md:text-5xl font-extrabold font-display text-accent block mb-2">99.8%</span>
-            <span className="text-sm font-semibold uppercase tracking-wider text-text-secondary">Check Validation Accuracy</span>
+          <div className="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+            <AnimatedCounterCard target="99.8" suffix="%" label="Check Validation Accuracy" />
+            <AnimatedCounterCard target="42" suffix="%" label="Reduction in Equipment Downtime" />
+            <AnimatedCounterCard target="5" suffix="x" label="Faster Tender Spec Prep" />
           </div>
-          <div className="p-6 border-y md:border-y-0 md:border-x border-border-color">
-            <span className="text-4xl md:text-5xl font-extrabold font-display text-accent block mb-2">42%</span>
-            <span className="text-sm font-semibold uppercase tracking-wider text-text-secondary">Reduction in Equipment Downtime</span>
-          </div>
-          <div className="p-6">
-            <span className="text-4xl md:text-5xl font-extrabold font-display text-accent block mb-2">5x</span>
-            <span className="text-sm font-semibold uppercase tracking-wider text-text-secondary">Faster Tender Spec Prep</span>
-          </div>
-        </div>
         </Reveal3D>
       </section>
 

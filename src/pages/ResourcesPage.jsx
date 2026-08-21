@@ -192,7 +192,7 @@ export default function ResourcesPage() {
       {/* EDITORIAL CONTENT LAYOUT */}
       <section className="py-16 px-4 bg-bg-primary">
         <Reveal3D>
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           
           {/* LEFT COLUMN: Main Editorial Content */}
           <div className="lg:col-span-8 flex flex-col gap-12">
@@ -274,7 +274,7 @@ export default function ResourcesPage() {
           </div>
 
           {/* RIGHT COLUMN: Sidebar Filters & Trending */}
-          <div className="lg:col-span-4 flex flex-col gap-8">
+          <div className="lg:col-span-4 flex flex-col gap-8 lg:sticky lg:top-56 self-start">
             
             {/* Trending Resources list */}
             <div className="p-6 bg-bg-secondary border border-border-color rounded-3xl shadow-sm">

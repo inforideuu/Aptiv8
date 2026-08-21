@@ -232,35 +232,176 @@ export default function SolutionsPage() {
               { title: 'Sensor Twin Link', desc: 'Links site temperature/acoustic data directly to operational twin.' },
               { title: 'Predictive CMMS', desc: 'Drives facility uptime and scans legal lease reviewing logs.' }
             ].map((step, idx) => (
-              <motion.div 
-                key={idx} 
-                style={{ transformStyle: 'preserve-3d', perspective: 1000 }}
-                whileHover={{
-                  rotateY: 8,
-                  rotateX: -4,
-                  y: -5,
-                  scale: 1.02,
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.06)'
-                }}
-                className="flex-1 bg-bg-primary border border-border-color rounded-2xl p-6 relative flex flex-col justify-between group hover:border-accent transition-all duration-300 cursor-pointer"
-              >
-                <div>
-                  <span className="text-3xl font-extrabold text-accent/20 group-hover:text-accent/40 font-display block mb-4">
-                    0{idx + 1}
-                  </span>
-                  <h4 className="font-display font-bold text-sm text-text-primary mb-2">
-                    {step.title}
-                  </h4>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-                {idx < 3 && (
-                  <div className="hidden md:block absolute top-1/2 right-[-24px] transform -translate-y-1/2 z-10 text-accent">
-                    <ChevronRight className="h-6 w-6 animate-pulse" />
-                  </div>
-                )}
-              </motion.div>
+              <motion.div
+  key={idx}
+  style={{
+    transformStyle: 'preserve-3d',
+    perspective: 1600,
+    willChange: 'transform',
+  }}
+  initial={{
+    opacity: 0,
+    y: 30,
+  }}
+  whileInView={{
+    opacity: 1,
+    y: 0,
+  }}
+  viewport={{
+    once: true,
+    amount: 0.3,
+  }}
+  whileHover={{
+    y: -10,
+    scale: 1.025,
+    boxShadow:
+      '0 30px 60px rgba(15, 23, 42, 0.12), 0 10px 25px rgba(239, 68, 68, 0.08)',
+  }}
+  transition={{
+    duration: 0.5,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="
+    flex-1
+    bg-white dark:bg-bg-primary
+    border border-border-color
+    rounded-2xl
+    p-6
+    relative
+    flex flex-col
+    justify-between
+    group
+    cursor-pointer
+    overflow-hidden
+    transition-colors
+    duration-500
+    hover:border-accent/60
+  "
+>
+  {/* 3D accent edge */}
+  <div
+    className="
+      absolute inset-0
+      rounded-2xl
+      pointer-events-none
+      border-t-2
+      border-l-2
+      border-accent/0
+      group-hover:border-accent/70
+      transition-all
+      duration-500
+    "
+  />
+
+  {/* Cursor/hover spotlight */}
+  <div
+    className="
+      absolute
+      -inset-24
+      pointer-events-none
+      opacity-0
+      group-hover:opacity-100
+      transition-opacity
+      duration-700
+      bg-[radial-gradient(circle,rgba(239,68,68,0.08),transparent_65%)]
+    "
+  />
+
+  {/* Card content */}
+  <motion.div
+    style={{
+      transformStyle: 'preserve-3d',
+    }}
+    className="relative z-10"
+  >
+    {/* Number */}
+    <motion.span
+      className="
+        text-3xl
+        font-extrabold
+        text-accent/20
+        group-hover:text-accent/50
+        font-display
+        block
+        mb-4
+        transition-colors
+        duration-500
+      "
+      whileHover={{
+        translateZ: 25,
+        y: -3,
+      }}
+      transition={{
+        duration: 0.4,
+      }}
+    >
+      0{idx + 1}
+    </motion.span>
+
+    {/* Title */}
+    <motion.h4
+      className="
+        font-display
+        font-bold
+        text-sm
+        text-text-primary
+        mb-2
+      "
+      whileHover={{
+        translateZ: 18,
+      }}
+    >
+      {step.title}
+    </motion.h4>
+
+    {/* Description */}
+    <p className="text-xs text-text-secondary leading-relaxed">
+      {step.desc}
+    </p>
+  </motion.div>
+
+  {/* Bottom accent line */}
+  <div
+    className="
+      absolute
+      bottom-0
+      left-6
+      right-6
+      h-[2px]
+      bg-accent
+      scale-x-0
+      origin-left
+      group-hover:scale-x-100
+      transition-transform
+      duration-500
+    "
+  />
+
+  {/* Arrow */}
+  {idx < 3 && (
+    <motion.div
+      className="
+        hidden
+        md:block
+        absolute
+        top-1/2
+        right-[-24px]
+        z-20
+        text-accent
+      "
+      animate={{
+        x: [0, 4, 0],
+      }}
+      transition={{
+        duration: 2,
+        repeat: Infinity,
+        ease: 'easeInOut',
+      }}
+    >
+      <ChevronRight className="h-6 w-6" />
+    </motion.div>
+  )}
+</motion.div>
             ))}
           </div>
         </div>

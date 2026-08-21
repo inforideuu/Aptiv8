@@ -112,13 +112,13 @@ export default function PartnersPage() {
       <section className="py-12 bg-bg-primary border-b border-border-color overflow-hidden">
         <div className="animate-marquee flex gap-16 py-4">
           {['Autodesk Developer', 'Bentley Systems', 'NUS Research', 'GovTech SG', 'OpenAI Network', 'Microsoft Cloud', 'IMDA SGDigital', 'BCA SG'].map((logo, idx) => (
-            <div key={idx} className="flex items-center gap-2 font-display text-sm font-bold text-text-secondary/40 shrink-0">
+            <div key={idx} className="flex items-center gap-2 font-display text-sm font-bold text-text-secondary/40 hover:text-red-500 transition-colors shrink-0 cursor-default">
               <Building className="h-5 w-5" />
               <span>{logo}</span>
             </div>
           ))}
           {['Autodesk Developer', 'Bentley Systems', 'NUS Research', 'GovTech SG', 'OpenAI Network', 'Microsoft Cloud', 'IMDA SGDigital', 'BCA SG'].map((logo, idx) => (
-            <div key={`dup-${idx}`} className="flex items-center gap-2 font-display text-sm font-bold text-text-secondary/40 shrink-0">
+            <div key={`dup-${idx}`} className="flex items-center gap-2 font-display text-sm font-bold text-text-secondary/40 hover:text-red-500 transition-colors shrink-0 cursor-default">
               <Building className="h-5 w-5" />
               <span>{logo}</span>
             </div>
@@ -140,29 +140,175 @@ export default function PartnersPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {partnerTypes.map((type, idx) => (
-              <div key={idx} className="p-8 bg-bg-primary border border-border-color rounded-3xl flex flex-col justify-between group hover:border-accent transition-colors duration-300">
-                <div>
-                  <div className="p-3 rounded-xl bg-accent-glow text-accent w-max mb-6">
-                    <Network className="h-6 w-6" />
-                  </div>
-                  <h3 className="font-display font-bold text-xl text-text-primary mb-3 group-hover:text-accent transition-colors">
-                    {type.title}
-                  </h3>
-                  <p className="text-xs text-text-secondary leading-relaxed mb-6">
-                    {type.description}
-                  </p>
-                </div>
-                <div className="pt-6 border-t border-border-color flex flex-wrap gap-2">
-                  {type.partners.map((p, i) => (
-                    <span key={i} className="text-[10px] font-semibold text-text-primary bg-bg-secondary border border-border-color px-2.5 py-1 rounded-md">
-                      {p}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
+  {partnerTypes.map((type, idx) => (
+    <div
+      key={idx}
+      className="
+        group
+        relative
+        p-8
+        bg-white
+        dark:bg-bg-primary
+        border
+        border-border-color
+        rounded-3xl
+        flex
+        flex-col
+        justify-between
+        overflow-hidden
+        cursor-pointer
+        transition-all
+        duration-500
+        hover:-translate-y-2
+        hover:shadow-[0_20px_45px_rgba(0,0,0,0.08)]
+        hover:border-accent/40
+      "
+    >
+      {/* Top animated line */}
+      <div
+        className="
+          absolute
+          top-0
+          left-0
+          right-0
+          h-[2px]
+          bg-gradient-to-r
+          from-transparent
+          via-accent
+          to-transparent
+          scale-x-0
+          group-hover:scale-x-100
+          transition-transform
+          duration-700
+        "
+      />
+
+      <div>
+        {/* Icon */}
+        <div
+          className="
+            p-3
+            rounded-xl
+            bg-accent-glow
+            text-accent
+            w-max
+            mb-6
+            border
+            border-accent/10
+            transition-all
+            duration-500
+            group-hover:bg-accent
+            group-hover:text-white
+            group-hover:scale-110
+            group-hover:rotate-3
+          "
+        >
+          <Network className="h-6 w-6" />
+        </div>
+
+        {/* Title */}
+        <h3
+          className="
+            font-display
+            font-bold
+            text-xl
+            text-text-primary
+            mb-3
+            transition-all
+            duration-300
+            group-hover:text-accent
+            group-hover:translate-x-1
+          "
+        >
+          {type.title}
+        </h3>
+
+        {/* Description */}
+        <p
+          className="
+            text-xs
+            text-text-secondary
+            leading-relaxed
+            mb-6
+          "
+        >
+          {type.description}
+        </p>
+      </div>
+
+      {/* Partner section */}
+      <div
+        className="
+          pt-6
+          border-t
+          border-border-color
+          transition-colors
+          duration-500
+          group-hover:border-accent/30
+        "
+      >
+        <span
+          className="
+            text-[9px]
+            uppercase
+            tracking-[0.18em]
+            text-text-secondary
+            font-bold
+            block
+            mb-3
+          "
+        >
+          Partner Network
+        </span>
+
+        <div className="flex flex-wrap gap-2">
+          {type.partners.map((p, i) => (
+            <span
+              key={i}
+              className="
+                text-[10px]
+                font-semibold
+                text-text-primary
+                bg-bg-secondary
+                border
+                border-border-color
+                px-2.5
+                py-1
+                rounded-md
+                cursor-default
+                transition-all
+                duration-300
+                hover:text-accent
+                hover:border-accent/30
+                hover:bg-accent/5
+                hover:-translate-y-1
+              "
+            >
+              {p}
+            </span>
+          ))}
+        </div>
+      </div>
+
+      {/* Bottom animated line */}
+      <div
+        className="
+          absolute
+          bottom-0
+          left-8
+          right-8
+          h-[2px]
+          bg-accent
+          scale-x-0
+          group-hover:scale-x-100
+          transition-transform
+          duration-700
+          origin-center
+        "
+      />
+    </div>
+  ))}
+</div>
         </div>
         </Reveal3D>
       </section>
@@ -171,37 +317,239 @@ export default function PartnersPage() {
       <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
         <Reveal3D>
           <div className="max-w-5xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
-              Partner Integration Stories
-            </h2>
-            <p className="text-text-secondary max-w-md mx-auto">
-              Real-world success stories driving building innovation together.
-            </p>
+  <div className="text-center mb-16">
+    <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
+      Partner Integration Stories
+    </h2>
+
+    <p className="text-text-secondary max-w-md mx-auto">
+      Real-world success stories driving building innovation together.
+    </p>
+  </div>
+
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    {stories.map((s, idx) => (
+      <div
+        key={idx}
+        className="
+          group
+          relative
+          min-h-[330px]
+          bg-white
+          dark:bg-bg-secondary
+          border
+          border-border-color
+          rounded-[28px]
+          p-8
+          overflow-hidden
+          flex
+          flex-col
+          justify-between
+          transition-all
+          duration-700
+          hover:border-accent/30
+          hover:shadow-[0_30px_80px_rgba(220,38,38,0.16),0_10px_30px_rgba(220,38,38,0.08)]
+        "
+      >
+
+        {/* Large background number */}
+        <span
+          className="
+            absolute
+            -top-8
+            -right-3
+            text-[140px]
+            leading-none
+            font-display
+            font-black
+            text-text-primary/[0.025]
+            dark:text-white/[0.025]
+            select-none
+            pointer-events-none
+            transition-all
+            duration-700
+            group-hover:text-accent/[0.07]
+            group-hover:scale-110
+          "
+        >
+          0{idx + 1}
+        </span>
+
+
+        {/* Vertical accent line */}
+        <div
+          className="
+            absolute
+            left-0
+            top-8
+            bottom-8
+            w-[3px]
+            bg-accent
+            scale-y-0
+            origin-bottom
+            group-hover:scale-y-100
+            transition-transform
+            duration-700
+          "
+        />
+
+
+        {/* Content */}
+        <div className="relative z-10">
+
+          {/* Role */}
+          <div className="flex items-center gap-3 mb-5">
+
+            <span
+              className="
+                text-[10px]
+                uppercase
+                tracking-[0.2em]
+                text-accent
+                font-bold
+                font-display
+              "
+            >
+              {s.role}
+            </span>
+
+            <span
+              className="
+                h-px
+                w-8
+                bg-border-color
+                group-hover:w-16
+                group-hover:bg-accent/50
+                transition-all
+                duration-500
+              "
+            />
+
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
-            {stories.map((s, idx) => (
-              <div key={idx} className="bg-bg-secondary border border-border-color rounded-3xl p-8 shadow-sm flex flex-col justify-between">
-                <div>
-                  <span className="text-[10px] uppercase tracking-wider text-accent font-bold mb-2 block">
-                    {s.role}
-                  </span>
-                  <h3 className="text-xl font-bold font-display text-text-primary mb-4">
-                    {s.partner}
-                  </h3>
-                  <p className="text-sm text-text-secondary leading-relaxed mb-6">
-                    {s.story}
-                  </p>
-                </div>
-                <div className="pt-4 border-t border-border-color flex items-center justify-between text-xs">
-                  <span className="text-text-secondary">Key Accomplishment</span>
-                  <span className="font-bold text-accent">{s.result}</span>
-                </div>
-              </div>
-            ))}
-          </div>
+
+          {/* Partner */}
+          <h3
+            className="
+              text-2xl
+              font-bold
+              font-display
+              text-text-primary
+              mb-5
+              transition-transform
+              duration-500
+              group-hover:translate-x-1
+            "
+          >
+            {s.partner}
+          </h3>
+
+
+          {/* Story */}
+          <p
+            className="
+              text-sm
+              text-text-secondary
+              leading-[1.8]
+              max-w-[90%]
+            "
+          >
+            {s.story}
+          </p>
+
         </div>
+
+
+        {/* Result panel */}
+        <div
+          className="
+            relative
+            z-10
+            mt-8
+            pt-5
+            border-t
+            border-border-color
+            flex
+            items-end
+            justify-between
+            gap-5
+          "
+        >
+
+          <span
+            className="
+              text-[9px]
+              uppercase
+              tracking-[0.18em]
+              font-bold
+              text-text-secondary
+              whitespace-nowrap
+            "
+          >
+            Key Accomplishment
+          </span>
+
+
+          <div className="text-right">
+
+            <span
+              className="
+                block
+                text-lg
+                md:text-xl
+                font-bold
+                font-display
+                text-accent
+                transition-transform
+                duration-500
+                group-hover:-translate-y-1
+              "
+            >
+              {s.result}
+            </span>
+
+            {/* Animated result underline */}
+            <span
+              className="
+                block
+                ml-auto
+                mt-2
+                h-[2px]
+                bg-accent
+                w-0
+                group-hover:w-full
+                transition-all
+                duration-700
+              "
+            />
+
+          </div>
+
+        </div>
+
+
+        {/* Corner detail */}
+        <div
+          className="
+            absolute
+            bottom-0
+            left-0
+            w-16
+            h-16
+            border-l
+            border-b
+            border-accent/0
+            rounded-bl-[28px]
+            group-hover:border-accent/30
+            transition-all
+            duration-700
+          "
+        />
+
+      </div>
+    ))}
+  </div>
+</div>
         </Reveal3D>
       </section>
 
@@ -218,18 +566,117 @@ export default function PartnersPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {benefits.map((b, idx) => (
-              <div key={idx} className="p-6 bg-bg-primary border border-border-color rounded-2xl">
-                <h4 className="font-display font-bold text-sm text-text-primary mb-2 flex items-center gap-2">
-                  <CheckCircle className="h-4.5 w-4.5 text-accent" /> {b.title}
-                </h4>
-                <p className="text-xs text-text-secondary leading-relaxed">
-                  {b.desc}
-                </p>
-              </div>
-            ))}
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+  {benefits.map((b, idx) => (
+    <div
+      key={idx}
+      className="
+        group
+        relative
+        p-6
+        bg-white
+        dark:bg-bg-primary
+        border
+        border-border-color
+        rounded-2xl
+        overflow-hidden
+        transition-all
+        duration-500
+        hover:border-accent/30
+      "
+    >
+      {/* Number */}
+      <span
+        className="
+          absolute
+          top-4
+          right-5
+          text-[11px]
+          font-mono
+          font-bold
+          text-text-secondary/40
+          group-hover:text-accent/60
+          transition-colors
+          duration-500
+        "
+      >
+        0{idx + 1}
+      </span>
+
+      {/* Check icon */}
+      <div
+        className="
+          relative
+          w-9
+          h-9
+          rounded-full
+          border
+          border-accent/20
+          flex
+          items-center
+          justify-center
+          mb-5
+          transition-all
+          duration-500
+          group-hover:bg-accent
+          group-hover:border-accent
+        "
+      >
+        <CheckCircle
+          className="
+            h-4.5
+            w-4.5
+            text-accent
+            group-hover:text-white
+            transition-colors
+            duration-500
+          "
+        />
+      </div>
+
+      {/* Content */}
+      <h4
+        className="
+          font-display
+          font-bold
+          text-sm
+          text-text-primary
+          mb-2
+          transition-transform
+          duration-300
+          group-hover:translate-x-1
+        "
+      >
+        {b.title}
+      </h4>
+
+      <p
+        className="
+          text-xs
+          text-text-secondary
+          leading-relaxed
+        "
+      >
+        {b.desc}
+      </p>
+
+      {/* Bottom progress line */}
+      <div
+        className="
+          absolute
+          bottom-0
+          left-0
+          h-[2px]
+          bg-accent
+          w-0
+          group-hover:w-full
+          transition-all
+          duration-700
+        "
+      />
+    </div>
+  ))}
+</div>
         </div>
         </Reveal3D>
       </section>

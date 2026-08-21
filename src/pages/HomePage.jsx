@@ -407,6 +407,7 @@ transition-all duration-500">
                 category={sol.category}
                 title={sol.title}
                 description={sol.description}
+                isCoreProduct={sol.id === 'sdsa'}
                 onClick={() => {}}
               />
             ))}
@@ -517,7 +518,8 @@ transition-all duration-500">
             </p>
           </div>
 
-          <div className="relative bg-gradient-to-br from-[#0a1128] via-[#070c1e] to-[#030611] border border-blue-900/40 rounded-[32px] p-8 md:p-12 shadow-2xl shadow-blue-950/20">
+          <div className="bg-bg-secondary dark:bg-bg-primary border border-border-color/80 p-6 sm:p-8 md:p-10 rounded-[28px] shadow-[0_8px_32px_0_rgba(0,0,0,0.06)] relative overflow-hidden group hover:shadow-[0_16px_48px_0_rgba(227,6,19,0.06)] hover:border-accent/40 transition-all duration-500"
+                  >
             <AnimatePresence mode="wait">
               {caseStudies.map((cs, idx) => {
                 if (idx !== currentCase) return null;
@@ -530,42 +532,42 @@ transition-all duration-500">
                     transition={{ duration: 0.4 }}
                     className="grid grid-cols-1 lg:grid-cols-2 gap-12"
                   >
-                    {/* Problem / Solution details - Red Accent Card */}
-                    <div className="group border border-amber-500/30 bg-amber-500 hover:bg-bg-secondary dark:hover:bg-bg-secondary/45 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-lg transition-all duration-300 cursor-pointer">
+                    {/* Problem / Solution details - Standard Card */}
+                    <div className="border border-border-color bg-bg-primary/40 dark:bg-bg-secondary/30 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-white dark:hover:bg-bg-secondary hover:shadow-[0_15px_30px_rgba(239,68,68,0.5)] hover:border-red-500/30 cursor-pointer">
                       <div>
-                        <span className="text-[10px] uppercase tracking-widest text-white/80 group-hover:text-accent font-bold font-display mb-1 block transition-colors">
+                        <span className="text-[10px] uppercase tracking-widest text-accent font-bold font-display mb-1 block">
                           Case Study 0{idx + 1}
                         </span>
-                        <h3 className="text-2xl font-bold font-display text-white group-hover:text-text-primary mb-4 transition-colors">
+                        <h3 className="text-2xl font-bold font-display text-text-primary mb-4">
                           Optimizing Built Operations
                         </h3>
                       </div>
 
                       <div>
-                        <h4 className="text-xs uppercase tracking-wider font-bold text-white/90 group-hover:text-accent mb-1 transition-colors">The Challenge</h4>
-                        <p className="text-sm text-white/80 group-hover:text-text-secondary transition-colors">{cs.problem}</p>
+                        <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">The Challenge</h4>
+                        <p className="text-sm text-text-secondary">{cs.problem}</p>
                       </div>
 
                       <div>
-                        <h4 className="text-xs uppercase tracking-wider font-bold text-white/90 group-hover:text-accent mb-1 transition-colors">Aptiv8 AI Solution</h4>
-                        <p className="text-sm text-white/80 group-hover:text-text-secondary transition-colors">{cs.solution}</p>
+                        <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">Aptiv8 AI Solution</h4>
+                        <p className="text-sm text-text-secondary">{cs.solution}</p>
                       </div>
 
                       <div>
-                        <h4 className="text-xs uppercase tracking-wider font-bold text-white/90 group-hover:text-accent mb-1 transition-colors">Implementation</h4>
-                        <p className="text-sm text-white/80 group-hover:text-text-secondary transition-colors">{cs.implementation}</p>
+                        <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">Implementation</h4>
+                        <p className="text-sm text-text-secondary">{cs.implementation}</p>
                       </div>
                     </div>
 
-                    {/* Results / Business Impact - Gold Accent Card */}
-                    <div className="group border border-amber-500/30 bg-amber-500 hover:bg-bg-secondary dark:hover:bg-bg-secondary/45 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-lg transition-all duration-300 cursor-pointer">
-                      <div className="border-b border-white/20 group-hover:border-border-color/60 pb-6 transition-colors">
-                        <span className="text-xs uppercase tracking-wider text-white/90 group-hover:text-amber-600 dark:group-hover:text-amber-400 font-bold font-display transition-colors">Results & Verification</span>
-                        <p className="text-xl font-bold font-display text-white group-hover:text-text-primary mt-2 transition-colors">{cs.results}</p>
+                    {/* Results / Business Impact - Standard Card */}
+                    <div className="border border-border-color bg-bg-primary/40 dark:bg-bg-secondary/30 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-white dark:hover:bg-bg-secondary hover:shadow-[0_15px_30px_rgba(239,68,68,0.5)] hover:border-red-500/30 cursor-pointer">
+                      <div className="border-b border-border-color/60 pb-6">
+                        <span className="text-xs uppercase tracking-wider text-accent font-bold font-display">Results & Verification</span>
+                        <p className="text-xl font-bold font-display text-text-primary mt-2">{cs.results}</p>
                       </div>
                       <div>
-                        <span className="text-xs uppercase tracking-wider text-white/90 group-hover:text-amber-600 dark:group-hover:text-amber-400 font-bold font-display transition-colors">Total Business Impact</span>
-                        <p className="text-xl font-bold font-display text-white group-hover:text-text-primary mt-2 transition-colors">{cs.impact}</p>
+                        <span className="text-xs uppercase tracking-wider text-accent font-bold font-display">Total Business Impact</span>
+                        <p className="text-xl font-bold font-display text-text-primary mt-2">{cs.impact}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -577,14 +579,14 @@ transition-all duration-500">
             <div className="flex justify-end gap-3 mt-8">
               <button
                 onClick={() => setCurrentCase(prev => (prev === 0 ? caseStudies.length - 1 : prev - 1))}
-                className="p-3 rounded-full border border-blue-800/40 bg-white/5 hover:bg-white/15 text-white transition-colors cursor-pointer"
+                className="p-3 rounded-full border border-blue-800/40 bg-white/5 hover:bg-white/15 text-black transition-colors cursor-pointer"
                 aria-label="Previous Case Study"
               >
                 <ChevronLeft className="h-5 w-5" />
               </button>
               <button
                 onClick={() => setCurrentCase(prev => (prev === caseStudies.length - 1 ? 0 : prev + 1))}
-                className="p-3 rounded-full border border-blue-800/40 bg-white/5 hover:bg-white/15 text-white transition-colors cursor-pointer"
+                className="p-3 rounded-full border border-blue-800/40 bg-white/5 hover:bg-white/15 text-black transition-colors cursor-pointer"
                 aria-label="Next Case Study"
               >
                 <ChevronRight className="h-5 w-5" />

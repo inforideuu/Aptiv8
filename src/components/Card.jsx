@@ -2,11 +2,15 @@ import React from 'react';
 import { ArrowUpRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-export default function Card({ image, category, title, description, status, onClick, href = '#' }) {
+export default function Card({ image, category, title, description, status, onClick, href = '#', isCoreProduct = false }) {
   return (
     <div
       onClick={onClick}
-      className="aws-card group flex flex-col h-full cursor-pointer"
+      className={`aws-card group flex flex-col h-full cursor-pointer relative ${
+        isCoreProduct 
+          ? 'border-accent shadow-[0_0_20px_rgba(227,6,19,0.15)] dark:shadow-[0_0_30px_rgba(255,59,71,0.15)] ring-2 ring-accent/30' 
+          : ''
+      }`}
     >
       {/* 60% Image Container */}
       <div className="aws-card-image-container relative">
@@ -15,6 +19,11 @@ export default function Card({ image, category, title, description, status, onCl
           alt={title}
           className="aws-card-image w-full h-full object-cover"
         />
+        {isCoreProduct && (
+          <span className="absolute top-4 right-4 bg-accent text-white text-[9px] uppercase tracking-wider font-extrabold px-3 py-1 rounded-full shadow-lg z-10">
+            ★ Flagship Core Product
+          </span>
+        )}
         {/* Animated Border Reveal on Hover */}
         <div className="absolute inset-0 border border-accent/0 group-hover:border-accent/100 rounded-t-[23px] transition-colors duration-500 pointer-events-none" />
       </div>

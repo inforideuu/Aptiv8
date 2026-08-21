@@ -178,10 +178,22 @@ export default function IndustriesPage() {
                   </div>
                 </div>
 
-                {/* Details Section */}
-                <div className={`lg:col-span-6 flex flex-col gap-6 ${
-                  isEven ? 'lg:order-2' : 'lg:order-1'
-                }`}>
+                {/* Details Section wrapped in Card with 3D hover border and slow bounce */}
+                <motion.div 
+                  whileHover={{ 
+                    y: [0, -8, 0]
+                  }}
+                  transition={{
+                    y: {
+                      repeat: Infinity,
+                      duration: 1.6,
+                      ease: "easeInOut"
+                    }
+                  }}
+                  className={`lg:col-span-6 p-8 bg-bg-primary hover:bg-white border border-border-color rounded-[24px] shadow-sm hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 flex flex-col gap-6 cursor-default ${
+                    isEven ? 'lg:order-2' : 'lg:order-1'
+                  }`}
+                >
                   <div>
                     <h2 className="text-3xl font-bold font-display text-text-primary mb-3">
                       {ind.name}
@@ -192,7 +204,7 @@ export default function IndustriesPage() {
                   </div>
 
                   {/* Challenge block */}
-                  <div className="p-5 bg-bg-primary border border-border-color rounded-2xl">
+                  <div className="p-5 bg-bg-secondary border border-border-color rounded-2xl">
                     <h4 className="text-xs uppercase tracking-wider font-bold text-red-500 mb-1 flex items-center gap-1.5">
                       <HelpCircle className="h-4 w-4" /> Core Challenges
                     </h4>
@@ -226,7 +238,7 @@ export default function IndustriesPage() {
                     </p>
                   </div>
 
-                </div>
+                </motion.div>
 
               </div>
             </section>

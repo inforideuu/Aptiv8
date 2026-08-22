@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  ArrowRight, Sparkles, Building, ChevronLeft, ChevronRight, 
+  ArrowRight, ArrowUpRight, Sparkles, Building, ChevronLeft, ChevronRight, 
   MessageSquare, User, HelpCircle, Layers, CheckCircle2 
 } from 'lucide-react';
 
@@ -18,6 +19,53 @@ import {
 } from '../data/websiteData';
 
 export default function HomePage({ theme }) {
+  const navigate = useNavigate();
+
+  const homeProducts = [
+    {
+      id: 'compliance-chatbot',
+      title: 'Gen AI Chatbot & Assistant for Regulatory Compliance',
+      category: 'Planning & Design',
+      description: "Helps consultants navigate 6,300+ rules, regulations, codes and circulars across seven government agencies under Singapore's CORENET X regime.",
+      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 'greensip',
+      title: 'GreenSIP — BCA Green Mark V7 Co-Pilot',
+      category: 'Planning & Design',
+      description: "Extends Aptiv8's Sustainable Design Smart Advisor (SDSA) into a full BCA Green Mark V7 co-pilot, mapping energy, ETTV, and thermal comfort metrics.",
+      image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 'bid-tender-prep',
+      title: 'AI Assistant for Bid & Tender Evaluation',
+      category: 'Pre-Construction',
+      description: 'Helps contractors assemble compliant, competitive bids and helps clients/consultants evaluate submissions fairly against tendering criteria.',
+      image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 'site-supervisor-assistant',
+      title: 'Site Supervisor / Manager Assistant',
+      category: 'Construction',
+      description: 'Supports workplace safety and health (WSH), safety monitoring, and productivity on site through real-time logistics and hazard detection.',
+      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 'cryotos-cortex-cmms',
+      title: 'Cryotos — Agentic AI-Powered CMMS Platform',
+      category: 'Operations & Maintenance',
+      description: "Adds an orchestrator directing nine specialist AI agents within Cryotos' Singapore-based, CSA-STAR-certified AWS environment.",
+      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
+    },
+    {
+      id: 'strata-assistant',
+      title: 'Strata Title & Maintenance Management',
+      category: 'Real Estate',
+      description: 'Supports Managing Agents with drafting correspondence, tracking maintenance schedules, and ensuring compliance with bylaws.',
+      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80'
+    }
+  ];
+
   // Section 2: AI Solution Finder State
   const [role, setRole] = useState('');
   const [problem, setProblem] = useState('');
@@ -111,7 +159,7 @@ export default function HomePage({ theme }) {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-80 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover opacity-75 pointer-events-none"
         >
           <source src="/hero_video.mp4" type="video/mp4" />
         </video>
@@ -155,17 +203,13 @@ export default function HomePage({ theme }) {
             transition={{ duration: 0.8, delay: 0.45 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
-            <a
-              href="#solutions"
-              className="w-full sm:w-auto px-8 py-4 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all text-center flex items-center justify-center gap-2 shadow-lg hover:shadow-accent-glow"
-            >
-              Explore Solutions <ArrowRight className="h-5 w-5" />
+            <a href="/solutions" className="group relative w-full sm:w-auto px-8 py-4 bg-accent text-white rounded-full font-semibold transition-all duration-500 ease-out text-center flex items-center justify-center gap-3 overflow-hidden shadow-[0_8px_30px_rgba(239,68,68,0.18)] hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_16px_45px_rgba(239,68,68,0.32)] before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:-translate-x-full before:skew-x-[-20deg] before:transition-transform before:duration-700 hover:before:translate-x-full">
+              <span className="relative z-10">Explore Solutions</span>
+              <ArrowRight className="relative z-10 h-5 w-5 transition-transform duration-500 group-hover:translate-x-1.5 group-hover:-rotate-6" />
             </a>
-            <a
-              href="#contact"
-              className="w-full sm:w-auto px-8 py-4 bg-bg-secondary text-text-primary border border-border-color hover:border-accent rounded-full font-semibold transition-all text-center"
-            >
-              Book a Demo
+            <a href="/contact" className="group relative w-full sm:w-auto px-8 py-4 bg-bg-secondary text-text-primary border border-border-color rounded-full font-semibold transition-all duration-500 ease-out text-center flex items-center justify-center gap-2 overflow-hidden hover:-translate-y-1 hover:border-accent/60 hover:text-accent hover:bg-accent/[0.04] hover:shadow-[0_14px_40px_rgba(239,68,68,0.12)] before:absolute before:inset-0 before:rounded-full before:border before:border-accent/0 before:scale-90 before:transition-all before:duration-500 group-hover:before:scale-100 group-hover:before:border-accent/20">
+              <span className="relative z-10">Book a Demo</span>
+              <span className="relative z-10 w-1.5 h-1.5 rounded-full bg-current opacity-40 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500" />
             </a>
           </motion.div>
         </div>
@@ -302,26 +346,107 @@ transition-all duration-500">
           <div className="flex flex-col gap-12">
             {/* Timeline Header bar */}
             <div className="relative border-b border-border-color pb-4 flex overflow-x-auto gap-8 justify-between scrollbar-thin">
-              {lifecycleStages.map((stage, idx) => (
-                <button
-                  key={stage.id}
-                  onClick={() => setActiveStage(stage.id)}
-                  className={`flex flex-col items-start gap-2 min-w-[160px] pb-4 relative transition-all cursor-pointer`}
-                >
-                  <span className={`text-xs font-semibold uppercase tracking-wider ${activeStage === stage.id ? 'text-accent' : 'text-text-secondary'}`}>
-                    Phase 0{idx + 1}
-                  </span>
-                  <span className={`font-display font-bold text-sm ${activeStage === stage.id ? 'text-text-primary' : 'text-text-secondary/70'}`}>
-                    {stage.name}
-                  </span>
-                  {activeStage === stage.id && (
-                    <motion.div
-                      layoutId="activeTimelineBorder"
-                      className="absolute bottom-[-17px] left-0 right-0 h-1 bg-accent"
-                    />
-                  )}
-                </button>
-              ))}
+              <div className="relative flex items-stretch overflow-x-auto pt-3 pb-5 scrollbar-hide">
+                {lifecycleStages.map((stage, idx) => (
+                  <div key={stage.id} className="flex items-center shrink-0">
+      
+                    {/* Phase Button */}
+                    <button
+                      onClick={() => setActiveStage(stage.id)}
+                      className={`group relative min-w-[190px] px-6 py-5 rounded-2xl text-left overflow-hidden transition-all duration-500 ease-out ${
+                      activeStage === stage.id
+                        ? 'bg-bg-primary border border-accent/50 shadow-[0_12px_35px_rgba(239,68,68,0.16)] -translate-y-1'
+                        : 'bg-bg-secondary/60 border border-border-color hover:border-accent/30 hover:bg-bg-primary hover:-translate-y-0.5 hover:shadow-[0_10px_30px_rgba(239,68,68,0.08)]'
+                      }`}
+                    >
+                      {/* Active / hover glow */}
+                      <div
+                      className={`absolute -top-16 -right-16 w-32 h-32 rounded-full bg-accent/10 blur-3xl transition-opacity duration-500 ${
+                        activeStage === stage.id
+                        ? 'opacity-100'
+                        : 'opacity-0 group-hover:opacity-100'
+                      }`}
+                      />
+
+                      {/* Phase number */}
+                      <div className="relative z-10 flex items-center justify-between mb-4">
+                        <span className={`text-[9px] font-mono font-bold tracking-[0.2em] transition-colors duration-300 ${
+                          activeStage === stage.id
+                          ? 'text-accent'
+                          : 'text-text-secondary/50 group-hover:text-accent'
+                        }`}
+                        >
+                          PHASE 0{idx + 1}
+                        </span>
+
+                        <span
+                          className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                            activeStage === stage.id
+                              ? 'bg-accent shadow-[0_0_12px_rgba(239,68,68,0.7)] scale-110'
+                              : 'bg-border-color group-hover:bg-accent/60'
+                          }`}
+                        />
+                      </div>
+
+                      {/* Phase name */}
+                      <span
+                        className={`relative z-10 block font-display font-bold text-sm transition-all duration-300 ${
+                          activeStage === stage.id
+                          ? 'text-text-primary'
+                          : 'text-text-secondary/80 group-hover:text-text-primary'
+                        }`}>
+                        {stage.name}
+                      </span>
+
+                      {/* Bottom active indicator */}
+                      <motion.div
+                        layoutId="activeTimelineBorder"
+                        className={`absolute bottom-0 left-5 right-5 h-[2px] rounded-full ${
+                          activeStage === stage.id
+                          ? 'bg-accent shadow-[0_0_12px_rgba(239,68,68,0.45)]'
+                          : 'bg-transparent'
+                        }`}
+                        transition={{
+                          type: 'spring',
+                          stiffness: 400,
+                          damping: 30
+                        }}
+                      />
+
+                        {/* Hover sweep */}
+                        <div className="absolute inset-y-0 -left-full w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-[-20deg] transition-all duration-700 group-hover:left-[130%] "
+                        />
+                          </button>
+
+      {/* Arrow between phases */}
+      {idx < lifecycleStages.length - 1 && (
+        <div className="relative w-14 shrink-0 flex items-center justify-center">
+          <div className="absolute left-0 right-0 h-px bg-border-color" />
+
+          <div
+            className={`
+              relative z-10
+              w-8 h-8
+              rounded-full
+              flex items-center justify-center
+              bg-bg-secondary
+              border
+              transition-all
+              duration-500
+              ${
+                activeStage === stage.id
+                  ? 'border-accent/50 text-accent shadow-[0_0_18px_rgba(239,68,68,0.15)]'
+                  : 'border-border-color text-text-secondary/50'
+              }
+            `}
+          >
+            <ArrowRight className="h-3.5 w-3.5" />
+          </div>
+        </div>
+      )}
+    </div>
+  ))}
+</div>
             </div>
 
             {/* Dynamic Stage Details */}
@@ -400,17 +525,19 @@ transition-all duration-500">
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {featuredSolutions.map(sol => (
-              <Card
-                key={sol.id}
-                image={sol.image}
-                category={sol.category}
-                title={sol.title}
-                description={sol.description}
-                isCoreProduct={sol.id === 'sdsa'}
-                onClick={() => {}}
-              />
-            ))}
+            {featuredSolutions
+              .filter(sol => sol.id !== 'cortex')
+              .map(sol => (
+                <Card
+                  key={sol.id}
+                  image={sol.image}
+                  category={sol.category}
+                  title={sol.title}
+                  description={sol.description}
+                  isCoreProduct={sol.id === 'sdsa'}
+                  onClick={() => navigate('/solutions')}
+                />
+              ))}
           </div>
         </div>
         </Reveal3D>
@@ -429,42 +556,70 @@ transition-all duration-500">
             </p>
           </div>
 
-          {/* Bento Grid layout */}
-          <div className="grid grid-cols-1 md:grid-cols-6 gap-6 grid-flow-row-dense">
-            {bentoProducts.map((prod, idx) => {
-              // Map sizes to grid columns
-              let gridClass = 'md:col-span-3 h-[400px]';
-              if (prod.size === 'lg') gridClass = 'md:col-span-4 h-[400px]';
-              else if (prod.size === 'sm') gridClass = 'md:col-span-2 h-[400px]';
-              else if (prod.size === 'md') gridClass = 'md:col-span-3 h-[400px]';
+          {/* 3-Column Grid layout (2 rows and 3 columns on desktop) */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {homeProducts.map((prod, idx) => (
+              <div
+                key={prod.id}
+                onClick={() => navigate('/products')}
+                style={{ animationDelay: `${idx * 0.4}s` }}
+                className="group relative bg-gradient-to-br from-bg-secondary via-bg-secondary to-bg-tertiary/40 border border-accent/30 hover:border-accent rounded-[28px] overflow-hidden flex flex-col transition-all duration-700 ease-out hover:-translate-y-1.5 hover:scale-[1.01] shadow-[0_8px_30px_rgba(227,6,19,0.05)] hover:shadow-[0_20px_50px_rgba(227,6,19,0.22)] ring-4 ring-accent/5 hover:ring-accent/20 cursor-pointer h-auto animate-slow-bounce"
+              >
+                {/* Hover Background Image Layer */}
+                <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+                  <img
+                    src={prod.image}
+                    alt={prod.title}
+                    className="w-full h-full object-cover transition-all duration-700 ease-out scale-105 group-hover:scale-100 opacity-0 group-hover:opacity-100"
+                  />
+                  {/* Dark overlay for readability on hover background image */}
+                  <div className="absolute inset-0 bg-slate-950/75 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
 
-              return (
-                <div
-                  key={prod.id}
-                  className={`${gridClass} bg-bg-secondary border border-border-color rounded-3xl overflow-hidden flex flex-col justify-between group hover:border-accent transition-all duration-300 relative shadow-sm`}
-                >
-                  <div className="h-1/2 overflow-hidden relative">
-                    <img src={prod.image} alt={prod.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  </div>
-                  <div className="p-6 flex flex-col justify-between flex-grow">
-                    <div>
-                      <h3 className="font-display font-bold text-lg text-text-primary mb-2 group-hover:text-accent transition-colors">
-                        {prod.title}
-                      </h3>
-                      <p className="text-xs text-text-secondary line-clamp-2">
-                        {prod.description}
-                      </p>
+                {/* Floating hover arrow indicator */}
+                <div className="absolute top-5 right-5 w-9 h-9 rounded-full bg-white/90 backdrop-blur-sm border border-white flex items-center justify-center text-slate-900 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 z-20">
+                  <ArrowUpRight className="h-4 w-4" />
+                </div>
+
+                {/* Content Layer (z-10 to stay on top of background image) */}
+                <div className="relative z-10 p-7 flex flex-col h-full">
+                  <div>
+                    {/* Category Capsule Tag */}
+                    <div className="flex items-center mb-4">
+                      <span className="text-[9px] uppercase tracking-[0.16em] text-accent group-hover:text-white group-hover:bg-accent/20 group-hover:border-white/20 transition-all duration-500 font-bold font-mono px-3 py-1 rounded-full bg-accent-glow border border-accent/15 shadow-sm">
+                        {prod.category}
+                      </span>
                     </div>
-                    <div className="flex justify-between items-center mt-4">
-                      <a href="#solutions" className="text-xs font-semibold text-accent hover:underline">
-                        Explore Product
-                      </a>
-                      <ArrowRight className="h-4 w-4 text-text-secondary group-hover:text-accent transform group-hover:translate-x-1 transition-transform" />
+
+                    {/* Premium Accent Line Indicator */}
+                    <div className="w-8 h-[2px] bg-accent/40 group-hover:w-16 group-hover:bg-accent transition-all duration-500 rounded-full mb-3.5" />
+
+                    {/* Title */}
+                    <h3 className="font-display font-bold text-base text-text-primary mb-2 transition-all duration-400 group-hover:translate-x-1 group-hover:text-white line-clamp-2 leading-snug">
+                      {prod.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-xs text-text-secondary group-hover:text-slate-200 leading-relaxed line-clamp-3 transition-colors duration-500">
+                      {prod.description}
+                    </p>
+                  </div>
+
+                  {/* Footer */}
+                  <div className="flex justify-between items-center mt-5 pt-3.5 border-t border-border-color/70 group-hover:border-white/10 transition-colors duration-500">
+                    <span
+                      className="text-[10px] uppercase tracking-[0.16em] font-bold text-text-secondary transition-colors duration-300 group-hover:text-white"
+                    >
+                      Explore Product
+                    </span>
+
+                    <div className="w-7 h-7 rounded-full border border-border-color flex items-center justify-center transition-all duration-500 group-hover:border-white group-hover:bg-white group-hover:text-accent">
+                      <ArrowRight className="h-3.5 w-3.5 transition-transform duration-500 group-hover:translate-x-0.5" />
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         </div>
         </Reveal3D>
@@ -533,7 +688,7 @@ transition-all duration-500">
                     className="grid grid-cols-1 lg:grid-cols-2 gap-12"
                   >
                     {/* Problem / Solution details - Standard Card */}
-                    <div className="border border-border-color bg-bg-primary/40 dark:bg-bg-secondary/30 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-white dark:hover:bg-bg-secondary hover:shadow-[0_15px_30px_rgba(239,68,68,0.5)] hover:border-red-500/30 cursor-pointer">
+                    <div className="border border-border-color bg-bg-primary/40 dark:bg-bg-secondary/30 rounded-2xl p-6 flex flex-col justify-center gap-2 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-white dark:hover:bg-bg-secondary hover:shadow-[0_15px_30px_rgba(239,68,68,0.5)] hover:border-red-500/30 cursor-pointer">
                       <div>
                         <span className="text-[10px] uppercase tracking-widest text-accent font-bold font-display mb-1 block">
                           Case Study 0{idx + 1}
@@ -543,17 +698,17 @@ transition-all duration-500">
                         </h3>
                       </div>
 
-                      <div>
+                      <div className="group relative p-5 rounded-2xl bg-bg-secondary/60 border border-border-color/70 overflow-hidden transition-all duration-500 hover:border-accent/40 hover:bg-bg-secondary hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(239,68,68,0.10)]"> 
                         <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">The Challenge</h4>
                         <p className="text-sm text-text-secondary">{cs.problem}</p>
                       </div>
 
-                      <div>
+                      <div className="group relative p-5 rounded-2xl bg-bg-secondary/60 border border-border-color/70 overflow-hidden transition-all duration-500 hover:border-accent/40 hover:bg-bg-secondary hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(239,68,68,0.10)]">
                         <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">Aptiv8 AI Solution</h4>
                         <p className="text-sm text-text-secondary">{cs.solution}</p>
                       </div>
 
-                      <div>
+                      <div className="group relative p-5 rounded-2xl bg-bg-secondary/60 border border-border-color/70 overflow-hidden transition-all duration-500 hover:border-accent/40 hover:bg-bg-secondary hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(239,68,68,0.10)]">
                         <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">Implementation</h4>
                         <p className="text-sm text-text-secondary">{cs.implementation}</p>
                       </div>
@@ -561,11 +716,11 @@ transition-all duration-500">
 
                     {/* Results / Business Impact - Standard Card */}
                     <div className="border border-border-color bg-bg-primary/40 dark:bg-bg-secondary/30 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-white dark:hover:bg-bg-secondary hover:shadow-[0_15px_30px_rgba(239,68,68,0.5)] hover:border-red-500/30 cursor-pointer">
-                      <div className="border-b border-border-color/60 pb-6">
+                      <div className="group relative p-5 rounded-2xl bg-bg-secondary/60 border border-border-color/70 overflow-hidden transition-all duration-500 hover:border-accent/40 hover:bg-bg-secondary hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(239,68,68,0.10)]">
                         <span className="text-xs uppercase tracking-wider text-accent font-bold font-display">Results & Verification</span>
                         <p className="text-xl font-bold font-display text-text-primary mt-2">{cs.results}</p>
                       </div>
-                      <div>
+                      <div className="group relative p-5 rounded-2xl bg-bg-secondary/60 border border-border-color/70 overflow-hidden transition-all duration-500 hover:border-accent/40 hover:bg-bg-secondary hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(239,68,68,0.10)]">
                         <span className="text-xs uppercase tracking-wider text-accent font-bold font-display">Total Business Impact</span>
                         <p className="text-xl font-bold font-display text-text-primary mt-2">{cs.impact}</p>
                       </div>
@@ -576,7 +731,7 @@ transition-all duration-500">
             </AnimatePresence>
 
             {/* Navigation buttons */}
-            <div className="flex justify-end gap-3 mt-8">
+            <div className="flex justify-end gap-3 mt-3">
               <button
                 onClick={() => setCurrentCase(prev => (prev === 0 ? caseStudies.length - 1 : prev - 1))}
                 className="p-3 rounded-full border border-blue-800/40 bg-white/5 hover:bg-white/15 text-black transition-colors cursor-pointer"
@@ -643,14 +798,14 @@ transition-all duration-500">
           <div className="animate-marquee flex gap-12 py-4">
             {/* Set 1 */}
             {['Autodesk partner', 'Bentley dev', 'BCA SG registered', 'Notion for Enterprise', 'OpenAI partner', 'Sands Expo 2026', 'GovTech SG'].map((partner, idx) => (
-              <div key={idx} className="flex items-center gap-2 font-display text-base font-bold text-text-secondary/50 shrink-0">
+              <div key={idx} className="flex items-center gap-2 font-display text-base font-bold text-text-secondary/50 shrink-0 transition-all duration-300 hover:text-accent hover:scale-[1.08] cursor-pointer">
                 <Building className="h-5 w-5" />
                 <span>{partner}</span>
               </div>
             ))}
             {/* Set 2 */}
             {['Autodesk partner', 'Bentley dev', 'BCA SG registered', 'Notion for Enterprise', 'OpenAI partner', 'Sands Expo 2026', 'GovTech SG'].map((partner, idx) => (
-              <div key={`dup-${idx}`} className="flex items-center gap-2 font-display text-base font-bold text-text-secondary/50 shrink-0">
+              <div key={`dup-${idx}`} className="flex items-center gap-2 font-display text-base font-bold text-text-secondary/50 shrink-0 transition-all duration-300 hover:text-accent hover:scale-[1.08] cursor-pointer">
                 <Building className="h-5 w-5" />
                 <span>{partner}</span>
               </div>

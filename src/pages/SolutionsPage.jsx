@@ -50,65 +50,45 @@ export default function SolutionsPage() {
     <div className="relative pt-20">
       
       {/* HERO SECTION */}
-      <section className="relative py-28 px-4 hero-mesh-bg border-b border-border-color overflow-hidden">
-        {/* Floating background decorative blobs */}
-        <motion.div
-          animate={{
-            y: [-15, 15, -15],
-            x: [-10, 10, -10],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-10 left-10 w-32 h-32 rounded-full bg-accent/10 blur-2xl pointer-events-none"
-        />
-        <motion.div
-          animate={{
-            y: [20, -20, 20],
-            x: [15, -15, 15],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-10 right-10 w-44 h-44 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"
-        />
-        
-        {/* Subtle grid backdrop */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.08),transparent_70%)] pointer-events-none" />
-        
-        {/* Futuristic Blueprint Grid Backdrop */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-        
-        {/* Pinging blueprint node lights */}
-        <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 rounded-full bg-accent/60 animate-ping pointer-events-none" />
-        <div className="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 rounded-full bg-indigo-400/60 animate-ping pointer-events-none [animation-delay:1.5s]" />
-        <div className="absolute top-1/3 right-1/3 w-1 h-1 rounded-full bg-accent/40 animate-ping pointer-events-none [animation-delay:0.8s]" />
+      <section 
+        className="relative py-36 px-4 bg-cover bg-center overflow-hidden flex items-center justify-center min-h-[calc(100vh-80px)] w-full"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=80')" }}
+      >
+        {/* Dark blue/black overlay for text contrast */}
+        <div className="absolute inset-0 bg-slate-950/75 z-0 pointer-events-none" />
 
-        <motion.div
-          animate={{
-            y: [0, -12, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="max-w-4xl mx-auto text-center relative z-10"
-        >
-          <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-glow border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-6 font-display">
-            Interactive Navigator
-          </span>
-          <h1 className="text-4xl md:text-6xl font-extrabold font-display tracking-tight text-text-primary mb-6">
-            AI Solutions Journey
-          </h1>
-          <p className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed">
-            Navigate the Built Environment lifecycle to explore how our specialized AI models optimize every stage of development.
-          </p>
-        </motion.div>
+        <div className="max-w-4xl mx-auto text-center relative z-10 w-full flex flex-col items-center justify-center my-auto">
+          {/* Subtitle in Gold/Amber uppercase */}
+          <motion.span
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-[11px] font-bold font-mono tracking-[0.25em] text-[#c5a880] uppercase mb-4 block"
+          >
+            INTELLIGENT DECISIONS. SMARTER BUILT ENVIRONMENT.
+          </motion.span>
+
+          {/* Main Headline in Times New Roman */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6"
+            style={{ fontFamily: "'Times New Roman', Times, serif" }}
+          >
+            AI Solutions
+          </motion.h1>
+
+          {/* Centered description text */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-sm sm:text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed"
+          >
+            Navigate the Built Environment lifecycle to explore how our specialized AI models optimize every stage of development, planning, and operations.
+          </motion.p>
+        </div>
       </section>
 
       {/* LIFECYCLE HORIZONTAL JOURNEY NAVIGATOR */}
@@ -409,22 +389,28 @@ export default function SolutionsPage() {
       </section>
 
       {/* FINAL PAGE ACTION CTA */}
-      <section className="py-20 px-4 bg-bg-primary text-center">
+      <section className="py-20 px-4 bg-bg-secondary text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none" />
         <Reveal3D>
-          <div className="max-w-2xl mx-auto">
-          <h2 className="text-3xl font-bold font-display text-text-primary mb-4">
-            Need a custom integration check?
-          </h2>
-          <p className="text-text-secondary text-sm mb-8 leading-relaxed">
-            We train neural models on specialized local datasets, allowing builders to run private instances complying with Singapore regulations.
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-accent text-white hover:bg-accent-hover rounded-full text-sm font-semibold transition-all shadow-md hover:shadow-accent-glow"
+          <motion.div
+            whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 150, damping: 15 }}
+            style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
+            className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-border-color rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 cursor-default"
           >
-            Request API Documentations <ArrowRight className="h-4.5 w-4.5" />
-          </a>
-        </div>
+            <h2 className="text-3xl md:text-4xl font-extrabold font-display text-text-primary mb-4">
+              Need a custom integration check?
+            </h2>
+            <p className="text-text-secondary text-sm mb-8 leading-relaxed max-w-md mx-auto">
+              We train neural models on specialized local datasets, allowing builders to run private instances complying with Singapore regulations.
+            </p>
+            <a
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all shadow-lg hover:shadow-accent-glow"
+            >
+              Request API Documentations <ArrowRight className="h-4.5 w-4.5" />
+            </a>
+          </motion.div>
         </Reveal3D>
       </section>
 

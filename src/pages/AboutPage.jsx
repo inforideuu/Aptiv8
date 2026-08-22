@@ -3,9 +3,40 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { 
   Building2, Users, Award, ShieldCheck, Heart, 
   Lightbulb, Zap, TrendingUp, ChevronRight, HelpCircle,
-  Briefcase, Cpu, Settings, Sparkles
+  Briefcase, Cpu, Settings, Sparkles, ArrowRight
 } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
+
+// Motion variants for line-by-line reveal on hover
+const containerVariants = {
+  hidden: {},
+  hover: {
+    transition: {
+      staggerChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { 
+    opacity: 0, 
+    y: 10,
+    height: 0,
+    marginTop: 0,
+    overflow: 'hidden'
+  },
+  hover: { 
+    opacity: 1, 
+    y: 0, 
+    height: 'auto',
+    marginTop: 8,
+    transition: { 
+      type: 'spring',
+      stiffness: 100,
+      damping: 15
+    } 
+  }
+};
 
 // Reusable animated counter component that counts on scroll visibility and mouse hover
 function Counter({ endValue, label, duration = 2000 }) {
@@ -224,86 +255,71 @@ export default function AboutPage() {
     <div className="relative pt-20">
       
       {/* SECTION 1: HERO SECTION */}
-      <section className="relative py-28 px-4 hero-mesh-bg border-b border-border-color overflow-hidden">
-        {/* Floating background decorative blobs */}
-        <motion.div
-          animate={{
-            y: [-15, 15, -15],
-            x: [-10, 10, -10],
-          }}
-          transition={{
-            duration: 8,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute top-10 left-10 w-32 h-32 rounded-full bg-accent/10 blur-2xl pointer-events-none"
-        />
-        <motion.div
-          animate={{
-            y: [20, -20, 20],
-            x: [15, -15, 15],
-          }}
-          transition={{
-            duration: 10,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="absolute bottom-10 right-10 w-44 h-44 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"
-        />
-        
-        {/* Subtle grid backdrop */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.08),transparent_70%)] pointer-events-none" />
-        
-        {/* Futuristic Blueprint Grid Backdrop */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-        
-        {/* Pinging blueprint node lights */}
-        <div className="absolute top-1/4 left-1/4 w-1.5 h-1.5 rounded-full bg-accent/60 animate-ping pointer-events-none" />
-        <div className="absolute bottom-1/3 right-1/4 w-1.5 h-1.5 rounded-full bg-indigo-400/60 animate-ping pointer-events-none [animation-delay:1.5s]" />
-        <div className="absolute top-1/3 right-1/3 w-1 h-1 rounded-full bg-accent/40 animate-ping pointer-events-none [animation-delay:0.8s]" />
-        
-        {/* Main Floating Wrapper */}
-        <motion.div
-          animate={{
-            y: [0, -12, 0],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-          className="max-w-4xl mx-auto text-center relative z-10"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+      <section 
+        className="relative py-36 px-4 bg-cover bg-center overflow-hidden flex items-center justify-center min-h-[580px]"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80')" }}
+      >
+        {/* Dark blue/black overlay for text contrast */}
+        <div className="absolute inset-0 bg-slate-950/75 z-0 pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10 w-full flex flex-col items-center">
+          {/* Subtitle in Gold/Amber uppercase */}
+          <motion.span
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-red-50 dark:bg-red-950/25 border border-red-200 dark:border-red-800/40 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-wider mb-6 font-display"
+            className="text-xs font-bold font-mono tracking-[0.25em] text-[#c5a880] uppercase mb-4 block"
           >
-            ABOUT APTIV8 IT SOLUTIONS
-          </motion.div>
+            INTELLIGENT INFRASTRUCTURE. SMARTER BUILT ENVIRONMENT.
+          </motion.span>
 
+          {/* Main Headline in Times New Roman */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-extrabold font-display tracking-tight text-text-primary mb-6"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6"
+            style={{ fontFamily: "'Times New Roman', Times, serif" }}
           >
-            Engineering the Future of the <br />
-            <span className="text-red-600 dark:text-red-400">
-              Built Environment Through AI
-            </span>
+            Engineering the Future <br />
+            of Built Environment
           </motion.h1>
 
+          {/* Centered description text */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-text-secondary max-w-3xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed mb-10"
           >
-            Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products for the Built Environment (BE) sector across Singapore and Malaysia.
+            Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products to automate compliance, optimize engineering, and elevate facilities management.
           </motion.p>
-        </motion.div>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+          >
+            {/* Get Started Gold Button */}
+            <a 
+              href="/contact" 
+              
+              className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-[#c5a059] hover:bg-[#e30613] hover:text-white text-slate-950 font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5 cursor-pointer"
+            >
+              Get Started <ArrowRight className="h-4 w-4" />
+            </a>
+
+            {/* Explore Services Transparent Outline Button */}
+            <a 
+              href="/services" 
+              className="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-white/20 hover:border-white/50 hover:bg-white/5 text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center"
+            >
+              Explore Services
+            </a>
+          </motion.div>
+        </div>
       </section>
 
       {/* SECTION: COMPANY OVERVIEW */}
@@ -317,57 +333,88 @@ export default function AboutPage() {
             {/* Single Consolidate Card with image - Hover 3D Red Border and Shadow */}
             <div className="bg-white/60 dark:bg-bg-primary/40 backdrop-blur-xl p-8 md:p-12 rounded-[32px] border border-border-color shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch hover:shadow-[0_20px_45px_rgba(239,68,68,0.15),_0_6px_0_0_#ef4444] hover:border-red-500 transition-all duration-500 transform hover:-translate-y-2">
               
-              {/* Left Side: 3 Content blocks stacked with dividers */}
-              <div className="lg:col-span-7 flex flex-col justify-between gap-3">
-                {/* Block 1 */}
-                <div className="space-y-4">
-                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-50 dark:bg-red-950/20 border border-red-200/50 dark:border-red-900/30 text-red-600 dark:text-red-400 text-xs font-bold uppercase tracking-wider font-display w-max">
+              {/* Left Side: 3 Content blocks stacked in separate premium cards */}
+              <div className="lg:col-span-7 flex flex-col gap-6 justify-between">
+                {/* Block 1 Card */}
+                <motion.div
+                  initial="hidden"
+                  whileHover="hover"
+                  variants={containerVariants}
+                  className="p-6 rounded-2xl border border-border-color bg-white/40 dark:bg-bg-primary/20 backdrop-blur-sm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-red-500/40 hover:shadow-[0_12px_30px_rgba(239,68,68,0.06)] cursor-default"
+                >
+                  <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-red-50 dark:bg-red-950/20 border border-red-200/50 dark:border-red-900/30 text-red-600 dark:text-red-400 text-[10px] font-bold uppercase tracking-wider font-display mb-3">
                     <Sparkles className="h-3 w-3 animate-pulse" /> Overview
                   </div>
-                  <h2 className="text-2xl md:text-3xl font-extrabold font-display text-text-primary leading-tight tracking-tight">
-                    Driving Adoption & <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-indigo-500">
-                      Revenue via Agentic AI
-                    </span>
-                  </h2>
-                  <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
-                    Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products for the Built Environment (BE) sector across Singapore and Malaysia. Its priority is delivering widely adopted, revenue-generating Gen AI tools that practitioners—real estate, buildings and infrastructure developers, building and other asset owners, architects, MEP engineers, quantity surveyors (QS), contractors, specialist trade subcontractors, and Integrated Facilities Management (IFM) companies—use in their daily work.
-                  </p>
-                </div>
+                  <h3 className="text-xl font-bold font-display text-text-primary leading-tight mb-2">
+                    Driving Adoption & Revenue via Agentic AI
+                  </h3>
+                  <div className="flex flex-col text-xs md:text-sm text-text-secondary leading-relaxed text-justify">
+                    <p className="text-text-primary font-semibold mb-2">Hover card to reveal details:</p>
+                    <motion.p variants={itemVariants}>
+                      • Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products for the Built Environment (BE) sector.
+                    </motion.p>
+                    <motion.p variants={itemVariants}>
+                      • Our tools automate compliance, optimize engineering, and elevate facilities management across Singapore and Malaysia.
+                    </motion.p>
+                    <motion.p variants={itemVariants}>
+                      • Our priority is delivering widely adopted, revenue-generating tools that practitioners use in their daily work.
+                    </motion.p>
+                  </div>
+                </motion.div>
 
-                <hr className="border-border-color/60 dark:border-slate-800/40" />
-
-                {/* Block 2 */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-bold font-display text-text-primary">
+                {/* Block 2 Card */}
+                <motion.div
+                  initial="hidden"
+                  whileHover="hover"
+                  variants={containerVariants}
+                  className="p-6 rounded-2xl border border-border-color bg-white/40 dark:bg-bg-primary/20 backdrop-blur-sm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-red-500/40 hover:shadow-[0_12px_30px_rgba(239,68,68,0.06)] cursor-default"
+                >
+                  <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-red-50 dark:bg-red-950/20 border border-red-200/50 dark:border-red-900/30 text-red-600 dark:text-red-400 text-[10px] font-bold uppercase tracking-wider font-display mb-3">
+                    <Cpu className="h-3 w-3 animate-pulse" /> Challenges
+                  </div>
+                  <h3 className="text-xl font-bold font-display text-text-primary leading-tight mb-2">
                     Relieving Value Chain Bottlenecks
                   </h3>
-                  <div className="text-xs text-text-secondary space-y-3 leading-relaxed text-justify">
-                    <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
-                      The BE value chain — from design, through tendering, construction, operations & maintenance, and real estate management — is characterized by significant pain points. They are regulatory complexity, fragmented and non-standardized data, abortive work from late-stage rejections, and low productivity in knowledge-intensive but repetitive compliance and coordination tasks.
-                    </p>
-                    <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
-                      Aptiv8 positions Agentic AI — where agents reason over deterministic engineering calculations, structured data, and regulatory knowledge — as a path to relieving these bottlenecks at scale.
-                    </p>
+                  <div className="flex flex-col text-xs md:text-sm text-text-secondary leading-relaxed text-justify">
+                    <p className="text-text-primary font-semibold mb-2">Hover card to reveal details:</p>
+                    <motion.p variants={itemVariants}>
+                      • The BE value chain — from design, through tendering, construction, operations & maintenance, and real estate management — is characterized by significant pain points.
+                    </motion.p>
+                    <motion.p variants={itemVariants}>
+                      • They are regulatory complexity, fragmented and non-standardized data, abortive work from late-stage rejections, and low productivity in compliance.
+                    </motion.p>
+                    <motion.p variants={itemVariants}>
+                      • Aptiv8 positions Agentic AI to relieve these bottlenecks at scale.
+                    </motion.p>
                   </div>
-                </div>
+                </motion.div>
 
-                <hr className="border-border-color/60 dark:border-slate-800/40" />
-
-                {/* Block 3 */}
-                <div className="space-y-3">
-                  <h3 className="text-lg font-bold font-display text-text-primary">
+                {/* Block 3 Card */}
+                <motion.div
+                  initial="hidden"
+                  whileHover="hover"
+                  variants={containerVariants}
+                  className="p-6 rounded-2xl border border-border-color bg-white/40 dark:bg-bg-primary/20 backdrop-blur-sm shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-red-500/40 hover:shadow-[0_12px_30px_rgba(239,68,68,0.06)] cursor-default"
+                >
+                  <div className="inline-flex items-center gap-2 px-2.5 py-0.5 rounded-full bg-red-50 dark:bg-red-950/20 border border-red-200/50 dark:border-red-900/30 text-red-600 dark:text-red-400 text-[10px] font-bold uppercase tracking-wider font-display mb-3">
+                    <Briefcase className="h-3 w-3 animate-pulse" /> Adaptability
+                  </div>
+                  <h3 className="text-xl font-bold font-display text-text-primary leading-tight mb-2">
                     Delivery & Cross-Sector Adaptability
                   </h3>
-                  <div className="text-xs text-text-secondary space-y-3 leading-relaxed text-justify">
-                    <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
-                      Aptiv8 acts as an engineering delivery partner, co-developing Gen AI / Agentic AI projects with domain experts. Some projects are proofs-of-concept already built by Aptiv8; others are in active development or are seeking suitable domain-expert or institutional partners.
-                    </p>
-                    <p className="text-text-secondary leading-relaxed text-xs md:text-sm text-justify">
-                      Aptiv8 also applies the same Generative and Agentic AI platform to other sectors, including customer service, telecommunications, short-term rental/hospitality, and aerospace MRO (Maintenance, Repair and Overhaul).
-                    </p>
+                  <div className="flex flex-col text-xs md:text-sm text-text-secondary leading-relaxed text-justify">
+                    <p className="text-text-primary font-semibold mb-2">Hover card to reveal details:</p>
+                    <motion.p variants={itemVariants}>
+                      • Aptiv8 acts as an engineering delivery partner, co-developing Gen AI / Agentic AI projects with domain experts.
+                    </motion.p>
+                    <motion.p variants={itemVariants}>
+                      • Some projects are proofs-of-concept already built by Aptiv8; others are in active development or seeking partners.
+                    </motion.p>
+                    <motion.p variants={itemVariants}>
+                      • We also apply our Agentic platform to customer service, telecommunications, and aerospace MRO solutions.
+                    </motion.p>
                   </div>
-                </div>
+                </motion.div>
               </div>
 
               {/* Right Side: Image Placeholder Option */}
@@ -428,7 +475,7 @@ export default function AboutPage() {
 
             <div className="relative">
               {/* Central vertical track line (visible on desktop) */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-slate-200 dark:bg-slate-800 rounded-full hidden md:block" />
+              <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-gradient-to-b from-transparent via-accent/70 to-transparent hidden md:block shadow-[0_0_18px_rgba(239,68,68,0.18)]" />
               
               {/* Left track line (visible on mobile) */}
               <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-slate-200 dark:bg-slate-800 rounded-full md:hidden" />
@@ -459,102 +506,127 @@ export default function AboutPage() {
                       />
 
                       {/* Card Spacer Column for Grid Alignment */}
-                      <div className="w-full md:w-[45%] hidden md:block" />
+                      <div className="w-full md:w-[35%] hidden md:block" />
 
                       {/* Timeline Card */}
                       <motion.div
-                        initial={{ opacity: 0, y: 30, scale: 0.98 }}
-                        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                        viewport={{ once: true, margin: '-80px' }}
-                        transition={{ duration: 0.5, ease: 'easeOut' }}
-                        whileHover={{ y: -4, scale: 1.01 }}
-                        className={`w-full md:w-[45%] bg-white dark:bg-slate-900 rounded-3xl py-6 px-7 shadow-sm ml-12 md:ml-0 relative overflow-hidden transition-all duration-300 group ${
-                          isRedTheme
-                            ? 'border-t-2 border-l-2 border-red-500 border-r border-b border-slate-200/80 dark:border-slate-800/80 shadow-[4px_4px_0px_rgba(239,68,68,0.12)] hover:bg-[#e30613] hover:border-red-500/20 hover:shadow-[0_15px_30px_rgba(239,68,68,0.25)]'
-                            : 'border-t-2 border-l-2 border-blue-500 border-r border-b border-slate-200/80 dark:border-slate-800/80 shadow-[4px_4px_0px_rgba(59,130,246,0.12)] hover:bg-blue-600 hover:border-blue-500/20 hover:shadow-[0_15px_30px_rgba(59,130,246,0.25)]'
-                        }`}
-                      >
-                        {/* Pointer Arrow Bubble Point */}
-                        {isLeft ? (
-                          <div className={`absolute right-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white dark:bg-slate-900 border-t border-r transition-colors ${
-                            isRedTheme 
-                              ? 'border-red-500/20 group-hover:bg-[#e30613] group-hover:border-red-500/0' 
-                              : 'border-blue-500/20 group-hover:bg-blue-600 group-hover:border-blue-500/0'
-                          } hidden md:block`} />
-                        ) : (
-                          <div className={`absolute left-[-6px] top-1/2 -translate-y-1/2 w-3 h-3 rotate-45 bg-white dark:bg-slate-900 border-b border-l transition-colors ${
-                            isRedTheme 
-                              ? 'border-red-500/20 group-hover:bg-[#e30613] group-hover:border-red-500/0' 
-                              : 'border-blue-500/20 group-hover:bg-blue-600 group-hover:border-blue-500/0'
-                          } hidden md:block`} />
-                        )}
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true, margin: '-60px' }}
+  transition={{ duration: 0.5, ease: 'easeOut' }}
+  whileHover={{
+    y: -4,
+    scale: 1.01
+  }}
+  className={`group relative w-full md:w-[45%] ml-12 md:ml-0 rounded-2xl bg-white dark:bg-slate-900 border overflow-hidden transition-all duration-500 ${
+    isRedTheme
+      ? 'border-slate-200 dark:border-slate-800 hover:border-red-500/60 hover:shadow-[0_12px_35px_rgba(239,68,68,0.12)]'
+      : 'border-slate-200 dark:border-slate-800 hover:border-blue-500/60 hover:shadow-[0_12px_35px_rgba(59,130,246,0.12)]'
+  }`}
+>
+  {/* Animated top accent */}
+  <div
+    className={`absolute top-0 left-0 right-0 h-[2px] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700 ${
+      isRedTheme
+        ? 'bg-gradient-to-r from-transparent via-red-500 to-transparent'
+        : 'bg-gradient-to-r from-transparent via-blue-500 to-transparent'
+    }`}
+  />
 
-                        {/* Year Badge */}
-                        <div className={`inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold mb-3 font-display border transition-colors ${
-                          isRedTheme 
-                            ? 'bg-red-50/50 dark:bg-red-950/20 border-red-500 text-red-500 group-hover:bg-white/25 group-hover:border-white/40 group-hover:text-white' 
-                            : 'bg-blue-50/50 dark:bg-blue-950/20 border-blue-500 text-blue-500 group-hover:bg-white/25 group-hover:border-white/40 group-hover:text-white'
-                        }`}>
-                          {event.year}
-                        </div>
+  {/* Pointer */}
+  {isLeft ? (
+    <div
+      className={`absolute right-[-5px] top-1/2 -translate-y-1/2 rotate-45 w-2.5 h-2.5 bg-white dark:bg-slate-900 border-t border-r hidden md:block ${
+        isRedTheme
+          ? 'border-red-500/40'
+          : 'border-blue-500/40'
+      }`}
+    />
+  ) : (
+    <div
+      className={`absolute left-[-5px] top-1/2 -translate-y-1/2 rotate-45 w-2.5 h-2.5 bg-white dark:bg-slate-900 border-b border-l hidden md:block ${
+        isRedTheme
+          ? 'border-red-500/40'
+          : 'border-blue-500/40'
+      }`}
+    />
+  )}
 
-                        {/* Title & Description */}
-                        <div className="flex flex-col sm:flex-row items-start gap-4 relative z-10">
-                          <div className={`p-3.5 rounded-2xl shrink-0 transition-colors ${
-                            isRedTheme 
-                              ? 'bg-red-50 dark:bg-red-950/30 text-red-500 group-hover:bg-white/20 group-hover:text-white' 
-                              : 'bg-blue-50 dark:bg-blue-950/30 text-blue-500 group-hover:bg-white/20 group-hover:text-white'
-                          }`}>
-                            <IconComponent className="h-6 w-6" />
-                          </div>
-                          <div>
-                            <h3 className="font-display font-extrabold text-base text-text-primary group-hover:text-white transition-colors mb-2">
-                              {event.title}
-                            </h3>
-                            <p className="text-text-secondary group-hover:text-white/90 transition-colors leading-relaxed text-xs md:text-sm font-light">
-                              {event.description}
-                            </p>
-                          </div>
-                        </div>
+  {/* Compact content */}
+  <div className="px-5 py-5">
 
-                        {/* Inline Graphic Faint SVGs to Match bottom card vector drawings exactly */}
-                        {event.year === '2018' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
-                            <path d="M0 60 V50 H10 V45 H20 V50 H40 V35 H50 V40 H60 V42 H80 V50 H100 V30 H110 V25 H120 V30 H140 V50 H180 V42 H190 V45 H200 V42 H220 V30 H230 V35 H250 V50 H280 V35 H290 V25 H300 V35 H320 V50 H400 V60 Z" />
-                          </svg>
-                        )}
-                        {event.year === '2020' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-blue-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="none" stroke="currentColor" strokeWidth="1">
-                            <circle cx="20" cy="50" r="2" fill="currentColor" />
-                            <circle cx="80" cy="20" r="2" fill="currentColor" />
-                            <circle cx="140" cy="45" r="2" fill="currentColor" />
-                            <circle cx="200" cy="15" r="2" fill="currentColor" />
-                            <circle cx="280" cy="40" r="2" fill="currentColor" />
-                            <circle cx="350" cy="25" r="2" fill="currentColor" />
-                            <line x1="20" y1="50" x2="80" y2="20" />
-                            <line x1="80" y1="20" x2="140" y2="45" />
-                            <line x1="140" y1="45" x2="200" y2="15" />
-                            <line x1="200" y1="15" x2="280" y2="40" />
-                            <line x1="280" y1="40" x2="350" y2="25" />
-                          </svg>
-                        )}
-                        {event.year === '2022' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="none" stroke="currentColor" strokeWidth="1">
-                            <path d="M0 45 Q50 30 100 45 T200 45 T300 45 T400 45" />
-                            <path d="M0 50 Q50 35 100 50 T200 50 T300 50 T400 50" strokeDasharray="3 3" />
-                          </svg>
-                        )}
-                        {event.year === '2024' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-red-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
-                            <path d="M50 60 V45 H70 V40 H90 V45 H110 V60 Z M150 60 V35 H180 V60 Z M220 60 V48 H250 V60 Z M300 60 V40 H330 V60 Z" />
-                          </svg>
-                        )}
-                        {event.year === '2026' && (
-                          <svg className="absolute bottom-0 left-0 right-0 h-10 w-full text-blue-500/5 group-hover:text-white/10 transition-colors pointer-events-none" viewBox="0 0 400 60" fill="currentColor">
-                            <path d="M20 60 V45 H40 V60 Z M50 60 V35 H80 V40 H90 V60 Z M120 60 C120 45 160 45 160 60 Z M200 60 A20 20 0 0 1 240 60 Z M260 60 V48 H280 V60 Z M300 60 V40 H320 V35 H340 V60 Z" />
-                          </svg>
-                        )}
-                      </motion.div>
+    {/* Header */}
+    <div className="flex items-center justify-between mb-4">
+
+      {/* Year */}
+      <span
+        className={`text-[10px] font-bold tracking-[0.18em] uppercase ${
+          isRedTheme
+            ? 'text-red-500'
+            : 'text-blue-500'
+        }`}
+      >
+        {event.year}
+      </span>
+
+      {/* Small indicator */}
+      <span
+        className={`w-1.5 h-1.5 rounded-full transition-all duration-500 group-hover:scale-150 ${
+          isRedTheme
+            ? 'bg-red-500 group-hover:shadow-[0_0_10px_rgba(239,68,68,0.6)]'
+            : 'bg-blue-500 group-hover:shadow-[0_0_10px_rgba(59,130,246,0.6)]'
+        }`}
+      />
+    </div>
+
+    {/* Main content */}
+    <div className="flex items-start gap-4">
+
+      {/* Icon */}
+      <div
+        className={`w-10 h-10 shrink-0 rounded-xl flex items-center justify-center border transition-all duration-500 ${
+          isRedTheme
+            ? 'bg-red-50 dark:bg-red-950/20 border-red-500/15 text-red-500 group-hover:bg-red-500 group-hover:text-white'
+            : 'bg-blue-50 dark:bg-blue-950/20 border-blue-500/15 text-blue-500 group-hover:bg-blue-500 group-hover:text-white'
+        }`}
+      >
+        <IconComponent className="h-5 w-5" />
+      </div>
+
+      {/* Text */}
+      <div className="min-w-0">
+
+        <h3
+          className={`font-display font-bold text-sm md:text-base text-text-primary mb-1.5 transition-colors duration-300 ${
+            isRedTheme
+              ? 'group-hover:text-red-500'
+              : 'group-hover:text-blue-500'
+          }`}
+        >
+          {event.title}
+        </h3>
+
+        <p className="text-xs text-text-secondary leading-5 font-light">
+          {event.description}
+        </p>
+
+      </div>
+    </div>
+
+    {/* Bottom micro detail */}
+    <div className="mt-4 pt-3 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between">
+      <span className="text-[8px] uppercase tracking-[0.2em] text-text-secondary">
+        Aptiv8 Milestone
+      </span>
+
+      <ArrowRight
+        className={`h-3.5 w-3.5 opacity-40 group-hover:opacity-100 group-hover:translate-x-1 transition-all duration-300 ${
+          isRedTheme ? 'text-red-500' : 'text-blue-500'
+        }`}
+      />
+    </div>
+  </div>
+</motion.div>
                     </div>
                   );
                 })}
@@ -745,22 +817,27 @@ export default function AboutPage() {
 
       {/* SECTION 9: CTA */}
       <section className="py-24 px-4 bg-bg-secondary text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none" />
         <Reveal3D>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none" />
-          <div className="max-w-3xl mx-auto relative z-10">
-          <h2 className="text-4xl md:text-6xl font-extrabold font-display text-text-primary mb-6">
-            Let's Build the Future Together
-          </h2>
-          <p className="text-text-secondary max-w-md mx-auto mb-8 leading-relaxed">
-            Configure custom-trained compliance checker instances and green-planning modules for your organization today.
-          </p>
-          <a
-            href="#contact"
-            className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all shadow-lg hover:shadow-accent-glow"
+          <motion.div
+            whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 150, damping: 15 }}
+            style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
+            className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-border-color rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 cursor-default"
           >
-            Connect With Our AI Advisors <ChevronRight className="h-5 w-5" />
-          </a>
-        </div>
+            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-text-primary mb-6">
+              Let's Build the Future Together
+            </h2>
+            <p className="text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm">
+              Configure custom-trained compliance checker instances and green-planning modules for your organization today.
+            </p>
+            <a
+              href="#contact"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all shadow-lg hover:shadow-accent-glow"
+            >
+              Connect With Our AI Advisors <ChevronRight className="h-5 w-5" />
+            </a>
+          </motion.div>
         </Reveal3D>
       </section>
 

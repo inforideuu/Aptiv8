@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Users, Layers, TrendingUp, Settings, ShieldCheck, 
-  ChevronRight, Sparkles, Cpu, Code2, Network, ArrowUpRight
+import {
+  Users, Layers, TrendingUp, Settings, ShieldCheck,
+  ChevronRight, Sparkles, Cpu, Code2, Network, ArrowUpRight, ArrowRight
 } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
 
@@ -22,11 +22,11 @@ export default function ServicesPage() {
       id: 'om-bundling',
       title: 'Operations & Maintenance Solution Bundling — Digital Twin, AI, IoT, Smart Energy & Thermal Comfort',
       badge: 'Converged Infrastructure',
-      description: 'Aptiv8 converges digital twin modelling, agentic AI (Cryotos Cortex), IoT and building-management-system (BMS) data, smart energy management (Retragreen), and thermal comfort / building performance monitoring into a single integrated operations-and-maintenance service for building owners and FM operators — moving beyond disconnected point solutions toward one converged operating layer across a building\'s operational life.',
+      description: 'Aptiv8 converges digital twin modelling, agentic AI (Cryotos Cortex), IoT and building-management-system (BMS) data, smart energy management (Aptiv8), and thermal comfort / building performance monitoring into a single integrated operations-and-maintenance service for building owners and FM operators — moving beyond disconnected point solutions toward one converged operating layer across a building\'s operational life.',
       icon: Layers,
       color: 'from-purple-500 to-indigo-500',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Cryotos Cortex reasoning', 'Retragreen energy optimization', 'BMS & IoT telemetry', 'Thermal comfort monitoring']
+      highlights: ['Cryotos Cortex reasoning', 'Aptiv8 energy optimization', 'BMS & IoT telemetry', 'Thermal comfort monitoring']
     },
     {
       id: 'advisory',
@@ -62,66 +62,70 @@ export default function ServicesPage() {
 
   return (
     <div className="relative pt-20 overflow-hidden">
-      
+
       {/* 1. HERO SECTION */}
-      <section className="relative py-28 px-4 hero-mesh-bg border-b border-border-color overflow-hidden">
-        {/* Floating gradient blobs */}
-        <motion.div
-          animate={{
-            y: [-20, 20, -20],
-            x: [-15, 15, -15],
-          }}
-          transition={{ duration: 10, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute top-10 left-10 w-48 h-48 rounded-full bg-accent/10 blur-3xl pointer-events-none"
-        />
-        <motion.div
-          animate={{
-            y: [30, -30, 30],
-            x: [20, -20, 20],
-          }}
-          transition={{ duration: 12, repeat: Infinity, ease: 'easeInOut' }}
-          className="absolute bottom-10 right-10 w-64 h-64 rounded-full bg-indigo-500/10 blur-3xl pointer-events-none"
-        />
+      <section 
+        className="relative py-36 px-4 bg-cover bg-center overflow-hidden flex items-center justify-center min-h-[calc(100vh-80px)]"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1600&q=80')" }}
+      >
+        {/* Dark overlay for text contrast */}
+        <div className="absolute inset-0 bg-slate-950/60 z-0 pointer-events-none" />
 
-        {/* Blueprint Grid Backdrop */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(37,99,235,0.06),transparent_70%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808007_1px,transparent_1px),linear-gradient(to_bottom,#80808007_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
-
-        {/* Pinging blueprint node lights */}
-        <div className="absolute top-1/4 left-1/5 w-2 h-2 rounded-full bg-accent/60 animate-ping pointer-events-none" />
-        <div className="absolute bottom-1/4 right-1/5 w-1.5 h-1.5 rounded-full bg-indigo-400/60 animate-ping pointer-events-none [animation-delay:2s]" />
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+        <div className="max-w-4xl mx-auto text-center relative z-10 w-full flex flex-col items-center">
+          {/* Subtitle in Red uppercase */}
+          <motion.span
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent-glow border border-accent/20 text-accent text-xs font-semibold uppercase tracking-wider mb-6 font-display"
+            className="text-[15px] font-bold font-mono tracking-[0.25em] text-[#ef4444] uppercase mb-4 block"
           >
-            <Sparkles className="h-3.5 w-3.5" />
-            Capabilities & Deliverables
-          </motion.div>
+            CAPABILITIES & DELIVERABLES. CO-DEVELOPMENT PARTNERSHIP.
+          </motion.span>
 
+          {/* Main Headline in Times New Roman with White and Neon Red */}
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl md:text-6xl font-extrabold font-display tracking-tight text-text-primary mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6"
+            style={{ fontFamily: "'Times New Roman', Times, serif" }}
           >
-            Services Aptiv8 Offers <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-indigo-400">
-              Co-Development & Deployment
-            </span>
+            Services <span className="text-[#ef4444]">Aptiv8</span> Offers
           </motion.h1>
 
+          {/* Centered description text */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl text-text-secondary max-w-2xl mx-auto leading-relaxed"
+            className="text-sm sm:text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed mb-10"
           >
             We partner with industry leaders to design, scope, structure, and bundle advanced Generative AI and Agentic AI architectures.
           </motion.p>
+
+          {/* CTA Buttons */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full sm:w-auto"
+          >
+            {/* Get Started Red Button */}
+            <a 
+              href="/contact" 
+              className="w-full sm:w-auto px-8 py-3.5 rounded-lg bg-[#e30613] hover:bg-white text-white hover:text-[#e30613] font-semibold text-sm transition-all duration-300 flex items-center justify-center gap-2 hover:-translate-y-0.5 cursor-pointer"
+            >
+              Get Started <ArrowRight className="h-4 w-4" />
+            </a>
+
+            {/* Explore Solutions Transparent Outline Button */}
+            <a 
+              href="/solutions" 
+              className="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-white/20 hover:border-white/50 hover:bg-white/5 text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center"
+            >
+              Explore Solutions
+            </a>
+          </motion.div>
         </div>
       </section>
 
@@ -136,14 +140,14 @@ export default function ServicesPage() {
               return (
                 <Reveal3D key={svc.id}>
                   <div className={`grid grid-cols-1 lg:grid-cols-12 gap-12 items-center`}>
-                    
+
                     {/* Visual Container (Displays Service Image) */}
                     <div className={`lg:col-span-5 ${isEven ? 'lg:order-1' : 'lg:order-2'}`}>
                       <div className="relative aspect-[4/3] rounded-3xl overflow-hidden border border-border-color shadow-lg group">
-                        <img 
-                          src={svc.image} 
+                        <img
+                          src={svc.image}
                           alt={svc.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" 
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-60" />
                         <div className="absolute bottom-6 left-6 flex items-center gap-3">
@@ -159,8 +163,8 @@ export default function ServicesPage() {
 
                     {/* Content Container (Displays Description in a Bouncing Card) */}
                     <div className={`lg:col-span-7 ${isEven ? 'lg:order-2' : 'lg:order-1'}`}>
-                      <motion.div 
-                        whileHover={{ 
+                      <motion.div
+                        whileHover={{
                           y: [0, -12, 0],
                           transition: {
                             duration: 1.8,
@@ -173,7 +177,7 @@ export default function ServicesPage() {
                         <h4 className="text-xs uppercase tracking-widest text-accent font-bold mb-3 flex items-center gap-2">
                           <Cpu className="h-4 w-4" /> Service Breakdown
                         </h4>
-                        
+
                         <h3 className="text-xl md:text-2xl font-bold font-display text-text-primary mb-4 leading-tight group-hover:text-accent transition-colors">
                           {svc.title}
                         </h3>
@@ -203,9 +207,14 @@ export default function ServicesPage() {
 
       {/* 3. CALL TO ACTION */}
       <section className="py-24 px-4 bg-bg-secondary text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none" />
         <Reveal3D>
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none" />
-          <div className="max-w-3xl mx-auto relative z-10">
+          <motion.div
+            whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 150, damping: 15 }}
+            style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
+            className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-border-color rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 cursor-default"
+          >
             <h2 className="text-4xl md:text-5xl font-extrabold font-display text-text-primary mb-6">
               Co-Develop Your AI Pipeline
             </h2>
@@ -218,7 +227,7 @@ export default function ServicesPage() {
             >
               Start Your Advisory Engagement <ArrowUpRight className="h-5 w-5" />
             </a>
-          </div>
+          </motion.div>
         </Reveal3D>
       </section>
 

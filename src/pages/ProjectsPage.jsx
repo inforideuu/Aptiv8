@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  LayoutGrid, Building, Globe, Video, Cpu, Sparkles, ArrowRight
+  LayoutGrid, Building, Globe, Video, Cpu, Sparkles, ArrowRight, SlidersHorizontal, ChevronDown
 } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState('All');
+  const [isOpen, setIsOpen] = useState(false);
 
   const categories = [
     { name: 'All', icon: LayoutGrid, value: 'All' },
@@ -115,33 +116,60 @@ export default function ProjectsPage() {
   return (
     <div className="relative pt-24 pb-16 bg-[#fafafa]">
       
-      {/* 1. FILTER CONTROLS */}
-      <section className="py-8 bg-[#fafafa] sticky top-20 z-20 backdrop-blur-md bg-opacity-90">
-        <div className="max-w-7xl mx-auto px-4 flex flex-wrap gap-4 justify-center">
-          {categories.map(cat => {
-            const IconComponent = cat.icon;
-            const isActive = filter === cat.value;
+      {/* 1. FILTER CONTROLS (Dropdown) */}
+      
+        <div className="max-w-7xl mx-auto px-4 flex justify-end ">
+          <div className="relative">
+            {/* Filter Toggle Button */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="flex items-center gap-3 px-6 py-3 rounded-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-200 text-xs font-bold uppercase tracking-wider transition-all duration-300 hover:border-[#e30613] hover:text-[#e30613] shadow-sm hover:shadow-md cursor-pointer border border-border-color rounded-2xl"
+            >
+              <SlidersHorizontal className="h-4 w-4" />
+              <span>Filter: {filter}</span>
+              <ChevronDown className={`h-3 w-3 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
+            </button>
 
-            return (
-              <button
-                key={cat.value}
-                onClick={() => setFilter(cat.value)}
-                className={`flex items-center gap-2 px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider transition-all duration-300 border cursor-pointer ${
-                  isActive
-                    ? 'bg-[#e11d48] text-white border-[#e11d48] shadow-md shadow-rose-500/10'
-                    : 'bg-white text-slate-700 border-slate-200/80 hover:border-slate-300'
-                }`}
-              >
-                <IconComponent className="h-4 w-4" />
-                {cat.name}
-              </button>
-            );
-          })}
+            {/* Dropdown Menu */}
+            <AnimatePresence>
+              {isOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  className="absolute left-1/2 -translate-x-1/2 mt-2 w-64 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl z-30 p-2 overflow-hidden"
+                >
+                  {categories.map(cat => {
+                    const IconComponent = cat.icon;
+                    const isActive = filter === cat.value;
+
+                    return (
+                      <button
+                        key={cat.value}
+                        onClick={() => {
+                          setFilter(cat.value);
+                          setIsOpen(false);
+                        }}
+                        className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-left text-xs font-bold uppercase tracking-wider transition-all duration-200 cursor-pointer ${
+                          isActive
+                            ? 'bg-[#e30613] text-white font-extrabold'
+                            : 'text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800'
+                        }`}
+                      >
+                        <IconComponent className="h-4 w-4 shrink-0" />
+                        <span>{cat.name}</span>
+                      </button>
+                    );
+                  })}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
         </div>
-      </section>
+      
 
       {/* 2. PROJECTS GRID */}
-      <section className="py-16 px-4">
+      <section className="py-6 px-4">
   <Reveal3D>
     <div className="max-w-7xl mx-auto">
 
@@ -293,13 +321,13 @@ export default function ProjectsPage() {
                       absolute
                       top-5
                       left-6
-                      z-20
+                      z-30
                       text-[11px]
                       font-mono
                       font-bold
                       tracking-[0.25em]
-                      text-slate-500/70
-                      dark:text-slate-400/60
+                      text-white
+                      drop-shadow-md
                     "
                   >
                     PROJECT / {String(idx + 1).padStart(2, '0')}
@@ -434,7 +462,7 @@ export default function ProjectsPage() {
                 {/* =========================================
                     CONTENT
                 ========================================== */}
-                <div className="relative flex flex-col flex-1 p-7">
+                <div className="relative flex flex-col flex-1 p-5">
 
                   {/* Status */}
                   <div className="flex items-center justify-between mb-5">
@@ -504,7 +532,7 @@ export default function ProjectsPage() {
                       leading-relaxed
                       mb-6
                       line-clamp-3
-                      min-h-[72px]
+                      min-h-[40px]
                     "
                   >
                     {proj.description}
@@ -519,8 +547,7 @@ export default function ProjectsPage() {
                       mt-auto
                       grid
                       grid-cols-1
-                      gap-4
-                      pt-5
+                                          pt-5
                       border-t
                       border-border-color
                     "
@@ -596,8 +623,7 @@ export default function ProjectsPage() {
                       flex
                       items-center
                       justify-between
-                      mt-7
-                      pt-5
+                      pt-1
                       border-t
                       border-slate-100
                       dark:border-slate-800
@@ -691,7 +717,12 @@ export default function ProjectsPage() {
       {/* 3. CALL TO ACTION BANNER */}
       <section className="py-12 px-4 mt-12">
         <Reveal3D>
-          <div className="max-w-7xl mx-auto rounded-3xl bg-[#fff1f2] dark:bg-slate-900 border border-red-100 dark:border-slate-800 p-12 text-center relative overflow-hidden flex flex-col items-center justify-center">
+          <motion.div
+            whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
+            transition={{ type: "spring", stiffness: 150, damping: 15 }}
+            style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
+            className="max-w-7xl mx-auto rounded-3xl bg-[#fff1f2] dark:bg-slate-900 border border-red-100 dark:border-slate-800 p-12 text-center relative overflow-hidden flex flex-col items-center justify-center hover:shadow-[0_20px_40px_rgba(239,68,68,0.12)] hover:border-red-500/50 transition-all duration-500 cursor-default"
+          >
             {/* Background pattern */}
             <div className="absolute left-0 bottom-0 top-0 w-1/4 opacity-[0.05] pointer-events-none bg-[url('https://images.unsplash.com/photo-1542362567-b07eac79094d?auto=format&fit=crop&w=400&q=80')] bg-no-repeat bg-left bg-cover" />
             <div className="absolute right-0 bottom-0 top-0 w-1/4 opacity-[0.05] pointer-events-none bg-[linear-gradient(45deg,#f43f5e_1px,transparent_1px)] bg-[size:12px_12px]" />
@@ -710,7 +741,7 @@ export default function ProjectsPage() {
                 Propose a Co-Development Project <ArrowRight className="h-4 w-4" />
               </a>
             </div>
-          </div>
+          </motion.div>
         </Reveal3D>
       </section>
 

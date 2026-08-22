@@ -5,7 +5,7 @@
 
 @theme {
   --font-sans: 'Inter', sans-serif;
-  --font-display: 'Manrope', sans-serif;
+  --font-display: 'Times New Roman', Times, serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   --color-bg-primary: var(--bg-primary);
@@ -64,22 +64,55 @@ body {
   overflow-x: hidden;
 }
 
+/* Entire website font changes */
+/* navbar, h1, h2, h3, h4, h5, h6, .section-title, .section-heading, .hero-heading, .card-heading, label: Times New Roman */
+nav, 
+.navbar,
+.nav-link,
+nav a,
+nav span,
+h1, h2, h3, h4, h5, h6, 
+.section-title, 
+.section-heading, 
+.hero-heading, 
+.card-heading,
+label,
+.label {
+  font-family: 'Times New Roman', Times, serif !important;
+}
+
+/* buttons, <p>: Inter */
+button, 
+p,
+a.btn,
+.btn,
+button span,
+button p {
+  font-family: 'Inter', sans-serif !important;
+}
+
+/* small labels: Inter or JetBrains Mono */
+small,
+.small,
+.text-xs,
+.text-\[10px\],
+.text-\[11px\] {
+  font-family: 'Inter', sans-serif !important;
+}
+
 h1, .hero-heading {
-  font-family: 'Manrope', sans-serif;
   font-weight: 800;
-  letter-spacing: -0.05em;
+  letter-spacing: -0.02em;
 }
 
 h2, .section-heading {
-  font-family: 'Manrope', sans-serif;
   font-weight: 700;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.02em;
 }
 
 h3, h4, .card-heading {
-  font-family: 'Manrope', sans-serif;
   font-weight: 700;
-  letter-spacing: -0.025em;
+  letter-spacing: -0.01em;
 }
 
 p, span, li, a, button, input, select, textarea {
@@ -182,4 +215,21 @@ p, span, li, a, button, input, select, textarea {
     radial-gradient(at 5% 10%, rgba(255, 59, 71, 0.06) 0px, transparent 40%),
     radial-gradient(at 95% 15%, rgba(99, 102, 241, 0.04) 0px, transparent 40%),
     radial-gradient(at 50% 90%, rgba(255, 59, 71, 0.03) 0px, transparent 50%);
+}
+
+@keyframes slow-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+.animate-slow-bounce {
+  animation: slow-bounce 4s ease-in-out infinite;
+}
+
+.animate-slow-bounce:hover {
+  animation-play-state: paused;
 }

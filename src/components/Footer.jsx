@@ -5,7 +5,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="bg-footer-bg dark:bg-slate-950 text-white border-t border-red-700/40 dark:border-slate-800/80 pt-16 pb-8 rounded-t-[48px] md:rounded-t-[64px] relative overflow-hidden">
+    <footer id="contact" className="bg-footer-bg dark:bg-slate-950 text-white border-t border-red-700/40 dark:border-slate-800/80 pt-16 pb-0 rounded-t-[48px] md:rounded-t-[64px] relative overflow-hidden">
       {/* Subtle overlay grid for tech feel */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.06),transparent_60%)] pointer-events-none" />
       
@@ -120,13 +120,18 @@ export default function Footer() {
             </div>
           </div>
         </div>
+      </div>
 
-        {/* Bottom copyright */}
-        <div className="pt-8 border-t border-white/20 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/70">
+      {/* Horizontal Line */}
+      <div className="w-full border-t border-white/20" />
+
+      {/* Bottom copyright - bg to white and color to red */}
+      <div className="bg-white dark:bg-slate-900 text-[#e30613] dark:text-accent py-6 relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4 text-xs font-semibold">
           <p>© {currentYear} Aptiv8 IT Solutions Pte Ltd. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#privacy" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#terms" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#privacy" className="hover:underline transition-colors">Privacy Policy</a>
+            <a href="#terms" className="hover:underline transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>

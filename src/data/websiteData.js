@@ -10,14 +10,14 @@ export const svgs = {
   cortex: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
   strata: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
   lease: 'https://images.unsplash.com/photo-1450133064473-71024230f91b?auto=format&fit=crop&w=800&q=80',
-  
+
   // Lifecycle
   planning: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80',
   preCon: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80',
   construction: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80',
   operations: 'https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=80',
   realEstate: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&w=800&q=80',
-  
+
   // Industries
   architecture: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
   engineering: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
@@ -170,7 +170,7 @@ export const lifecycleStages = [
     products: [
       'Cryotos — Agentic AI-Powered CMMS Platform',
       'Gen AI Integration with CMMS',
-      'Retragreen Co-Pilots for Smart Energy Management and Thermal Comfort Optimization',
+      'Aptiv8 Co-Pilots for Smart Energy Management and Thermal Comfort Optimization',
       'Dragonfly — Robotic Mosquito Controller',
       'MRO AI (Aeronautics proof-of-concept)',
       'AI Assistant for SOR Pricing and Bid Preparation'

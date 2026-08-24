@@ -219,13 +219,13 @@ export default function HomePage({ theme }) {
       <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
         <Reveal3D>
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            <div className="grid lg:grid-cols-12 gap-8 items-stretch">
               {/* Left Column - All Card Content */}
               <div className="lg:col-span-7 flex flex-col">
   <div
     className="
       h-full
-      p-8 md:p-10 lg:p-12
+      py-4 px-6 md:py-5 md:px-7 lg:py-6 lg:px-8
       rounded-2xl
 
       bg-bg-secondary dark:bg-[#0b1528]
@@ -321,16 +321,12 @@ export default function HomePage({ theme }) {
           private sectors.
         </p>
 
-        <p style={{ textAlign: 'justify' }} className="text-text-primary dark:text-white font-medium text-base sm:text-lg">
+        <p style={{ textAlign: 'justify' }} className="text-text-secondary dark:text-slate-300">
           Its mission is to drive AI transformation and innovation in the built
           environment. Its vision is to become the trusted AI partner for
           developers, asset owners, AEC (architecture, engineering, construction)
           firms, and FM (facilities management) companies throughout Singapore
           and Southeast Asia.
-        </p>
-
-        <p style={{ textAlign: 'justify' }} className="text-text-secondary dark:text-slate-400 text-xs sm:text-sm italic border-l-2 border-accent dark:border-[#D4AF37] pl-4">
-          The company is guided by three core values: compliance, sustainability, and productivity—reflecting its focus on delivering AI solutions that are regulatory-sound, environmentally responsible, and operationally efficient for the built environment sector.
         </p>
       </div>
 

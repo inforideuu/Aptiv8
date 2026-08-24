@@ -536,7 +536,8 @@ transition-all duration-500">
                   title={sol.title}
                   description={sol.description}
                   isCoreProduct={sol.id === 'sdsa'}
-                  onClick={() => navigate('/solutions')}
+                  href={sol.id === 'cmms' ? '/solutions#cmms-modules' : '/solutions'}
+                  onClick={() => navigate(sol.id === 'cmms' ? '/solutions#cmms-modules' : '/solutions')}
                 />
               ))}
           </div>

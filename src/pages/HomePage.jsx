@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
   ArrowRight, ArrowUpRight, Sparkles, Building, ChevronLeft, ChevronRight, 
-  MessageSquare, User, HelpCircle, Layers, CheckCircle2 
+  MessageSquare, User, HelpCircle, Layers, CheckCircle2, ShieldCheck, Leaf, Award
 } from 'lucide-react';
 
 import ThreeWireframe from '../components/ThreeWireframe';
@@ -214,6 +214,128 @@ export default function HomePage({ theme }) {
             </a>
           </motion.div>
         </div>
+        </section>
+      {/* COMPANY PROFILE SECTION */}
+      <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+              {/* Left Column - All Card Content */}
+              <div className="lg:col-span-7 flex flex-col gap-8">
+                <div>
+                  <span className="text-accent text-xs font-semibold uppercase tracking-wider mb-3 block font-display">
+                    Company Profile
+                  </span>
+                  <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-6 leading-tight">
+                    Pioneering AI in the Built Environment
+                  </h2>
+                  <p className="text-text-secondary leading-relaxed text-base md:text-lg">
+                    Aptiv8 was founded in 2018 and established by domain experts in the built environment with decades of combined experience across design, construction, and operations & maintenance, serving both public and private sectors.
+                  </p>
+                </div>
+
+                {/* Mission & Vision cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  {/* Mission Card */}
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.01 }}
+                    className="p-6 bg-bg-secondary border border-border-color rounded-2xl relative overflow-hidden group shadow-sm hover:shadow-[0_10px_20px_rgba(239,68,68,0.04)] hover:border-accent/40 transition-all duration-300"
+                  >
+                    <div className="absolute -top-12 -right-12 w-24 h-24 bg-accent/5 rounded-full blur-2xl pointer-events-none group-hover:bg-accent/10 transition-all duration-500" />
+                    <span className="text-[9px] font-mono text-accent/60 uppercase tracking-widest font-bold block mb-2">01. Mission</span>
+                    <h3 className="font-display font-extrabold text-sm text-text-primary mb-2 group-hover:text-accent transition-colors">
+                      Drive AI Transformation
+                    </h3>
+                    <p className="text-xs text-text-secondary leading-relaxed">
+                      Its mission is to drive AI transformation and innovation in the built environment.
+                    </p>
+                  </motion.div>
+
+                  {/* Vision Card */}
+                  <motion.div
+                    whileHover={{ y: -4, scale: 1.01 }}
+                    className="p-6 bg-[#0b1528] border border-[#c5a880]/30 rounded-2xl relative overflow-hidden group shadow-md hover:shadow-[0_10px_20px_rgba(212,175,55,0.08)] hover:border-[#D4AF37]/80 transition-all duration-300"
+                  >
+                    <div className="absolute -top-12 -right-12 w-24 h-24 bg-[#D4AF37]/5 rounded-full blur-2xl pointer-events-none group-hover:bg-[#D4AF37]/15 transition-all duration-500" />
+                    <span className="text-[9px] font-mono text-[#D4AF37]/60 uppercase tracking-widest font-bold block mb-2">02. Vision</span>
+                    <h3 className="font-display font-extrabold text-sm text-[#D4AF37] mb-2 group-hover:text-white transition-colors">
+                      Become the Trusted Partner
+                    </h3>
+                    <p className="text-xs text-blue-100/60 leading-relaxed group-hover:text-blue-100/90 transition-colors">
+                      Its vision is to become the trusted AI partner for developers, asset owners, AEC firms, and FM companies throughout Singapore and Southeast Asia.
+                    </p>
+                  </motion.div>
+                </div>
+
+                {/* Core Values */}
+                <div className="pt-6 border-t border-border-color/50">
+                  <h3 className="font-display font-bold text-xs uppercase tracking-wider text-text-primary mb-6">
+                    Our Guided Core Values
+                  </h3>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    {[
+                      {
+                        title: 'Compliance',
+                        icon: ShieldCheck,
+                        desc: 'Regulatory-sound AI solutions engineered to align with strict Singapore and regional building codes.'
+                      },
+                      {
+                        title: 'Sustainability',
+                        icon: Leaf,
+                        desc: 'Optimizing carbon envelopes and energy usage indices to secure environmentally responsible operations.'
+                      },
+                      {
+                        title: 'Productivity',
+                        icon: Award,
+                        desc: 'Leveraging automation and telemetry to deliver operationally efficient maintenance lifecycles.'
+                      }
+                    ].map((val, idx) => {
+                      const Icon = val.icon;
+                      return (
+                        <div key={idx} className="flex flex-col gap-3 group">
+                          <div className="p-3 rounded-xl bg-accent-glow text-accent w-max group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                            <Icon className="h-5 w-5" />
+                          </div>
+                          <h4 className="font-display font-bold text-sm text-text-primary group-hover:text-accent transition-colors">
+                            {val.title}
+                          </h4>
+                          <p className="text-xs text-text-secondary leading-relaxed">
+                            {val.desc}
+                          </p>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column - Premium Built Environment Image */}
+              <div className="lg:col-span-5 w-full">
+                <motion.div
+                  whileHover={{ rotateY: -10, rotateX: 5, scale: 1.02 }}
+                  transition={{ type: "spring", stiffness: 150, damping: 15 }}
+                  className="rounded-[32px] overflow-hidden border border-border-color relative shadow-2xl aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5] cursor-default group"
+                  style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
+                >
+                  <img
+                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
+                    alt="Aptiv8 Built Environment AI"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b1528]/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />
+                  
+                  {/* Subtle floating overlay elements inside the image */}
+                  <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 rounded-2xl transition-all duration-500 group-hover:bg-white/15">
+                    <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider font-bold block mb-1">Aptiv8 Platform</span>
+                    <p className="text-xs text-white font-medium leading-relaxed">
+                      Optimizing Singapore's construction and facilities lifecycles with predictive intelligence.
+                    </p>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </Reveal3D>
       </section>
 
       {/* SECTION 2: AI SOLUTION FINDER */}

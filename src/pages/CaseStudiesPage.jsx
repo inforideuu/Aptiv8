@@ -107,7 +107,7 @@ export default function CaseStudiesPage() {
       industry: 'Facilities Management',
       title: 'Predictive CMMS & Sensory Twin Link for Chiller Operations',
       problem: 'Commercial building Chillers suffered frequent breakdowns, resulting in tenant complaints and high emergency maintenance rates.',
-      solution: 'Linked Cryotos — Agentic AI-Powered CMMS Platform with Gen AI Integration with CMMS sensor arrays.',
+      solution: 'Linked Aptiv8 — Agentic AI-Powered CMMS Platform with Gen AI Integration with CMMS sensor arrays.',
       implementation: 'Tracked live vibration and heat signals to predict failures 72 hours before operational threshold breach.',
       results: 'Downtime decreased by 42%, while preventative repair tickets were scheduled automatically.',
       impact: 'Saved $160K in annual chiller utility bills and extended asset life by 5 years.',

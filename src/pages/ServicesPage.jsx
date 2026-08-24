@@ -22,17 +22,17 @@ export default function ServicesPage() {
       id: 'om-bundling',
       title: 'Operations & Maintenance Solution Bundling — Digital Twin, AI, IoT, Smart Energy & Thermal Comfort',
       badge: 'Converged Infrastructure',
-      description: 'Aptiv8 converges digital twin modelling, agentic AI (Cryotos Cortex), IoT and building-management-system (BMS) data, smart energy management (Aptiv8), and thermal comfort / building performance monitoring into a single integrated operations-and-maintenance service for building owners and FM operators — moving beyond disconnected point solutions toward one converged operating layer across a building\'s operational life.',
+      description: 'Aptiv8 converges digital twin modelling, agentic AI (Aptiv8 Cortex), IoT and building-management-system (BMS) data, smart energy management (Aptiv8), and thermal comfort / building performance monitoring into a single integrated operations-and-maintenance service for building owners and FM operators — moving beyond disconnected point solutions toward one converged operating layer across a building\'s operational life.',
       icon: Layers,
       color: 'from-purple-500 to-indigo-500',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
-      highlights: ['Cryotos Cortex reasoning', 'Aptiv8 energy optimization', 'BMS & IoT telemetry', 'Thermal comfort monitoring']
+      highlights: ['Aptiv8 Cortex reasoning', 'Aptiv8 energy optimization', 'BMS & IoT telemetry', 'Thermal comfort monitoring']
     },
     {
       id: 'advisory',
       title: 'AI Advisory & Roadmapping',
       badge: 'Strategic Planning',
-      description: 'Advisory engagements that assess an existing operational platform (e.g. a CMMS) and produce a phased AI adoption roadmap — as delivered for Cryotos Cortex — sequencing quick-win agents ahead of more complex predictive and compliance capabilities.',
+      description: 'Advisory engagements that assess an existing operational platform (e.g. a CMMS) and produce a phased AI adoption roadmap — as delivered for Aptiv8 Cortex — sequencing quick-win agents ahead of more complex predictive and compliance capabilities.',
       icon: TrendingUp,
       color: 'from-amber-500 to-orange-500',
       image: 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
@@ -207,25 +207,25 @@ export default function ServicesPage() {
 
       {/* 3. CALL TO ACTION */}
       <section className="py-24 px-4 bg-bg-secondary text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none " />
         <Reveal3D>
           <motion.div
             whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
             style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
-            className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-border-color rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 cursor-default"
+            className="group bg-[#0b1528] border border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-white/80 dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 cursor-default"
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-text-primary mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-[#D4AF37] group-hover:text-text-primary mb-6 transition-colors duration-500">
               Co-Develop Your AI Pipeline
             </h2>
-            <p className="text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm">
+            <p className="text-blue-100/70 group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500">
               Schedule an advisory audit or discuss co-development opportunities for your proprietary workflows.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all shadow-lg hover:shadow-accent-glow"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#D4AF37] text-[#0b1528] group-hover:bg-accent group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow"
             >
-              Start Your Advisory Engagement <ArrowUpRight className="h-5 w-5" />
+              Start Your Advisory Engagement <ChevronRight className="h-5 w-5" />
             </a>
           </motion.div>
         </Reveal3D>

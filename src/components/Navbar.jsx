@@ -161,7 +161,7 @@ export default function Navbar({ theme, toggleTheme }) {
               <div className="w-full border-t border-border-color/60 pt-6 mt-8 flex flex-col gap-3 text-[11px] text-text-secondary relative z-10">
                 <p>© {new Date().getFullYear()} Aptiv8 IT Solutions. All rights reserved.</p>
                 <div className="flex flex-col gap-1">
-                  <span>Singapore Hub: 10 Ubi Techpark</span>
+                  <span>Singapore Hub: 8 Burn Rd, Trivex</span>
                   <a href="mailto:Admin@Aptiveight.com" className="hover:underline text-accent">Admin@Aptiveight.com</a>
                 </div>
               </div>

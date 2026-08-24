@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, Clock, MapPin, Send } from 'lucide-react';
+import { Mail, Clock, MapPin, Send, Phone } from 'lucide-react';
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -14,10 +14,12 @@ export default function Footer() {
           {/* Brand and Description */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center">
-              <img src="/logo.png" alt="Aptiv8 IT Solutions" className="h-15 w-auto object-contain brightness-0 invert" />
+              <div className="bg-white p-2.5 rounded-2xl inline-flex items-center justify-center shadow-sm">
+                <img src="/logo.png" alt="Aptiv8 IT Solutions" className="h-12 w-auto object-contain" />
+              </div>
             </div>
-            <p className="text-sm text-white/80 leading-relaxed">
-              The Trusted AI Partner for the Built Environment. Developing international-level, custom-trained AI solutions for modern design, engineering, construction, and property operations.
+            <p className="text-sm text-white leading-relaxed text-justify">
+              The Trusted AI Partner for the Built Environment. Developing advanced international-level, custom-trained AI solutions for modern design, engineering, construction, and property operations worldwide across The Southeast Asia.
             </p>
             <div className="flex items-center gap-3 mt-2">
               <a
@@ -58,16 +60,20 @@ export default function Footer() {
           </div>
 
           {/* Contact Details & Hours */}
-          <div className="flex flex-col gap-4 text-sm text-white/80">
-            <h4 className="text-sm font-bold uppercase tracking-wider text-white font-display mb-6">
+          <div className="flex flex-col gap-3 text-sm text-white/80">
+            <h4 className="text-sm font-bold uppercase tracking-wider text-white font-display mb-2">
               Contact & Hours
             </h4>
-            <div className="flex items-start gap-3">
+            <div className="flex items-start gap-2">
               <MapPin className="h-5 w-5 text-white/90 mt-0.5 shrink-0" />
               <span>
-                10 Ubi Cres, Ubi Techpark,<br />
-                Singapore 408564
+                8 Burn Rd, #04-08 Trivex,<br />
+                Singapore 369977
               </span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Phone className="h-5 w-5 text-white/90 shrink-0" />
+              <span>+65 6282 1436</span>
             </div>
             <div className="flex items-center gap-3">
               <Clock className="h-5 w-5 text-white/90 shrink-0" />
@@ -82,7 +88,7 @@ export default function Footer() {
           {/* Map Location & Newsletter */}
           <div className="flex flex-col gap-6">
             <div>
-              <h4 className="text-sm font-bold uppercase tracking-wider text-white font-display mb-4">
+              {/* <h4 className="text-sm font-bold uppercase tracking-wider text-white font-display mb-4">
                 Newsletter
               </h4>
               <form onSubmit={(e) => e.preventDefault()} className="flex gap-2">
@@ -98,7 +104,7 @@ export default function Footer() {
                 >
                   <Send className="h-4 w-4" />
                 </button>
-              </form>
+              </form> */}
             </div>
             <div>
               <h4 className="text-xs font-bold uppercase tracking-wider text-white font-display mb-2">
@@ -107,14 +113,14 @@ export default function Footer() {
               <div className="h-28 w-full rounded-xl overflow-hidden border border-white/20 relative">
                 <iframe
                   title="Aptiv8 Office Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7907577579124!2d103.89669527588764!3d1.3003887617478065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da17dc00609d57%3A0xc3191f0a35ee124!2sUbi%20Techpark!5e0!3m2!1sen!2ssg!4v1700000000000!5m2!1sen!2ssg"
+                  src="https://maps.google.com/maps?q=8%20Burn%20Rd%2C%20%2304-08%20Trivex%2C%20Singapore%20369977&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
-                  className="absolute inset-0 grayscale filter contrast-125 opacity-70 dark:invert"
+                  className="absolute inset-0 opacity-90"
                 ></iframe>
               </div>
             </div>

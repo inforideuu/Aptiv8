@@ -55,7 +55,7 @@ export default function ResourcesPage() {
     },
     {
       id: 'res-5',
-      title: 'Cryotos Cortex Sensor Twin Integration Guidelines',
+      title: 'Aptiv8 Cortex Sensor Twin Integration Guidelines',
       category: 'Tech Docs',
       summary: 'How to register telemetry endpoints and connect thermal/vibration sensors directly to the active operational twin.',
       image: svgs.cortex,
@@ -198,7 +198,7 @@ export default function ResourcesPage() {
                   <p className="text-sm text-text-secondary leading-relaxed mb-6">
                     {featured.summary}
                   </p>
-                  <a href="#read" className="inline-flex items-center gap-2 text-xs font-semibold text-accent hover:underline uppercase tracking-wider">
+                  <a href="/contact" className="inline-flex items-center gap-2 text-xs font-semibold text-accent hover:underline uppercase tracking-wider">
                     Read Document <ArrowRight className="h-4 w-4" />
                   </a>
                 </div>
@@ -236,7 +236,7 @@ export default function ResourcesPage() {
                       </div>
                     </div>
                     <div className="p-6 pt-0">
-                      <a href="#read" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline uppercase tracking-wider">
+                      <a href="/contact" className="inline-flex items-center gap-1.5 text-xs font-semibold text-accent hover:underline uppercase tracking-wider">
                         Read More <ArrowRight className="h-3.5 w-3.5" />
                       </a>
                     </div>

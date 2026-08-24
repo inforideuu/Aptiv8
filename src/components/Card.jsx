@@ -4,9 +4,10 @@ import { motion } from 'framer-motion';
 
 export default function Card({ image, category, title, description, status, onClick, href = '#', isCoreProduct = false }) {
   return (
-    <div
+    <a
+      href={href}
       onClick={onClick}
-      className={`aws-card group flex flex-col h-full cursor-pointer relative ${
+      className={`aws-card group flex flex-col h-full cursor-pointer relative block ${
         isCoreProduct 
           ? 'border-accent shadow-[0_0_20px_rgba(227,6,19,0.15)] dark:shadow-[0_0_30px_rgba(255,59,71,0.15)] ring-2 ring-accent/30' 
           : ''
@@ -64,6 +65,6 @@ export default function Card({ image, category, title, description, status, onCl
       
       {/* Bottom border reveal glow */}
       <div className="absolute bottom-0 left-0 right-0 h-[3px] bg-accent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
-    </div>
+    </a>
   );
 }

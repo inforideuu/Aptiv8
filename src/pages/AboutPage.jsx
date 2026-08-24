@@ -172,7 +172,7 @@ export default function AboutPage() {
     {
       year: '2022',
       title: 'AI Product Development Focus',
-      description: 'Launched our dedicated AI research group to develop predictive algorithms tailored for BCA code checking and construction risk classification.',
+      description: 'Launched our dedicated AI research group to develop advanced predictive algorithms tailored for BCA code checking and construction risk classification.',
       icon: Lightbulb
     },
     {
@@ -184,7 +184,7 @@ export default function AboutPage() {
     {
       year: '2026',
       title: 'BexAsia Showcase',
-      description: 'Positioned as the leading, trusted AI partner in Southeast Asia, presenting our full software suite at the Sands Expo BexAsia event.',
+      description: 'Positioned as the leading, trusted AI partner in Southeast Asia, proudly presenting our full software suite at the Sands Expo BexAsia event.',
       icon: Award
     }
   ];
@@ -658,6 +658,8 @@ export default function AboutPage() {
             {/* Dark Red/Crimson Overlay */}
             <div className="absolute inset-0 bg-[#3a0b0d]/85 mix-blend-multiply" />
             <div className="absolute inset-0 bg-gradient-to-r from-red-950/40 to-transparent" />
+            {/* Inner White Border Frame */}
+            <div className="absolute inset-6 border border-white/30 rounded-2xl pointer-events-none z-10" />
             
             <div className="relative z-10 max-w-md">
               <h3 className="text-3xl md:text-4xl font-extrabold font-display text-white mb-4 tracking-tight">
@@ -679,6 +681,8 @@ export default function AboutPage() {
             {/* Dark Slate Gray/Black Overlay */}
             <div className="absolute inset-0 bg-neutral-900/80 mix-blend-multiply" />
             <div className="absolute inset-0 bg-gradient-to-l from-black/40 to-transparent" />
+            {/* Inner White Border Frame */}
+            <div className="absolute inset-6 border border-white/30 rounded-2xl pointer-events-none z-10" />
             
             <div className="relative z-10 max-w-md">
               <h3 className="text-3xl md:text-4xl font-extrabold font-display text-white mb-4 tracking-tight">
@@ -817,23 +821,23 @@ export default function AboutPage() {
 
       {/* SECTION 9: CTA */}
       <section className="py-24 px-4 bg-bg-secondary text-center relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,rgba(37,99,235,0.08),transparent_60%)] pointer-events-none " />
         <Reveal3D>
           <motion.div
             whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
             style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
-            className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-border-color rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 cursor-default"
+            className="group bg-[#0b1528] border border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-white/80 dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 cursor-default"
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-text-primary mb-6">
+            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-[#D4AF37] group-hover:text-text-primary mb-6 transition-colors duration-500">
               Let's Build the Future Together
             </h2>
-            <p className="text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm">
+            <p className="text-blue-100/70 group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500">
               Configure custom-trained compliance checker instances and green-planning modules for your organization today.
             </p>
             <a
-              href="#contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all shadow-lg hover:shadow-accent-glow"
+              href="/contact"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#D4AF37] text-[#0b1528] group-hover:bg-accent group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow"
             >
               Connect With Our AI Advisors <ChevronRight className="h-5 w-5" />
             </a>

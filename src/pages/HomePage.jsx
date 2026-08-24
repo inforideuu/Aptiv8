@@ -51,10 +51,10 @@ export default function HomePage({ theme }) {
       image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80'
     },
     {
-      id: 'cryotos-cortex-cmms',
-      title: 'Cryotos — Agentic AI-Powered CMMS Platform',
+      id: 'aptiv8-cortex-cmms',
+      title: 'Aptiv8 — Agentic AI-Powered CMMS Platform',
       category: 'Operations & Maintenance',
-      description: "Adds an orchestrator directing nine specialist AI agents within Cryotos' Singapore-based, CSA-STAR-certified AWS environment.",
+      description: "Adds an intelligent orchestrator directing nine specialist AI agents within Aptiv8's Singapore-based, CSA-STAR-certified AWS environment.",
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
     },
     {
@@ -159,11 +159,12 @@ export default function HomePage({ theme }) {
           loop
           muted
           playsInline
-          className="absolute inset-0 w-full h-full object-cover opacity-75 pointer-events-none"
+          className="absolute inset-0 w-full h-full object-cover opacity-100 pointer-events-none"
         >
           <source src="/hero_video.mp4" type="video/mp4" />
         </video>
-        <ThreeWireframe theme={theme} />
+        {/* Dark Overlay for Text Legibility */}
+        <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-r from-black/45 via-black/20 to-red-950/10" />        <ThreeWireframe theme={theme} />
         
         <div className="max-w-4xl mx-auto text-center relative z-10 py-16">
           <motion.div
@@ -180,7 +181,7 @@ export default function HomePage({ theme }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.15 }}
-            className="text-5xl md:text-7xl font-extrabold font-display tracking-tight text-text-primary mb-6 leading-[1.1]"
+            className="text-5xl md:text-7xl font-extrabold font-display tracking-tight text-white mb-6 leading-[1.1]"
           >
             AI-Powered Solutions <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent to-accent-hover">
@@ -192,7 +193,7 @@ export default function HomePage({ theme }) {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-lg md:text-xl text-text-primary max-w-2xl mx-auto mb-10 leading-relaxed"
+            className="text-lg md:text-xl text-slate-200 max-w-2xl mx-auto mb-10 leading-relaxed"
           >
             Transforming architecture, engineering, construction, facilities management, infrastructure, and real estate through custom-trained artificial intelligence models.
           </motion.p>
@@ -640,9 +641,10 @@ transition-all duration-500">
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {industries.map((ind) => (
-              <div
+              <a
                 key={ind.name}
-                className="bg-bg-primary border border-border-color hover:border-accent hover:shadow-lg rounded-2xl overflow-hidden group flex flex-col transition-all cursor-pointer"
+                href="/industries"
+                className="bg-bg-primary border border-border-color hover:border-accent hover:shadow-lg rounded-2xl overflow-hidden group flex flex-col transition-all cursor-pointer block"
               >
                 <div className="h-44 overflow-hidden relative">
                   <img src={ind.image} alt={ind.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
@@ -653,7 +655,7 @@ transition-all duration-500">
                   </span>
                   <ArrowRight className="h-4 w-4 text-text-secondary group-hover:text-accent transform group-hover:translate-x-1 transition-transform" />
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -775,7 +777,7 @@ transition-all duration-500">
               Sands Expo, Singapore
             </span>
             <a
-              href="#contact"
+              href="/contact"
               className="w-full md:w-auto px-8 py-4 bg-white text-accent hover:bg-white/90 rounded-full font-bold transition-all text-center"
             >
               Book a Meeting

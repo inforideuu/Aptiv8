@@ -179,6 +179,7 @@ export default function SolutionsPage() {
                           category={sol.category}
                           title={sol.title}
                           description={sol.description}
+                          href="/contact"
                           onClick={() => {}}
                         />
                       ))}
@@ -396,19 +397,19 @@ export default function SolutionsPage() {
             whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
             style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
-            className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-border-color rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 cursor-default"
+            className="group bg-[#0b1528] border border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-white/80 dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 cursor-default"
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold font-display text-text-primary mb-4">
+            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-[#D4AF37] group-hover:text-text-primary mb-6 transition-colors duration-500">
               Need a custom integration check?
             </h2>
-            <p className="text-text-secondary text-sm mb-8 leading-relaxed max-w-md mx-auto">
+            <p className="text-blue-100/70 group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500">
               We train neural models on specialized local datasets, allowing builders to run private instances complying with Singapore regulations.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-3.5 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all shadow-lg hover:shadow-accent-glow"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#D4AF37] text-[#0b1528] group-hover:bg-accent group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow"
             >
-              Request API Documentations <ArrowRight className="h-4.5 w-4.5" />
+              Request API Documentations <ChevronRight className="h-5 w-5" />
             </a>
           </motion.div>
         </Reveal3D>

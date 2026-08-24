@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { 
-  LayoutGrid, Building, Globe, Video, Cpu, Sparkles, ArrowRight, SlidersHorizontal, ChevronDown
+  LayoutGrid, Building, Globe, Video, Cpu, Sparkles, ArrowRight, SlidersHorizontal, ChevronDown, ChevronRight
 } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
 
@@ -32,7 +32,7 @@ export default function ProjectsPage() {
       title: 'Akira – Data Centre Design Assistant',
       category: 'Built Environment',
       status: 'Design',
-      description: 'Gen AI assistant specifically tailored for optimizing and accelerating complex data centre layout and technical designs.',
+      description: 'Gen AI assistant specifically tailored for optimizing and efficiently accelerating complex data centre layout and technical designs.',
       clientIndustry: 'Design Consultants / Tier Certified Cloud',
       keyFeatures: 'When online (Natural) on-standby or standby on optional',
       image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80'
@@ -62,7 +62,7 @@ export default function ProjectsPage() {
       title: 'Dragonfly',
       category: 'Built Environment',
       status: 'Cost Saving',
-      description: 'Robotic Mosquito Controller — a vision-of-record robotic solution for vector control used in rental buildings.',
+      description: 'Robotic Mosquito Controller — a vision-of-record robotic solution for intelligent vector control used in modern rental residential 0buildings, designed to automate monitoring, detection, targeted intervention',
       clientIndustry: 'Building Management / Facilities Management (FM)',
       keyFeatures: 'When already available',
       image: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=800&q=80'
@@ -102,7 +102,7 @@ export default function ProjectsPage() {
       title: '"Gen AI for Other Sectors" Video',
       category: 'Media & Storyboards',
       status: 'Why Aptiv8',
-      description: 'AI showcase brand video for Agriculture and Tech & Creative (Advertise / Short-Film Festival), and Aerospace MRO Agents.',
+      description: 'AI showcase brand video for Agriculture and Advanced Tech & Creative (Advertise / Short-Film Festival), and Aerospace MRO Agents.',
       clientIndustry: 'Customer service, Sales, Hospitality, Cloud tech core market, Aviation & Aerospace (MRO)',
       keyFeatures: 'Production-ready script & storyboard document',
       image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80'
@@ -114,8 +114,50 @@ export default function ProjectsPage() {
     : projectsData.filter(p => p.category === filter);
 
   return (
-    <div className="relative pt-24 pb-16 bg-[#fafafa]">
+    <div className="relative pt-20 pb-16 bg-bg-primary">
       
+      {/* HERO SECTION */}
+      <section 
+        className="relative py-36 px-4 bg-cover bg-center overflow-hidden flex items-center justify-center min-h-[calc(100vh-80px)] w-full mb-12"
+        style={{ backgroundImage: "url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1600&q=80')" }}
+      >
+        {/* Dark blue/black overlay for text contrast */}
+        <div className="absolute inset-0 bg-slate-950/75 z-0 pointer-events-none" />
+
+        <div className="max-w-4xl mx-auto text-center relative z-10 w-full flex flex-col items-center justify-center my-auto">
+          {/* Subtitle in Gold/Amber uppercase */}
+          <motion.span
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="text-xs font-bold font-mono tracking-[0.25em] text-[#c5a880] uppercase mb-4 block"
+          >
+            REALIZED PROJECTS. AI IMPACT IN ACTION.
+          </motion.span>
+
+          {/* Main Headline in Times New Roman */}
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6"
+            style={{ fontFamily: "'Times New Roman', Times, serif" }}
+          >
+            Our Featured Projects
+          </motion.h1>
+
+          {/* Centered description text */}
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-sm sm:text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed"
+          >
+            Explore case studies and live deployments where our specialized AI solutions optimize and accelerate built environment workflows.
+          </motion.p>
+        </div>
+      </section>
+
       {/* 1. FILTER CONTROLS (Dropdown) */}
       
         <div className="max-w-7xl mx-auto px-4 flex justify-end ">
@@ -169,9 +211,19 @@ export default function ProjectsPage() {
       
 
       {/* 2. PROJECTS GRID */}
-      <section className="py-6 px-4">
+      <section className="py-16 px-4">
   <Reveal3D>
     <div className="max-w-7xl mx-auto">
+      
+      {/* SECTION TITLE */}
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
+          Our Projects Portfolio
+        </h2>
+        <p className="text-text-secondary max-w-md mx-auto text-sm">
+          Explore our completed works, co-development pilots, and custom-trained AI integrations.
+        </p>
+      </div>
 
       <motion.div
         layout
@@ -531,7 +583,7 @@ export default function ProjectsPage() {
                       text-text-secondary
                       leading-relaxed
                       mb-6
-                      line-clamp-3
+                      line-clamp-4
                       min-h-[40px]
                     "
                   >
@@ -618,15 +670,18 @@ export default function ProjectsPage() {
                   {/* =========================================
                       PREMIUM PROJECT LINK
                   ========================================== */}
-                  <div
+                  <a
+                    href="/contact"
                     className="
                       flex
                       items-center
                       justify-between
-                      pt-1
+                      pt-3
                       border-t
                       border-slate-100
                       dark:border-slate-800
+                      cursor-pointer
+                      block
                     "
                   >
 
@@ -679,7 +734,7 @@ export default function ProjectsPage() {
                       />
                     </div>
 
-                  </div>
+                  </a>
 
                 </div>
 
@@ -721,24 +776,24 @@ export default function ProjectsPage() {
             whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
             style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
-            className="max-w-7xl mx-auto rounded-3xl bg-[#fff1f2] dark:bg-slate-900 border border-red-100 dark:border-slate-800 p-12 text-center relative overflow-hidden flex flex-col items-center justify-center hover:shadow-[0_20px_40px_rgba(239,68,68,0.12)] hover:border-red-500/50 transition-all duration-500 cursor-default"
+            className="group bg-[#0b1528] border border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-white/80 dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 cursor-default"
           >
             {/* Background pattern */}
             <div className="absolute left-0 bottom-0 top-0 w-1/4 opacity-[0.05] pointer-events-none bg-[url('https://images.unsplash.com/photo-1542362567-b07eac79094d?auto=format&fit=crop&w=400&q=80')] bg-no-repeat bg-left bg-cover" />
             <div className="absolute right-0 bottom-0 top-0 w-1/4 opacity-[0.05] pointer-events-none bg-[linear-gradient(45deg,#f43f5e_1px,transparent_1px)] bg-[size:12px_12px]" />
 
             <div className="max-w-2xl mx-auto relative z-10 space-y-6">
-              <h2 className="text-3xl md:text-4xl font-extrabold font-display text-slate-900 dark:text-white tracking-tight">
-                Bring Your Domain <span className="text-red-600">Expertise</span>
+              <h2 className="text-4xl md:text-5xl font-extrabold font-display text-[#D4AF37] group-hover:text-text-primary mb-6 transition-colors duration-500 text-center">
+                Bring Your Domain Expertise
               </h2>
-              <p className="text-slate-600 dark:text-slate-400 text-xs md:text-sm max-w-lg mx-auto leading-relaxed">
+              <p className="text-blue-100/70 group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500 text-center">
                 We co-develop custom AI solutions for complex domains, designed to solve real-world challenges and create impact.
               </p>
               <a
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-3.5 bg-red-600 hover:bg-red-700 text-white rounded-full font-bold text-sm transition-all shadow-lg hover:shadow-red-500/20"
+                className="inline-flex items-center gap-2 px-8 py-4 bg-[#D4AF37] text-[#0b1528] group-hover:bg-accent group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow ml-40"
               >
-                Propose a Co-Development Project <ArrowRight className="h-4 w-4" />
+                Propose a Co-Development Project <ChevronRight className="h-5 w-5" />
               </a>
             </div>
           </motion.div>

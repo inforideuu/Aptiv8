@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, ArrowRight, LayoutGrid, CheckCircle } from 'lucide-react';
+import { Layers, ArrowRight, LayoutGrid, CheckCircle, ChevronRight } from 'lucide-react';
 import Card from '../components/Card';
 import { svgs } from '../data/websiteData';
 import Reveal3D from '../components/Reveal3D';
@@ -89,11 +89,11 @@ export default function ProductsPage() {
 
     // Built Environment — Operations & Maintenance
     {
-      id: 'cryotos-cortex-cmms',
-      title: 'Cryotos — Agentic AI-Powered CMMS Platform',
+      id: 'aptiv8-cortex-cmms',
+      title: 'Aptiv8 — Agentic AI-Powered CMMS Platform',
       category: 'Operations & Maintenance',
       status: 'Advisory roadmap completed',
-      description: 'Adds an agentic AI layer to Cryotos, Aptiv8\'s CMMS already live across 200+ sites and 2,000+ users. An orchestrator directs nine specialist agents — work-order triage, asset onboarding, vendor/inventory reconciliation, compliance & certification tracking, predictive maintenance, energy monitoring, technician troubleshooting copilot, multilingual document parsing, and a conversational FM assistant — each with a human-approval checkpoint by default. Hosted within Cryotos\' Singapore-based, CSA-STAR-certified AWS environment.',
+      description: 'Adds an agentic AI layer to Aptiv8 CMMS already live across 200+ sites and 2,000+ users. An orchestrator directs nine specialist agents — work-order triage, asset onboarding, vendor/inventory reconciliation, compliance & certification tracking, predictive maintenance, energy monitoring, technician troubleshooting copilot, multilingual document parsing, and a conversational FM assistant — each with a human-approval checkpoint by default. Hosted within Aptiv8\'s Singapore-based, CSA-STAR-certified AWS environment.',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
     },
     {
@@ -294,6 +294,7 @@ export default function ProductsPage() {
                       status={prod.status}
                       description={prod.description}
                       isCoreProduct={prod.id === 'sdsa'}
+                      href="/contact"
                       onClick={() => { }}
                     />
                   </motion.div>
@@ -415,19 +416,19 @@ export default function ProductsPage() {
             whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
             style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
-            className="bg-white/80 dark:bg-slate-900/60 backdrop-blur-xl border border-border-color rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 cursor-default"
+            className="group bg-[#0b1528] border border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-white/80 dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 cursor-default"
           >
-            <h2 className="text-3xl md:text-4xl font-extrabold font-display text-text-primary mb-4">
+            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-[#D4AF37] group-hover:text-text-primary mb-6 transition-colors duration-500">
               Custom Local Dataset Training
             </h2>
-            <p className="text-text-secondary text-sm mb-8 leading-relaxed max-w-md mx-auto">
+            <p className="text-blue-100/70 group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500">
               We provide private sandboxed deployments configured with custom datasets, giving architecture firms full model data sovereignty.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-accent text-white hover:bg-accent-hover rounded-full font-semibold transition-all shadow-md"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-[#D4AF37] text-[#0b1528] group-hover:bg-accent group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow"
             >
-              Request Sandbox Trial <ArrowRight className="h-4.5 w-4.5" />
+              Request Sandbox Trial <ChevronRight className="h-5 w-5" />
             </a>
           </motion.div>
         </Reveal3D>

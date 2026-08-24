@@ -70,9 +70,9 @@ export const featuredSolutions = [
   },
   {
     id: 'cmms',
-    title: 'Cryotos — Agentic AI-Powered CMMS',
+    title: 'Aptiv8 — Agentic AI-Powered CMMS',
     category: 'Operations & Maintenance',
-    description: 'Adds an orchestrator directing nine specialist AI agents within Cryotos\' Singapore-based, CSA-STAR-certified AWS environment.',
+    description: 'Adds an orchestrator directing nine specialist AI agents within Aptiv8\'s Singapore-based, CSA-STAR-certified AWS environment.',
     image: svgs.cmms,
   },
   {
@@ -93,7 +93,7 @@ export const featuredSolutions = [
     id: 'lease',
     title: 'Lease Management Assistant',
     category: 'Real Estate',
-    description: 'Tracks landlord/tenant obligations, flags upcoming lease events, and supports Green Lease clause administration.',
+    description: 'Tracks landlord/tenant obligations, flags upcoming lease events, and supports efficient Green Lease clause administration.',
     image: '/lead.png',
   },
 ];
@@ -122,7 +122,7 @@ export const bentoProducts = [
   },
   {
     id: 'bento-4',
-    title: 'Cryotos Agentic CMMS',
+    title: 'Aptiv8 Agentic CMMS',
     description: 'Nine specialist agents orchestrating work-orders, compliance checklists, and troubleshooting.',
     image: svgs.cortex,
     size: 'md',
@@ -168,7 +168,7 @@ export const lifecycleStages = [
     name: 'Operations & Maintenance',
     description: 'Manage physical structures, coordinate reactive repairs, and automate equipment status checks.',
     products: [
-      'Cryotos — Agentic AI-Powered CMMS Platform',
+      'Aptiv8 — Agentic AI-Powered CMMS Platform',
       'Gen AI Integration with CMMS',
       'Aptiv8 Co-Pilots for Smart Energy Management and Thermal Comfort Optimization',
       'Dragonfly — Robotic Mosquito Controller',
@@ -211,7 +211,7 @@ export const caseStudies = [
   {
     id: 'case-2',
     problem: 'An industrial property portfolio faced high facility operational downtime and rising energy consumption.',
-    solution: 'Configured AI-Enhanced CMMS paired with real-time Cryotos Cortex predictive maintenance sensors.',
+    solution: 'Configured AI-Enhanced CMMS paired with real-time Aptiv8 Cortex predictive maintenance sensors.',
     implementation: 'Installed IoT sensory twins on critical HVAC units, feeding thermal telemetry directly into the AI twin.',
     results: 'Downtime dropped by 42% and overall building energy consumption was optimized by 18%.',
     impact: 'Achieved Singapore BCA Green Mark Gold certification, saving $160K in annual electricity bills.',
@@ -225,7 +225,7 @@ export const chatbotAnswers = [
   },
   {
     keywords: ['facility', 'maintenance', 'cmms', 'operations'],
-    answer: 'Aptiv8 AI-Enhanced CMMS predicts equipment faults before failure occurs using temperature, noise, and vibration telemetry from Cryotos Cortex. This reduces reactive maintenance calls and extends asset lifespans by up to 25%.',
+    answer: 'Aptiv8 AI-Enhanced CMMS predicts equipment faults before failure occurs using temperature, noise, and vibration telemetry from Aptiv8 Cortex. This reduces reactive maintenance calls and extends asset lifespans by up to 25%.',
   },
   {
     keywords: ['bid', 'tender', 'prepar', 'cost'],

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Mail, Clock, MapPin, Send, HelpCircle, Sparkles, Calendar, BookOpen, Layers, CheckCircle2 } from 'lucide-react';
+import { Mail, Clock, MapPin, Send, HelpCircle, Sparkles, Calendar, BookOpen, Layers, CheckCircle2, Phone } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
 
 export default function ContactPage() {
@@ -54,7 +54,7 @@ export default function ContactPage() {
         recommendation = 'Deploy AI Assistant for Bid Preparation and Open BIM AI.';
         components = ['Historical tender scanning algorithms', 'Quantity takeoffs compiler', 'IFC metadata cleanser'];
       } else {
-        recommendation = 'Deploy AI-Enhanced CMMS and Cryotos Cortex sensory twin interfaces.';
+        recommendation = 'Deploy AI-Enhanced CMMS and Aptiv8 Cortex sensory twin interfaces.';
         components = ['Vibration/Thermal sensor endpoints', 'Predictive ticket dispatch systems', 'strata title allocation automation'];
       }
 
@@ -252,7 +252,11 @@ export default function ContactPage() {
               <h3 className="font-display font-bold text-sm text-text-primary">Corporate Office</h3>
               <div className="flex items-start gap-3 text-text-secondary">
                 <MapPin className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                <span>10 Ubi Cres, Ubi Techpark, Singapore 408564</span>
+                <span>8 Burn Rd, #04-08 Trivex, Singapore 369977</span>
+              </div>
+              <div className="flex items-center gap-3 text-text-secondary">
+                <Phone className="h-5 w-5 text-accent shrink-0" />
+                <span>+65 6282 1436</span>
               </div>
               <div className="flex items-center gap-3 text-text-secondary">
                 <Clock className="h-5 w-5 text-accent shrink-0" />
@@ -329,13 +333,13 @@ export default function ContactPage() {
               <div className="h-48 rounded-2xl overflow-hidden border border-border-color relative shadow-inner">
                 <iframe
                   title="Aptiv8 Office Map"
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7907577579124!2d103.89669527588764!3d1.3003887617478065!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da17dc00609d57%3A0xc3191f0a35ee124!2sUbi%20Techpark!5e0!3m2!1sen!2ssg!4v1700000000000!5m2!1sen!2ssg"
+                  src="https://maps.google.com/maps?q=8%20Burn%20Rd%2C%20%2304-08%20Trivex%2C%20Singapore%20369977&t=&z=15&ie=UTF8&iwloc=&output=embed"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
                   allowFullScreen=""
                   loading="lazy"
-                  className="absolute inset-0 grayscale opacity-85 dark:invert"
+                  className="absolute inset-0 opacity-90"
                 ></iframe>
               </div>
             </div>

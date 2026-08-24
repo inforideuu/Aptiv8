@@ -235,64 +235,30 @@ export default function SolutionsPage() {
                     Sustainability Design Smart Advisor (SDSA)
                   </h2>
                   
-                  {/* Premium Cards Grid for SDSA Contents */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-                    {[
-                      {
-                        title: "BSD Co-Development",
-                        icon: Cpu,
-                        tag: "Green Mark v7",
-                        desc: "Aptiv8 is co-developing the SDSA platform with Building Systems and Diagnostics (BSD). It is a Gen AI engine fully grounded on the Green Mark version 7 framework and all supporting reference databases."
-                      },
-                      {
-                        title: "Conversational Compliance",
-                        icon: MessageCircle,
-                        tag: "Natural Language",
-                        desc: "Instead of searching through dense manuals and technical documents, architects and engineers can query in natural language, receive context-aware guidance, and check Green Mark compliance options."
-                      },
-                      {
-                        title: "Automated Submissions",
-                        icon: Award,
-                        tag: "BCA Integration",
-                        desc: "The SDSA platform acts as a design-stage co-pilot for architects and compliance validation engine for engineers, offering automated submission direct to BCA's Green Mark Certification Department."
-                      }
-                    ].map((card, index) => {
-                      const Icon = card.icon;
-                      return (
-                        <motion.div
-                          key={index}
-                          initial={{ opacity: 0, y: 30 }}
-                          whileInView={{ opacity: 1, y: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ duration: 0.5, delay: index * 0.15 }}
-                          whileHover={{ y: -8, scale: 1.02 }}
-                          className="p-6 bg-bg-secondary dark:bg-[#0b1528] border border-border-color dark:border-[#c5a880]/30 rounded-2xl flex flex-col gap-4 shadow-sm hover:shadow-[0_15px_30px_rgba(239,68,68,0.08)] dark:hover:shadow-[0_15px_30px_rgba(212,175,55,0.12)] hover:border-accent dark:hover:border-[#D4AF37]/85 transition-all duration-300 group cursor-default relative overflow-hidden"
-                          style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
-                        >
-                          {/* Top light glow */}
-                          <div className="absolute -top-12 -right-12 w-24 h-24 bg-accent/3 dark:bg-[#D4AF37]/5 rounded-full blur-2xl pointer-events-none group-hover:bg-accent/8 dark:group-hover:bg-[#D4AF37]/15 transition-all duration-500" />
-                          
-                          <div className="flex items-center justify-between">
-                            <div className="p-2.5 rounded-xl bg-accent-glow dark:bg-[#D4AF37]/10 text-accent dark:text-[#D4AF37] w-max group-hover:bg-accent dark:group-hover:bg-[#D4AF37] group-hover:text-white dark:group-hover:text-[#0b1528] transition-all duration-500">
-                              <Icon className="h-5 w-5" />
-                            </div>
-                            <span className="text-[9px] font-mono font-bold uppercase tracking-wider text-text-secondary/50 group-hover:text-accent dark:group-hover:text-[#D4AF37] transition-colors">
-                              {card.tag}
-                            </span>
-                          </div>
-
-                          <div>
-                            <h3 className="font-display font-bold text-sm text-text-primary dark:text-[#D4AF37] mb-2 group-hover:text-accent dark:group-hover:text-white transition-colors duration-300">
-                              {card.title}
-                            </h3>
-                            <p className="text-xs text-text-secondary dark:text-blue-100/60 leading-relaxed group-hover:text-text-primary dark:group-hover:text-blue-100/90 transition-colors duration-300" style={{ textAlign: 'justify' }}>
-                              {card.desc}
-                            </p>
-                          </div>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
+                  {/* Single Premium Card for SDSA Content */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    whileHover={{ y: -6, scale: 1.01 }}
+                    className="p-8 md:p-10 bg-bg-secondary dark:bg-[#0b1528] border border-border-color dark:border-[#c5a880]/30 rounded-3xl flex flex-col gap-6 shadow-md hover:shadow-[0_20px_40px_rgba(239,68,68,0.1)] dark:hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] hover:border-accent dark:hover:border-[#D4AF37]/90 transition-all duration-500 group relative overflow-hidden mb-8"
+                  >
+                    {/* Corner glow */}
+                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent/5 dark:bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-accent/10 dark:group-hover:bg-[#D4AF37]/15 transition-all duration-700" />
+                    
+                    <div className="relative z-10 flex flex-col gap-4 text-text-secondary dark:text-slate-300 leading-[1.8] text-sm md:text-base font-sans" style={{ textAlign: 'justify' }}>
+                      <p>
+                        Aptiv8 is co-developing the Sustainability Design Smart Advisor (SDSA) with Building Systems and Diagnostics (BSD). It is a Gen AI platform grounded on Green Mark version 7 framework and its supporting references.
+                      </p>
+                      <p>
+                        Instead of searching through manuals and technical documents, architects and engineers can ask natural language questions, receive context-aware guidance, check Green Mark compliance options and generate supporting evidence. The submission to BCA’s Green Mark Certification Department is also automated.
+                      </p>
+                      <p>
+                        The SDSA platform will be a design-stage sustainability co-pilot for architects and developers, besides being a compliance checker for engineers. Our vision is to give every design team an AI Sustainability Expert that improves productivity while delivering better-performing buildings.
+                      </p>
+                    </div>
+                  </motion.div>
                 </div>
 
                 {/* Launch / Demonstration Cards */}

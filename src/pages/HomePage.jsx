@@ -219,11 +219,12 @@ export default function HomePage({ theme }) {
       <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
         <Reveal3D>
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-12 gap-12 items-center">
+            <div className="grid lg:grid-cols-12 gap-12 items-stretch">
               {/* Left Column - All Card Content */}
               <div className="lg:col-span-7 flex flex-col">
                 <div
                   className="
+      h-full
       p-8 md:p-10 lg:p-12
       rounded-3xl
 
@@ -334,11 +335,11 @@ export default function HomePage({ theme }) {
               </div>
 
               {/* Right Column - Premium Built Environment Image */}
-              <div className="lg:col-span-5 w-full">
+              <div className="lg:col-span-5 w-full flex">
                 <motion.div
                   whileHover={{ rotateY: -10, rotateX: 5, scale: 1.02 }}
                   transition={{ type: "spring", stiffness: 150, damping: 15 }}
-                  className="rounded-3xl overflow-hidden border border-border-color relative shadow-2xl aspect-[4/5] md:aspect-[3/4] lg:aspect-[4/5] cursor-default group"
+                  className="rounded-3xl overflow-hidden border border-border-color relative shadow-2xl w-full h-full min-h-[380px] lg:min-h-full aspect-auto cursor-default group"
                   style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
                 >
                   <img
@@ -898,25 +899,48 @@ transition-all duration-500">
           {/* Architectural backdrop line */}
           <div className="absolute top-0 right-0 w-96 h-96 border border-accent/10 rounded-full -mr-20 -mt-20 pointer-events-none" />
 
-          <div className="max-w-5xl mx-auto bg-gradient-to-r from-accent to-accent-hover rounded-[32px] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex flex-col gap-3 relative z-10 max-w-xl">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider mb-2 w-max">
-                Featured Event
+          <div className="max-w-5xl mx-auto bg-gradient-to-r from-accent to-accent-hover rounded-[32px] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+            <div className="flex flex-col gap-4 relative z-10 max-w-2xl">
+              <div className="flex flex-wrap gap-2.5 items-center">
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider w-max">
+                  Featured Event
+                </span>
+                <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-[#D4AF37] font-mono text-xs font-bold uppercase tracking-wider w-max">
+                  Booth A B21
+                </span>
               </div>
-              <h2 className="text-3xl md:text-5xl font-extrabold font-display leading-tight">
+              <h2 className="text-3xl md:text-4xl font-extrabold font-display leading-tight">
                 Meet Aptiv8 at BexAsia 2026
               </h2>
-              <p className="text-white/80 text-sm md:text-base leading-relaxed">
-                Join our BIM & AI engineers in Singapore from **September 2–4, 2026** for live demonstrations, architecture code validation previews, and strategic partnership planning.
+              <p className="text-white/85 text-sm md:text-base leading-relaxed">
+                Join our BIM & AI engineers in Singapore from **September 2–4, 2026** at the Sands Expo for live demonstrations and strategic partnership planning.
               </p>
+              
+              <div className="pt-4 border-t border-white/10">
+                <p className="text-xs uppercase tracking-widest font-bold text-white/70 mb-3 font-mono">Products Being Showcased & Launched:</p>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs md:text-sm text-white/90 font-medium">
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-[#D4AF37] shrink-0 animate-pulse" />
+                    <span>SDSA — Sustainability Design Smart Advisor</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-[#D4AF37] shrink-0 animate-pulse" />
+                    <span>Aptiv8 ACMV Intelligence Platform</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <CheckCircle2 className="h-4 w-4 text-[#D4AF37] shrink-0 animate-pulse" />
+                    <span>Aptiv8 AI Powered CMMS</span>
+                  </li>
+                </ul>
+              </div>
             </div>
-            <div className="shrink-0 relative z-10 w-full md:w-auto flex flex-col gap-3 items-center">
-              <span className="text-white font-display text-sm tracking-widest uppercase bg-white/20 px-4 py-2 rounded-xl">
+            <div className="shrink-0 relative z-10 w-full lg:w-auto flex flex-col gap-3 items-center lg:items-end">
+              <span className="text-white font-display text-sm tracking-widest uppercase bg-white/10 px-4 py-2 rounded-xl text-center w-full lg:w-auto">
                 Sands Expo, Singapore
               </span>
               <a
                 href="/contact"
-                className="w-full md:w-auto px-8 py-4 bg-white text-accent hover:bg-white/90 rounded-full font-bold transition-all text-center"
+                className="w-full lg:w-auto px-8 py-4 bg-white text-accent hover:bg-white/90 rounded-full font-bold transition-all text-center shadow-lg hover:shadow-xl"
               >
                 Book a Meeting
               </a>

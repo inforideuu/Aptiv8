@@ -18,11 +18,11 @@ export default function ProjectsPage() {
 
   const projectsData = [
     {
-      id: 'cyptos-cmms',
-      title: 'Cyptos (CMMS)',
+      id: 'a8-ai-powered-cmms',
+      title: 'A8 AI Powered CMMS',
       category: 'Built Environment',
       status: 'Cost Saving',
-      description: 'Aptiv8\'s Computerized Maintenance Management System, empowering data-driven transition for the advanced Crypto Centre Asset lifecycle.',
+      description: 'Aptiv8\'s Computerized Maintenance Management System, empowering data-driven transition for the advanced A8 AI Powered CMMS asset lifecycle.',
       clientIndustry: 'Government (BCA, JTC, HDB), Data Centre, Building (TEL, XJE, ELTE, RP, Tampines Express) Contractors (MURP, Lum Chang)',
       keyFeatures: 'Analyzing maintenance documents, pilot projects proposed for technology reference identification',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
@@ -72,7 +72,7 @@ export default function ProjectsPage() {
       title: 'AI-Powered CMMS',
       category: 'Built Environment',
       status: 'High Performance',
-      description: 'Advanced version process of Cyptos on a wider IoT platform, with integration of Real Time and Thermal Comfort Management Corporation.',
+      description: 'Advanced version process of A8 AI Powered CMMS on a wider IoT platform, with integration of Real Time and Thermal Comfort Management Corporation.',
       clientIndustry: 'Built Environment / Facilities Management (FM)',
       keyFeatures: 'When on the cloud. No alter where now considered value to pipeline',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'

@@ -212,7 +212,7 @@ export const caseStudies = [
     id: 'case-2',
     problem: 'An industrial property portfolio faced high facility operational downtime and rising energy consumption.',
     solution: 'Configured AI-Enhanced CMMS paired with real-time Aptiv8 Cortex predictive maintenance sensors.',
-    implementation: 'Installed IoT sensory twins on critical HVAC units, feeding thermal telemetry directly into the AI twin.',
+    implementation: 'Installed IoT sensory twins on critical ACMV units, feeding thermal telemetry directly into the AI twin.',
     results: 'Downtime dropped by 42% and overall building energy consumption was optimized by 18%.',
     impact: 'Achieved Singapore BCA Green Mark Gold certification, saving $160K in annual electricity bills.',
   },

@@ -217,37 +217,43 @@ export default function SolutionsPage() {
       <section id="sdsa-launch" className="py-24 px-4 bg-bg-tertiary/30 border-b border-border-color scroll-mt-24">
         <Reveal3D>
           <div className="max-w-7xl mx-auto">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+            {/* Centered Section Header */}
+            <div className="text-center mb-16">
+              <div className="flex flex-wrap justify-center gap-2.5 items-center mb-4">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-glow text-accent text-xs font-semibold uppercase tracking-wider font-mono">
+                  BexAsia 2026 Exclusive Launch
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#c5a880]/15 text-[#c5a880] text-xs font-semibold uppercase tracking-wider font-mono">
+                  Co-Developed with BSD
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary leading-tight">
+                Sustainability Design Smart Advisor (SDSA)
+              </h2>
+            </div>
+
+            {/* Content & Video Player Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
               
-              {/* Left Column - Detailed SDSA Copy and Launch Highlights */}
-              <div className="lg:col-span-7 flex flex-col gap-6">
-                <div>
-                  <div className="flex flex-wrap gap-2.5 items-center mb-4">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-glow text-accent text-xs font-semibold uppercase tracking-wider font-mono">
-                      BexAsia 2026 Exclusive Launch
-                    </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#c5a880]/15 text-[#c5a880] text-xs font-semibold uppercase tracking-wider font-mono">
-                      Co-Developed with BSD
-                    </span>
-                  </div>
+              {/* Left Column - Detailed SDSA Copy Card */}
+              <div className="lg:col-span-7 flex flex-col">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  whileHover={{ y: -6, scale: 1.01 }}
+                  className="p-8 md:p-10 bg-bg-secondary dark:bg-[#0b1528] border border-border-color dark:border-[#c5a880]/30 rounded-3xl flex flex-col gap-6 shadow-md hover:shadow-[0_20px_40px_rgba(239,68,68,0.1)] dark:hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] hover:border-accent dark:hover:border-[#D4AF37]/90 transition-all duration-500 group relative overflow-hidden h-full justify-between"
+                >
+                  {/* Corner glow */}
+                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent/5 dark:bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-accent/10 dark:group-hover:bg-[#D4AF37]/15 transition-all duration-700" />
                   
-                  <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-6 leading-tight">
-                    Sustainability Design Smart Advisor (SDSA)
-                  </h2>
-                  
-                  {/* Single Premium Card for SDSA Content */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    whileHover={{ y: -6, scale: 1.01 }}
-                    className="p-8 md:p-10 bg-bg-secondary dark:bg-[#0b1528] border border-border-color dark:border-[#c5a880]/30 rounded-3xl flex flex-col gap-6 shadow-md hover:shadow-[0_20px_40px_rgba(239,68,68,0.1)] dark:hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] hover:border-accent dark:hover:border-[#D4AF37]/90 transition-all duration-500 group relative overflow-hidden mb-8"
-                  >
-                    {/* Corner glow */}
-                    <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent/5 dark:bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-accent/10 dark:group-hover:bg-[#D4AF37]/15 transition-all duration-700" />
+                  {/* Card Heading INSIDE Card */}
+                  <div className="relative z-10">
+                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent dark:text-[#D4AF37] block mb-2">Platform Overview</span>
+                    <h3 className="text-xl md:text-2xl font-bold text-text-primary dark:text-white font-display mb-4">Gen AI Sustainability Co-Pilot</h3>
                     
-                    <div className="relative z-10 flex flex-col gap-4 text-text-secondary dark:text-slate-300 leading-[1.8] text-sm md:text-base font-sans" style={{ textAlign: 'justify' }}>
+                    <div className="text-text-secondary dark:text-slate-300 space-y-4 leading-[1.8] text-sm md:text-base font-sans" style={{ textAlign: 'justify' }}>
                       <p>
                         Aptiv8 is co-developing the Sustainability Design Smart Advisor (SDSA) with Building Systems and Diagnostics (BSD). It is a Gen AI platform grounded on Green Mark version 7 framework and its supporting references.
                       </p>
@@ -258,46 +264,13 @@ export default function SolutionsPage() {
                         The SDSA platform will be a design-stage sustainability co-pilot for architects and developers, besides being a compliance checker for engineers. Our vision is to give every design team an AI Sustainability Expert that improves productivity while delivering better-performing buildings.
                       </p>
                     </div>
-                  </motion.div>
-                </div>
-
-                {/* Launch / Demonstration Cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-border-color/50">
-                  <motion.div 
-                    whileHover={{ scale: 1.01 }}
-                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-bg-secondary transition-colors duration-300"
-                  >
-                    <div className="p-3.5 rounded-2xl bg-accent-glow text-accent shrink-0">
-                      <Tv className="h-6 w-6" />
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-sm text-text-primary mb-1">60-Sec Showcase Video</h4>
-                      <p className="text-xs text-text-secondary leading-relaxed">
-                        Watch the official launch demonstration video right here on our player preview card.
-                      </p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div 
-                    whileHover={{ scale: 1.01 }}
-                    className="flex items-start gap-4 p-4 rounded-xl hover:bg-bg-secondary transition-colors duration-300"
-                  >
-                    <div className="p-3.5 rounded-2xl bg-accent-glow text-accent shrink-0">
-                      <Award className="h-6 w-6 animate-pulse" />
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-sm text-text-primary mb-1">Desktop Booth Demo</h4>
-                      <p className="text-xs text-text-secondary leading-relaxed">
-                        Visit us at Booth A B21 during BexAsia 2026 for a full hands-on live desktop validation workflow.
-                      </p>
-                    </div>
-                  </motion.div>
-                </div>
+                  </div>
+                </motion.div>
               </div>
 
               {/* Right Column - Premium 60s Video Player */}
-              <div className="lg:col-span-5 w-full flex flex-col gap-4">
-                <div className="relative rounded-3xl overflow-hidden border border-border-color shadow-2xl bg-bg-secondary group aspect-video lg:aspect-[4/3] w-full flex items-center justify-center">
+              <div className="lg:col-span-5 w-full flex flex-col">
+                <div className="relative rounded-3xl overflow-hidden border border-border-color shadow-2xl bg-bg-secondary group w-full flex items-center justify-center h-full min-h-[380px] lg:min-h-full">
                   <video 
                     src="/hero_video.mp4" 
                     controls 
@@ -310,13 +283,43 @@ export default function SolutionsPage() {
                     60-Second SDSA Preview
                   </div>
                 </div>
-                
-                <p className="text-xs text-text-secondary text-center italic">
-                  Press play to view the SDSA launch reel demonstrating the Revit integration workspace.
-                </p>
               </div>
 
             </div>
+
+            {/* Launch / Demonstration Cards */}
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 pt-8 border-t border-border-color/50">
+              <motion.div 
+                whileHover={{ y: -4 }}
+                className="flex items-start gap-4 p-6 bg-bg-secondary dark:bg-[#0b1528]/40 border border-border-color/60 rounded-2xl hover:border-accent dark:hover:border-[#D4AF37] transition-all duration-300"
+              >
+                <div className="p-3.5 rounded-2xl bg-accent-glow text-accent shrink-0">
+                  <Tv className="h-6 w-6" />
+                </div>
+                <div>
+                  <h4 className="font-display font-bold text-sm text-text-primary mb-1">60-Sec Showcase Video</h4>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Watch the official launch demonstration video right here on our player preview card.
+                  </p>
+                </div>
+              </motion.div>
+
+              <motion.div 
+                whileHover={{ y: -4 }}
+                className="flex items-start gap-4 p-6 bg-bg-secondary dark:bg-[#0b1528]/40 border border-border-color/60 rounded-2xl hover:border-accent dark:hover:border-[#D4AF37] transition-all duration-300"
+              >
+                <div className="p-3.5 rounded-2xl bg-accent-glow text-accent shrink-0">
+                  <Award className="h-6 w-6 animate-pulse" />
+                </div>
+                <div>
+                  <h4 className="font-display font-bold text-sm text-text-primary mb-1">Desktop Booth Demo</h4>
+                  <p className="text-xs text-text-secondary leading-relaxed">
+                    Visit us at Booth A B21 during BexAsia 2026 for a full hands-on live desktop validation workflow.
+                  </p>
+                </div>
+              </motion.div>
+            </div>
+
           </div>
         </Reveal3D>
       </section>

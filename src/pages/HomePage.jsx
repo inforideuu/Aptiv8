@@ -219,12 +219,11 @@ export default function HomePage({ theme }) {
       <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
         <Reveal3D>
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-12 gap-12 items-stretch">
+            <div className="grid lg:grid-cols-12 gap-12 items-center">
               {/* Left Column - All Card Content */}
               <div className="lg:col-span-7 flex flex-col">
                 <div
                   className="
-      h-full
       p-8 md:p-10 lg:p-12
       rounded-3xl
 
@@ -249,7 +248,7 @@ export default function HomePage({ theme }) {
 
       flex
       flex-col
-      justify-center
+
 
       relative
       overflow-hidden

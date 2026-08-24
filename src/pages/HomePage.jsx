@@ -221,93 +221,122 @@ export default function HomePage({ theme }) {
           <div className="max-w-7xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
               {/* Left Column - All Card Content */}
-              <div className="lg:col-span-7 flex flex-col gap-8">
-                <div>
-                  <span className="text-accent text-xs font-semibold uppercase tracking-wider mb-3 block font-display">
-                    Company Profile
-                  </span>
-                  <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-6 leading-tight">
-                    Pioneering AI in the Built Environment
-                  </h2>
-                  <p className="text-text-secondary leading-relaxed text-base md:text-lg">
-                    Aptiv8 was founded in 2018 and established by domain experts in the built environment with decades of combined experience across design, construction, and operations & maintenance, serving both public and private sectors.
-                  </p>
-                </div>
+              <div className="lg:col-span-7 flex flex-col">
+  <div
+    className="
+      h-full
+      p-8 md:p-10 lg:p-12
+      rounded-2xl
 
-                {/* Mission & Vision cards */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Mission Card */}
-                  <motion.div
-                    whileHover={{ y: -4, scale: 1.01 }}
-                    className="p-6 bg-bg-secondary border border-border-color rounded-2xl relative overflow-hidden group shadow-sm hover:shadow-[0_10px_20px_rgba(239,68,68,0.04)] hover:border-accent/40 transition-all duration-300"
-                  >
-                    <div className="absolute -top-12 -right-12 w-24 h-24 bg-accent/5 rounded-full blur-2xl pointer-events-none group-hover:bg-accent/10 transition-all duration-500" />
-                    <span className="text-[9px] font-mono text-accent/60 uppercase tracking-widest font-bold block mb-2">01. Mission</span>
-                    <h3 className="font-display font-extrabold text-sm text-text-primary mb-2 group-hover:text-accent transition-colors">
-                      Drive AI Transformation
-                    </h3>
-                    <p className="text-xs text-text-secondary leading-relaxed">
-                      Its mission is to drive AI transformation and innovation in the built environment.
-                    </p>
-                  </motion.div>
+      bg-bg-secondary dark:bg-[#0b1528]
 
-                  {/* Vision Card */}
-                  <motion.div
-                    whileHover={{ y: -4, scale: 1.01 }}
-                    className="p-6 bg-[#0b1528] border border-[#c5a880]/30 rounded-2xl relative overflow-hidden group shadow-md hover:shadow-[0_10px_20px_rgba(212,175,55,0.08)] hover:border-[#D4AF37]/80 transition-all duration-300"
-                  >
-                    <div className="absolute -top-12 -right-12 w-24 h-24 bg-[#D4AF37]/5 rounded-full blur-2xl pointer-events-none group-hover:bg-[#D4AF37]/15 transition-all duration-500" />
-                    <span className="text-[9px] font-mono text-[#D4AF37]/60 uppercase tracking-widest font-bold block mb-2">02. Vision</span>
-                    <h3 className="font-display font-extrabold text-sm text-[#D4AF37] mb-2 group-hover:text-white transition-colors">
-                      Become the Trusted Partner
-                    </h3>
-                    <p className="text-xs text-blue-100/60 leading-relaxed group-hover:text-blue-100/90 transition-colors">
-                      Its vision is to become the trusted AI partner for developers, asset owners, AEC firms, and FM companies throughout Singapore and Southeast Asia.
-                    </p>
-                  </motion.div>
-                </div>
+      border border-accent/30
+      dark:border-[#D4AF37]/40
 
-                {/* Core Values */}
-                <div className="pt-6 border-t border-border-color/50">
-                  <h3 className="font-display font-bold text-xs uppercase tracking-wider text-text-primary mb-6">
-                    Our Guided Core Values
-                  </h3>
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    {[
-                      {
-                        title: 'Compliance',
-                        icon: ShieldCheck,
-                        desc: 'Regulatory-sound AI solutions engineered to align with strict Singapore and regional building codes.'
-                      },
-                      {
-                        title: 'Sustainability',
-                        icon: Leaf,
-                        desc: 'Optimizing carbon envelopes and energy usage indices to secure environmentally responsible operations.'
-                      },
-                      {
-                        title: 'Productivity',
-                        icon: Award,
-                        desc: 'Leveraging automation and telemetry to deliver operationally efficient maintenance lifecycles.'
-                      }
-                    ].map((val, idx) => {
-                      const Icon = val.icon;
-                      return (
-                        <div key={idx} className="flex flex-col gap-3 group">
-                          <div className="p-3 rounded-xl bg-accent-glow text-accent w-max group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                            <Icon className="h-5 w-5" />
-                          </div>
-                          <h4 className="font-display font-bold text-sm text-text-primary group-hover:text-accent transition-colors">
-                            {val.title}
-                          </h4>
-                          <p className="text-xs text-text-secondary leading-relaxed">
-                            {val.desc}
-                          </p>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-              </div>
+      shadow-[0_4px_0_rgba(239,68,68,0.22),0_8px_20px_rgba(0,0,0,0.08)]
+      dark:shadow-[0_4px_0_rgba(212,175,55,0.30),0_8px_20px_rgba(0,0,0,0.25)]
+
+      hover:-translate-y-2
+      hover:border-accent
+      dark:hover:border-[#D4AF37]/90
+
+      hover:shadow-[0_8px_0_rgba(239,68,68,0.18),0_20px_40px_rgba(239,68,68,0.14)]
+      dark:hover:shadow-[0_8px_0_rgba(212,175,55,0.28),0_20px_40px_rgba(212,175,55,0.14)]
+
+      transition-all
+      duration-500
+      ease-out
+
+      flex
+      flex-col
+      justify-center
+
+      relative
+      overflow-hidden
+      group
+    "
+  >
+    {/* Premium border highlight */}
+    <div
+      className="
+        absolute inset-0
+        rounded-2xl
+        pointer-events-none
+        border border-transparent
+        group-hover:border-accent/40
+        dark:group-hover:border-[#D4AF37]/50
+        transition-all duration-500
+      "
+    />
+
+    {/* Company Profile */}
+    <div className="relative z-10">
+
+      <div className="mb-5">
+        <span
+          className="
+            inline-block
+            text-accent
+            text-xs
+            font-semibold
+            uppercase
+            tracking-[0.18em]
+            font-display
+          "
+        >
+          Company Profile
+        </span>
+      </div>
+
+      <h2
+        className="
+          text-3xl
+          md:text-4xl
+          lg:text-5xl
+          font-bold
+          font-display
+          text-text-primary
+          leading-[1.1]
+          tracking-tight
+          mb-6
+        "
+      >
+        Pioneering AI in the Built Environment
+      </h2>
+
+      <div
+        className="
+          text-text-secondary
+          dark:text-slate-300
+          leading-[1.8]
+          text-sm sm:text-base
+          space-y-6
+          font-sans
+        "
+      >
+        <p style={{ textAlign: 'justify' }} className="text-text-secondary dark:text-slate-300">
+          Aptiv8 was founded in 2018 and established by domain experts in the
+          built environment with decades of combined experience across design,
+          construction, and operations & maintenance, serving both public and
+          private sectors.
+        </p>
+
+        <p style={{ textAlign: 'justify' }} className="text-text-primary dark:text-white font-medium text-base sm:text-lg">
+          Its mission is to drive AI transformation and innovation in the built
+          environment. Its vision is to become the trusted AI partner for
+          developers, asset owners, AEC (architecture, engineering, construction)
+          firms, and FM (facilities management) companies throughout Singapore
+          and Southeast Asia.
+        </p>
+
+        <p style={{ textAlign: 'justify' }} className="text-text-secondary dark:text-slate-400 text-xs sm:text-sm italic border-l-2 border-accent dark:border-[#D4AF37] pl-4">
+          The company is guided by three core values: compliance, sustainability, and productivity—reflecting its focus on delivering AI solutions that are regulatory-sound, environmentally responsible, and operationally efficient for the built environment sector.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</div>
 
               {/* Right Column - Premium Built Environment Image */}
               <div className="lg:col-span-5 w-full">

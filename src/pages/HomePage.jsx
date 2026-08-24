@@ -343,8 +343,8 @@ export default function HomePage({ theme }) {
                   style={{ transformStyle: 'preserve-3d', perspective: '1000px' }}
                 >
                   <img
-                    src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
-                    alt="Aptiv8 Built Environment AI"
+                    src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?auto=format&fit=crop&w=1000&q=80"
+                    alt="Aptiv8 Singapore Built Environment AI"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b1528]/80 via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-500" />

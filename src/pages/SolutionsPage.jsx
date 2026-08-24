@@ -7,7 +7,7 @@ import {
   Briefcase, DollarSign, ShieldCheck, FileText, BarChart3,
   Award, Truck, Leaf, Activity, Upload, GitBranch, CheckSquare,
   QrCode, Wrench, AlertOctagon, FileSpreadsheet, History, WifiOff,
-  MailCheck, Link2, Database, Key, MessageCircle, PieChart, Gauge, Radio, MapPin
+  MailCheck, Link2, Database, Key, MessageCircle, PieChart, Gauge, Radio, MapPin, Tv, Play
 } from 'lucide-react';
 import Card from '../components/Card';
 import { featuredSolutions, svgs } from '../data/websiteData';
@@ -210,6 +210,95 @@ export default function SolutionsPage() {
             ))}
           </AnimatePresence>
         </div>
+        </Reveal3D>
+      </section>
+
+      {/* DEDICATED SDSA FEATURED LAUNCH SECTION */}
+      <section id="sdsa-launch" className="py-24 px-4 bg-bg-tertiary/30 border-b border-border-color scroll-mt-24">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center">
+              
+              {/* Left Column - Detailed SDSA Copy and Launch Highlights */}
+              <div className="lg:col-span-7 flex flex-col gap-6">
+                <div>
+                  <div className="flex flex-wrap gap-2.5 items-center mb-4">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-glow text-accent text-xs font-semibold uppercase tracking-wider font-mono">
+                      BexAsia 2026 Exclusive Launch
+                    </span>
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#c5a880]/15 text-[#c5a880] text-xs font-semibold uppercase tracking-wider font-mono">
+                      Co-Developed with BSD
+                    </span>
+                  </div>
+                  
+                  <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-6 leading-tight">
+                    Sustainability Design Smart Advisor (SDSA)
+                  </h2>
+                  
+                  <div className="text-text-secondary dark:text-slate-300 space-y-4 leading-[1.8] text-sm md:text-base font-sans" style={{ textAlign: 'justify' }}>
+                    <p>
+                      Aptiv8 is co-developing the Sustainability Design Smart Advisor (SDSA) with Building Systems and Diagnostics (BSD). It is a Gen AI platform grounded on Green Mark version 7 framework and its supporting references.
+                    </p>
+                    <p>
+                      Instead of searching through manuals and technical documents, architects and engineers can ask natural language questions, receive context-aware guidance, check Green Mark compliance options and generate supporting evidence. The submission to BCA’s Green Mark Certification Department is also automated.
+                    </p>
+                    <p>
+                      The SDSA platform will be a design-stage sustainability co-pilot for architects and developers, besides being a compliance checker for engineers. Our vision is to give every design team an AI Sustainability Expert that improves productivity while delivering better-performing buildings.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Launch / Demonstration Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6 border-t border-border-color/50">
+                  <div className="flex items-start gap-4">
+                    <div className="p-3.5 rounded-2xl bg-accent-glow text-accent shrink-0">
+                      <Tv className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-bold text-sm text-text-primary mb-1">60-Sec Showcase Video</h4>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        Watch the official launch demonstration video right here on our player preview card.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <div className="p-3.5 rounded-2xl bg-accent-glow text-accent shrink-0">
+                      <Award className="h-6 w-6 animate-pulse" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-bold text-sm text-text-primary mb-1">Desktop Booth Demo</h4>
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        Visit us at Booth A B21 during BexAsia 2026 for a full hands-on live desktop validation workflow.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column - Premium 60s Video Player */}
+              <div className="lg:col-span-5 w-full flex flex-col gap-4">
+                <div className="relative rounded-3xl overflow-hidden border border-border-color shadow-2xl bg-bg-secondary group aspect-video lg:aspect-[4/3] w-full flex items-center justify-center">
+                  <video 
+                    src="/hero_video.mp4" 
+                    controls 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]" 
+                    poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
+                  />
+                  
+                  {/* Floating visual overlay badge */}
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-white font-mono text-[9px] uppercase tracking-wider font-bold">
+                    60-Second SDSA Preview
+                  </div>
+                </div>
+                
+                <p className="text-xs text-text-secondary text-center italic">
+                  Press play to view the SDSA launch reel demonstrating the Revit integration workspace.
+                </p>
+              </div>
+
+            </div>
+          </div>
         </Reveal3D>
       </section>
 

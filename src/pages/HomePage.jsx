@@ -161,7 +161,7 @@ export default function HomePage({ theme }) {
           playsInline
           className="absolute inset-0 w-full h-full object-cover opacity-100 pointer-events-none"
         >
-          <source src="/hero_video.mp4" type="video/mp4" />
+          <source src="https://assets.mixkit.co/videos/preview/mixkit-drones-shot-of-a-modern-city-with-skyscrapers-41617-large.mp4" type="video/mp4" />
         </video>
         {/* Dark Overlay for Text Legibility */}
         <div className="absolute inset-0 z-0 pointer-events-none bg-gradient-to-r from-black/45 via-black/20 to-red-950/10" />        <ThreeWireframe theme={theme} />

@@ -19,7 +19,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-sm text-white leading-relaxed text-justify">
-              The Trusted AI Partner for the Built Environment. Developing advanced international-level, custom-trained AI solutions for modern design, engineering, construction, and property operations worldwide across The Southeast Asia.
+              The Trusted AI Partner for the Built Environment. Developing advanced, globally recognized, international-level, custom-trained AI solutions for modern design, engineering, construction, and property operations worldwide across Southeast Asia.
             </p>
             <div className="flex items-center gap-3 mt-2">
               <a

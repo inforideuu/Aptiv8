@@ -965,8 +965,8 @@ transition-all duration-500">
         </Reveal3D>
       </section>
 
-      {/* SECTION 8: BEXASIA 2026 EVENT */}
-      <section id="bexasia" className="py-24 px-4 bg-bg-secondary border-b border-border-color relative overflow-hidden">
+      {/* SECTION 8: ENTERPRISE AI STRATEGY */}
+      <section id="enterprise-ai" className="py-24 px-4 bg-bg-secondary border-b border-border-color relative overflow-hidden">
         <Reveal3D>
           {/* Architectural backdrop line */}
           <div className="absolute top-0 right-0 w-96 h-96 border border-accent/10 rounded-full -mr-20 -mt-20 pointer-events-none" />
@@ -975,46 +975,46 @@ transition-all duration-500">
             <div className="flex flex-col gap-4 relative z-10 max-w-2xl">
               <div className="flex flex-wrap gap-2.5 items-center">
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider w-max">
-                  Featured Event
+                  Strategic Partnership
                 </span>
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-[#D4AF37] font-mono text-xs font-bold uppercase tracking-wider w-max">
-                  Booth A B21
+                  CSA-STAR Certified
                 </span>
               </div>
               <h2 className="text-3xl md:text-4xl font-extrabold font-display leading-tight">
-                Meet Aptiv8 at BexAsia 2026
+                Scale Your Enterprise with Custom AI Models
               </h2>
               <p className="text-white/85 text-sm md:text-base leading-relaxed">
-                Join our BIM & AI engineers in Singapore from **September 2–4, 2026** at the Sands Expo for live demonstrations and strategic partnership planning.
+                Work directly with our ML engineers to build, fine-tune, and deploy custom neural architectures integrated with Singapore's regulatory regimes and BCA Green Mark standards.
               </p>
               
               <div className="pt-4 border-t border-white/10">
-                <p className="text-xs uppercase tracking-widest font-bold text-white/70 mb-3 font-mono">Products Being Showcased & Launched:</p>
+                <p className="text-xs uppercase tracking-widest font-bold text-white/70 mb-3 font-mono">Our Core Enterprise Services:</p>
                 <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 text-xs md:text-sm text-white/90 font-medium">
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-[#D4AF37] shrink-0 animate-pulse" />
-                    <span>SDSA — Sustainability Design Smart Advisor</span>
+                    <CheckCircle2 className="h-4 w-4 text-[#D4AF37] shrink-0" />
+                    <span>Custom Agentic Workflow Orchestration</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-[#D4AF37] shrink-0 animate-pulse" />
-                    <span>Aptiv8 ACMV Intelligence Platform</span>
+                    <CheckCircle2 className="h-4 w-4 text-[#D4AF37] shrink-0" />
+                    <span>Singapore Government API & CORENET X Integrations</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <CheckCircle2 className="h-4 w-4 text-[#D4AF37] shrink-0 animate-pulse" />
-                    <span>Aptiv8 AI Powered CMMS</span>
+                    <CheckCircle2 className="h-4 w-4 text-[#D4AF37] shrink-0" />
+                    <span>On-Premise or Private Cloud Deployments</span>
                   </li>
                 </ul>
               </div>
             </div>
             <div className="shrink-0 relative z-10 w-full lg:w-auto flex flex-col gap-3 items-center lg:items-end">
               <span className="text-white font-display text-sm tracking-widest uppercase bg-white/10 px-4 py-2 rounded-xl text-center w-full lg:w-auto">
-                Sands Expo, Singapore
+                Singapore & SEA Region
               </span>
               <a
                 href="/contact"
                 className="w-full lg:w-auto px-8 py-4 bg-white text-accent hover:bg-white/90 rounded-full font-bold transition-all text-center shadow-lg hover:shadow-xl"
               >
-                Book a Meeting
+                Book a Strategy Session
               </a>
             </div>
           </div>

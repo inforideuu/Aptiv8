@@ -223,7 +223,7 @@ export default function SolutionsPage() {
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-glow text-accent text-xs font-semibold uppercase tracking-wider font-mono">
                   BexAsia 2026 Exclusive Launch
                 </span>
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#c5a880]/15 text-[#c5a880] text-xs font-semibold uppercase tracking-wider font-mono">
+                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#fffff] border border-[#c5a880]/50 text-[#e2c79d] text-xs font-semibold uppercase tracking-wider font-mono shadow-[0_0_15px_rgba(197,168,128,0.15)]">
                   Co-Developed with BSD
                 </span>
               </div>

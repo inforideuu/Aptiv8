@@ -15,6 +15,7 @@ import Reveal3D from '../components/Reveal3D';
 
 export default function SolutionsPage() {
   const [selectedStage, setSelectedStage] = useState('planning-design');
+  const [showAllFeatures, setShowAllFeatures] = useState(false);
 
   React.useEffect(() => {
     if (window.location.hash) {
@@ -731,7 +732,19 @@ export default function SolutionsPage() {
                 { title: 'Parts Replaced List', icon: Wrench, description: 'Audit and track spare parts consumption histories per asset maintenance ticket.' },
                 { title: 'Breakdown Maintenance', icon: AlertOctagon, description: 'Trigger and log rapid reactive maintenance runs to resolve unexpected shutdowns.' },
                 { title: 'Report Builder', icon: FileSpreadsheet, description: 'Structure custom data fields and layout designs to generate tailored performance briefs.' },
-                ].map((feature, idx) => {
+                { title: 'Maintenance History', icon: History, description: 'Access full service and audit logs to track the complete lifecycle of each asset.' },
+                { title: 'Mobile Offline Support', icon: WifiOff, description: 'Perform updates, view checklists, and log data without active network coverage.' },
+                { title: 'Schedule Reports', icon: Calendar, description: 'Configure automated reports to generate and send to key stakeholders on custom schedules.' },
+                { title: 'API Integration', icon: Link2, description: 'Connect seamlessly with third-party software and systems using standardized APIs.' },
+                { title: 'Integration with ERP', icon: Database, description: 'Sync inventories, procurement, and asset costs directly with corporate ERP suites.' },
+                { title: 'SSO Login', icon: Key, description: 'Secure access utilizing single sign-on integrations with active enterprise directories.' },
+                { title: 'WhatsApp & Other Social Media Integration', icon: MessageCircle, description: 'Receive instant alerts, submit requests, and update order statuses via messaging apps.' },
+                { title: 'AI Integration', icon: Cpu, description: 'Leverage predictive analytics and smart agent suggestions to automate dispatch actions.' },
+                { title: 'Dynamic Reports', icon: PieChart, description: 'Build interactive reports with real-time filters and custom fields for instant insight.' },
+                { title: 'Customizable Analytical Dashboard', icon: Gauge, description: 'Personalize widgets, metrics, and chart views to track department KPIs in real-time.' },
+                { title: 'NFC and Beacon Support', icon: Radio, description: 'Deploy near-field communication or BLE beacons to verify physical technician presence.' },
+                { title: 'User Location Tracking', icon: MapPin, description: 'Track work location footprints and route dispatches using geofenced tracking.' },
+              ].slice(0, showAllFeatures ? 20 : 8).map((feature, idx) => {
                 const Icon = feature.icon;
                 return (
                   <motion.div
@@ -766,6 +779,16 @@ export default function SolutionsPage() {
                   </motion.div>
                 );
               })}
+            </div>
+
+            <div className="flex justify-end mt-10">
+              <button
+                onClick={() => setShowAllFeatures(!showAllFeatures)}
+                className="group relative px-6 py-3 bg-bg-secondary dark:bg-[#0b1528] text-text-primary dark:text-[#D4AF37] border border-border-color dark:border-[#c5a880]/30 hover:border-accent dark:hover:border-[#D4AF37] hover:text-accent dark:hover:text-white rounded-full font-semibold transition-all duration-300 flex items-center gap-2 cursor-pointer text-sm shadow-sm hover:shadow-[0_8px_25px_rgba(239,68,68,0.1)] dark:hover:shadow-[0_8px_25px_rgba(212,175,55,0.1)]"
+              >
+                <span>{showAllFeatures ? 'Show Less' : 'More'}</span>
+                <ChevronRight className={`h-4.5 w-4.5 transition-transform duration-300 ${showAllFeatures ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
+              </button>
             </div>
           </div>
         </Reveal3D>

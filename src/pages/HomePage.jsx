@@ -383,53 +383,9 @@ export default function HomePage({ theme }) {
               </p>
             </div>
 
-            <div className="relative p-8 md:p-12 rounded-[32px] border border-accent/30 bg-bg-secondary/40 backdrop-blur-md shadow-[0_12px_40px_rgba(239,68,68,0.08)] dark:border-[#D4AF37]/40 dark:bg-[#0b1528]/35 dark:shadow-[0_12px_40px_rgba(212,175,55,0.06)] hover:border-accent dark:hover:border-[#D4AF37]/90 transition-all duration-500 group">
-              
-              <div className="flex flex-col md:flex-row items-start md:items-center gap-6 mb-8 pb-6 border-b border-border-color/50">
-                <div className="p-4 rounded-2xl bg-accent-glow border border-accent/20 dark:border-[#D4AF37]/20 flex items-center justify-center shrink-0">
-                  <Award className="h-8 w-8 text-accent dark:text-[#D4AF37] animate-pulse" />
-                </div>
-                <div>
-                  <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-accent dark:text-[#D4AF37] block mb-1">
-                    Special Event Announcement
-                  </span>
-                  <h2 className="text-2xl md:text-3xl font-extrabold font-display text-text-primary tracking-tight">
-                    Meet Aptiv 8 at <span className="text-accent dark:text-[#D4AF37]">BexAsis 2026</span>
-                  </h2>
-                </div>
-                <div className="md:ml-auto">
-                  <span className="inline-block bg-accent/10 dark:bg-[#D4AF37]/10 px-4 py-2 rounded-full text-accent dark:text-[#D4AF37] font-bold text-sm border border-accent/20 dark:border-[#D4AF37]/20 shadow-sm">
-                    Booth AB21
-                  </span>
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <p className="text-text-secondary dark:text-slate-300 text-sm md:text-base leading-relaxed">
-                  We are excited to announce our participation in BexAsis 2026. Join us at our booth to experience live demonstrations and learn more about our three groundbreaking platform launches:
-                </p>
-                
-                <div className="grid sm:grid-cols-3 gap-4">
-                  {[
-                    { name: 'SDSA', desc: 'Sustainable Design Smart Advisor for  Smarter, Future-Ready Solutions' },
-                    { name: 'Aptiv8 ACMV Intelligence Platform', desc: 'Advanced air conditioning and mechanical ventilation analytics' },
-                    { name: 'Aptiv8 AI Powered CMMS', desc: 'Next-generation computerised maintenance management system' }
-                  ].map((item, i) => (
-                    <div key={i} className="p-5 rounded-2xl border border-border-color bg-bg-primary/50 hover:border-accent/30 dark:hover:border-[#D4AF37]/35 transition-all duration-300 flex flex-col justify-between h-full group/card">
-                      <div>
-                        <div className="w-1.5 h-6 bg-accent dark:bg-[#D4AF37] rounded-full mb-3 group-hover/card:scale-y-125 transition-transform origin-top" />
-                        <h3 className="font-bold text-sm text-text-primary mb-1.5 font-display group-hover/card:text-accent dark:group-hover/card:text-[#D4AF37] transition-colors">
-                          {item.name}
-                        </h3>
-                        <p className="text-xs text-text-secondary dark:text-slate-400 leading-normal">
-                          {item.desc}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
+            <div className="relative p-8 md:p-6 rounded-[32px] border border-accent/30 bg-bg-secondary/40 backdrop-blur-md shadow-[0_12px_40px_rgba(239,68,68,0.08)] dark:border-[#D4AF37]/40 dark:bg-[#0b1528]/35 dark:shadow-[0_12px_40px_rgba(212,175,55,0.06)] hover:border-accent dark:hover:border-[#D4AF37]/90 transition-all duration-500 group overflow-hidden" style={{ perspective: "1200px" }}>
+              <motion.div whileHover={{rotateY: -12,rotateX: 8,scale: 1.03,z: 30,}} transition={{type: "spring",stiffness: 180,damping: 18,}} style={{transformStyle: "preserve-3d",transformOrigin: "center center",}} className="w-full"><img src="bexasia.png" alt="BEXASIA2026" className="w-full h-auto rounded-2xl shadow-xl"/>
+              </motion.div>
             </div>
           </div>
         </Reveal3D>

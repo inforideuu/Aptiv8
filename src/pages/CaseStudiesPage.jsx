@@ -107,7 +107,7 @@ export default function CaseStudiesPage() {
       industry: 'Facilities Management',
       title: 'Predictive CMMS & Sensory Twin Link for Chiller Operations',
       problem: 'Commercial building Chillers suffered frequent breakdowns, resulting in tenant complaints and high emergency maintenance rates.',
-      solution: 'Linked Aptiv8 — Agentic AI-Powered CMMS Platform with Gen AI Integration with CMMS sensor arrays.',
+      solution: 'Linked A8 — Agentic AI-Powered CMMS Platform with Gen AI Integration with CMMS sensor arrays.',
       implementation: 'Tracked live vibration and heat signals to predict failures 72 hours before operational threshold breach.',
       results: 'Downtime decreased by 42%, while preventative repair tickets were scheduled automatically.',
       impact: 'Saved $160K in annual chiller utility bills and extended asset life by 5 years.',
@@ -483,31 +483,7 @@ export default function CaseStudiesPage() {
                 <div className="flex flex-col justify-between gap-8">
                   {/* Media Frame */}
                   <div className="rounded-[24px] overflow-hidden border border-border-color aspect-[16/10] relative shadow-lg bg-black">
-                    {!playVideo ? (
-                      <>
-                        <img src={currentStudy.image} alt={currentStudy.title} className="w-full h-full object-cover opacity-80" />
-                        <div className="absolute inset-0 bg-black/30 flex items-center justify-center">
-                          <button
-                            onClick={() => setPlayVideo(true)}
-                            className="p-5 rounded-full bg-white text-accent hover:scale-110 transition-transform shadow-lg cursor-pointer"
-                            aria-label="Play video simulation preview"
-                          >
-                            <Play className="h-6 w-6 fill-current" />
-                          </button>
-                        </div>
-                        <span className="absolute bottom-4 left-4 text-xs font-semibold text-white bg-black/60 px-3 py-1.5 rounded-full backdrop-blur-sm">
-                          Click to play 3D path simulation
-                        </span>
-                      </>
-                    ) : (
-                      <video
-                        src={currentStudy.videoUrl}
-                        controls
-                        autoPlay
-                        className="w-full h-full object-cover"
-                        onEnded={() => setPlayVideo(false)}
-                      />
-                    )}
+                    <img src={currentStudy.image} alt={currentStudy.title} className="w-full h-full object-cover" />
                   </div>
 
                   {/* Results & Business Impact */}

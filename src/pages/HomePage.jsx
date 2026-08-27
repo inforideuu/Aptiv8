@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowRight, ArrowUpRight, Sparkles, Building, ChevronLeft, ChevronRight,
-  MessageSquare, User, HelpCircle, Layers, CheckCircle2, ShieldCheck, Leaf, Award
+  MessageSquare, User, HelpCircle, Layers, CheckCircle2, ShieldCheck, Leaf, Award, Tv
 } from 'lucide-react';
 
 import ThreeWireframe from '../components/ThreeWireframe';
@@ -22,20 +22,20 @@ export default function HomePage({ theme }) {
   const navigate = useNavigate();
 
   const homeProducts = [
-    {
-      id: 'compliance-chatbot',
-      title: 'Gen AI Chatbot & Assistant for Regulatory Compliance',
-      category: 'Planning & Design',
-      description: "Helps consultants navigate 6,300+ rules, regulations, codes and circulars across seven government agencies under Singapore's CORENET X regime.",
-      image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'greensip',
-      title: 'GreenSIP — BCA Green Mark V7 Co-Pilot',
-      category: 'Planning & Design',
-      description: "Extends Aptiv8's Sustainable Design Smart Advisor (SDSA) into a full BCA Green Mark V7 co-pilot, mapping energy, ETTV, and thermal comfort metrics.",
-      image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
-    },
+    // {
+    //   id: 'fire-safety',
+    //   title: 'Gen AI Advisor for Fire Safety & Protection',
+    //   category: 'Planning & Design',
+    //   description: 'Guiding project teams through SCDF fire-safety regulatory requirements, reflecting real enforcement practice. Anchored by former SCDF Director.',
+    //   image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80'
+    // },
+    // {
+    //   id: 'greensip',
+    //   title: 'GreenSIP — BCA Green Mark V7 Co-Pilot',
+    //   category: 'Planning & Design',
+    //   description: "Extends Aptiv8's Sustainable Design Smart Advisor (SDSA) into a full BCA Green Mark V7 co-pilot, mapping energy, ETTV, and thermal comfort metrics.",
+    //   image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
+    // },
     {
       id: 'bid-tender-prep',
       title: 'AI Assistant for Bid & Tender Evaluation',
@@ -44,26 +44,26 @@ export default function HomePage({ theme }) {
       image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'
     },
     {
-      id: 'site-supervisor-assistant',
-      title: 'Site Supervisor / Manager Assistant',
-      category: 'Construction',
-      description: 'Supports workplace safety and health (WSH), safety monitoring, and productivity on site through real-time logistics and hazard detection.',
-      image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80'
-    },
-    {
       id: 'aptiv8-cortex-cmms',
-      title: 'Aptiv8 — Agentic AI-Powered CMMS Platform',
+      title: 'A8 — Agentic AI-Powered CMMS Platform',
       category: 'Operations & Maintenance',
       description: "Adds an intelligent orchestrator directing nine specialist AI agents within Aptiv8's Singapore-based, CSA-STAR-certified AWS environment.",
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
     },
     {
-      id: 'strata-assistant',
-      title: 'Strata Title & Maintenance Management',
-      category: 'Real Estate',
-      description: 'Supports Managing Agents with drafting correspondence, tracking maintenance schedules, and ensuring compliance with bylaws.',
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80'
-    }
+      id: 'spec-manager',
+      title: 'AI Assistant for Managing Specifications',
+      category: 'Pre-Construction',
+      description: 'Helps draft, cross-check and maintain construction and FM specifications, automatically flagging inconsistencies.',
+      image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&w=800&q=80'
+    },
+    // {
+    //   id: 'strata-assistant',
+    //   title: 'Strata Title & Maintenance Management',
+    //   category: 'Real Estate',
+    //   description: 'Supports Managing Agents with drafting correspondence, tracking maintenance schedules, and ensuring compliance with bylaws.',
+    //   image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80'
+    // }
   ];
 
   // Section 2: AI Solution Finder State
@@ -208,10 +208,6 @@ export default function HomePage({ theme }) {
               <span className="relative z-10">Explore Solutions</span>
               <ArrowRight className="relative z-10 h-5 w-5 transition-transform duration-500 group-hover:translate-x-1.5 group-hover:-rotate-6" />
             </a>
-            <a href="/contact" className="group relative w-full sm:w-auto px-8 py-4 bg-bg-secondary text-text-primary border border-border-color rounded-full font-semibold transition-all duration-500 ease-out text-center flex items-center justify-center gap-2 overflow-hidden hover:-translate-y-1 hover:border-accent/60 hover:text-accent hover:bg-accent/[0.04] hover:shadow-[0_14px_40px_rgba(239,68,68,0.12)] before:absolute before:inset-0 before:rounded-full before:border before:border-accent/0 before:scale-90 before:transition-all before:duration-500 group-hover:before:scale-100 group-hover:before:border-accent/20">
-              <span className="relative z-10">Book a Demo</span>
-              <span className="relative z-10 w-1.5 h-1.5 rounded-full bg-current opacity-40 group-hover:opacity-100 group-hover:scale-125 transition-all duration-500" />
-            </a>
           </motion.div>
         </div>
       </section>
@@ -353,7 +349,7 @@ export default function HomePage({ theme }) {
                   <div className="absolute bottom-6 left-6 right-6 p-6 bg-white/10 dark:bg-black/20 backdrop-blur-md border border-white/20 rounded-2xl transition-all duration-500 group-hover:bg-white/15">
                     <span className="text-[10px] font-mono text-[#D4AF37] uppercase tracking-wider font-bold block mb-1">Aptiv8 Platform</span>
                     <p className="text-xs text-white font-medium leading-relaxed">
-                      Optimizing Singapore's construction and facilities lifecycles with predictive intelligence.
+                      Aptiv8 is an AI solutions provider transforming the Built Environment through intelligent, custom-trained technology.
                     </p>
                   </div>
                 </motion.div>
@@ -392,7 +388,7 @@ export default function HomePage({ theme }) {
       </section>
 
       {/* SECTION 2: AI SOLUTION FINDER */}
-      <section id="solution-finder" className="py-24 px-4 bg-bg-tertiary/50 border-b border-border-color">
+      {/* <section id="solution-finder" className="py-24 px-4 bg-bg-tertiary/50 border-b border-border-color">
         <Reveal3D>
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-16">
@@ -407,11 +403,11 @@ export default function HomePage({ theme }) {
             <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 md:p-12 shadow-xl grid grid-cols-1 lg:grid-cols-2 gap-12 items-start hover:shadow-[0_20px_45px_rgba(227,6,19,0.35),0_8px_20px_rgba(227,6,19,0.12)]
 dark:hover:shadow-[0_20px_45px_rgba(255,59,71,0.30),0_8px_20px_rgba(255,59,71,0.10)]
 hover:border-accent/60
-transition-all duration-500">
+transition-all duration-500"> */}
               {/* Steps & Selection */}
-              <div className="flex flex-col gap-8">
+              {/* <div className="flex flex-col gap-8"> */}
                 {/* Question 1 */}
-                <div>
+                {/* <div>
                   <div className="flex items-center gap-2 mb-4">
                     <span className="p-2 rounded-xl bg-accent-glow text-accent font-bold text-sm shrink-0">01</span>
                     <label className="font-display font-bold text-lg text-text-primary">Who are you?</label>
@@ -430,10 +426,10 @@ transition-all duration-500">
                       </button>
                     ))}
                   </div>
-                </div>
+                </div> */}
 
                 {/* Question 2 */}
-                <div>
+                {/* <div>
                   <div className="flex items-center gap-2 mb-4">
                     <span className="p-2 rounded-xl bg-accent-glow text-accent font-bold text-sm shrink-0">02</span>
                     <label className="font-display font-bold text-lg text-text-primary">What problem are you trying to solve?</label>
@@ -452,20 +448,20 @@ transition-all duration-500">
                       </button>
                     ))}
                   </div>
-                </div>
+                </div> */}
 
                 {/* Match CTA */}
-                <button
+                {/* <button
                   onClick={handleFindSolution}
                   disabled={!role || !problem}
                   className="w-full py-4 rounded-xl bg-accent text-white font-semibold hover:bg-accent-hover transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer flex items-center justify-center gap-2"
                 >
                   Match AI Solution <Sparkles className="h-4 w-4" />
                 </button>
-              </div>
+              </div> */}
 
               {/* Results */}
-              <div className="border border-border-color bg-bg-primary/50 rounded-2xl p-6 min-h-[350px] flex flex-col justify-between">
+              {/* <div className="border border-border-color bg-bg-primary/50 rounded-2xl p-6 min-h-[350px] flex flex-col justify-between">
                 <h3 className="font-display font-bold text-lg text-text-primary mb-4 flex items-center gap-2">
                   <CheckCircle2 className="h-5 w-5 text-accent animate-pulse" />
                   Recommended Aptiv8 Solutions
@@ -499,6 +495,114 @@ transition-all duration-500">
                 </div>
               </div>
             </div>
+          </div>
+        </Reveal3D>
+      </section> */}
+
+      {/* DEDICATED SDSA FEATURED LAUNCH SECTION */}
+      <section id="sdsa-launch" className="py-24 px-4 bg-bg-tertiary/30 border-b border-border-color scroll-mt-24">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
+            {/* Centered Section Header */}
+            <div className="text-center mb-16">
+              <div className="flex flex-wrap justify-center gap-2.5 items-center mb-4">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-glow text-accent text-xs font-semibold uppercase tracking-wider font-mono">
+                  BexAsia 2026 Exclusive Launch
+                </span>
+                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#fffff] border border-[#c5a880]/50 text-[#e2c79d] text-xs font-semibold uppercase tracking-wider font-mono shadow-[0_0_15px_rgba(197,168,128,0.15)]">
+                  Co-Developed with BSD
+                </span>
+              </div>
+              <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary leading-tight">
+                Sustainability Design Smart Advisor (SDSA)
+              </h2>
+            </div>
+
+            {/* Content & Video Player Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+              
+              {/* Left Column - Detailed SDSA Copy Card */}
+              <div className="lg:col-span-5 flex flex-col">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  whileHover={{ y: -6, scale: 1.01 }}
+                  className="p-8 md:p-10 bg-bg-secondary dark:bg-[#0b1528] border border-border-color dark:border-[#c5a880]/30 rounded-3xl flex flex-col gap-6 shadow-md hover:shadow-[0_20px_40px_rgba(239,68,68,0.1)] dark:hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] hover:border-accent dark:hover:border-[#D4AF37]/90 transition-all duration-500 group relative overflow-hidden h-full justify-between"
+                >
+                  {/* Corner glow */}
+                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent/5 dark:bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-accent/10 dark:group-hover:bg-[#D4AF37]/15 transition-all duration-700" />
+                  
+                  {/* Card Heading INSIDE Card */}
+                  <div className="relative z-10">
+                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent dark:text-[#D4AF37] block mb-2">Platform Overview</span>
+                    <h3 className="text-xl md:text-2xl font-bold text-text-primary dark:text-white font-display mb-4">Gen AI Sustainability Co-Pilot</h3>
+                    
+                    <div className="text-text-secondary dark:text-slate-300 space-y-4 leading-[1.8] text-sm md:text-base font-sans" style={{ textAlign: 'justify' }}>
+                      <p>
+                        Aptiv8 is co-developing the Sustainability Design Smart Advisor (SDSA) with Building Systems and Diagnostics (BSD). It is a Gen AI platform grounded on Green Mark version 7 framework and its supporting references.
+                      </p>
+                      <p>
+                        Instead of searching through manuals and technical documents, architects and engineers can ask natural language questions, receive context-aware guidance, check Green Mark compliance options and generate supporting evidence. The submission to BCA’s Green Mark Certification Department is also automated.
+                      </p>
+                      <p>
+                        The SDSA platform will be a design-stage sustainability co-pilot for architects and developers, besides being a compliance checker for engineers. Our vision is to give every design team an AI Sustainability Expert that improves productivity while delivering better-performing buildings.
+                      </p>
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+ 
+              {/* Right Column - Premium 60s Video Player */}
+              <div className="lg:col-span-7 w-full flex flex-col justify-center gap-10">
+                <div className="relative rounded-3xl overflow-hidden border border-border-color shadow-2xl bg-bg-secondary group w-full aspect-video flex items-center justify-center">
+                  <video 
+                    src="/SDSA.mp4" 
+                    controls 
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]" 
+                  />
+                  
+                  {/* Floating visual overlay badge */}
+                  <div className="absolute top-4 left-4 z-10 px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-white font-mono text-[9px] uppercase tracking-wider font-bold">
+                    90-Second SDSA Preview
+                  </div>
+                </div>
+
+                {/* Launch / Demonstration Cards */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <motion.div 
+                    whileHover={{ y: -4 }}
+                    className="flex items-start gap-3 p-4 bg-bg-secondary dark:bg-[#0b1528]/40 border border-border-color/60 rounded-2xl hover:border-accent dark:hover:border-[#D4AF37] transition-all duration-300"
+                  >
+                    <div className="p-2.5 rounded-xl bg-accent-glow text-accent shrink-0">
+                      <Tv className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-bold text-xs text-text-primary mb-1">90-Sec Showcase Video</h4>
+                      <p className="text-[10px] text-text-secondary leading-relaxed">
+                        Watch the official launch demonstration video right here on our player preview card.
+                      </p>
+                    </div>
+                  </motion.div>
+
+                  <motion.div 
+                    whileHover={{ y: -4 }}
+                    className="flex items-start gap-3 p-4 bg-bg-secondary dark:bg-[#0b1528]/40 border border-border-color/60 rounded-2xl hover:border-accent dark:hover:border-[#D4AF37] transition-all duration-300"
+                  >
+                    <div className="p-2.5 rounded-xl bg-accent-glow text-accent shrink-0">
+                      <Award className="h-5 w-5 animate-pulse" />
+                    </div>
+                    <div>
+                      <h4 className="font-display font-bold text-xs text-text-primary mb-1">Desktop Booth Demo</h4>
+                      <p className="text-[10px] text-text-secondary leading-relaxed">
+                        Visit us at Booth A B21 during BexAsia 2026 for a full hands-on live desktop validation workflow.
+                      </p>
+                    </div>
+                  </motion.div>
+                </div>
+              </div></div>
+
           </div>
         </Reveal3D>
       </section>
@@ -655,9 +759,24 @@ transition-all duration-500">
                           </h4>
                           <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                             {stage.products.map((prod, i) => (
-                              <li key={i} className="flex items-center gap-3 text-xs md:text-sm text-text-secondary hover:text-text-primary transition-colors">
-                                <CheckCircle2 className="h-4 w-4 text-accent shrink-0" />
-                                <span className="font-medium">{prod}</span>
+                              <li key={i} className="flex items-start gap-3 text-xs md:text-sm text-text-secondary hover:text-text-primary transition-colors">
+                                <CheckCircle2 className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                                <div className="flex flex-col items-start gap-1">
+                                  <span className="font-medium text-text-primary">{prod.name}</span>
+                                  {prod.status && (
+                                    <span className={`text-[8px] md:text-[9px] px-2 py-0.5 rounded-full font-mono font-bold uppercase tracking-wider shrink-0 border ${
+                                      prod.status === 'Deployed'
+                                        ? 'bg-green-500/10 text-green-500 border-green-500/20'
+                                        : prod.status === 'POC Completed'
+                                        ? 'bg-blue-500/10 text-blue-500 border-blue-500/20'
+                                        : prod.status === 'Emerging Solution'
+                                        ? 'bg-indigo-500/10 text-indigo-400 border-indigo-500/20'
+                                        : 'bg-amber-500/10 text-amber-500 border-amber-500/20'
+                                    }`}>
+                                      {prod.status}
+                                    </span>
+                                  )}
+                                </div>
                               </li>
                             ))}
                           </ul>
@@ -702,10 +821,24 @@ transition-all duration-500">
                     title={sol.title}
                     description={sol.description}
                     isCoreProduct={sol.id === 'sdsa'}
-                    href={sol.id === 'cmms' ? '/solutions#cmms-modules' : '/solutions'}
-                    onClick={() => navigate(sol.id === 'cmms' ? '/solutions#cmms-modules' : '/solutions')}
+                    href="/products"
+                    onClick={() => navigate('/products')}
                   />
                 ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <a
+                href="/products#other-sectors"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/products#other-sectors');
+                }}
+                className="inline-flex items-center gap-2 text-xs md:text-sm font-semibold text-accent font-display hover:text-accent-hover hover:underline transition-colors group"
+              >
+                <span>Explore AI Solutions for other Sectors</span>
+                <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
             </div>
           </div>
         </Reveal3D>
@@ -830,7 +963,7 @@ transition-all duration-500">
       </section>
 
       {/* SECTION 7: CASE STUDIES CAROUSEL */}
-      <section id="case-studies" className="py-24 px-4 bg-bg-primary border-b border-border-color">
+      {/* <section id="case-studies" className="py-24 px-4 bg-bg-primary border-b border-border-color">
         <Reveal3D>
           <div className="max-w-6xl mx-auto ">
             <div className="text-center mb-16">
@@ -855,9 +988,9 @@ transition-all duration-500">
                       exit={{ opacity: 0, x: -20 }}
                       transition={{ duration: 0.4 }}
                       className="grid grid-cols-1 lg:grid-cols-2 gap-12"
-                    >
+                    > */}
                       {/* Problem / Solution details - Standard Card */}
-                      <div className="border border-border-color bg-bg-primary/40 dark:bg-bg-secondary/30 rounded-2xl p-6 flex flex-col justify-center gap-2 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-white dark:hover:bg-bg-secondary hover:shadow-[0_15px_30px_rgba(239,68,68,0.5)] hover:border-red-500/30 cursor-pointer">
+                      {/* <div className="border border-border-color bg-bg-primary/40 dark:bg-bg-secondary/30 rounded-2xl p-6 flex flex-col justify-center gap-2 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-white dark:hover:bg-bg-secondary hover:shadow-[0_15px_30px_rgba(239,68,68,0.5)] hover:border-red-500/30 cursor-pointer">
                         <div>
                           <span className="text-[10px] uppercase tracking-widest text-accent font-bold font-display mb-1 block">
                             Case Study 0{idx + 1}
@@ -881,10 +1014,10 @@ transition-all duration-500">
                           <h4 className="text-xs uppercase tracking-wider font-bold text-text-primary mb-1">Implementation</h4>
                           <p className="text-sm text-text-secondary">{cs.implementation}</p>
                         </div>
-                      </div>
+                      </div> */}
 
                       {/* Results / Business Impact - Standard Card */}
-                      <div className="border border-border-color bg-bg-primary/40 dark:bg-bg-secondary/30 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-white dark:hover:bg-bg-secondary hover:shadow-[0_15px_30px_rgba(239,68,68,0.5)] hover:border-red-500/30 cursor-pointer">
+                      {/* <div className="border border-border-color bg-bg-primary/40 dark:bg-bg-secondary/30 rounded-2xl p-6 flex flex-col justify-center gap-6 shadow-sm transition-all duration-300 hover:scale-[1.02] hover:bg-white dark:hover:bg-bg-secondary hover:shadow-[0_15px_30px_rgba(239,68,68,0.5)] hover:border-red-500/30 cursor-pointer">
                         <div className="group relative p-5 rounded-2xl bg-bg-secondary/60 border border-border-color/70 overflow-hidden transition-all duration-500 hover:border-accent/40 hover:bg-bg-secondary hover:-translate-y-1 hover:shadow-[0_18px_45px_rgba(239,68,68,0.10)]">
                           <span className="text-xs uppercase tracking-wider text-accent font-bold font-display">Results & Verification</span>
                           <p className="text-xl font-bold font-display text-text-primary mt-2">{cs.results}</p>
@@ -897,10 +1030,10 @@ transition-all duration-500">
                     </motion.div>
                   );
                 })}
-              </AnimatePresence>
+              </AnimatePresence> */}
 
               {/* Navigation buttons */}
-              <div className="flex justify-end gap-3 mt-3">
+              {/* <div className="flex justify-end gap-3 mt-3">
                 <button
                   onClick={() => setCurrentCase(prev => (prev === 0 ? caseStudies.length - 1 : prev - 1))}
                   className="p-3 rounded-full border border-blue-800/40 bg-white/5 hover:bg-white/15 text-black transition-colors cursor-pointer"
@@ -919,7 +1052,7 @@ transition-all duration-500">
             </div>
           </div>
         </Reveal3D>
-      </section>
+      </section> */}
 
       {/* SECTION 8: ENTERPRISE AI STRATEGY */}
       <section id="enterprise-ai" className="py-24 px-4 bg-bg-secondary border-b border-border-color relative overflow-hidden">
@@ -1007,7 +1140,7 @@ transition-all duration-500">
       </section>
 
       {/* SECTION 10: AI KNOWLEDGE ASSISTANT (Chatbot) */}
-      <section id="chatbot-section" className="py-24 px-4 bg-bg-tertiary/50 border-b border-border-color">
+      {/* <section id="chatbot-section" className="py-24 px-4 bg-bg-tertiary/50 border-b border-border-color">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary mb-4">
@@ -1021,11 +1154,11 @@ transition-all duration-500">
           <div className="bg-bg-secondary border border-border-color rounded-[24px] shadow-xl overflow-hidden flex flex-col h-[500px] hover:shadow-[0_20px_45px_rgba(227,6,19,0.35),0_8px_20px_rgba(227,6,19,0.12)]
 dark:hover:shadow-[0_20px_45px_rgba(255,59,71,0.30),0_8px_20px_rgba(255,59,71,0.10)]
 hover:border-accent/60
-transition-all duration-500">
+transition-all duration-500"> */}
             {/* Header */}
-            <div className="bg-bg-primary border-b border-border-color p-4.5 flex items-center justify-between relative overflow-hidden">
+            {/* <div className="bg-bg-primary border-b border-border-color p-4.5 flex items-center justify-between relative overflow-hidden"> */}
               {/* Tech scanline background effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-accent/[0.02] to-transparent pointer-events-none" />
+              {/* <div className="absolute inset-0 bg-gradient-to-r from-accent/[0.02] to-transparent pointer-events-none" />
 
               <div className="flex items-center gap-3.5 relative z-10">
                 <div className="relative p-2.5 rounded-xl bg-gradient-to-tr from-accent to-[#ff6a75] text-white shadow-[0_0_20px_rgba(227,6,19,0.3)] dark:shadow-[0_0_20px_rgba(255,59,71,0.35)] flex items-center justify-center">
@@ -1047,10 +1180,10 @@ transition-all duration-500">
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             {/* Chat list */}
-            <div className="flex-grow p-6 overflow-y-auto flex flex-col gap-4">
+            {/* <div className="flex-grow p-6 overflow-y-auto flex flex-col gap-4">
               {chatMessages.map((msg, i) => (
                 <div
                   key={i}
@@ -1073,10 +1206,10 @@ transition-all duration-500">
                   </div>
                 </div>
               ))}
-            </div>
+            </div> */}
 
             {/* Sample questions suggestions */}
-            <div className="p-4 bg-bg-primary/50 border-t border-border-color flex flex-wrap gap-2">
+            {/* <div className="p-4 bg-bg-primary/50 border-t border-border-color flex flex-wrap gap-2">
               {[
                 'How can I improve Green Mark compliance?',
                 'How can AI improve facility management?',
@@ -1090,10 +1223,10 @@ transition-all duration-500">
                   {q}
                 </button>
               ))}
-            </div>
+            </div> */}
 
             {/* Chat Input */}
-            <form
+            {/* <form
               onSubmit={(e) => {
                 e.preventDefault();
                 handleChatSend();
@@ -1116,7 +1249,7 @@ transition-all duration-500">
             </form>
           </div>
         </div>
-      </section>
+      </section> */}
 
     </div>
   );

@@ -346,7 +346,7 @@ export default function AboutPage() {
                     <Sparkles className="h-3 w-3 animate-pulse" /> Overview
                   </div>
                   <h3 className="text-xl font-bold font-display text-text-primary leading-tight mb-2">
-                    Driving Adoption & Revenue via Agentic AI
+                    AI-Powered Innovation for the Built Environment
                   </h3>
                   <div className="flex flex-col text-xs md:text-sm text-text-secondary leading-relaxed text-justify">
                     <p className="text-text-primary font-semibold mb-2">Hover card to reveal details:</p>
@@ -373,7 +373,7 @@ export default function AboutPage() {
                     <Cpu className="h-3 w-3 animate-pulse" /> Challenges
                   </div>
                   <h3 className="text-xl font-bold font-display text-text-primary leading-tight mb-2">
-                    Relieving Value Chain Bottlenecks
+                    Unlocking Efficiency Across the Built Environment Value Chain
                   </h3>
                   <div className="flex flex-col text-xs md:text-sm text-text-secondary leading-relaxed text-justify">
                     <p className="text-text-primary font-semibold mb-2">Hover card to reveal details:</p>
@@ -400,7 +400,7 @@ export default function AboutPage() {
                     <Briefcase className="h-3 w-3 animate-pulse" /> Adaptability
                   </div>
                   <h3 className="text-xl font-bold font-display text-text-primary leading-tight mb-2">
-                    Delivery & Cross-Sector Adaptability
+                    Building Industry-Ready Gen AI & Agentic AI Solutions
                   </h3>
                   <div className="flex flex-col text-xs md:text-sm text-text-secondary leading-relaxed text-justify">
                     <p className="text-text-primary font-semibold mb-2">Hover card to reveal details:</p>
@@ -827,17 +827,17 @@ export default function AboutPage() {
             whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
             style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
-            className="group bg-[#0b1528] border border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-white/80 dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 cursor-default"
+             className="group bg-white/80 dark:bg-[#0b1528] border border-red-500/50 dark:border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-[#0b1528] dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 dark:hover:border-red-500/50 transition-all duration-500 cursor-default"
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-[#D4AF37] group-hover:text-text-primary mb-6 transition-colors duration-500">
+            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-text-primary dark:text-[#D4AF37] group-hover:text-[#D4AF37] dark:group-hover:text-text-primary mb-6 transition-colors duration-500">
               Let's Build the Future Together
             </h2>
-            <p className="text-blue-100/70 group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500">
+            <p className="text-text-secondary dark:text-blue-100/70 group-hover:text-blue-100/70 dark:group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500">
               Configure custom-trained compliance checker instances and green-planning modules for your organization today.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#D4AF37] text-[#0b1528] group-hover:bg-accent group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-accent dark:bg-[#D4AF37] text-white dark:text-[#0b1528] group-hover:bg-[#D4AF37] dark:group-hover:bg-accent group-hover:text-[#0b1528] dark:group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow"
             >
               Connect With Our AI Advisors <ChevronRight className="h-5 w-5" />
             </a>

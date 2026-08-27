@@ -97,7 +97,7 @@ export default function SolutionsPage() {
             className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6"
             style={{ fontFamily: "'Times New Roman', Times, serif" }}
           >
-            AI Solutions
+            Aptiv8 CMMS
           </motion.h1>
 
           {/* Centered description text */}
@@ -107,18 +107,18 @@ export default function SolutionsPage() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="text-sm sm:text-base md:text-lg text-white/80 max-w-2xl mx-auto leading-relaxed"
           >
-            Navigate the Built Environment lifecycle to explore how our specialized AI models optimize every stage of development, planning, and operations.
+            Empower smarter facility operations with AI-driven CMMS, integrating maintenance intelligence, IoT connectivity, and Digital Twin technologies.
           </motion.p>
         </div>
       </section>
 
       {/* LIFECYCLE HORIZONTAL JOURNEY NAVIGATOR */}
-      <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
+      {/* <section className="py-24 px-4 bg-bg-primary border-b border-border-color">
         <Reveal3D>
-          <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto"> */}
           
           {/* Stage Progress Tracker */}
-          <div className="relative flex items-center justify-between gap-4 mb-16 overflow-x-auto pb-6 scrollbar-thin">
+          {/* <div className="relative flex items-center justify-between gap-4 mb-16 overflow-x-auto pb-6 scrollbar-thin">
             {lifecycleStages.map((stage, index) => {
               const isActive = selectedStage === stage.id;
               return (
@@ -147,10 +147,10 @@ export default function SolutionsPage() {
                 </button>
               );
             })}
-          </div>
+          </div> */}
 
           {/* Active Stage Detail & Solutions Scroll */}
-          <AnimatePresence mode="wait">
+          {/* <AnimatePresence mode="wait">
             {lifecycleStages.filter(s => s.id === selectedStage).map(stage => (
               <motion.div
                 key={stage.id}
@@ -159,10 +159,10 @@ export default function SolutionsPage() {
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.4 }}
                 className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start"
-              >
+              > */}
                 
                 {/* 1. Stage Info Card */}
-                <div className="lg:col-span-1 bg-bg-secondary border border-border-color rounded-3xl overflow-hidden shadow-sm sticky top-28">
+                {/* <div className="lg:col-span-1 bg-bg-secondary border border-border-color rounded-3xl overflow-hidden shadow-sm sticky top-28">
                   <div className="h-48 overflow-hidden relative">
                     <img src={stage.image} alt={stage.title} className="w-full h-full object-cover" />
                     <div className="absolute inset-0 bg-gradient-to-t from-bg-secondary to-transparent" />
@@ -182,10 +182,10 @@ export default function SolutionsPage() {
                       <span className="font-bold text-text-primary">{stage.solutions.length} Solutions</span>
                     </div>
                   </div>
-                </div>
+                </div> */}
 
                 {/* 2 & 3. Mapped Solutions - AWS-Inspired Cards */}
-                <div className="lg:col-span-2">
+                {/* <div className="lg:col-span-2">
                   <h3 className="text-xs uppercase tracking-widest font-bold text-text-secondary mb-6 flex items-center gap-2">
                     <Layers className="h-4 w-4 text-accent" /> Available AI Modules for {stage.title}
                   </h3>
@@ -212,121 +212,12 @@ export default function SolutionsPage() {
           </AnimatePresence>
         </div>
         </Reveal3D>
-      </section>
+      </section> */}
 
-      {/* DEDICATED SDSA FEATURED LAUNCH SECTION */}
-      <section id="sdsa-launch" className="py-24 px-4 bg-bg-tertiary/30 border-b border-border-color scroll-mt-24">
-        <Reveal3D>
-          <div className="max-w-7xl mx-auto">
-            {/* Centered Section Header */}
-            <div className="text-center mb-16">
-              <div className="flex flex-wrap justify-center gap-2.5 items-center mb-4">
-                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent-glow text-accent text-xs font-semibold uppercase tracking-wider font-mono">
-                  BexAsia 2026 Exclusive Launch
-                </span>
-                <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-[#fffff] border border-[#c5a880]/50 text-[#e2c79d] text-xs font-semibold uppercase tracking-wider font-mono shadow-[0_0_15px_rgba(197,168,128,0.15)]">
-                  Co-Developed with BSD
-                </span>
-              </div>
-              <h2 className="text-3xl md:text-5xl font-bold font-display text-text-primary leading-tight">
-                Sustainability Design Smart Advisor (SDSA)
-              </h2>
-            </div>
-
-            {/* Content & Video Player Grid */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
-              
-              {/* Left Column - Detailed SDSA Copy Card */}
-              <div className="lg:col-span-7 flex flex-col">
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.6 }}
-                  whileHover={{ y: -6, scale: 1.01 }}
-                  className="p-8 md:p-10 bg-bg-secondary dark:bg-[#0b1528] border border-border-color dark:border-[#c5a880]/30 rounded-3xl flex flex-col gap-6 shadow-md hover:shadow-[0_20px_40px_rgba(239,68,68,0.1)] dark:hover:shadow-[0_20px_40px_rgba(212,175,55,0.15)] hover:border-accent dark:hover:border-[#D4AF37]/90 transition-all duration-500 group relative overflow-hidden h-full justify-between"
-                >
-                  {/* Corner glow */}
-                  <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent/5 dark:bg-[#D4AF37]/5 rounded-full blur-3xl pointer-events-none group-hover:bg-accent/10 dark:group-hover:bg-[#D4AF37]/15 transition-all duration-700" />
-                  
-                  {/* Card Heading INSIDE Card */}
-                  <div className="relative z-10">
-                    <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent dark:text-[#D4AF37] block mb-2">Platform Overview</span>
-                    <h3 className="text-xl md:text-2xl font-bold text-text-primary dark:text-white font-display mb-4">Gen AI Sustainability Co-Pilot</h3>
-                    
-                    <div className="text-text-secondary dark:text-slate-300 space-y-4 leading-[1.8] text-sm md:text-base font-sans" style={{ textAlign: 'justify' }}>
-                      <p>
-                        Aptiv8 is co-developing the Sustainability Design Smart Advisor (SDSA) with Building Systems and Diagnostics (BSD). It is a Gen AI platform grounded on Green Mark version 7 framework and its supporting references.
-                      </p>
-                      <p>
-                        Instead of searching through manuals and technical documents, architects and engineers can ask natural language questions, receive context-aware guidance, check Green Mark compliance options and generate supporting evidence. The submission to BCA’s Green Mark Certification Department is also automated.
-                      </p>
-                      <p>
-                        The SDSA platform will be a design-stage sustainability co-pilot for architects and developers, besides being a compliance checker for engineers. Our vision is to give every design team an AI Sustainability Expert that improves productivity while delivering better-performing buildings.
-                      </p>
-                    </div>
-                  </div>
-                </motion.div>
-              </div>
-
-              {/* Right Column - Premium 60s Video Player */}
-              <div className="lg:col-span-5 w-full flex flex-col">
-                <div className="relative rounded-3xl overflow-hidden border border-border-color shadow-2xl bg-bg-secondary group w-full flex items-center justify-center h-full min-h-[380px] lg:min-h-full">
-                  <video 
-                    src="/hero_video.mp4" 
-                    controls 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-[1.01]" 
-                    poster="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1000&q=80"
-                  />
-                  
-                  {/* Floating visual overlay badge */}
-                  <div className="absolute top-4 left-4 z-10 px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-white font-mono text-[9px] uppercase tracking-wider font-bold">
-                    60-Second SDSA Preview
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            {/* Launch / Demonstration Cards */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12 pt-8 border-t border-border-color/50">
-              <motion.div 
-                whileHover={{ y: -4 }}
-                className="flex items-start gap-4 p-6 bg-bg-secondary dark:bg-[#0b1528]/40 border border-border-color/60 rounded-2xl hover:border-accent dark:hover:border-[#D4AF37] transition-all duration-300"
-              >
-                <div className="p-3.5 rounded-2xl bg-accent-glow text-accent shrink-0">
-                  <Tv className="h-6 w-6" />
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-sm text-text-primary mb-1">60-Sec Showcase Video</h4>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    Watch the official launch demonstration video right here on our player preview card.
-                  </p>
-                </div>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ y: -4 }}
-                className="flex items-start gap-4 p-6 bg-bg-secondary dark:bg-[#0b1528]/40 border border-border-color/60 rounded-2xl hover:border-accent dark:hover:border-[#D4AF37] transition-all duration-300"
-              >
-                <div className="p-3.5 rounded-2xl bg-accent-glow text-accent shrink-0">
-                  <Award className="h-6 w-6 animate-pulse" />
-                </div>
-                <div>
-                  <h4 className="font-display font-bold text-sm text-text-primary mb-1">Desktop Booth Demo</h4>
-                  <p className="text-xs text-text-secondary leading-relaxed">
-                    Visit us at Booth A B21 during BexAsia 2026 for a full hands-on live desktop validation workflow.
-                  </p>
-                </div>
-              </motion.div>
-            </div>
-
-          </div>
-        </Reveal3D>
-      </section>
+      
 
       {/* HORIZONTAL TIMELINE ROADMAP OF DATA INGESTION */}
-      <section className="py-24 px-4 bg-bg-secondary overflow-hidden border-b border-border-color">
+      {/* <section className="py-24 px-4 bg-bg-secondary overflow-hidden border-b border-border-color">
         <Reveal3D>
           <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
@@ -390,9 +281,9 @@ export default function SolutionsPage() {
     duration-500
     hover:border-accent/60
   "
->
+> */}
   {/* 3D accent edge */}
-  <div
+  {/* <div
     className="
       absolute inset-0
       rounded-2xl
@@ -404,10 +295,10 @@ export default function SolutionsPage() {
       transition-all
       duration-500
     "
-  />
+  /> */}
 
   {/* Cursor/hover spotlight */}
-  <div
+  {/* <div
     className="
       absolute
       -inset-24
@@ -418,17 +309,17 @@ export default function SolutionsPage() {
       duration-700
       bg-[radial-gradient(circle,rgba(239,68,68,0.08),transparent_65%)]
     "
-  />
+  /> */}
 
   {/* Card content */}
-  <motion.div
+  {/* <motion.div
     style={{
       transformStyle: 'preserve-3d',
     }}
     className="relative z-10"
-  >
+  > */}
     {/* Number */}
-    <motion.span
+    {/* <motion.span
       className="
         text-3xl
         font-extrabold
@@ -449,10 +340,10 @@ export default function SolutionsPage() {
       }}
     >
       0{idx + 1}
-    </motion.span>
+    </motion.span> */}
 
     {/* Title */}
-    <motion.h4
+    {/* <motion.h4
       className="
         font-display
         font-bold
@@ -465,16 +356,16 @@ export default function SolutionsPage() {
       }}
     >
       {step.title}
-    </motion.h4>
+    </motion.h4> */}
 
     {/* Description */}
-    <p className="text-xs text-text-secondary leading-relaxed">
+    {/* <p className="text-xs text-text-secondary leading-relaxed">
       {step.desc}
     </p>
-  </motion.div>
+  </motion.div> */}
 
   {/* Bottom accent line */}
-  <div
+  {/* <div
     className="
       absolute
       bottom-0
@@ -488,10 +379,10 @@ export default function SolutionsPage() {
       transition-transform
       duration-500
     "
-  />
+  /> */}
 
   {/* Arrow */}
-  {idx < 3 && (
+  {/* {idx < 3 && (
     <motion.div
       className="
         hidden
@@ -519,7 +410,7 @@ export default function SolutionsPage() {
           </div>
         </div>
         </Reveal3D>
-      </section>
+      </section> */}
 
       {/* APTIV8 CMMS MODULES SECTION */}
       <section id="cmms-modules" className="py-24 px-4 bg-bg-primary border-b border-border-color scroll-mt-24">
@@ -615,7 +506,7 @@ export default function SolutionsPage() {
                 Dynamic Workflow Configuration
               </h2>
               <p className="text-text-secondary max-w-xl mx-auto text-sm leading-relaxed">
-                Visualizing the step-by-step breakdown and verification pipelines within the Aptiv8 CMMS operational matrix.
+                Visualizing the step-by-step breakdown and verification pipelines within the A8 CMMS operational matrix.
               </p>
             </div>
 

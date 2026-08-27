@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Layers, ArrowRight, LayoutGrid, CheckCircle, ChevronRight } from 'lucide-react';
+import { Layers, ArrowRight, LayoutGrid, CheckCircle, ChevronRight, Play, Video } from 'lucide-react';
 import Card from '../components/Card';
 import { svgs } from '../data/websiteData';
 import Reveal3D from '../components/Reveal3D';
@@ -26,14 +26,14 @@ export default function ProductsPage() {
       description: 'A mentor-style tool guiding project teams through SCDF fire-safety regulatory requirements, reflecting real enforcement practice rather than a literal code reading. Anchored by a former SCDF Director of Fire Safety.',
       image: 'gen_ai.png'
     },
-    {
-      id: 'open-bim-agent',
-      title: 'Gen AI Agent for Open BIM Standardized Data Management',
-      category: 'Planning & Design',
-      status: 'Proof-of-concept completed',
-      description: 'Automates mapping of native BIM data to the IFC-SG schema and validates it against Design Gateway submission requirements under CORENET X, extending to other Open BIM standards and Model Content Requirements (MCRs).',
-      image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'
-    },
+    // {
+    //   id: 'open-bim-agent',
+    //   title: 'Gen AI Agent for Open BIM Standardized Data Management',
+    //   category: 'Planning & Design',
+    //   status: 'Proof-of-concept completed',
+    //   description: 'Automates mapping of native BIM data to the IFC-SG schema and validates it against Design Gateway submission requirements under CORENET X, extending to other Open BIM standards and Model Content Requirements (MCRs).',
+    //   image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'
+    // },
     {
       id: 'pe-ge-checker-mentor',
       title: 'Gen AI Mentor for Professional Engineers, Geotechnical Engineers and Accredited Checkers',
@@ -90,10 +90,10 @@ export default function ProductsPage() {
     // Built Environment — Operations & Maintenance
     {
       id: 'aptiv8-cortex-cmms',
-      title: 'Aptiv8 — Agentic AI-Powered CMMS Platform',
+      title: 'A8 — Agentic AI-Powered CMMS Platform',
       category: 'Operations & Maintenance',
       status: 'Advisory roadmap completed',
-      description: 'Adds an agentic AI layer to Aptiv8 CMMS already live across 200+ sites and 2,000+ users. An orchestrator directs nine specialist agents — work-order triage, asset onboarding, vendor/inventory reconciliation, compliance & certification tracking, predictive maintenance, energy monitoring, technician troubleshooting copilot, multilingual document parsing, and a conversational FM assistant — each with a human-approval checkpoint by default. Hosted within Aptiv8\'s Singapore-based, CSA-STAR-certified AWS environment.',
+      description: 'Adds an agentic AI layer to A8 CMMS already live across 200+ sites and 2,000+ users. An orchestrator directs nine specialist agents — work-order triage, asset onboarding, vendor/inventory reconciliation, compliance & certification tracking, predictive maintenance, energy monitoring, technician troubleshooting copilot, multilingual document parsing, and a conversational FM assistant — each with a human-approval checkpoint by default. Hosted within Aptiv8\'s Singapore-based, CSA-STAR-certified AWS environment.',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
     },
     {
@@ -138,22 +138,22 @@ export default function ProductsPage() {
     },
 
     // Built Environment — Real Estate
-    {
-      id: 'strata-assistant',
-      title: 'Strata Title & Maintenance Management Assistant',
-      category: 'Real Estate',
-      status: 'Exploratory stage',
-      description: 'Supports Managing Agents with drafting notices/correspondence, tracking maintenance schedules and by-law compliance, and resolving common subsidiary-proprietor queries. Conducted with a leading Managing Agent.',
-      image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'lease-assistant',
-      title: 'Lease Management Assistant (incorporating Green Lease and Out-fitting)',
-      category: 'Real Estate',
-      status: 'Seeking partners',
-      description: 'Tracks landlord/tenant obligations, flags upcoming lease events, and supports Green Lease clause administration.',
-      image: '/lead.png'
-    },
+    // {
+    //   id: 'strata-assistant',
+    //   title: 'Strata Title & Maintenance Management Assistant',
+    //   category: 'Real Estate',
+    //   status: 'Exploratory stage',
+    //   description: 'Supports Managing Agents with drafting notices/correspondence, tracking maintenance schedules and by-law compliance, and resolving common subsidiary-proprietor queries. Conducted with a leading Managing Agent.',
+    //   image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80'
+    // },
+    // {
+    //   id: 'lease-assistant',
+    //   title: 'Lease Management Assistant (incorporating Green Lease and Out-fitting)',
+    //   category: 'Real Estate',
+    //   status: 'Seeking partners',
+    //   description: 'Tracks landlord/tenant obligations, flags upcoming lease events, and supports Green Lease clause administration.',
+    //   image: '/lead.png'
+    // },
 
     // Other Sectors — Customer Service, Telco, Hospitality, Aerospace
     {
@@ -306,6 +306,100 @@ export default function ProductsPage() {
         </Reveal3D>
       </section>
 
+      {/* VIDEO SHOWCASE SECTION */}
+      <section id="other-sectors" className="py-24 px-4 bg-bg-primary border-t border-border-color scroll-mt-24">
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="text-accent text-xs font-semibold uppercase tracking-wider mb-3 block font-display">
+                AI Solutions in Action
+              </span>
+              <h2 className="text-3xl md:text-4xl font-bold font-display text-text-primary mb-4">
+                AI Solutions for other Sectors
+              </h2>
+              <p className="text-text-secondary max-w-xl mx-auto text-sm leading-relaxed">
+                Experience our specialized generative AI workflows and platform features in real-world scenarios.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {[
+                {
+                  title: "GenAI DC Design",
+                  video: "/DC_design.mp4",
+                  poster: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+                  category: "Infrastructure & Design",
+                  description: "Intelligent workflows automating data center layouts, cooling simulations, and validation against strict engineering codes."
+                },
+                {
+                  title: "GenAI for Construction Contract Management",
+                  video: "/construction.mp4",
+                  poster: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+                  category: "Operations & Procurement",
+                  description: "Automated analysis, risk screening, and regulatory mapping for construction agreements, tenders, and building codes."
+                },
+                {
+                  title: "GenAI for MRO",
+                  video: "/MRO.mp4",
+                  poster: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+                  category: "Maintenance & Operations",
+                  description: "Next-generation MRO co-pilot helping technical teams parse manuals, draft reports, and troubleshoot machinery on-site."
+                },
+                {
+                  title: "GenAI for Telco",
+                  video: "/Telco.mp4",
+                  poster: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=800&q=80",
+                  category: "Telecommunications & Field Support",
+                  description: "Supporting field engineers and network designers with automated document search and interactive network topology queries."
+                }
+              ].map((showcase, index) => (
+                <div
+                  key={index}
+                  className="group relative bg-gradient-to-br from-bg-secondary via-bg-secondary to-bg-tertiary/40 border border-border-color/80 hover:border-accent/60 rounded-3xl overflow-hidden shadow-lg hover:shadow-[0_20px_40px_rgba(239,68,68,0.06)] hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col justify-between"
+                >
+                  <div>
+                    {/* Video Player */}
+                    <div className="relative aspect-video bg-black overflow-hidden border-b border-border-color/50">
+                      <video
+                        src={showcase.video}
+                        controls
+                        preload="metadata"
+                        className="w-full h-full object-cover"
+                        poster={showcase.poster}
+                      />
+                      <div className="absolute top-4 left-4 z-10 px-2.5 py-1 rounded-xl bg-black/60 backdrop-blur-md border border-white/10 text-white font-mono text-[9px] uppercase tracking-wider font-bold flex items-center gap-1.5">
+                        <Video className="h-3 w-3 text-accent" /> Video Demo
+                      </div>
+                    </div>
+
+                    {/* Content */}
+                    <div className="p-6">
+                      <span className="text-[10px] font-mono font-bold uppercase tracking-wider text-accent block mb-2">
+                        {showcase.category}
+                      </span>
+                      <h3 className="text-xl font-bold font-display text-text-primary mb-3 group-hover:text-accent transition-colors duration-300">
+                        {showcase.title}
+                      </h3>
+                      <p className="text-sm text-text-secondary leading-relaxed">
+                        {showcase.description}
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Subtle Interactive Footer */}
+                  <div className="px-6 pb-6 pt-2 flex items-center justify-between border-t border-border-color/30">
+                    <span className="text-xs font-semibold text-text-secondary group-hover:text-accent transition-colors">
+                      Interactive Showcase
+                    </span>
+                    <Play className="h-4 w-4 text-text-secondary/50 group-hover:text-accent group-hover:scale-110 transition-all duration-300" />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal3D>
+      </section>
+
       {/* UNDERLYING PLATFORM / TECHNOLOGY SECTION */}
       <section className="py-24 px-4 bg-bg-secondary border-t border-b border-border-color">
         <Reveal3D>
@@ -416,17 +510,17 @@ export default function ProductsPage() {
             whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
             transition={{ type: "spring", stiffness: 150, damping: 15 }}
             style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
-            className="group bg-[#0b1528] border border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-white/80 dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 cursor-default"
+            className="group bg-white/80 dark:bg-[#0b1528] border border-red-500/50 dark:border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-[#0b1528] dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 dark:hover:border-red-500/50 transition-all duration-500 cursor-default"
           >
-            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-[#D4AF37] group-hover:text-text-primary mb-6 transition-colors duration-500">
+            <h2 className="text-4xl md:text-5xl font-extrabold font-display text-text-primary dark:text-[#D4AF37] group-hover:text-[#D4AF37] dark:group-hover:text-text-primary mb-6 transition-colors duration-500">
               Custom Local Dataset Training
             </h2>
-            <p className="text-blue-100/70 group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500">
+            <p className="text-text-secondary dark:text-blue-100/70 group-hover:text-blue-100/70 dark:group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500">
               We provide private sandboxed deployments configured with custom datasets, giving architecture firms full model data sovereignty.
             </p>
             <a
               href="/contact"
-              className="inline-flex items-center gap-2 px-8 py-4 bg-[#D4AF37] text-[#0b1528] group-hover:bg-accent group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow"
+              className="inline-flex items-center gap-2 px-8 py-4 bg-accent dark:bg-[#D4AF37] text-white dark:text-[#0b1528] group-hover:bg-[#D4AF37] dark:group-hover:bg-accent group-hover:text-[#0b1528] dark:group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow"
             >
               Request Sandbox Trial <ChevronRight className="h-5 w-5" />
             </a>

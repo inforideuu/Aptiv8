@@ -19,10 +19,10 @@ export default function ProjectsPage() {
   const projectsData = [
     {
       id: 'a8-ai-powered-cmms',
-      title: 'Aptiv8 AI Powered CMMS',
+      title: 'A8 AI Powered CMMS',
       category: 'Built Environment',
       status: 'Cost Saving',
-      description: 'Aptiv8\'s Computerized Maintenance Management System, empowering data-driven transition for the advanced Aptiv8 AI Powered CMMS asset lifecycle.',
+      description: 'Aptiv8\'s Computerized Maintenance Management System, empowering data-driven transition for the advanced A8 AI Powered CMMS asset lifecycle.',
       clientIndustry: 'Government (BCA, JTC, HDB), Data Centre, Building (TEL, XJE, ELTE, RP, Tampines Express) Contractors (MURP, Lum Chang)',
       keyFeatures: 'Analyzing maintenance documents, pilot projects proposed for technology reference identification',
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
@@ -72,7 +72,7 @@ export default function ProjectsPage() {
       title: 'AI-Powered CMMS',
       category: 'Built Environment',
       status: 'High Performance',
-      description: 'Advanced version process of Aptiv8 AI Powered CMMS on a wider IoT platform, with integration of Real Time and Thermal Comfort Management Corporation.',
+      description: 'Advanced version process of A8 AI Powered CMMS on a wider IoT platform, with integration of Real Time and Thermal Comfort Management Corporation.',
       clientIndustry: 'Built Environment / Facilities Management (FM)',
       keyFeatures: 'When on the cloud. No alter where now considered value to pipeline',
       image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'
@@ -768,37 +768,6 @@ export default function ProjectsPage() {
     </div>
   </Reveal3D>
 </section>
-
-      {/* 3. CALL TO ACTION BANNER */}
-      <section className="py-12 px-4 mt-12">
-        <Reveal3D>
-          <motion.div
-            whileHover={{ rotateX: 6, rotateY: -6, scale: 1.01 }}
-            transition={{ type: "spring", stiffness: 150, damping: 15 }}
-            style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
-            className="group bg-[#0b1528] border border-[#c5a880]/50 rounded-[32px] p-10 md:p-16 max-w-4xl mx-auto shadow-2xl relative overflow-hidden hover:bg-white/80 dark:hover:bg-slate-900/60 hover:shadow-[0_30px_60px_rgba(239,68,68,0.15)] hover:border-red-500/50 transition-all duration-500 cursor-default"
-          >
-            {/* Background pattern */}
-            <div className="absolute left-0 bottom-0 top-0 w-1/4 opacity-[0.05] pointer-events-none bg-[url('https://images.unsplash.com/photo-1542362567-b07eac79094d?auto=format&fit=crop&w=400&q=80')] bg-no-repeat bg-left bg-cover" />
-            <div className="absolute right-0 bottom-0 top-0 w-1/4 opacity-[0.05] pointer-events-none bg-[linear-gradient(45deg,#f43f5e_1px,transparent_1px)] bg-[size:12px_12px]" />
-
-            <div className="max-w-2xl mx-auto relative z-10 space-y-6">
-              <h2 className="text-4xl md:text-5xl font-extrabold font-display text-[#D4AF37] group-hover:text-text-primary mb-6 transition-colors duration-500 text-center">
-                Bring Your Domain Expertise
-              </h2>
-              <p className="text-blue-100/70 group-hover:text-text-secondary max-w-md mx-auto mb-8 leading-relaxed text-sm transition-colors duration-500 text-center">
-                We co-develop custom AI solutions for complex domains, designed to solve real-world challenges and create impact.
-              </p>
-              <a
-                href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-[#D4AF37] text-[#0b1528] group-hover:bg-accent group-hover:text-white rounded-full font-semibold transition-all duration-500 shadow-lg group-hover:shadow-accent-glow ml-40"
-              >
-                Propose a Co-Development Project <ChevronRight className="h-5 w-5" />
-              </a>
-            </div>
-          </motion.div>
-        </Reveal3D>
-      </section>
 
     </div>
   );

@@ -42,15 +42,7 @@ export default function IndustriesPage() {
       solutions: ['AI-Enhanced CMMS', 'Aptiv8 Cortex'],
       caseStudy: 'Reduced commercial chiller downtime by 42%, saving $160K in utilities.'
     },
-    {
-      id: 'infrastructure',
-      name: 'Infrastructure',
-      image: svgs.infrastructure,
-      overview: 'Monitoring public roadways, bridges, transit lines, and deep foundations using continuous AI telemetry.',
-      challenges: 'Long inspection intervals, micro-crack fatigue detection, and coordinate data streams from public sensors.',
-      solutions: ['Aptiv8 Cortex', 'Open BIM AI'],
-      caseStudy: 'Real-time fatigue updates configured on concrete highway supports.'
-    },
+
     {
       id: 'real-estate',
       name: 'Real Estate',
@@ -66,7 +58,7 @@ export default function IndustriesPage() {
       image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
       overview: 'Predictive thermal management and continuous telemetry mapping for enterprise server farms.',
       challenges: 'High power usage effectiveness (PUE), cooling equipment failures, and strict security compliance requirements.',
-      solutions: ['Aptiv8 Cortex', 'AI-Enhanced CMMS'],
+      solutions: ['A8 Cortex', 'AI-Enhanced CMMS'],
       caseStudy: 'Secured smart cooling adjustments mapping server loads, decreasing PUE by 12%.'
     }
   ];

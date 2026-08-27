@@ -13,8 +13,15 @@ export default function ContactPage() {
   const [loadingAnalysis, setLoadingAnalysis] = useState(false);
 
   // Meeting Booking State
-  const [selectedDate, setSelectedDate] = useState('');
-  const [selectedTime, setSelectedTime] = useState('');
+  const [bookingForm, setBookingForm] = useState({
+    name: '',
+    company: '',
+    email: '',
+    phone: '',
+    date: '',
+    time: '',
+    details: ''
+  });
   const [booked, setBooked] = useState(false);
 
   // FAQ Accordion State
@@ -70,7 +77,8 @@ export default function ContactPage() {
 
   const handleBookMeeting = (e) => {
     e.preventDefault();
-    if (selectedDate && selectedTime) {
+    const { name, company, email, phone, date, time } = bookingForm;
+    if (name && company && email && phone && date && time) {
       setBooked(true);
     }
   };
@@ -123,132 +131,12 @@ export default function ContactPage() {
       {/* CORE CONSULTATION COLUMNS */}
       <section className="py-20 px-4 bg-bg-primary border-b border-border-color">
         <Reveal3D>
-          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch">
           
-          {/* LEFT: Project Requirement Analyzer Column */}
-          <div className="lg:col-span-7 flex flex-col gap-8">
-            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5">
-              <h2 className="text-2xl font-bold font-display text-text-primary mb-6 flex items-center gap-2">
-              <Sparkles className="h-6 w-6 text-accent animate-pulse" /> Project Requirement Analyzer
-            </h2>
-            <p className="text-xs text-text-secondary mb-8 leading-relaxed">
-              Select your development parameters to generate an automated recommendation brief.
-            </p>
-
-            <form onSubmit={handleAnalyze} className="flex flex-col gap-6">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                
-                {/* Industry Selector */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-text-primary uppercase tracking-wider">Industry</label>
-                  <select
-                    value={industry}
-                    onChange={(e) => setIndustry(e.target.value)}
-                    className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
-                    required
-                  >
-                    <option value="">Select Industry</option>
-                    <option value="Architecture">Architecture</option>
-                    <option value="Engineering">Engineering</option>
-                    <option value="Construction">Construction</option>
-                    <option value="Facilities Management">Facilities Management</option>
-                    <option value="Real Estate">Real Estate</option>
-                  </select>
-                </div>
-
-                {/* Budget Selector */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-text-primary uppercase tracking-wider">Budget Range</label>
-                  <select
-                    value={budget}
-                    onChange={(e) => setBudget(e.target.value)}
-                    className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
-                    required
-                  >
-                    <option value="">Select Budget</option>
-                    <option value="Under $50K">Under $50K</option>
-                    <option value="$50K - $150K">$50K - $150K</option>
-                    <option value="Over $150K">Over $150K</option>
-                  </select>
-                </div>
-
-                {/* Timeline Selector */}
-                <div className="flex flex-col gap-2">
-                  <label className="text-xs font-bold text-text-primary uppercase tracking-wider">Target Timeline</label>
-                  <select
-                    value={timeline}
-                    onChange={(e) => setTimeline(e.target.value)}
-                    className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
-                    required
-                  >
-                    <option value="">Select Timeline</option>
-                    <option value="Under 3 Months">Under 3 Months</option>
-                    <option value="3 - 6 Months">3 - 6 Months</option>
-                    <option value="Over 6 Months">Over 6 Months</option>
-                  </select>
-                </div>
-
-              </div>
-
-              {/* Goals Textarea */}
-              <div className="flex flex-col gap-2">
-                <label className="text-xs font-bold text-text-primary uppercase tracking-wider">Specific Project Goals</label>
-                <textarea
-                  value={projectGoals}
-                  onChange={(e) => setProjectGoals(e.target.value)}
-                  placeholder="E.g., Automate Green Mark compliance auditing, or trace thermal sensors into active twins..."
-                  className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-4 text-xs h-28 focus:outline-none focus:border-accent resize-none"
-                  required
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-4 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 cursor-pointer text-xs uppercase tracking-wider"
-              >
-                Analyze Requirements <Sparkles className="h-4 w-4" />
-              </button>
-            </form>
-
-            {/* Analysis Results Display */}
-            <AnimatePresence>
-              {loadingAnalysis && (
-                <div className="mt-8 text-center py-6 text-xs text-text-secondary animate-pulse">
-                  Analyzing specifications against Aptiv8 model configurations...
-                </div>
-              )}
-
-              {analysisResult && (
-                <motion.div
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  className="mt-8 p-6 bg-bg-primary border border-border-color rounded-2xl flex flex-col gap-4 text-xs"
-                >
-                  <h3 className="font-display font-bold text-sm text-accent flex items-center gap-1.5">
-                    <CheckCircle2 className="h-4.5 w-4.5" /> Generated AI Recommendation Brief
-                  </h3>
-                  <div className="flex flex-col gap-2">
-                    <p><strong>Primary Integration:</strong> {analysisResult.recommendation}</p>
-                    <p><strong>Estimated Sandbox Setup:</strong> {analysisResult.estSetupTime}</p>
-                    <p><strong>Deployment Standard:</strong> {analysisResult.sovereignty}</p>
-                  </div>
-                  <div className="pt-4 border-t border-border-color/60">
-                    <strong className="text-text-primary block mb-2 uppercase tracking-wide">Suggested Components:</strong>
-                    <ul className="flex flex-col gap-1.5 pl-4 list-disc text-text-secondary">
-                      {analysisResult.components.map((comp, idx) => (
-                        <li key={idx}>{comp}</li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
-
-            </div>
-
+          {/* LEFT: Corporate Office & Map Column */}
+          <div className="lg:col-span-6 flex flex-col gap-8">
             {/* Corporate Office details moved to left column below analyzer */}
-            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs flex flex-col gap-4 hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5">
+            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs flex flex-col gap-4 hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5 h-full justify-between">
               <h3 className="font-display font-bold text-sm text-text-primary">Corporate Office</h3>
               <div className="flex items-start gap-3 text-text-secondary">
                 <MapPin className="h-5 w-5 text-accent shrink-0 mt-0.5" />
@@ -268,69 +156,10 @@ export default function ContactPage() {
               </div>
             </div>
 
-          </div>
-
-          {/* RIGHT: Book a Meeting & Map Column */}
-          <div className="lg:col-span-5 flex flex-col gap-8">
-
-            {/* Book a Meeting slot */}
-            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5">
-              <h3 className="font-display font-bold text-sm text-text-primary mb-4 flex items-center gap-2">
-                <Calendar className="h-5 w-5 text-accent" /> Book Integration Consultation
-              </h3>
-              <p className="text-text-secondary mb-6 leading-relaxed">
-                Choose a date and SGT time slot to review structural verification scopes with our engineering advisors.
-              </p>
-              
-              {!booked ? (
-                <form onSubmit={handleBookMeeting} className="flex flex-col gap-4">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="flex flex-col gap-2">
-                      <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Date</label>
-                      <input
-                        type="date"
-                        value={selectedDate}
-                        onChange={(e) => setSelectedDate(e.target.value)}
-                        className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
-                        required
-                      />
-                    </div>
-                    <div className="flex flex-col gap-2">
-                      <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Time</label>
-                      <select
-                        value={selectedTime}
-                        onChange={(e) => setSelectedTime(e.target.value)}
-                        className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
-                        required
-                      >
-                        <option value="">Select Time</option>
-                        <option value="09:00 AM">09:00 AM</option>
-                        <option value="11:00 AM">11:00 AM</option>
-                        <option value="02:00 PM">02:00 PM</option>
-                        <option value="04:00 PM">04:00 PM</option>
-                      </select>
-                    </div>
-                  </div>
-                  <button
-                    type="submit"
-                    className="w-full py-3.5 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 cursor-pointer text-xs uppercase tracking-wider"
-                  >
-                    Confirm Booking <Send className="h-4 w-4" />
-                  </button>
-                </form>
-              ) : (
-                <div className="p-4 bg-accent/5 border border-accent/20 rounded-xl text-center text-text-primary font-semibold flex flex-col items-center gap-2">
-                  <CheckCircle2 className="h-8 w-8 text-accent animate-bounce" />
-                  <span>Consultation Booked for {selectedDate} at {selectedTime}!</span>
-                  <span className="text-[10px] text-text-secondary font-normal">A confirmation calendar invite has been sent to your email.</span>
-                </div>
-              )}
-            </div>
-
             {/* Office Location Map card */}
-            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs flex flex-col gap-4 hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5">
+            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs flex flex-col gap-4 hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5 h-full">
               <h3 className="font-display font-bold text-sm text-text-primary">Office Location Map</h3>
-              <div className="h-48 rounded-2xl overflow-hidden border border-border-color relative shadow-inner">
+              <div className="h-48 rounded-2xl overflow-hidden border border-border-color relative shadow-inner flex-grow">
                 <iframe
                   title="Aptiv8 Office Map"
                   src="https://maps.google.com/maps?q=8%20Burn%20Rd%2C%20%2304-08%20Trivex%2C%20Singapore%20369977&t=&z=15&ie=UTF8&iwloc=&output=embed"
@@ -343,6 +172,132 @@ export default function ContactPage() {
                 ></iframe>
               </div>
             </div>
+
+          </div>
+
+          {/* RIGHT: Book a Meeting Column */}
+          <div className="lg:col-span-6 flex flex-col gap-8">
+
+            {/* Book a Meeting slot */}
+            <div className="bg-bg-secondary border border-border-color rounded-[32px] p-8 shadow-sm text-xs hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 transform hover:-translate-y-1.5">
+              <h3 className="font-display font-bold text-sm text-text-primary mb-4 flex items-center gap-2">
+                <Calendar className="h-5 w-5 text-accent" /> Book Integration Consultation
+              </h3>
+              <p className="text-text-secondary mb-6 leading-relaxed">
+                Choose a date and SGT time slot to review structural verification scopes with our engineering advisors.
+              </p>
+              
+              {!booked ? (
+                <form onSubmit={handleBookMeeting} className="flex flex-col gap-4">
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Full Name</label>
+                    <input
+                      type="text"
+                      value={bookingForm.name}
+                      onChange={(e) => setBookingForm({ ...bookingForm, name: e.target.value })}
+                      className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
+                      placeholder="John Doe"
+                      required
+                    />
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Company Name</label>
+                      <input
+                        type="text"
+                        value={bookingForm.company}
+                        onChange={(e) => setBookingForm({ ...bookingForm, company: e.target.value })}
+                        className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
+                        placeholder="Company Ltd"
+                        required
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Work Email</label>
+                      <input
+                        type="email"
+                        value={bookingForm.email}
+                        onChange={(e) => setBookingForm({ ...bookingForm, email: e.target.value })}
+                        className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
+                        placeholder="john@company.com"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Phone Number</label>
+                      <input
+                        type="tel"
+                        value={bookingForm.phone}
+                        onChange={(e) => setBookingForm({ ...bookingForm, phone: e.target.value })}
+                        className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
+                        placeholder="+65 1234 5678"
+                        required
+                      />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Date</label>
+                      <input
+                        type="date"
+                        value={bookingForm.date}
+                        onChange={(e) => setBookingForm({ ...bookingForm, date: e.target.value })}
+                        className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
+                        required
+                      />
+                    </div>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Time Slot</label>
+                    <select
+                      value={bookingForm.time}
+                      onChange={(e) => setBookingForm({ ...bookingForm, time: e.target.value })}
+                      className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
+                      required
+                    >
+                      <option value="">Select Time</option>
+                      <option value="09:00 AM">09:00 AM</option>
+                      <option value="11:00 AM">11:00 AM</option>
+                      <option value="02:00 PM">02:00 PM</option>
+                      <option value="04:00 PM">04:00 PM</option>
+                    </select>
+                  </div>
+                  <div className="flex flex-col gap-2">
+                    <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Consultation Details</label>
+                    <textarea
+                      value={bookingForm.details}
+                      onChange={(e) => setBookingForm({ ...bookingForm, details: e.target.value })}
+                      placeholder="Tell us more about your project needs..."
+                      className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs h-20 focus:outline-none focus:border-accent resize-none"
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    className="w-full py-3.5 bg-accent text-white font-semibold rounded-xl hover:bg-accent-hover transition-colors flex items-center justify-center gap-2 cursor-pointer text-xs uppercase tracking-wider"
+                  >
+                    Confirm Booking <Send className="h-4 w-4" />
+                  </button>
+                </form>
+              ) : (
+                <div className="p-5 bg-accent/5 border border-accent/20 rounded-xl text-left text-text-primary font-semibold flex flex-col gap-3">
+                  <div className="flex flex-col items-center gap-2 text-center">
+                    <CheckCircle2 className="h-8 w-8 text-accent animate-bounce" />
+                    <span className="text-sm">Consultation Booked Successfully!</span>
+                  </div>
+                  <div className="border-t border-border-color/60 pt-3 text-xs text-text-secondary flex flex-col gap-1.5">
+                    <p><strong>Name:</strong> {bookingForm.name}</p>
+                    <p><strong>Company:</strong> {bookingForm.company}</p>
+                    <p><strong>Email:</strong> {bookingForm.email}</p>
+                    <p><strong>Phone:</strong> {bookingForm.phone}</p>
+                    <p><strong>Date & Time:</strong> {bookingForm.date} at {bookingForm.time}</p>
+                    {bookingForm.details && <p><strong>Details:</strong> {bookingForm.details}</p>}
+                  </div>
+                  <span className="text-[10px] text-text-secondary font-normal text-center mt-2">A confirmation calendar invite has been sent to your email.</span>
+                </div>
+              )}
+            </div>
+
+            
 
           </div>
 

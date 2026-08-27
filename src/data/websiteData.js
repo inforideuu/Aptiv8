@@ -21,7 +21,7 @@ export const svgs = {
   // Industries
   architecture: 'https://images.unsplash.com/photo-1600585154526-990dced4db0d?auto=format&fit=crop&w=800&q=80',
   engineering: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80',
-  infrastructure: 'https://images.unsplash.com/photo-1473163928189-364b2c4e1135?auto=format&fit=crop&w=800&q=80',
+  // infrastructure: 'https://images.unsplash.com/photo-1473163928189-364b2c4e1135?auto=format&fit=crop&w=800&q=80',
   dataCenters: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80',
 };
 
@@ -47,55 +47,43 @@ export const featuredSolutions = [
     description: 'Guiding project teams through SCDF fire-safety regulatory requirements, reflecting real enforcement practice. Anchored by former SCDF Director.',
     image: svgs.fireSafety,
   },
-  {
-    id: 'bim-data',
-    title: 'Gen AI Agent for Open BIM Data Management',
-    category: 'Planning & Design',
-    description: 'Automates mapping of native BIM data to the IFC-SG schema and validates it against Design Gateway submission requirements under CORENET X.',
-    image: svgs.bimData,
-  },
-  {
-    id: 'bid-prep',
-    title: 'AI Assistant for Bid & Tender Evaluation',
-    category: 'Pre-Construction',
-    description: 'Helps contractors assemble compliant, competitive bids and helps clients/consultants evaluate submissions fairly.',
-    image: svgs.bidPrep,
-  },
-  {
-    id: 'spec-manager',
-    title: 'AI Assistant for Managing Specifications',
-    category: 'Pre-Construction',
-    description: 'Helps draft, cross-check and maintain construction and FM specifications, flagging inconsistencies.',
-    image: svgs.specManager,
-  },
-  {
-    id: 'cmms',
-    title: 'Aptiv8 — Agentic AI-Powered CMMS',
-    category: 'Operations & Maintenance',
-    description: 'Adds an orchestrator directing nine specialist AI agents within Aptiv8\'s Singapore-based, CSA-STAR-certified AWS environment.',
-    image: svgs.cmms,
-  },
-  {
-    id: 'cortex',
-    title: 'Gen AI Integration with CMMS',
-    category: 'Operations & Maintenance',
-    description: 'Dynamic dashboard, natural-language fault reporting, and an AI knowledge-base assistant for field technicians.',
-    image: svgs.cortex,
-  },
-  {
-    id: 'strata',
-    title: 'Strata Title & Maintenance Assistant',
-    category: 'Real Estate',
-    description: 'Supports Managing Agents with drafting correspondence, tracking maintenance schedules, and bylaw compliance.',
-    image: svgs.strata,
-  },
-  {
-    id: 'lease',
-    title: 'Lease Management Assistant',
-    category: 'Real Estate',
-    description: 'Tracks landlord/tenant obligations, flags upcoming lease events, and supports efficient Green Lease clause administration.',
-    image: '/lead.png',
-  },
+  
+  // {
+  //   id: 'bid-prep',
+  //   title: 'AI Assistant for Bid & Tender Evaluation',
+  //   category: 'Pre-Construction',
+  //   description: 'Helps contractors assemble compliant, competitive bids and helps clients/consultants evaluate submissions fairly.',
+  //   image: svgs.bidPrep,
+  // },
+  // {
+  //   id: 'spec-manager',
+  //   title: 'AI Assistant for Managing Specifications',
+  //   category: 'Pre-Construction',
+  //   description: 'Helps draft, cross-check and maintain construction and FM specifications, flagging inconsistencies.',
+  //   image: svgs.specManager,
+  // },
+  // {
+  //   id: 'cmms',
+  //   title: 'Aptiv8 — Agentic AI-Powered CMMS',
+  //   category: 'Operations & Maintenance',
+  //   description: 'Adds an orchestrator directing nine specialist AI agents within Aptiv8\'s Singapore-based, CSA-STAR-certified AWS environment.',
+  //   image: svgs.cmms,
+  // },
+  // {
+  //   id: 'cortex',
+  //   title: 'Gen AI Integration with CMMS',
+  //   category: 'Operations & Maintenance',
+  //   description: 'Dynamic dashboard, natural-language fault reporting, and an AI knowledge-base assistant for field technicians.',
+  //   image: svgs.cortex,
+  // },
+  // {
+  //   id: 'strata',
+  //   title: 'Strata Title & Maintenance Assistant',
+  //   category: 'Real Estate',
+  //   description: 'Supports Managing Agents with drafting correspondence, tracking maintenance schedules, and bylaw compliance.',
+  //   image: svgs.strata,
+  // },
+  
 ];
 
 export const bentoProducts = [
@@ -122,7 +110,7 @@ export const bentoProducts = [
   },
   {
     id: 'bento-4',
-    title: 'Aptiv8 Agentic CMMS',
+    title: 'A8 Agentic CMMS',
     description: 'Nine specialist agents orchestrating work-orders, compliance checklists, and troubleshooting.',
     image: svgs.cortex,
     size: 'md',
@@ -135,12 +123,11 @@ export const lifecycleStages = [
     name: 'Planning & Design',
     description: 'Establish design intent, check initial zoning compliance, and run carbon optimizations.',
     products: [
-      'Gen AI Chatbot & Assistant for Regulatory and Codes Compliance',
-      'Gen AI Specialist Advisor for Fire Safety and Protection Compliance',
-      'Gen AI Agent for Open BIM Standardized Data Management',
-      'Gen AI Mentor for Professional Engineers, Geotechnical Engineers and Accredited Checkers',
-      'GreenSIP — Green Mark Sustainability Intelligence Platform',
-      'Sustainability Design Smart Advisor (SDSA)'
+      { name: 'Data Centre Design Assistant (Akira)', status: 'Deployed' },
+      { name: 'Gen AI Chatbot & Assistant for Regulatory and Codes Compliance', status: 'POC Completed' },
+      { name: 'Sustainability Design Smart Advisor (SDSA)', status: 'In Development' },
+      { name: 'Gen AI Specialist Advisor for Fire Safety and Protection Compliance', status: 'Exploring / POC' },
+      { name: 'Gen AI Mentor for Professional Engineers, Geotechnical Engineers and Accredited Checkers', status: 'Seeking Partners' }
     ],
     image: svgs.planning,
   },
@@ -149,8 +136,9 @@ export const lifecycleStages = [
     name: 'Pre-Construction',
     description: 'Prepare accurate tender documentation, align models, and evaluate initial bids.',
     products: [
-      'AI Assistant for Bid Preparation & Tender Evaluation',
-      'AI Assistant for Managing Specifications'
+      { name: 'AI Assistant for Bid Preparation', status: 'Emerging Solution' },
+      { name: 'AI Assistant for Tender Evaluation', status: 'Emerging Solution' },
+      { name: 'AI Assistant for Managing Specifications', status: 'Deployed' }
     ],
     image: svgs.preCon,
   },
@@ -159,7 +147,8 @@ export const lifecycleStages = [
     name: 'Construction',
     description: 'Track material properties, coordinate works, and monitor structural concrete fatigue.',
     products: [
-      'Site Supervisor / Manager Assistant'
+      { name: 'AI-Powered Contract Lifecycle Management', status: 'Emerging Solution' },
+      { name: 'Site Supervisor / Manager Assistant', status: 'Deployed' }
     ],
     image: svgs.construction,
   },
@@ -168,12 +157,12 @@ export const lifecycleStages = [
     name: 'Operations & Maintenance',
     description: 'Manage physical structures, coordinate reactive repairs, and automate equipment status checks.',
     products: [
-      'Aptiv8 — Agentic AI-Powered CMMS Platform',
-      'Gen AI Integration with CMMS',
-      'Aptiv8 Co-Pilots for Smart Energy Management and Thermal Comfort Optimization',
-      'Dragonfly — Robotic Mosquito Controller',
-      'MRO AI (Aeronautics proof-of-concept)',
-      'AI Assistant for SOR Pricing and Bid Preparation'
+      { name: 'A8 — Agentic AI-Powered CMMS Platform', status: 'Deployed' },
+      { name: 'Gen AI Integration with CMMS', status: 'Deployed' },
+      { name: 'A8 Co-Pilots for Smart Energy Management and Thermal Comfort Optimization', status: 'In Development' },
+      { name: 'Dragonfly — Robotic Mosquito Controller', status: 'Deployed' },
+      { name: 'MRO AI (Aeronautics proof-of-concept)', status: 'POC Completed' },
+      { name: 'AI Assistant for SOR Pricing and Bid Preparation', status: 'In Development' }
     ],
     image: svgs.operations,
   },
@@ -182,8 +171,8 @@ export const lifecycleStages = [
     name: 'Real Estate',
     description: 'Coordinate tenant leases, occupancy forecasts, and complex strata governance audits.',
     products: [
-      'Strata Title & Maintenance Management Assistant',
-      'Lease Management Assistant'
+      { name: 'Strata Title & Maintenance Management Assistant', status: 'Deployed' },
+      { name: 'Lease Management Assistant', status: 'In Development' }
     ],
     image: svgs.realEstate,
   },
@@ -194,7 +183,7 @@ export const industries = [
   { name: 'Engineering', image: svgs.engineering },
   { name: 'Construction', image: svgs.construction },
   { name: 'Facilities Management', image: svgs.operations },
-  { name: 'Infrastructure', image: svgs.infrastructure },
+  // { name: 'Infrastructure', image: svgs.infrastructure },
   { name: 'Real Estate', image: svgs.realEstate },
   { name: 'Data Centers', image: svgs.dataCenters },
 ];
@@ -211,7 +200,7 @@ export const caseStudies = [
   {
     id: 'case-2',
     problem: 'An industrial property portfolio faced high facility operational downtime and rising energy consumption.',
-    solution: 'Configured AI-Enhanced CMMS paired with real-time Aptiv8 Cortex predictive maintenance sensors.',
+    solution: 'Configured AI-Enhanced CMMS paired with real-time A8 Cortex predictive maintenance sensors.',
     implementation: 'Installed IoT sensory twins on critical ACMV units, feeding thermal telemetry directly into the AI twin.',
     results: 'Downtime dropped by 42% and overall building energy consumption was optimized by 18%.',
     impact: 'Achieved Singapore BCA Green Mark Gold certification, saving $160K in annual electricity bills.',
@@ -225,7 +214,7 @@ export const chatbotAnswers = [
   },
   {
     keywords: ['facility', 'maintenance', 'cmms', 'operations'],
-    answer: 'Aptiv8 AI-Enhanced CMMS predicts equipment faults before failure occurs using temperature, noise, and vibration telemetry from Aptiv8 Cortex. This reduces reactive maintenance calls and extends asset lifespans by up to 25%.',
+    answer: 'A8 AI-Enhanced CMMS predicts equipment faults before failure occurs using temperature, noise, and vibration telemetry from Aptiv8 Cortex. This reduces reactive maintenance calls and extends asset lifespans by up to 25%.',
   },
   {
     keywords: ['bid', 'tender', 'prepar', 'cost'],

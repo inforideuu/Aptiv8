@@ -61,6 +61,52 @@ export default function AdminPage() {
   const [editingPartnerId, setEditingPartnerId] = useState(null);
   const [editingResourceId, setEditingResourceId] = useState(null);
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalType, setModalType] = useState(''); // timeline | stat | leader | service | product | showcase | project | casestudy | partner | resource
+
+  const openModal = (type) => {
+    setModalType(type);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setModalType('');
+    resetForms();
+  };
+
+  const resetForms = () => {
+    setEditingEventId(null);
+    setNewEvent({ year: '', title: '', description: '' });
+    
+    setEditingStatId(null);
+    setNewStat({ label: '', value: '' });
+    
+    setEditingLeaderId(null);
+    setNewLeader({ name: '', role: '', bio: '', icon_name: 'Briefcase' });
+    
+    setEditingServiceId(null);
+    setNewService({ service_id: '', title: '', badge: '', description: '', color: 'from-blue-500 to-cyan-500', image: '', highlights: '' });
+    
+    setEditingProductId(null);
+    setNewProduct({ product_id: '', title: '', category: 'Planning & Design', status: '', description: '', image: '' });
+    
+    setEditingShowcaseId(null);
+    setNewShowcase({ title: '', video: '', poster: '', category: '', description: '' });
+    
+    setEditingProjectId(null);
+    setNewProject({ project_id: '', title: '', category: 'Built Environment', status: '', description: '', client_industry: '', key_features: '', image: '' });
+    
+    setEditingCaseStudyId(null);
+    setNewCaseStudy({ case_id: '', industry: '', title: '', problem: '', solution: '', implementation: '', results: '', impact: '', before: '', after: '', image: 'planning', video_url: '' });
+    
+    setEditingPartnerId(null);
+    setNewPartner({ title: '', description: '', partners: '' });
+    
+    setEditingResourceId(null);
+    setNewResource({ resource_id: '', title: '', category: 'Articles', summary: '', image: 'sustainability', date: '', trending: false, featured: false, read_time: '' });
+  };
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
@@ -170,11 +216,10 @@ export default function AdminPage() {
         const saved = await response.json();
         if (editingEventId) {
           setTimeline(prev => prev.map(item => item.id === editingEventId ? saved : item).sort((a,b) => a.year.localeCompare(b.year)));
-          setEditingEventId(null);
         } else {
           setTimeline(prev => [...prev, saved].sort((a,b) => a.year.localeCompare(b.year)));
         }
-        setNewEvent({ year: '', title: '', description: '' });
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -217,11 +262,10 @@ export default function AdminPage() {
         const saved = await response.json();
         if (editingStatId) {
           setStats(prev => prev.map(i => i.id === editingStatId ? saved : i));
-          setEditingStatId(null);
         } else {
           setStats(prev => [...prev, saved]);
         }
-        setNewStat({ label: '', value: '' });
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -248,11 +292,10 @@ export default function AdminPage() {
         const saved = await response.json();
         if (editingLeaderId) {
           setLeadership(prev => prev.map(i => i.id === editingLeaderId ? saved : i));
-          setEditingLeaderId(null);
         } else {
           setLeadership(prev => [...prev, saved]);
         }
-        setNewLeader({ name: '', role: '', bio: '', icon_name: 'Briefcase' });
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -278,8 +321,7 @@ export default function AdminPage() {
       if (response.ok) {
         alert('Service saved successfully!');
         fetchData();
-        setNewService({ service_id: '', title: '', badge: '', description: '', color: 'from-blue-500 to-cyan-500', image: '', highlights: '' });
-        setEditingServiceId(null);
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -305,8 +347,7 @@ export default function AdminPage() {
       if (response.ok) {
         alert('Product saved successfully!');
         fetchData();
-        setNewProduct({ product_id: '', title: '', category: 'Planning & Design', status: '', description: '', image: '' });
-        setEditingProductId(null);
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -332,8 +373,7 @@ export default function AdminPage() {
       if (response.ok) {
         alert('Showcase saved successfully!');
         fetchData();
-        setNewShowcase({ title: '', video: '', poster: '', category: '', description: '' });
-        setEditingShowcaseId(null);
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -359,8 +399,7 @@ export default function AdminPage() {
       if (response.ok) {
         alert('Project saved successfully!');
         fetchData();
-        setNewProject({ project_id: '', title: '', category: 'Built Environment', status: '', description: '', client_industry: '', key_features: '', image: '' });
-        setEditingProjectId(null);
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -386,8 +425,7 @@ export default function AdminPage() {
       if (response.ok) {
         alert('Case Study saved successfully!');
         fetchData();
-        setNewCaseStudy({ case_id: '', industry: '', title: '', problem: '', solution: '', implementation: '', results: '', impact: '', before: '', after: '', image: 'planning', video_url: '' });
-        setEditingCaseStudyId(null);
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -413,8 +451,7 @@ export default function AdminPage() {
       if (response.ok) {
         alert('Partner category saved successfully!');
         fetchData();
-        setNewPartner({ title: '', description: '', partners: '' });
-        setEditingPartnerId(null);
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -440,8 +477,7 @@ export default function AdminPage() {
       if (response.ok) {
         alert('Resource saved successfully!');
         fetchData();
-        setNewResource({ resource_id: '', title: '', category: 'Articles', summary: '', image: 'sustainability', date: '', trending: false, featured: false, read_time: '' });
-        setEditingResourceId(null);
+        closeModal();
       }
     } catch (err) { console.error(err); }
   };
@@ -754,28 +790,17 @@ export default function AdminPage() {
 
                     {/* 2. COMPANY HISTORY TIMELINE */}
                     <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                      <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
-                        <Clock className="h-5 w-5 text-accent" /> Company History Timeline
-                      </h4>
-                      <form onSubmit={handleAddTimeline} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                        {editingEventId && (
-                          <div className="flex justify-between items-center bg-accent/5 border border-accent/20 px-4 py-2.5 rounded-xl text-xs text-accent font-semibold">
-                            <span>Editing timeline event</span>
-                            <button type="button" onClick={() => { setEditingEventId(null); setNewEvent({ year: '', title: '', description: '' }); }} className="p-1 hover:bg-accent/15 rounded-lg flex items-center gap-1">
-                              <X className="h-3.5 w-3.5" /> Cancel
-                            </button>
-                          </div>
-                        )}
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 items-end">
-                          <input type="text" value={newEvent.year} onChange={(e) => setNewEvent(prev => ({ ...prev, year: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Year" required />
-                          <input type="text" value={newEvent.title} onChange={(e) => setNewEvent(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Title" required />
-                          <input type="text" value={newEvent.description} onChange={(e) => setNewEvent(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description" required />
-                        </div>
-                        <button type="submit" className="w-full px-5 py-3.5 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                          {editingEventId ? <Save className="h-4.5 w-4.5" /> : <Plus className="h-4.5 w-4.5" />}
-                          {editingEventId ? 'Save Event' : 'Add Event'}
+                      <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                        <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                          <Clock className="h-5 w-5 text-accent" /> Company History Timeline
+                        </h4>
+                        <button
+                          onClick={() => { resetForms(); openModal('timeline'); }}
+                          className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                        >
+                          <Plus className="h-4 w-4" /> Add Event
                         </button>
-                      </form>
+                      </div>
                       <div className="space-y-3">
                         {timeline.map(event => (
                           <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={event.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center">
@@ -785,7 +810,7 @@ export default function AdminPage() {
                               <p className="text-xs text-slate-500 mt-1">{event.description}</p>
                             </div>
                             <div className="flex gap-2">
-                              <button onClick={() => { setEditingEventId(event.id); setNewEvent({ year: event.year, title: event.title, description: event.description }); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs">
+                              <button onClick={() => { setEditingEventId(event.id); setNewEvent({ year: event.year, title: event.title, description: event.description }); openModal('timeline'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs">
                                 <Edit3 className="h-4 w-4" /> Edit
                               </button>
                               <button onClick={() => handleDeleteTimeline(event.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer">
@@ -813,26 +838,17 @@ export default function AdminPage() {
 
                     {/* 4. STATISTICS CARDS */}
                     <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                      <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
-                        <BarChart3 className="h-5 w-5 text-accent" /> Statistics counters
-                      </h4>
-                      <form onSubmit={handleAddStat} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                        {editingStatId && (
-                          <div className="flex justify-between items-center bg-accent/5 border border-accent/20 px-4 py-2.5 rounded-xl text-xs text-accent font-semibold">
-                            <span>Editing statistics card</span>
-                            <button type="button" onClick={() => { setEditingStatId(null); setNewStat({ label: '', value: '' }); }} className="p-1 hover:bg-accent/15 rounded-lg flex items-center gap-1">
-                              <X className="h-3.5 w-3.5" /> Cancel
-                            </button>
-                          </div>
-                        )}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
-                          <input type="text" value={newStat.label} onChange={(e) => setNewStat(prev => ({ ...prev, label: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Label" required />
-                          <input type="text" value={newStat.value} onChange={(e) => setNewStat(prev => ({ ...prev, value: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Value (e.g. 150+)" required />
-                        </div>
-                        <button type="submit" className="w-full px-5 py-3.5 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                          {editingStatId ? 'Save Stat' : 'Add Stat'}
+                      <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                        <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                          <BarChart3 className="h-5 w-5 text-accent" /> Statistics counters
+                        </h4>
+                        <button
+                          onClick={() => { resetForms(); openModal('stat'); }}
+                          className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                        >
+                          <Plus className="h-4 w-4" /> Add Stat
                         </button>
-                      </form>
+                      </div>
                       <div className="grid grid-cols-2 gap-4">
                         {stats.map(stat => (
                           <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={stat.id} className="p-5 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-sm">
@@ -841,7 +857,7 @@ export default function AdminPage() {
                               <span className="text-xs text-slate-500 uppercase font-semibold">{stat.label}</span>
                             </div>
                             <div className="flex gap-2">
-                              <button onClick={() => { setEditingStatId(stat.id); setNewStat({ label: stat.label, value: stat.value }); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer text-xs">Edit</button>
+                              <button onClick={() => { setEditingStatId(stat.id); setNewStat({ label: stat.label, value: stat.value }); openModal('stat'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer text-xs">Edit</button>
                               <button onClick={() => handleDeleteStat(stat.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer"><Trash2 className="h-4 w-4" /></button>
                             </div>
                           </motion.div>
@@ -851,32 +867,17 @@ export default function AdminPage() {
 
                     {/* 5. LEADERSHIP TEAM */}
                     <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                      <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2 border-b border-slate-100 pb-3">
-                        <Users className="h-5 w-5 text-accent" /> Leadership Board Editor
-                      </h4>
-                      <form onSubmit={handleAddLeader} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                        {editingLeaderId && (
-                          <div className="flex justify-between items-center bg-accent/5 border border-accent/20 px-4 py-2.5 rounded-xl text-xs text-accent font-semibold">
-                            <span>Editing leadership profile</span>
-                            <button type="button" onClick={() => { setEditingLeaderId(null); setNewLeader({ name: '', role: '', bio: '', icon_name: 'Briefcase' }); }} className="p-1 hover:bg-accent/15 rounded-lg flex items-center gap-1">
-                              <X className="h-3.5 w-3.5" /> Cancel
-                            </button>
-                          </div>
-                        )}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-end">
-                          <input type="text" value={newLeader.name} onChange={(e) => setNewLeader(prev => ({ ...prev, name: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Name" required />
-                          <input type="text" value={newLeader.role} onChange={(e) => setNewLeader(prev => ({ ...prev, role: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Role" required />
-                          <input type="text" value={newLeader.bio} onChange={(e) => setNewLeader(prev => ({ ...prev, bio: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Bio" required />
-                          <select value={newLeader.icon_name} onChange={(e) => setNewLeader(prev => ({ ...prev, icon_name: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
-                            <option value="Briefcase">Briefcase</option>
-                            <option value="Cpu">Cpu</option>
-                            <option value="Settings">Settings</option>
-                          </select>
-                        </div>
-                        <button type="submit" className="w-full px-5 py-3.5 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                          {editingLeaderId ? 'Save Profile' : 'Add Member'}
+                      <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                        <h4 className="text-lg font-bold text-slate-900 flex items-center gap-2">
+                          <Users className="h-5 w-5 text-accent" /> Leadership Board Editor
+                        </h4>
+                        <button
+                          onClick={() => { resetForms(); openModal('leader'); }}
+                          className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                        >
+                          <Plus className="h-4 w-4" /> Add Member
                         </button>
-                      </form>
+                      </div>
                       <div className="space-y-3">
                         {leadership.map(member => (
                           <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={member.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
@@ -886,7 +887,7 @@ export default function AdminPage() {
                               <p className="text-xs text-slate-500 mt-1">{member.bio}</p>
                             </div>
                             <div className="flex gap-2">
-                              <button onClick={() => { setEditingLeaderId(member.id); setNewLeader({ name: member.name, role: member.role, bio: member.bio, icon_name: member.icon_name }); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs">Edit</button>
+                              <button onClick={() => { setEditingLeaderId(member.id); setNewLeader({ name: member.name, role: member.role, bio: member.bio, icon_name: member.icon_name }); openModal('leader'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs">Edit</button>
                               <button onClick={() => handleDeleteLeader(member.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer"><Trash2 className="h-4 w-4" /></button>
                             </div>
                           </motion.div>
@@ -896,24 +897,20 @@ export default function AdminPage() {
                   </div>
                 )}
 
+
+
                 {/* --- SERVICES SUB-EDITOR --- */}
                 {cmsSubTab === 'services' && (
                   <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                    <h4 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">Services List</h4>
-                    <form onSubmit={handleSaveService} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" value={newService.service_id} onChange={(e) => setNewService(prev => ({ ...prev, service_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Service Unique ID (e.g. co-development)" required disabled={!!editingServiceId} />
-                        <input type="text" value={newService.title} onChange={(e) => setNewService(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Title" required />
-                        <input type="text" value={newService.badge} onChange={(e) => setNewService(prev => ({ ...prev, badge: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Badge" required />
-                        <input type="text" value={newService.image} onChange={(e) => setNewService(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Image URL" required />
-                        <input type="text" value={newService.color} onChange={(e) => setNewService(prev => ({ ...prev, color: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Gradient Color (e.g. from-blue-500 to-cyan-500)" required />
-                        <input type="text" value={newService.highlights} onChange={(e) => setNewService(prev => ({ ...prev, highlights: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Highlights (comma separated strings)" required />
-                      </div>
-                      <textarea value={newService.description} onChange={(e) => setNewService(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description content" rows="3" required />
-                      <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                        <Save className="h-4 w-4" /> Save Service
+                    <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                      <h4 className="text-lg font-bold text-slate-900">Services Offered</h4>
+                      <button
+                        onClick={() => { resetForms(); openModal('service'); }}
+                        className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                      >
+                        <Plus className="h-4 w-4" /> Add Service
                       </button>
-                    </form>
+                    </div>
                     <div className="space-y-3">
                       {services.map(srv => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={srv.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
@@ -922,7 +919,7 @@ export default function AdminPage() {
                             <span className="text-xs text-accent uppercase font-semibold ml-2">({srv.badge})</span>
                           </div>
                           <div className="flex gap-2">
-                            <button onClick={() => { setEditingServiceId(srv.id); setNewService(srv); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer">Edit</button>
+                            <button onClick={() => { setEditingServiceId(srv.id); setNewService({ ...srv, highlights: Array.isArray(srv.highlights) ? srv.highlights.join(',') : srv.highlights }); openModal('service'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs"><Edit3 className="h-4 w-4" /> Edit</button>
                             <button onClick={() => handleDeleteService(srv.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer"><Trash2 className="h-4 w-4" /></button>
                           </div>
                         </motion.div>
@@ -934,25 +931,15 @@ export default function AdminPage() {
                 {/* --- PRODUCTS SUB-EDITOR --- */}
                 {cmsSubTab === 'products' && (
                   <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                    <h4 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">Products List</h4>
-                    <form onSubmit={handleSaveProduct} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" value={newProduct.product_id} onChange={(e) => setNewProduct(prev => ({ ...prev, product_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Product Unique ID" required disabled={!!editingProductId} />
-                        <input type="text" value={newProduct.title} onChange={(e) => setNewProduct(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Title" required />
-                        <select value={newProduct.category} onChange={(e) => setNewProduct(prev => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
-                          <option value="Planning & Design">Planning & Design</option>
-                          <option value="Pre-Construction">Pre-Construction</option>
-                          <option value="Construction">Construction</option>
-                          <option value="Operations & Maintenance">Operations & Maintenance</option>
-                        </select>
-                        <input type="text" value={newProduct.status} onChange={(e) => setNewProduct(prev => ({ ...prev, status: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Status Badge (e.g. Seeking Partners)" required />
-                        <input type="text" value={newProduct.image} onChange={(e) => setNewProduct(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Image URL" required />
-                      </div>
-                      <textarea value={newProduct.description} onChange={(e) => setNewProduct(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description content" rows="3" required />
-                      <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                        <Save className="h-4 w-4" /> Save Product
+                    <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                      <h4 className="text-lg font-bold text-slate-900">Products List</h4>
+                      <button
+                        onClick={() => { resetForms(); openModal('product'); }}
+                        className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                      >
+                        <Plus className="h-4 w-4" /> Add Product
                       </button>
-                    </form>
+                    </div>
                     <div className="space-y-3">
                       {products.map(prod => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={prod.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
@@ -961,7 +948,7 @@ export default function AdminPage() {
                             <span className="text-xs text-slate-500 font-mono ml-2">[{prod.category}]</span>
                           </div>
                           <div className="flex gap-2">
-                            <button onClick={() => { setEditingProductId(prod.id); setNewProduct(prod); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer">Edit</button>
+                            <button onClick={() => { setEditingProductId(prod.id); setNewProduct(prod); openModal('product'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs"><Edit3 className="h-4 w-4" /> Edit</button>
                             <button onClick={() => handleDeleteProduct(prod.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer"><Trash2 className="h-4 w-4" /></button>
                           </div>
                         </motion.div>
@@ -973,19 +960,15 @@ export default function AdminPage() {
                 {/* --- SHOWCASES SUB-EDITOR --- */}
                 {cmsSubTab === 'showcases' && (
                   <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                    <h4 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">AI Solutions for other Sectors (Showcase Videos)</h4>
-                    <form onSubmit={handleSaveShowcase} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" value={newShowcase.title} onChange={(e) => setNewShowcase(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Showcase Title" required />
-                        <input type="text" value={newShowcase.video} onChange={(e) => setNewShowcase(prev => ({ ...prev, video: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Video Path/URL (e.g. /DC_design.mp4)" required />
-                        <input type="text" value={newShowcase.poster} onChange={(e) => setNewShowcase(prev => ({ ...prev, poster: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Poster Image URL" required />
-                        <input type="text" value={newShowcase.category} onChange={(e) => setNewShowcase(prev => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Category" required />
-                      </div>
-                      <textarea value={newShowcase.description} onChange={(e) => setNewShowcase(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description content" rows="3" required />
-                      <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                        <Save className="h-4 w-4" /> Save Showcase
+                    <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                      <h4 className="text-lg font-bold text-slate-900">Showcases List</h4>
+                      <button
+                        onClick={() => { resetForms(); openModal('showcase'); }}
+                        className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                      >
+                        <Plus className="h-4 w-4" /> Add Showcase
                       </button>
-                    </form>
+                    </div>
                     <div className="space-y-3">
                       {showcases.map(sh => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={sh.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
@@ -994,7 +977,7 @@ export default function AdminPage() {
                             <span className="text-xs text-accent font-semibold ml-2">({sh.category})</span>
                           </div>
                           <div className="flex gap-2">
-                            <button onClick={() => { setEditingShowcaseId(sh.id); setNewShowcase(sh); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer">Edit</button>
+                            <button onClick={() => { setEditingShowcaseId(sh.id); setNewShowcase(sh); openModal('showcase'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs"><Edit3 className="h-4 w-4" /> Edit</button>
                             <button onClick={() => handleDeleteShowcase(sh.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer"><Trash2 className="h-4 w-4" /></button>
                           </div>
                         </motion.div>
@@ -1006,26 +989,15 @@ export default function AdminPage() {
                 {/* --- PROJECTS SUB-EDITOR --- */}
                 {cmsSubTab === 'projects' && (
                   <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                    <h4 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">Projects Editor</h4>
-                    <form onSubmit={handleSaveProject} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" value={newProject.project_id} onChange={(e) => setNewProject(prev => ({ ...prev, project_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Project ID" required disabled={!!editingProjectId} />
-                        <input type="text" value={newProject.title} onChange={(e) => setNewProject(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Project Name" required />
-                        <select value={newProject.category} onChange={(e) => setNewProject(prev => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
-                          <option value="Built Environment">Built Environment</option>
-                          <option value="Public & Other Sectors">Public & Other Sectors</option>
-                          <option value="Media & Storyboards">Media & Storyboards</option>
-                        </select>
-                        <input type="text" value={newProject.status} onChange={(e) => setNewProject(prev => ({ ...prev, status: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Status Label" required />
-                        <input type="text" value={newProject.client_industry} onChange={(e) => setNewProject(prev => ({ ...prev, client_industry: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Client Industry" required />
-                        <input type="text" value={newProject.key_features} onChange={(e) => setNewProject(prev => ({ ...prev, key_features: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Key Features summary" required />
-                        <input type="text" value={newProject.image} onChange={(e) => setNewProject(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Image URL" required />
-                      </div>
-                      <textarea value={newProject.description} onChange={(e) => setNewProject(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description content" rows="3" required />
-                      <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                        <Save className="h-4 w-4" /> Save Project
+                    <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                      <h4 className="text-lg font-bold text-slate-900">Projects List</h4>
+                      <button
+                        onClick={() => { resetForms(); openModal('project'); }}
+                        className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                      >
+                        <Plus className="h-4 w-4" /> Add Project
                       </button>
-                    </form>
+                    </div>
                     <div className="space-y-3">
                       {projects.map(pj => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={pj.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
@@ -1034,7 +1006,7 @@ export default function AdminPage() {
                             <span className="text-xs text-slate-500 font-mono ml-2">[{pj.category}]</span>
                           </div>
                           <div className="flex gap-2">
-                            <button onClick={() => { setEditingProjectId(pj.id); setNewProject(pj); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer">Edit</button>
+                            <button onClick={() => { setEditingProjectId(pj.id); setNewProject(pj); openModal('project'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs"><Edit3 className="h-4 w-4" /> Edit</button>
                             <button onClick={() => handleDeleteProject(pj.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer"><Trash2 className="h-4 w-4" /></button>
                           </div>
                         </motion.div>
@@ -1046,31 +1018,15 @@ export default function AdminPage() {
                 {/* --- CASE STUDIES SUB-EDITOR --- */}
                 {cmsSubTab === 'casestudies' && (
                   <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                    <h4 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">Case Studies Editor</h4>
-                    <form onSubmit={handleSaveCaseStudy} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" value={newCaseStudy.case_id} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, case_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Case Study ID" required disabled={!!editingCaseStudyId} />
-                        <input type="text" value={newCaseStudy.industry} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, industry: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Industry" required />
-                        <input type="text" value={newCaseStudy.title} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Headline / Title" required />
-                        <input type="text" value={newCaseStudy.before} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, before: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Metrics Before" required />
-                        <input type="text" value={newCaseStudy.after} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, after: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Metrics After" required />
-                        <input type="text" value={newCaseStudy.video_url} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, video_url: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Video URL" required />
-                        <select value={newCaseStudy.image} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
-                          <option value="planning">planning (Architectural Vector)</option>
-                          <option value="fireSafety">fireSafety (Flame Safety Icon)</option>
-                          <option value="compliance">compliance (Authority Shield)</option>
-                          <option value="strata">strata (Strata Blueprint)</option>
-                        </select>
-                      </div>
-                      <textarea value={newCaseStudy.problem} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, problem: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Problem Details" rows="2" required />
-                      <textarea value={newCaseStudy.solution} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, solution: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Solution Details" rows="2" required />
-                      <textarea value={newCaseStudy.implementation} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, implementation: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Implementation Steps" rows="2" required />
-                      <textarea value={newCaseStudy.results} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, results: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Results summary" rows="2" required />
-                      <textarea value={newCaseStudy.impact} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, impact: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Impact statement" rows="2" required />
-                      <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                        <Save className="h-4 w-4" /> Save Case Study
+                    <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                      <h4 className="text-lg font-bold text-slate-900">Case Studies List</h4>
+                      <button
+                        onClick={() => { resetForms(); openModal('casestudy'); }}
+                        className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                      >
+                        <Plus className="h-4 w-4" /> Add Case Study
                       </button>
-                    </form>
+                    </div>
                     <div className="space-y-3">
                       {caseStudies.map(cs => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={cs.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
@@ -1079,7 +1035,7 @@ export default function AdminPage() {
                             <span className="text-xs text-slate-500 font-mono ml-2">[{cs.industry}]</span>
                           </div>
                           <div className="flex gap-2">
-                            <button onClick={() => { setEditingCaseStudyId(cs.id); setNewCaseStudy(cs); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer">Edit</button>
+                            <button onClick={() => { setEditingCaseStudyId(cs.id); setNewCaseStudy(cs); openModal('casestudy'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs"><Edit3 className="h-4 w-4" /> Edit</button>
                             <button onClick={() => handleDeleteCaseStudy(cs.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer"><Trash2 className="h-4.5 w-4.5" /></button>
                           </div>
                         </motion.div>
@@ -1091,17 +1047,15 @@ export default function AdminPage() {
                 {/* --- PARTNERS SUB-EDITOR --- */}
                 {cmsSubTab === 'partners' && (
                   <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                    <h4 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">Partner Types & Alliances</h4>
-                    <form onSubmit={handleSavePartner} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                      <div className="grid grid-cols-1 gap-4">
-                        <input type="text" value={newPartner.title} onChange={(e) => setNewPartner(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Partner Category Title (e.g. Technology Partners)" required />
-                        <input type="text" value={newPartner.partners} onChange={(e) => setNewPartner(prev => ({ ...prev, partners: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Affiliated Companies (comma separated)" required />
-                        <textarea value={newPartner.description} onChange={(e) => setNewPartner(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Category Scope Description" rows="2" required />
-                      </div>
-                      <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                        <Save className="h-4 w-4" /> Save Partner Type
+                    <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                      <h4 className="text-lg font-bold text-slate-900">Partners & Alliances</h4>
+                      <button
+                        onClick={() => { resetForms(); openModal('partner'); }}
+                        className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                      >
+                        <Plus className="h-4 w-4" /> Add Partner Category
                       </button>
-                    </form>
+                    </div>
                     <div className="space-y-3">
                       {partners.map(pt => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={pt.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
@@ -1110,7 +1064,7 @@ export default function AdminPage() {
                             <p className="text-xs text-slate-400 mt-1">{pt.partners}</p>
                           </div>
                           <div className="flex gap-2">
-                            <button onClick={() => { setEditingPartnerId(pt.id); setNewPartner(pt); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer">Edit</button>
+                            <button onClick={() => { setEditingPartnerId(pt.id); setNewPartner(pt); openModal('partner'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs"><Edit3 className="h-4 w-4" /> Edit</button>
                             <button onClick={() => handleDeletePartner(pt.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer"><Trash2 className="h-4 w-4" /></button>
                           </div>
                         </motion.div>
@@ -1122,42 +1076,15 @@ export default function AdminPage() {
                 {/* --- RESOURCES SUB-EDITOR --- */}
                 {cmsSubTab === 'resources' && (
                   <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
-                    <h4 className="text-lg font-bold text-slate-900 border-b border-slate-100 pb-3">Resource Materials</h4>
-                    <form onSubmit={handleSaveResource} className="p-5 bg-slate-50 border border-slate-200 rounded-2xl space-y-4">
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <input type="text" value={newResource.resource_id} onChange={(e) => setNewResource(prev => ({ ...prev, resource_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Resource ID" required disabled={!!editingResourceId} />
-                        <input type="text" value={newResource.title} onChange={(e) => setNewResource(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Resource Title" required />
-                        <select value={newResource.category} onChange={(e) => setNewResource(prev => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
-                          <option value="Articles">Articles</option>
-                          <option value="White Papers">White Papers</option>
-                          <option value="Research Papers">Research Papers</option>
-                          <option value="Tech Docs">Tech Docs</option>
-                          <option value="Insights">Insights</option>
-                        </select>
-                        <input type="text" value={newResource.date} onChange={(e) => setNewResource(prev => ({ ...prev, date: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Publish Date (e.g. Aug 12, 2026)" required />
-                        <input type="text" value={newResource.read_time} onChange={(e) => setNewResource(prev => ({ ...prev, read_time: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Read Time (e.g. 10 min read)" required />
-                        <select value={newResource.image} onChange={(e) => setNewResource(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
-                          <option value="sustainability">sustainability (Leaf)</option>
-                          <option value="fireSafety">fireSafety (Fire)</option>
-                          <option value="compliance">compliance (Shield)</option>
-                          <option value="strata">strata (Strata)</option>
-                          <option value="cortex">cortex (Mind)</option>
-                          <option value="bidPrep">bidPrep (Chart)</option>
-                        </select>
-                        <div className="flex items-center gap-4">
-                          <label className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
-                            <input type="checkbox" checked={newResource.trending} onChange={(e) => setNewResource(prev => ({ ...prev, trending: e.target.checked }))} /> Trending Card
-                          </label>
-                          <label className="flex items-center gap-1.5 text-xs font-bold text-slate-700">
-                            <input type="checkbox" checked={newResource.featured} onChange={(e) => setNewResource(prev => ({ ...prev, featured: e.target.checked }))} /> Featured Card
-                          </label>
-                        </div>
-                      </div>
-                      <textarea value={newResource.summary} onChange={(e) => setNewResource(prev => ({ ...prev, summary: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Summary Content" rows="2" required />
-                      <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
-                        <Save className="h-4 w-4" /> Save Resource
+                    <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
+                      <h4 className="text-lg font-bold text-slate-900">Resource Materials</h4>
+                      <button
+                        onClick={() => { resetForms(); openModal('resource'); }}
+                        className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
+                      >
+                        <Plus className="h-4 w-4" /> Add Resource
                       </button>
-                    </form>
+                    </div>
                     <div className="space-y-3">
                       {resources.map(res => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={res.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
@@ -1166,7 +1093,7 @@ export default function AdminPage() {
                             <span className="text-xs text-slate-500 font-mono ml-2">[{res.category}]</span>
                           </div>
                           <div className="flex gap-2">
-                            <button onClick={() => { setEditingResourceId(res.id); setNewResource(res); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer">Edit</button>
+                            <button onClick={() => { setEditingResourceId(res.id); setNewResource(res); openModal('resource'); }} className="p-2 text-slate-400 hover:text-accent cursor-pointer flex items-center gap-1 text-xs"><Edit3 className="h-4 w-4" /> Edit</button>
                             <button onClick={() => handleDeleteResource(res.id)} className="p-2 text-slate-400 hover:text-accent cursor-pointer"><Trash2 className="h-4 w-4" /></button>
                           </div>
                         </motion.div>
@@ -1182,6 +1109,427 @@ export default function AdminPage() {
         )}
 
       </main>
+
+      {/* MODAL OVERLAY FOR EDITOR FORMS */}
+      <AnimatePresence>
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+              className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm cursor-pointer"
+            />
+
+            {/* Modal Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.95, y: 20 }}
+              transition={{ type: "spring", stiffness: 150, damping: 18 }}
+              className="bg-white border border-slate-200 rounded-3xl p-6 md:p-8 w-full max-w-2xl shadow-2xl relative max-h-[90vh] overflow-y-auto z-10 text-slate-800"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={closeModal}
+                className="absolute right-5 top-5 p-2 rounded-xl text-slate-400 hover:text-slate-950 hover:bg-slate-100 transition-all cursor-pointer"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              <div className="mb-6 border-b border-slate-100 pb-3">
+                <h3 className="text-xl font-bold font-display text-slate-900">
+                  {editingEventId || editingStatId || editingLeaderId || editingServiceId || editingProductId || editingShowcaseId || editingProjectId || editingCaseStudyId || editingPartnerId || editingResourceId ? 'Edit Data Record' : 'Create New Record'}
+                </h3>
+                <p className="text-xs text-slate-500 mt-1 uppercase font-semibold tracking-wider font-mono">
+                  Module: {modalType}
+                </p>
+              </div>
+
+              {/* 1. TIMELINE FORM */}
+              {modalType === 'timeline' && (
+                <form onSubmit={handleAddTimeline} className="space-y-4">
+                  <div className="grid grid-cols-1 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Year</label>
+                      <input type="text" value={newEvent.year} onChange={(e) => setNewEvent(prev => ({ ...prev, year: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="e.g. 2026" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Title</label>
+                      <input type="text" value={newEvent.title} onChange={(e) => setNewEvent(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Title" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Description</label>
+                      <textarea value={newEvent.description} onChange={(e) => setNewEvent(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description" rows="3" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full px-5 py-3.5 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4.5 w-4.5" /> {editingEventId ? 'Save Event' : 'Add Event'}
+                  </button>
+                </form>
+              )}
+
+              {/* 2. STAT FORM */}
+              {modalType === 'stat' && (
+                <form onSubmit={handleAddStat} className="space-y-4">
+                  <div className="grid grid-cols-1 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Label</label>
+                      <input type="text" value={newStat.label} onChange={(e) => setNewStat(prev => ({ ...prev, label: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Label" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Value</label>
+                      <input type="text" value={newStat.value} onChange={(e) => setNewStat(prev => ({ ...prev, value: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Value (e.g. 150+)" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full px-5 py-3.5 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4.5 w-4.5" /> Save Stat
+                  </button>
+                </form>
+              )}
+
+              {/* 3. LEADER FORM */}
+              {modalType === 'leader' && (
+                <form onSubmit={handleAddLeader} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Name</label>
+                      <input type="text" value={newLeader.name} onChange={(e) => setNewLeader(prev => ({ ...prev, name: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Name" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Role</label>
+                      <input type="text" value={newLeader.role} onChange={(e) => setNewLeader(prev => ({ ...prev, role: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Role" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Icon Type</label>
+                      <select value={newLeader.icon_name} onChange={(e) => setNewLeader(prev => ({ ...prev, icon_name: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
+                        <option value="Briefcase">Briefcase</option>
+                        <option value="Cpu">Cpu</option>
+                        <option value="Settings">Settings</option>
+                      </select>
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Bio</label>
+                      <textarea value={newLeader.bio} onChange={(e) => setNewLeader(prev => ({ ...prev, bio: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Bio" rows="3" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full px-5 py-3.5 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4.5 w-4.5" /> Save Profile
+                  </button>
+                </form>
+              )}
+
+              {/* 4. SERVICE FORM */}
+              {modalType === 'service' && (
+                <form onSubmit={handleSaveService} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Service ID</label>
+                      <input type="text" value={newService.service_id} onChange={(e) => setNewService(prev => ({ ...prev, service_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Unique ID" required disabled={!!editingServiceId} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Title</label>
+                      <input type="text" value={newService.title} onChange={(e) => setNewService(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Title" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Badge</label>
+                      <input type="text" value={newService.badge} onChange={(e) => setNewService(prev => ({ ...prev, badge: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Badge" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Image URL</label>
+                      <input type="text" value={newService.image} onChange={(e) => setNewService(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Image URL" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Gradient Theme Class</label>
+                      <input type="text" value={newService.color} onChange={(e) => setNewService(prev => ({ ...prev, color: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="e.g. from-blue-500 to-cyan-500" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Highlights (comma separated)</label>
+                      <input type="text" value={newService.highlights} onChange={(e) => setNewService(prev => ({ ...prev, highlights: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Highlight 1, Highlight 2" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Description</label>
+                      <textarea value={newService.description} onChange={(e) => setNewService(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description content" rows="3" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4 w-4" /> Save Service
+                  </button>
+                </form>
+              )}
+
+              {/* 5. PRODUCT FORM */}
+              {modalType === 'product' && (
+                <form onSubmit={handleSaveProduct} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Product ID</label>
+                      <input type="text" value={newProduct.product_id} onChange={(e) => setNewProduct(prev => ({ ...prev, product_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Unique ID" required disabled={!!editingProductId} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Title</label>
+                      <input type="text" value={newProduct.title} onChange={(e) => setNewProduct(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Title" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Category</label>
+                      <select value={newProduct.category} onChange={(e) => setNewProduct(prev => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
+                        <option value="Planning & Design">Planning & Design</option>
+                        <option value="Pre-Construction">Pre-Construction</option>
+                        <option value="Construction">Construction</option>
+                        <option value="Operations & Maintenance">Operations & Maintenance</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Status Badge</label>
+                      <input type="text" value={newProduct.status} onChange={(e) => setNewProduct(prev => ({ ...prev, status: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="e.g. Seeking Partners" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Image URL</label>
+                      <input type="text" value={newProduct.image} onChange={(e) => setNewProduct(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Image URL" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Description</label>
+                      <textarea value={newProduct.description} onChange={(e) => setNewProduct(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description content" rows="3" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4 w-4" /> Save Product
+                  </button>
+                </form>
+              )}
+
+              {/* 6. SHOWCASE FORM */}
+              {modalType === 'showcase' && (
+                <form onSubmit={handleSaveShowcase} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Title</label>
+                      <input type="text" value={newShowcase.title} onChange={(e) => setNewShowcase(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Showcase Title" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Category</label>
+                      <input type="text" value={newShowcase.category} onChange={(e) => setNewShowcase(prev => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Category" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Video URL / Path</label>
+                      <input type="text" value={newShowcase.video} onChange={(e) => setNewShowcase(prev => ({ ...prev, video: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="e.g. /DC_design.mp4" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Poster Image URL</label>
+                      <input type="text" value={newShowcase.poster} onChange={(e) => setNewShowcase(prev => ({ ...prev, poster: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Poster Image URL" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Description</label>
+                      <textarea value={newShowcase.description} onChange={(e) => setNewShowcase(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description content" rows="3" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4 w-4" /> Save Showcase
+                  </button>
+                </form>
+              )}
+
+              {/* 7. PROJECT FORM */}
+              {modalType === 'project' && (
+                <form onSubmit={handleSaveProject} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Project ID</label>
+                      <input type="text" value={newProject.project_id} onChange={(e) => setNewProject(prev => ({ ...prev, project_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Project ID" required disabled={!!editingProjectId} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Project Name</label>
+                      <input type="text" value={newProject.title} onChange={(e) => setNewProject(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Project Name" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Category</label>
+                      <select value={newProject.category} onChange={(e) => setNewProject(prev => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
+                        <option value="Built Environment">Built Environment</option>
+                        <option value="Public & Other Sectors">Public & Other Sectors</option>
+                        <option value="Media & Storyboards">Media & Storyboards</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Status Label</label>
+                      <input type="text" value={newProject.status} onChange={(e) => setNewProject(prev => ({ ...prev, status: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Status Label" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Client Industry</label>
+                      <input type="text" value={newProject.client_industry} onChange={(e) => setNewProject(prev => ({ ...prev, client_industry: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Client Industry" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Key Features Summary</label>
+                      <input type="text" value={newProject.key_features} onChange={(e) => setNewProject(prev => ({ ...prev, key_features: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Key Features" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Image URL</label>
+                      <input type="text" value={newProject.image} onChange={(e) => setNewProject(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Image URL" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Description</label>
+                      <textarea value={newProject.description} onChange={(e) => setNewProject(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Description content" rows="3" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4 w-4" /> Save Project
+                  </button>
+                </form>
+              )}
+
+              {/* 8. CASE STUDY FORM */}
+              {modalType === 'casestudy' && (
+                <form onSubmit={handleSaveCaseStudy} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Case Study ID</label>
+                      <input type="text" value={newCaseStudy.case_id} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, case_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Case Study ID" required disabled={!!editingCaseStudyId} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Industry</label>
+                      <input type="text" value={newCaseStudy.industry} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, industry: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Industry" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Headline / Title</label>
+                      <input type="text" value={newCaseStudy.title} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Headline / Title" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Metrics Before</label>
+                      <input type="text" value={newCaseStudy.before} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, before: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Metrics Before" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Metrics After</label>
+                      <input type="text" value={newCaseStudy.after} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, after: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Metrics After" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Video URL</label>
+                      <input type="text" value={newCaseStudy.video_url} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, video_url: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Video URL" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Image Representation</label>
+                      <select value={newCaseStudy.image} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
+                        <option value="planning">planning (Architectural Vector)</option>
+                        <option value="fireSafety">fireSafety (Flame Safety Icon)</option>
+                        <option value="compliance">compliance (Authority Shield)</option>
+                        <option value="strata">strata (Strata Blueprint)</option>
+                      </select>
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Problem Details</label>
+                      <textarea value={newCaseStudy.problem} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, problem: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Problem Details" rows="2" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Solution Details</label>
+                      <textarea value={newCaseStudy.solution} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, solution: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Solution Details" rows="2" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Implementation Steps</label>
+                      <textarea value={newCaseStudy.implementation} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, implementation: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Implementation Steps" rows="2" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Results Summary</label>
+                      <textarea value={newCaseStudy.results} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, results: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Results summary" rows="2" required />
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Impact Statement</label>
+                      <textarea value={newCaseStudy.impact} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, impact: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Impact statement" rows="2" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4 w-4" /> Save Case Study
+                  </button>
+                </form>
+              )}
+
+              {/* 9. PARTNER FORM */}
+              {modalType === 'partner' && (
+                <form onSubmit={handleSavePartner} className="space-y-4">
+                  <div className="grid grid-cols-1 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Category Title</label>
+                      <input type="text" value={newPartner.title} onChange={(e) => setNewPartner(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Technology Partners" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Affiliated Companies (comma separated)</label>
+                      <input type="text" value={newPartner.partners} onChange={(e) => setNewPartner(prev => ({ ...prev, partners: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Google, Microsoft, AWS" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Category Scope Description</label>
+                      <textarea value={newPartner.description} onChange={(e) => setNewPartner(prev => ({ ...prev, description: e.target.value }))} className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Category Scope Description" rows="3" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4 w-4" /> Save Partner Type
+                  </button>
+                </form>
+              )}
+
+              {/* 10. RESOURCE FORM */}
+              {modalType === 'resource' && (
+                <form onSubmit={handleSaveResource} className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Resource ID</label>
+                      <input type="text" value={newResource.resource_id} onChange={(e) => setNewResource(prev => ({ ...prev, resource_id: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Resource ID" required disabled={!!editingResourceId} />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Resource Title</label>
+                      <input type="text" value={newResource.title} onChange={(e) => setNewResource(prev => ({ ...prev, title: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Resource Title" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Category</label>
+                      <select value={newResource.category} onChange={(e) => setNewResource(prev => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
+                        <option value="Articles">Articles</option>
+                        <option value="White Papers">White Papers</option>
+                        <option value="Research Papers">Research Papers</option>
+                        <option value="Tech Docs">Tech Docs</option>
+                        <option value="Insights">Insights</option>
+                      </select>
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Publish Date</label>
+                      <input type="text" value={newResource.date} onChange={(e) => setNewResource(prev => ({ ...prev, date: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Aug 12, 2026" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Read Time</label>
+                      <input type="text" value={newResource.read_time} onChange={(e) => setNewResource(prev => ({ ...prev, read_time: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="e.g. 10 min read" required />
+                    </div>
+                    <div>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Representation Icon</label>
+                      <select value={newResource.image} onChange={(e) => setNewResource(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
+                        <option value="sustainability">sustainability (Leaf)</option>
+                        <option value="fireSafety">fireSafety (Fire)</option>
+                        <option value="compliance">compliance (Shield)</option>
+                        <option value="strata">strata (Strata)</option>
+                        <option value="cortex">cortex (Mind)</option>
+                        <option value="bidPrep">bidPrep (Chart)</option>
+                      </select>
+                    </div>
+                    <div className="flex items-center gap-6 py-2 col-span-2">
+                      <label className="flex items-center gap-2 text-xs font-bold text-slate-700 cursor-pointer">
+                        <input type="checkbox" checked={newResource.trending} onChange={(e) => setNewResource(prev => ({ ...prev, trending: e.target.checked }))} className="rounded border-slate-300 text-accent focus:ring-accent" /> Trending Card
+                      </label>
+                      <label className="flex items-center gap-2 text-xs font-bold text-slate-700 cursor-pointer">
+                        <input type="checkbox" checked={newResource.featured} onChange={(e) => setNewResource(prev => ({ ...prev, featured: e.target.checked }))} className="rounded border-slate-300 text-accent focus:ring-accent" /> Featured Card
+                      </label>
+                    </div>
+                    <div className="col-span-2">
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Summary Content</label>
+                      <textarea value={newResource.summary} onChange={(e) => setNewResource(prev => ({ ...prev, summary: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Summary Content" rows="3" required />
+                    </div>
+                  </div>
+                  <button type="submit" className="w-full py-3 bg-accent text-white font-semibold rounded-xl text-xs uppercase flex items-center justify-center gap-1.5 cursor-pointer">
+                    <Save className="h-4 w-4" /> Save Resource
+                  </button>
+                </form>
+              )}
+
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
     </div>
   );
 }

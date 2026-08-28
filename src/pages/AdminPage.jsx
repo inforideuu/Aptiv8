@@ -107,6 +107,27 @@ export default function AdminPage() {
     setNewResource({ resource_id: '', title: '', category: 'Articles', summary: '', image: 'sustainability', date: '', trending: false, featured: false, read_time: '' });
   };
 
+  const handleImageUpload = async (file, setterKey, stateSetter) => {
+    if (!file) return;
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const response = await fetch('http://localhost:8000/api/upload/', {
+        method: 'POST',
+        body: formData
+      });
+      if (response.ok) {
+        const data = await response.json();
+        stateSetter(prev => ({ ...prev, [setterKey]: data.url }));
+      } else {
+        alert('Failed to upload image.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error uploading image.');
+    }
+  };
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
@@ -1238,8 +1259,16 @@ export default function AdminPage() {
                       <input type="text" value={newService.badge} onChange={(e) => setNewService(prev => ({ ...prev, badge: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Badge" required />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-500 mb-1">Image URL</label>
-                      <input type="text" value={newService.image} onChange={(e) => setNewService(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Image URL" required />
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Image Upload</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="file" 
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e.target.files[0], 'image', setNewService)}
+                          className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer"
+                        />
+                        {newService.image && <img src={newService.image} className="h-10 w-10 object-cover rounded-xl shadow-xs shrink-0" alt="Preview" />}
+                      </div>
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-500 mb-1">Gradient Theme Class</label>
@@ -1286,8 +1315,16 @@ export default function AdminPage() {
                       <input type="text" value={newProduct.status} onChange={(e) => setNewProduct(prev => ({ ...prev, status: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="e.g. Seeking Partners" required />
                     </div>
                     <div className="col-span-2">
-                      <label className="block text-xs font-bold text-slate-500 mb-1">Image URL</label>
-                      <input type="text" value={newProduct.image} onChange={(e) => setNewProduct(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Image URL" required />
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Image Upload</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="file" 
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e.target.files[0], 'image', setNewProduct)}
+                          className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer"
+                        />
+                        {newProduct.image && <img src={newProduct.image} className="h-10 w-10 object-cover rounded-xl shadow-xs shrink-0" alt="Preview" />}
+                      </div>
                     </div>
                     <div className="col-span-2">
                       <label className="block text-xs font-bold text-slate-500 mb-1">Description</label>
@@ -1317,8 +1354,16 @@ export default function AdminPage() {
                       <input type="text" value={newShowcase.video} onChange={(e) => setNewShowcase(prev => ({ ...prev, video: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="e.g. /DC_design.mp4" required />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-500 mb-1">Poster Image URL</label>
-                      <input type="text" value={newShowcase.poster} onChange={(e) => setNewShowcase(prev => ({ ...prev, poster: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Poster Image URL" required />
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Poster Image Upload</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="file" 
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e.target.files[0], 'poster', setNewShowcase)}
+                          className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer"
+                        />
+                        {newShowcase.poster && <img src={newShowcase.poster} className="h-10 w-10 object-cover rounded-xl shadow-xs shrink-0" alt="Preview" />}
+                      </div>
                     </div>
                     <div className="col-span-2">
                       <label className="block text-xs font-bold text-slate-500 mb-1">Description</label>
@@ -1364,8 +1409,16 @@ export default function AdminPage() {
                       <input type="text" value={newProject.key_features} onChange={(e) => setNewProject(prev => ({ ...prev, key_features: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Key Features" required />
                     </div>
                     <div className="col-span-2">
-                      <label className="block text-xs font-bold text-slate-500 mb-1">Image URL</label>
-                      <input type="text" value={newProject.image} onChange={(e) => setNewProject(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Image URL" required />
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Image Upload</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="file" 
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e.target.files[0], 'image', setNewProject)}
+                          className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer"
+                        />
+                        {newProject.image && <img src={newProject.image} className="h-10 w-10 object-cover rounded-xl shadow-xs shrink-0" alt="Preview" />}
+                      </div>
                     </div>
                     <div className="col-span-2">
                       <label className="block text-xs font-bold text-slate-500 mb-1">Description</label>

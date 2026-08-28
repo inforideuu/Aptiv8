@@ -1,8 +1,31 @@
 import json
+import os
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 from .models import ConsultationBooking, CompanyOverview, TimelineEvent, MissionVision, StatCard, LeadershipMember, Service, Product, ProductShowcase, Project, CaseStudy, PartnerType, Resource
+
+@csrf_exempt
+def upload_file(request):
+    if request.method == 'POST' and request.FILES.get('file'):
+        try:
+            uploaded_file = request.FILES['file']
+            public_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'public'))
+            uploads_dir = os.path.join(public_dir, 'uploads')
+            if not os.path.exists(uploads_dir):
+                os.makedirs(uploads_dir)
+            
+            file_path = os.path.join(uploads_dir, uploaded_file.name)
+            with open(file_path, 'wb+') as destination:
+                for chunk in uploaded_file.chunks():
+                    destination.write(chunk)
+                    
+            relative_url = f"/uploads/{uploaded_file.name}"
+            return JsonResponse({'url': relative_url})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=500)
+    return JsonResponse({'error': 'Invalid request'}, status=400)
+
 
 
 @csrf_exempt

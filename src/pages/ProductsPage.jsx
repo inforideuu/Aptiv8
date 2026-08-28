@@ -54,14 +54,7 @@ export default function ProductsPage() {
       description: 'A mentor-style tool guiding project teams through SCDF fire-safety regulatory requirements, reflecting real enforcement practice rather than a literal code reading. Anchored by a former SCDF Director of Fire Safety.',
       image: 'gen_ai.png'
     },
-    // {
-    //   id: 'open-bim-agent',
-    //   title: 'Gen AI Agent for Open BIM Standardized Data Management',
-    //   category: 'Planning & Design',
-    //   status: 'Proof-of-concept completed',
-    //   description: 'Automates mapping of native BIM data to the IFC-SG schema and validates it against Design Gateway submission requirements under CORENET X, extending to other Open BIM standards and Model Content Requirements (MCRs).',
-    //   image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=800&q=80'
-    // },
+    
     {
       id: 'pe-ge-checker-mentor',
       title: 'Gen AI Mentor for Professional Engineers, Geotechnical Engineers and Accredited Checkers',
@@ -165,24 +158,7 @@ export default function ProductsPage() {
       image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80'
     },
 
-    // Built Environment — Real Estate
-    // {
-    //   id: 'strata-assistant',
-    //   title: 'Strata Title & Maintenance Management Assistant',
-    //   category: 'Real Estate',
-    //   status: 'Exploratory stage',
-    //   description: 'Supports Managing Agents with drafting notices/correspondence, tracking maintenance schedules and by-law compliance, and resolving common subsidiary-proprietor queries. Conducted with a leading Managing Agent.',
-    //   image: 'https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80'
-    // },
-    // {
-    //   id: 'lease-assistant',
-    //   title: 'Lease Management Assistant (incorporating Green Lease and Out-fitting)',
-    //   category: 'Real Estate',
-    //   status: 'Seeking partners',
-    //   description: 'Tracks landlord/tenant obligations, flags upcoming lease events, and supports Green Lease clause administration.',
-    //   image: '/lead.png'
-    // },
-
+    
     // Other Sectors — Customer Service, Telco, Hospitality, Aerospace
     {
       id: 'customer-service-ai',
@@ -228,16 +204,21 @@ export default function ProductsPage() {
     'Other Sectors'
   ];
 
-  const products = dbProducts.length > 0
-    ? dbProducts.map(p => ({
-        id: p.product_id,
-        title: p.title,
-        category: p.category,
-        status: p.status,
-        description: p.description,
-        image: p.image
-      }))
-    : productsList;
+  const mergedProductsMap = {};
+  productsList.forEach(p => {
+    mergedProductsMap[p.id] = p;
+  });
+  dbProducts.forEach(p => {
+    mergedProductsMap[p.product_id] = {
+      id: p.product_id,
+      title: p.title,
+      category: p.category,
+      status: p.status,
+      description: p.description,
+      image: p.image
+    };
+  });
+  const products = Object.values(mergedProductsMap);
 
   const filteredProducts = filter === 'All'
     ? products

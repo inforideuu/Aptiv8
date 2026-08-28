@@ -81,18 +81,23 @@ export default function ServicesPage() {
     }
   ];
 
-  const services = dbServices.length > 0
-    ? dbServices.map(s => ({
-        id: s.service_id,
-        title: s.title,
-        badge: s.badge,
-        description: s.description,
-        icon: iconMap[s.service_id] || Users,
-        color: s.color || 'from-blue-500 to-cyan-500',
-        image: s.image,
-        highlights: s.highlights ? s.highlights.split(',') : []
-      }))
-    : servicesStatic;
+  const mergedServicesMap = {};
+  servicesStatic.forEach(s => {
+    mergedServicesMap[s.id] = s;
+  });
+  dbServices.forEach(s => {
+    mergedServicesMap[s.service_id] = {
+      id: s.service_id,
+      title: s.title,
+      badge: s.badge,
+      description: s.description,
+      icon: iconMap[s.service_id] || Users,
+      color: s.color || 'from-blue-500 to-cyan-500',
+      image: s.image,
+      highlights: s.highlights ? s.highlights.split(',') : []
+    };
+  });
+  const services = Object.values(mergedServicesMap).filter(s => s.title !== '__DELETED__');
 
   return (
     <div className="relative pt-20 overflow-hidden">

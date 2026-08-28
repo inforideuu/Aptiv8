@@ -631,10 +631,18 @@ def save_service(request):
         image = data.get('image')
         highlights = data.get('highlights')
 
+        obj = None
         if sid:
-            obj = Service.objects.filter(id=sid).first()
-        else:
-            obj, _ = Service.objects.get_or_create(service_id=service_id)
+            try:
+                int_sid = int(sid)
+                obj = Service.objects.filter(id=int_sid).first()
+            except ValueError:
+                obj = Service.objects.filter(service_id=sid).first()
+        
+        if not obj:
+            obj = Service.objects.filter(service_id=service_id).first()
+            if not obj:
+                obj = Service(service_id=service_id)
         
         obj.title = title
         obj.badge = badge
@@ -651,7 +659,12 @@ def save_service(request):
 @require_http_methods(["DELETE"])
 def delete_service(request, id):
     try:
-        Service.objects.filter(id=id).delete()
+        try:
+            int_id = int(id)
+            Service.objects.filter(id=int_id).delete()
+        except ValueError:
+            # Check if this is a default hardcoded one, mark it deleted
+            Service.objects.update_or_create(service_id=id, defaults={'title': '__DELETED__'})
         return JsonResponse({'message': 'Deleted successfully'})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
@@ -670,10 +683,18 @@ def save_product(request):
         description = data.get('description')
         image = data.get('image')
 
+        obj = None
         if pid:
-            obj = Product.objects.filter(id=pid).first()
-        else:
-            obj, _ = Product.objects.get_or_create(product_id=product_id)
+            try:
+                int_pid = int(pid)
+                obj = Product.objects.filter(id=int_pid).first()
+            except ValueError:
+                obj = Product.objects.filter(product_id=pid).first()
+        
+        if not obj:
+            obj = Product.objects.filter(product_id=product_id).first()
+            if not obj:
+                obj = Product(product_id=product_id)
         
         obj.title = title
         obj.category = category
@@ -689,7 +710,12 @@ def save_product(request):
 @require_http_methods(["DELETE"])
 def delete_product(request, id):
     try:
-        Product.objects.filter(id=id).delete()
+        try:
+            int_id = int(id)
+            Product.objects.filter(id=int_id).delete()
+        except ValueError:
+            # Check if this is a default hardcoded one, mark it deleted
+            Product.objects.update_or_create(product_id=id, defaults={'title': '__DELETED__'})
         return JsonResponse({'message': 'Deleted successfully'})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
@@ -707,10 +733,18 @@ def save_showcase(request):
         category = data.get('category')
         description = data.get('description')
 
+        obj = None
         if sid:
-            obj = ProductShowcase.objects.filter(id=sid).first()
-        else:
-            obj = ProductShowcase()
+            try:
+                int_sid = int(sid)
+                obj = ProductShowcase.objects.filter(id=int_sid).first()
+            except ValueError:
+                obj = ProductShowcase.objects.filter(title=sid).first()
+        
+        if not obj:
+            obj = ProductShowcase.objects.filter(title=title).first()
+            if not obj:
+                obj = ProductShowcase()
         
         obj.title = title
         obj.video = video
@@ -726,7 +760,12 @@ def save_showcase(request):
 @require_http_methods(["DELETE"])
 def delete_showcase(request, id):
     try:
-        ProductShowcase.objects.filter(id=id).delete()
+        try:
+            int_id = int(id)
+            ProductShowcase.objects.filter(id=int_id).delete()
+        except ValueError:
+            # Check if this is a default hardcoded one, mark it deleted
+            ProductShowcase.objects.update_or_create(title=id, defaults={'video': '__DELETED__'})
         return JsonResponse({'message': 'Deleted successfully'})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)
@@ -747,10 +786,18 @@ def save_project(request):
         key_features = data.get('key_features')
         image = data.get('image')
 
+        obj = None
         if pid:
-            obj = Project.objects.filter(id=pid).first()
-        else:
-            obj, _ = Project.objects.get_or_create(project_id=project_id)
+            try:
+                int_pid = int(pid)
+                obj = Project.objects.filter(id=int_pid).first()
+            except ValueError:
+                obj = Project.objects.filter(project_id=pid).first()
+        
+        if not obj:
+            obj = Project.objects.filter(project_id=project_id).first()
+            if not obj:
+                obj = Project(project_id=project_id)
         
         obj.title = title
         obj.category = category
@@ -768,7 +815,12 @@ def save_project(request):
 @require_http_methods(["DELETE"])
 def delete_project(request, id):
     try:
-        Project.objects.filter(id=id).delete()
+        try:
+            int_id = int(id)
+            Project.objects.filter(id=int_id).delete()
+        except ValueError:
+            # Check if this is a default hardcoded one, mark it deleted
+            Project.objects.update_or_create(project_id=id, defaults={'title': '__DELETED__'})
         return JsonResponse({'message': 'Deleted successfully'})
     except Exception as e:
         return JsonResponse({'error': str(e)}, status=500)

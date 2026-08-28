@@ -60,7 +60,7 @@ export default function ProductsPage() {
       image: p.image
     };
   });
-  const products = Object.values(mergedProductsMap);
+  const products = Object.values(mergedProductsMap).filter(p => p.title !== '__DELETED__');
 
   const filteredProducts = filter === 'All'
     ? products
@@ -73,7 +73,7 @@ export default function ProductsPage() {
   dbShowcases.forEach(s => {
     mergedShowcasesMap[s.title] = s;
   });
-  const showcases = Object.values(mergedShowcasesMap);
+  const showcases = Object.values(mergedShowcasesMap).filter(s => s.video !== '__DELETED__' && s.title !== '__DELETED__');
 
   return (
     <div className="relative pt-20">

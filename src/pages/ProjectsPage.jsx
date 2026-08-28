@@ -59,7 +59,7 @@ export default function ProjectsPage() {
       image: p.image
     };
   });
-  const projects = Object.values(mergedProjectsMap);
+  const projects = Object.values(mergedProjectsMap).filter(p => p.title !== '__DELETED__');
 
   const filteredProjects = filter === 'All'
     ? projects

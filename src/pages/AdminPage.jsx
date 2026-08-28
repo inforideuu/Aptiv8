@@ -602,7 +602,7 @@ export default function AdminPage() {
     products.forEach(p => {
       map[p.product_id] = p;
     });
-    return Object.values(map);
+    return Object.values(map).filter(p => p.title !== '__DELETED__');
   })();
 
   const mergedProjects = (() => {
@@ -613,7 +613,7 @@ export default function AdminPage() {
     projects.forEach(p => {
       map[p.project_id] = p;
     });
-    return Object.values(map);
+    return Object.values(map).filter(p => p.title !== '__DELETED__');
   })();
 
   const mergedShowcases = (() => {
@@ -624,7 +624,7 @@ export default function AdminPage() {
     showcases.forEach(s => {
       map[s.title] = s;
     });
-    return Object.values(map);
+    return Object.values(map).filter(s => s.video !== '__DELETED__' && s.title !== '__DELETED__');
   })();
 
   return (

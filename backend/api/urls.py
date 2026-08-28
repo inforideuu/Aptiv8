@@ -1,0 +1,33 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('analyze/', views.analyze_requirements, name='analyze_requirements'),
+    path('book/', views.book_consultation, name='book_consultation'),
+    path('admin-data/', views.get_admin_data, name='get_admin_data'),
+    path('bookings/<int:id>/', views.delete_booking, name='delete_booking'),
+    path('about/', views.get_about_content, name='get_about_content'),
+    path('about/overview/', views.save_company_overview, name='save_company_overview'),
+    path('about/timeline/', views.save_timeline_event, name='save_timeline_event'),
+    path('about/timeline/<int:id>/', views.delete_timeline_event, name='delete_timeline_event'),
+    path('about/mission-vision/', views.save_mission_vision, name='save_mission_vision'),
+    path('about/stats/', views.save_stat_card, name='save_stat_card'),
+    path('about/stats/<int:id>/', views.delete_stat_card, name='delete_stat_card'),
+    path('about/leadership/', views.save_leadership, name='save_leadership'),
+    path('about/leadership/<int:id>/', views.delete_leadership, name='delete_leadership'),
+    path('cms/', views.get_cms_content, name='get_cms_content'),
+    path('cms/services/', views.save_service, name='save_service'),
+    path('cms/services/<int:id>/', views.delete_service, name='delete_service'),
+    path('cms/products/', views.save_product, name='save_product'),
+    path('cms/products/<int:id>/', views.delete_product, name='delete_product'),
+    path('cms/showcases/', views.save_showcase, name='save_showcase'),
+    path('cms/showcases/<int:id>/', views.delete_showcase, name='delete_showcase'),
+    path('cms/projects/', views.save_project, name='save_project'),
+    path('cms/projects/<int:id>/', views.delete_project, name='delete_project'),
+    path('cms/casestudies/', views.save_casestudy, name='save_casestudy'),
+    path('cms/casestudies/<int:id>/', views.delete_casestudy, name='delete_casestudy'),
+    path('cms/partners/', views.save_partner, name='save_partner'),
+    path('cms/partners/<int:id>/', views.delete_partner, name='delete_partner'),
+    path('cms/resources/', views.save_resource, name='save_resource'),
+    path('cms/resources/<int:id>/', views.delete_resource, name='delete_resource'),
+]

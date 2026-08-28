@@ -8,6 +8,22 @@ import Reveal3D from '../components/Reveal3D';
 export default function ProjectsPage() {
   const [filter, setFilter] = useState('All');
   const [isOpen, setIsOpen] = useState(false);
+  const [dbProjects, setDbProjects] = useState([]);
+
+  React.useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/cms/');
+        if (response.ok) {
+          const data = await response.json();
+          setDbProjects(data.projects || []);
+        }
+      } catch (err) {
+        console.error('Error fetching CMS projects:', err);
+      }
+    };
+    fetchProjects();
+  }, []);
 
   const categories = [
     { name: 'All', icon: LayoutGrid, value: 'All' },
@@ -109,9 +125,22 @@ export default function ProjectsPage() {
     }
   ];
 
+  const projects = dbProjects.length > 0
+    ? dbProjects.map(p => ({
+        id: p.project_id,
+        title: p.title,
+        category: p.category,
+        status: p.status,
+        description: p.description,
+        clientIndustry: p.client_industry,
+        keyFeatures: p.key_features,
+        image: p.image
+      }))
+    : projectsData;
+
   const filteredProjects = filter === 'All'
-    ? projectsData
-    : projectsData.filter(p => p.category === filter);
+    ? projects
+    : projects.filter(p => p.category === filter);
 
   return (
     <div className="relative pt-20 pb-16 bg-bg-primary">

@@ -42,44 +42,72 @@ export default function ContactPage() {
     }
   ];
 
-  const handleAnalyze = (e) => {
+  const handleAnalyze = async (e) => {
     e.preventDefault();
     if (!industry || !budget || !timeline) return;
 
     setLoadingAnalysis(true);
     setAnalysisResult(null);
 
-    setTimeout(() => {
-      // Custom heuristic analysis output
-      let recommendation = '';
-      let components = [];
-
-      if (industry === 'Architecture' || industry === 'Engineering') {
-        recommendation = 'Deploy Sustainability Design Smart Advisor (SDSA) and the Compliance Chatbot.';
-        components = ['Revit CodeCheck API integration', 'Green Mark carbon envelope validation', 'SG BCA regulations package'];
-      } else if (industry === 'Construction') {
-        recommendation = 'Deploy AI Assistant for Bid Preparation and Open BIM AI.';
-        components = ['Historical tender scanning algorithms', 'Quantity takeoffs compiler', 'IFC metadata cleanser'];
-      } else {
-        recommendation = 'Deploy AI-Enhanced CMMS and Aptiv8 Cortex sensory twin interfaces.';
-        components = ['Vibration/Thermal sensor endpoints', 'Predictive ticket dispatch systems', 'strata title allocation automation'];
-      }
-
-      setAnalysisResult({
-        recommendation,
-        components,
-        estSetupTime: timeline === 'Under 3 Months' ? '6-8 Weeks' : '10-12 Weeks',
-        sovereignty: 'Private Local Sandbox Sandbox Deployment recommended.'
+    try {
+      const response = await fetch('http://localhost:8000/api/analyze/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          industry,
+          budget,
+          timeline,
+          projectGoals
+        })
       });
+      if (response.ok) {
+        const data = await response.json();
+        setAnalysisResult({
+          recommendation: data.recommendation,
+          components: data.components,
+          estSetupTime: data.estSetupTime,
+          sovereignty: data.sovereignty
+        });
+      } else {
+        console.error('Failed to run requirement analysis');
+      }
+    } catch (err) {
+      console.error('Error connecting to backend:', err);
+    } finally {
       setLoadingAnalysis(false);
-    }, 1500);
+    }
   };
 
-  const handleBookMeeting = (e) => {
+  const handleBookMeeting = async (e) => {
     e.preventDefault();
-    const { name, company, email, phone, date, time } = bookingForm;
+    const { name, company, email, phone, date, time, details } = bookingForm;
     if (name && company && email && phone && date && time) {
-      setBooked(true);
+      try {
+        const response = await fetch('http://localhost:8000/api/book/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name,
+            company,
+            email,
+            phone,
+            date,
+            time,
+            details
+          })
+        });
+        if (response.ok) {
+          setBooked(true);
+        } else {
+          console.error('Failed to book meeting');
+        }
+      } catch (err) {
+        console.error('Error connecting to backend:', err);
+      }
     }
   };
 

@@ -58,6 +58,22 @@ export default function CaseStudiesPage() {
   const [activeIndustry, setActiveIndustry] = useState('All');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [playVideo, setPlayVideo] = useState(false);
+  const [dbCaseStudies, setDbCaseStudies] = useState([]);
+
+  useEffect(() => {
+    const fetchCaseStudies = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/cms/');
+        if (response.ok) {
+          const data = await response.json();
+          setDbCaseStudies(data.case_studies || []);
+        }
+      } catch (err) {
+        console.error('Error fetching CMS case studies:', err);
+      }
+    };
+    fetchCaseStudies();
+  }, []);
 
   const caseStudiesData = [
     {
@@ -132,11 +148,36 @@ export default function CaseStudiesPage() {
     }
   ];
 
+  const mapSvgImage = (imgKey) => {
+    if (imgKey === 'planning') return svgs.planning;
+    if (imgKey === 'fireSafety') return svgs.fireSafety;
+    if (imgKey === 'compliance') return svgs.compliance;
+    if (imgKey === 'strata') return svgs.strata;
+    return svgs.planning;
+  };
+
+  const caseStudies = dbCaseStudies.length > 0
+    ? dbCaseStudies.map(cs => ({
+        id: cs.case_id,
+        industry: cs.industry,
+        title: cs.title,
+        problem: cs.problem,
+        solution: cs.solution,
+        implementation: cs.implementation,
+        results: cs.results,
+        impact: cs.impact,
+        before: cs.before,
+        after: cs.after,
+        image: mapSvgImage(cs.image),
+        videoUrl: cs.video_url
+      }))
+    : caseStudiesData;
+
   const industriesList = ['All', 'Architecture', 'Engineering', 'Construction', 'Facilities Management', 'Real Estate'];
 
   const filteredStudies = activeIndustry === 'All'
-    ? caseStudiesData
-    : caseStudiesData.filter(cs => cs.industry === activeIndustry);
+    ? caseStudies
+    : caseStudies.filter(cs => cs.industry === activeIndustry);
 
   // Ensure index remains in bounds after filter change
   const currentStudy = filteredStudies[currentIndex] || filteredStudies[0];

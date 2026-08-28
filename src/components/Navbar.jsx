@@ -28,7 +28,7 @@ export default function Navbar({ theme, toggleTheme }) {
     { name: 'Services Offered', href: '/services' },
     { name: 'AI Products Suite', href: '/products' },
     { name: 'Co-Developed Projects', href: '/projects' },
-    { name: 'Aptiv8 CMMS', href: '/solutions' },    
+    { name: 'A8 CMMS & ACMV', href: '/solutions' },    
     { name: 'Case Studies', href: '/case-studies' },
     { name: 'Industries We Serve', href: '/industries' },
     { name: 'Partners Ecosystem', href: '/partners' },

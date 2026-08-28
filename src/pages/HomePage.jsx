@@ -537,7 +537,7 @@ transition-all duration-500"> */}
                   {/* Card Heading INSIDE Card */}
                   <div className="relative z-10">
                     <span className="text-xs font-mono font-bold uppercase tracking-widest text-accent dark:text-[#D4AF37] block mb-2">Platform Overview</span>
-                    <h3 className="text-xl md:text-2xl font-bold text-text-primary dark:text-white font-display mb-4">Gen AI Sustainability Co-Pilot</h3>
+                    <h3 className="text-xl md:text-2xl font-bold text-text-primary dark:text-white font-display mb-4">Gen AI Sustainability Design Smart Advisor</h3>
                     
                     <div className="text-text-secondary dark:text-slate-300 space-y-4 leading-[1.8] text-sm md:text-base font-sans" style={{ textAlign: 'justify' }}>
                       <p>
@@ -821,8 +821,11 @@ transition-all duration-500"> */}
                     title={sol.title}
                     description={sol.description}
                     isCoreProduct={sol.id === 'sdsa'}
-                    href="/products"
-                    onClick={() => navigate('/products')}
+                    href={sol.id === 'akira-datacenter' ? "/products#other-sectors" : "/products"}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate(sol.id === 'akira-datacenter' ? "/products#other-sectors" : "/products");
+                    }}
                   />
                 ))}
             </div>
@@ -943,11 +946,22 @@ transition-all duration-500"> */}
               {industries.map((ind) => (
                 <a
                   key={ind.name}
-                  href="/industries"
+                  href={ind.isOtherSector ? "/products#other-sectors" : "/industries"}
+                  onClick={(e) => {
+                    if (ind.isOtherSector) {
+                      e.preventDefault();
+                      navigate('/products#other-sectors');
+                    }
+                  }}
                   className="bg-bg-primary border border-border-color hover:border-accent hover:shadow-lg rounded-2xl overflow-hidden group flex flex-col transition-all cursor-pointer block"
                 >
                   <div className="h-44 overflow-hidden relative">
                     <img src={ind.image} alt={ind.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                    {ind.isOtherSector && (
+                      <span className="absolute top-3 left-3 bg-accent text-white text-[9px] uppercase tracking-wider font-extrabold px-2.5 py-1 rounded-full shadow-md z-10">
+                        Other Sector
+                      </span>
+                    )}
                   </div>
                   <div className="p-4 flex items-center justify-between">
                     <span className="font-display font-bold text-sm text-text-primary group-hover:text-accent transition-colors">

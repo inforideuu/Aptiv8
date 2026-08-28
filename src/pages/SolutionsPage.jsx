@@ -7,7 +7,7 @@ import {
   Briefcase, DollarSign, ShieldCheck, FileText, BarChart3,
   Award, Truck, Leaf, Activity, Upload, GitBranch, CheckSquare,
   QrCode, Wrench, AlertOctagon, FileSpreadsheet, History, WifiOff,
-  MailCheck, Link2, Database, Key, MessageCircle, PieChart, Gauge, Radio, MapPin, Tv, Play
+  MailCheck, Link2, Database, Key, MessageCircle, PieChart, Gauge, Radio, MapPin, Tv, Play, Eye
 } from 'lucide-react';
 import Card from '../components/Card';
 import { featuredSolutions, svgs } from '../data/websiteData';
@@ -97,7 +97,7 @@ export default function SolutionsPage() {
             className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tight leading-[1.1] mb-6"
             style={{ fontFamily: "'Times New Roman', Times, serif" }}
           >
-            Aptiv8 CMMS
+            Aptiv8 CMMS & ACMV
           </motion.h1>
 
           {/* Centered description text */}
@@ -681,6 +681,406 @@ export default function SolutionsPage() {
                 <ChevronRight className={`h-4.5 w-4.5 transition-transform duration-300 ${showAllFeatures ? 'rotate-90' : 'group-hover:translate-x-1'}`} />
               </button>
             </div>
+          </div>
+        </Reveal3D>
+      </section>
+
+      {/* NEW SECTION: APTIV8 ACMV OPERATIONAL INTELLIGENCE PLATFORM */}
+      <section id="aptiv8-acmv" className="py-28 px-4 bg-white dark:bg-gradient-to-br dark:from-[#070b19] dark:via-[#0b1528] dark:to-[#040812] border-t border-border-color dark:border-[#c5a880]/30 overflow-hidden relative">
+        {/* Decorative background glows */}
+        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-[#D4AF37]/5 rounded-full blur-[150px] pointer-events-none" />
+
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto space-y-20 relative z-10">
+            {/* Header Block */}
+            <div className="text-center space-y-4">
+              <span className="text-accent dark:text-[#D4AF37] text-xs font-mono font-bold uppercase tracking-[0.3em] block">
+                Enterprise Building Decarbonization
+              </span>
+              <h2 className="text-4xl md:text-5xl font-extrabold font-display text-slate-900 dark:text-white leading-tight">
+                A8 ACMV Operational <span className="text-accent">Intelligence Platform</span>
+              </h2>
+              <p className="text-slate-600 dark:text-blue-100/60 max-w-2xl mx-auto text-sm leading-relaxed">
+                AI-powered insights. Smarter operations. Better outcomes.
+              </p>
+            </div>
+
+            {/* Quick Benefits Cards */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                { title: 'Lower Energy Use', desc: 'Real-time load matching and optimization algorithms.' },
+                { title: 'Improve Asset Performance', desc: 'Extend lifecycle limits through early signature diagnostics.' },
+                { title: 'Boost Engineering Productivity', desc: 'Automate manual dispatch orders and alert triage.' },
+                { title: 'Sustainability Outcomes', desc: 'Direct mapping to carbon reductions and ESG benchmarks.' }
+              ].map((item, idx) => (
+                <div key={idx} className="p-6 bg-slate-50 dark:bg-white/5 border border-slate-200 dark:border-white/10 rounded-2xl backdrop-blur-md hover:border-accent dark:hover:border-[#D4AF37]/50 hover:shadow-[0_15px_30px_rgba(212,175,55,0.08)] transition-all duration-300">
+                  <h4 className="text-accent dark:text-[#D4AF37] font-bold text-base mb-2 font-display">{item.title}</h4>
+                  <p className="text-xs text-slate-600 dark:text-blue-100/50 leading-relaxed">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* TECHNICAL SOLUTION OVERVIEW */}
+            <div className="space-y-8">
+              <h3 className="text-xl md:text-2xl font-bold font-display text-slate-900 dark:text-white text-center">
+                Technical Solution Overview
+              </h3>
+
+              <div className="flex flex-col lg:flex-row items-center justify-between gap-4">
+                {[
+                  { step: '01', title: 'Data Sources', icon: Database, items: ['BMS / BAS', 'ACMV Equipment', 'Meters & Sensors', '3rd Party Systems'] },
+                  { step: '02', title: 'Connect & Ingest', icon: Upload, items: ['Secure Gateway', 'Standard Protocols', 'Secure Data Transfer'] },
+                  { step: '03', title: 'Secure Cloud Platform', icon: ShieldCheck, items: ['ISO 27001 Security', 'Role-Based Access', 'Data Encryption', 'Scalable Architecture'] },
+                  { step: '04', title: 'AI & Analytics Engine', icon: Cpu, items: ['AI Modeling', 'Anomaly Detection', 'Performance Analytics', 'Root Cause Analysis'] },
+                  { step: '05', title: 'Insights & Applications', icon: BarChart3, items: ['Performance Dashboards', 'Anomaly Alerts', 'Energy & Cost Analytics', 'What-if Analysis'] }
+                ].map((phase, idx) => {
+                  const IconComp = phase.icon;
+                  return (
+                    <React.Fragment key={idx}>
+                      <div className="flex-1 w-full p-6 bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 rounded-2xl space-y-4 hover:shadow-lg transition-all duration-300">
+                        <div className="flex justify-between items-center">
+                          <span className="text-xs font-mono font-bold text-accent">{phase.step}</span>
+                          <IconComp className="h-5 w-5 text-accent" />
+                        </div>
+                        <h4 className="text-slate-900 dark:text-white font-bold text-sm font-display">{phase.title}</h4>
+                        <ul className="space-y-1 text-[11px] text-slate-600 dark:text-blue-100/50">
+                          {phase.items.map((li, lidx) => (
+                            <li key={lidx} className="flex items-center gap-1.5">
+                              <span className="w-1 h-1 rounded-full bg-accent" />
+                              <span>{li}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      {idx < 4 && (
+                        <ChevronRight className="hidden lg:block h-6 w-6 text-slate-300 dark:text-slate-700 shrink-0" />
+                      )}
+                    </React.Fragment>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* TWO COLUMN CAPABILITIES & VALUE */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+              {/* Capabilities Column */}
+              <div className="lg:col-span-7 space-y-6">
+                <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 pb-3">
+                  Key Capabilities
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  {[
+                    { title: 'Real-time Monitoring & Visualisation', desc: 'Live visibility of ACMV performance and key metrics.', icon: Eye },
+                    { title: 'AI-powered Anomaly Detection', desc: 'Early detection of faults and unusual behaviour.', icon: Cpu },
+                    { title: 'Energy & Cost Analytics', desc: 'Identify wastage and optimisation opportunities.', icon: BarChart3 },
+                    { title: 'Root Cause Diagnostics', desc: 'Drill down to the cause, not just the symptoms.', icon: AlertOctagon },
+                    { title: 'Predictive Insights & Forecasting', desc: 'Anticipate issues and optimise operations.', icon: TrendingUp },
+                    { title: 'Actionable Recommendations', desc: 'Clear actions with expected impact.', icon: CheckCircle },
+                    { title: 'Custom Reporting & Compliance', desc: 'Automated reports for management & ESG.', icon: FileText },
+                    { title: 'Secure, Scalable & Enterprise-grade', desc: 'ISO 27001, role-based access, encrypted data.', icon: ShieldCheck }
+                  ].map((cap, idx) => {
+                    const CapIcon = cap.icon;
+                    return (
+                      <div key={idx} className="flex gap-3 items-start">
+                        <div className="p-2 rounded-lg bg-accent/5 text-accent mt-0.5 shrink-0">
+                          <CapIcon className="h-4 w-4" />
+                        </div>
+                        <div className="space-y-0.5">
+                          <h4 className="text-blue-600 dark:text-blue-400 text-xs font-bold font-display">{cap.title}</h4>
+                          <p className="text-[11px] text-slate-600 dark:text-blue-100/50 leading-relaxed">{cap.desc}</p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Value & Outcomes Column */}
+              <div className="lg:col-span-5 space-y-6">
+                <h3 className="text-xl font-bold font-display text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/10 pb-3">
+                  Value & Outcomes
+                </h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {[
+                    { title: 'Engineering Productivity', val: '30-60 hrs/month', desc: 'saved per FTE typical', color: 'border-blue-200 bg-blue-50/20 text-blue-600' },
+                    { title: 'Energy Savings', val: '5% - 10%', desc: 'of total electricity costs', color: 'border-green-200 bg-green-50/20 text-green-600' },
+                    { title: 'Asset Life Extension', val: '$10k - $50k', desc: 'annually saved', color: 'border-purple-200 bg-purple-50/20 text-purple-600' },
+                    { title: 'Total Value', val: '$100k - $250k', desc: 'annually contributed', color: 'border-amber-200 bg-amber-50/20 text-amber-600' },
+                    { title: 'ROI', val: '~4x - 10x', desc: 'return on investment value', color: 'border-teal-200 bg-teal-50/20 text-teal-600' },
+                    { title: 'Payback Period', val: '1 - 3 months', desc: 'average value recovery time', color: 'border-rose-200 bg-rose-50/20 text-rose-600' }
+                  ].map((val, idx) => (
+                    <div key={idx} className={`p-4 border rounded-xl hover:shadow-md transition-all ${val.color}`}>
+                      <span className="text-[9px] uppercase tracking-wider font-bold block mb-1 opacity-85">{val.title}</span>
+                      <strong className="text-xl font-extrabold block font-display mb-0.5">{val.val}</strong>
+                      <span className="text-[10px] opacity-75 block">{val.desc}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* RAPID ASSESSMENT PANEL */}
+            <div className="p-8 bg-slate-50 dark:bg-gradient-to-br dark:from-[#0c162f] dark:to-[#060a16] border border-slate-200 dark:border-[#c5a880]/30 rounded-[32px] grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+              <div className="lg:col-span-1 space-y-4">
+                <span className="text-accent dark:text-[#D4AF37] text-[10px] font-mono font-bold uppercase tracking-wider block">
+                  Pilot Engagement
+                </span>
+                <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white">Rapid Assessment</h3>
+                <p className="text-xs text-slate-650 dark:text-blue-100/50 leading-relaxed">
+                  A quick 2-3 week engagement to uncover savings potential and improvement opportunities.
+                </p>
+                <div className="pt-4 border-t border-slate-200 dark:border-white/5 text-[11px] text-slate-500 dark:text-blue-100/40">
+                  Assessment Fee: <strong className="text-accent dark:text-white text-sm font-bold">SGD 695</strong> (one-off fee)
+                </div>
+              </div>
+
+              <div className="lg:col-span-2 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  { step: 'Data Collection', desc: 'We collect historical logs, track raw data with minimal site impact.', icon: Database },
+                  { step: 'AI Analysis', desc: 'Our AI engine analyzes performance, energy use, efficiency, and operational patterns.', icon: Cpu },
+                  { step: 'Key Findings', desc: 'We identify issues, opportunities, and priority areas for improvement.', icon: CheckCircle },
+                  { step: 'Report & Recommendations', desc: 'You receive a concise report with quantified savings potential and next steps.', icon: FileText }
+                ].map((item, idx) => {
+                  const ItemIcon = item.icon;
+                  return (
+                    <div key={idx} className="p-4 bg-white dark:bg-white/[0.02] border border-slate-200 dark:border-white/5 rounded-xl space-y-2 flex gap-3 items-start">
+                      <div className="p-2 rounded-lg bg-blue-50 dark:bg-blue-900/20 text-blue-600 mt-1">
+                        <ItemIcon className="h-4 w-4" />
+                      </div>
+                      <div>
+                        <h4 className="text-slate-900 dark:text-white font-bold text-xs font-display mb-0.5">{item.step}</h4>
+                        <p className="text-[10px] text-slate-500 dark:text-blue-100/40 leading-relaxed">{item.desc}</p>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+          </div>
+        </Reveal3D>
+      </section>
+
+      {/* NEW SECTION: A8 ACMV CO-PILOT */}
+      <section id="a8-acmv-copilot" className="py-28 px-4 bg-white dark:bg-gradient-to-br dark:from-[#0b1528] dark:to-[#040812] border-t border-border-color dark:border-[#c5a880]/30 overflow-hidden relative">
+        <div className="absolute top-1/3 right-1/4 w-[350px] h-[350px] bg-accent/5 rounded-full blur-[100px] pointer-events-none" />
+
+        <Reveal3D>
+          <div className="max-w-7xl mx-auto space-y-20 relative z-10">
+            {/* Header Block */}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+              <div className="space-y-6">
+                <span className="px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent text-[10px] font-mono font-bold uppercase tracking-wider w-max block">
+                  Interactive AI Assistant
+                </span>
+                <h2 className="text-4xl md:text-5xl font-extrabold font-display text-slate-900 dark:text-white leading-tight">
+                  Your <span className="text-accent">AI Co-Pilot</span> for ACMV Excellence
+                </h2>
+                <p className="text-sm text-accent dark:text-[#D4AF37] font-bold font-mono tracking-wide uppercase">
+                  Smarter Operations. Confident Decisions.
+                </p>
+                <p className="text-sm text-slate-650 dark:text-blue-100/60 leading-relaxed">
+                  A8 Co-Pilot is your always-on ACMV AI assistant that turns complex building data into clear answers and actionable recommendations.
+                </p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+                  {[
+                    { title: 'Ask. Get answers.', desc: 'Natural language answers in seconds.', icon: MessageSquare },
+                    { title: 'See. Understand.', desc: 'Instant insights and trend summaries.', icon: Eye },
+                    { title: 'Act. Improve.', desc: 'Personalized recommendations.', icon: CheckCircle },
+                    { title: 'Stay in Control.', desc: 'Facts, risks and performance at fingertips.', icon: ShieldCheck }
+                  ].map((act, idx) => {
+                    const ActIcon = act.icon;
+                    return (
+                      <motion.div
+                        key={idx}
+                        whileHover={{ y: -4, scale: 1.02 }}
+                        className="flex gap-3 items-start p-3 rounded-xl hover:bg-slate-100/30 dark:hover:bg-white/[0.02] transition-colors"
+                      >
+                        <div className="p-2 rounded-lg bg-accent/5 text-accent mt-0.5 shrink-0">
+                          <ActIcon className="h-4 w-4" />
+                        </div>
+                        <div className="space-y-0.5">
+                          <h4 className="text-slate-900 dark:text-white font-bold text-xs font-display">{act.title}</h4>
+                          <p className="text-[10px] text-slate-500 dark:text-blue-100/50 leading-relaxed">{act.desc}</p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Visual Chat Mockup */}
+              <motion.div
+                whileHover={{ rotateX: 6, rotateY: -6, scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 150, damping: 15 }}
+                style={{ transformStyle: "preserve-3d", perspective: "1000px" }}
+                className="bg-slate-50 dark:bg-[#070b19]/80 border border-slate-200 dark:border-white/10 rounded-[32px] p-6 shadow-xl space-y-6 group/chat cursor-default hover:shadow-2xl hover:border-accent/40 transition-all duration-300"
+              >
+                <div className="flex items-center justify-between border-b border-slate-200/50 dark:border-white/5 pb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse" />
+                    <span className="text-xs font-bold text-slate-900 dark:text-white font-mono">A8 Co-Pilot Chat</span>
+                  </div>
+                  <span className="text-[9px] font-mono text-slate-400">v1.2.0</span>
+                </div>
+
+                <div className="space-y-4">
+                  <div className="flex justify-end">
+                    <motion.div
+                      whileHover={{ translateZ: 15 }}
+                      className="bg-accent text-white px-4 py-3 rounded-2xl rounded-tr-none text-xs max-w-[85%] font-medium shadow-md"
+                    >
+                      How is my ACMV system performing today?
+                    </motion.div>
+                  </div>
+
+                  <div className="flex justify-start">
+                    <motion.div
+                      whileHover={{ translateZ: 20 }}
+                      className="bg-white dark:bg-white/[0.03] border border-slate-200 dark:border-white/5 text-slate-850 dark:text-blue-100/80 px-4 py-3 rounded-2xl rounded-tl-none text-xs max-w-[85%] space-y-2 shadow-sm"
+                    >
+                      <p className="font-medium text-slate-900 dark:text-white">Today, your ACMV system is performing well.</p>
+                      <div className="grid grid-cols-3 gap-2 py-2 border-t border-b border-slate-200/50 dark:border-white/5">
+                        <div>
+                          <span className="text-[9px] text-slate-500 block">Energy Use</span>
+                          <strong className="text-green-600 font-bold text-xs">↓ 12%</strong>
+                        </div>
+                        <div>
+                          <span className="text-[9px] text-slate-500 block">Comfort Index</span>
+                          <strong className="text-slate-800 dark:text-white font-bold text-xs">72% Optimal</strong>
+                        </div>
+                        <div>
+                          <span className="text-[9px] text-slate-500 block">System Status</span>
+                          <strong className="text-green-600 font-bold text-xs">Normal</strong>
+                        </div>
+                      </div>
+                      <p className="text-[10px] text-accent font-bold mt-1">Top Recommendation: Optimize AHU-3 supply air temperature setpoint to improve efficiency.</p>
+                    </motion.div>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Quick Benefits Bar */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center border-t border-b border-slate-200 dark:border-white/10 py-8">
+              {[
+                { title: 'Reports in Minutes', desc: 'Instant answers, not days.', icon: FileText },
+                { title: 'No Site Visits', desc: '100% remote, secure & efficient.', icon: MapPin },
+                { title: 'No Retrofitting', desc: 'Works with your existing BMS.', icon: Wrench },
+                { title: 'No Disruption', desc: 'Fits into your operations.', icon: ShieldCheck }
+              ].map((b, idx) => {
+                const BenefitIcon = b.icon;
+                return (
+                  <div key={idx} className="space-y-2 flex flex-col items-center">
+                    <div className="p-3 rounded-full bg-accent/5 text-accent">
+                      <BenefitIcon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h4 className="text-slate-900 dark:text-white font-bold text-sm font-display">{b.title}</h4>
+                      <p className="text-xs text-slate-500 dark:text-blue-100/50">{b.desc}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+            {/* Complete Control Capabilities */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {/* Left Column */}
+              <div className="lg:col-span-2 space-y-6 bg-slate-50/50 dark:bg-white/[0.01] border border-slate-200 dark:border-white/5 p-8 rounded-3xl">
+                <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white border-b border-slate-200 dark:border-white/5 pb-3">One Product. Complete Control.</h3>
+                <div className="space-y-6">
+                  {[
+                    { title: 'Natural Language Q&A', desc: 'Ask anything about your ACMV system in plain English. Get instant, accurate answers.', icon: MessageSquare },
+                    { title: 'Instant Insights & Trends', desc: 'Understand what\'s happening with your systems through automated summaries and visual trends.', icon: TrendingUp },
+                    { title: 'Alerts & Anomaly Detection', desc: 'Proactive alerts for issues, risks and unusual patterns before they impact operations.', icon: AlertTriangle },
+                    { title: 'Action Recommendations', desc: 'AI-powered recommendations to improve efficiency, comfort and reliability.', icon: Leaf },
+                    { title: 'Knowledge On-Demand', desc: 'Access SOPs, technical docs and system knowledge whenever you need it.', icon: ClipboardList }
+                  ].map((cap, idx) => {
+                    const CapIcon = cap.icon;
+                    return (
+                      <motion.div
+                        key={idx}
+                        whileHover={{ x: 6, scale: 1.01 }}
+                        className="flex gap-4 items-start p-3 rounded-2xl hover:bg-white dark:hover:bg-white/[0.02] hover:shadow-md transition-all duration-300"
+                      >
+                        <span className="w-8 h-8 rounded-lg bg-accent/5 border border-accent/15 text-accent flex items-center justify-center text-xs font-bold font-mono shrink-0">
+                          <CapIcon className="h-4 w-4" />
+                        </span>
+                        <div>
+                          <h4 className="text-slate-900 dark:text-white font-bold text-sm mb-1">{cap.title}</h4>
+                          <p className="text-xs text-slate-500 dark:text-blue-100/50 leading-relaxed">{cap.desc}</p>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Right Column */}
+              <div className="space-y-6">
+                {/* Built for ACMV Teams */}
+                <div className="p-6 bg-slate-50/50 dark:bg-white/[0.01] border border-slate-200 dark:border-white/5 rounded-3xl space-y-4">
+                  <h4 className="text-slate-900 dark:text-white font-bold text-sm font-display border-b border-slate-200/50 dark:border-white/5 pb-2">Built for ACMV Teams</h4>
+                  <ul className="space-y-2 text-xs text-slate-650 dark:text-blue-100/60 font-medium">
+                    {['Operations Managers', 'Facility Engineers', 'Building Technicians', 'Energy Managers', 'Maintenance Teams'].map((t, idx) => (
+                      <li key={idx} className="flex items-center gap-2">
+                        <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                        <span>{t}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                {/* Works with what you have */}
+                <div className="p-6 bg-slate-50/50 dark:bg-white/[0.01] border border-slate-200 dark:border-white/5 rounded-3xl space-y-4">
+                  <h4 className="text-slate-900 dark:text-white font-bold text-sm font-display border-b border-slate-200/50 dark:border-white/5 pb-2">Works With What You Have</h4>
+                  <ul className="space-y-2.5 text-xs text-slate-650 dark:text-blue-100/60">
+                    <li className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-accent" />
+                      <span>Existing BMS (BACnet / Modbus)</span>
+                    </li>
+                    <li className="flex items-center gap-2">
+                      <span className="w-1 h-1 rounded-full bg-accent" />
+                      <span>Secure Cloud or On-Premise</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            {/* STRATEGIC PARTNERSHIP REFERENCE (AMPOTECH) */}
+            {/* <div className="p-8 bg-slate-50/40 dark:bg-[#0c162f]/60 border border-slate-200 dark:border-white/5 rounded-[32px] space-y-6">
+              <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 border-b border-slate-200/50 dark:border-white/5 pb-4">
+                <div>
+                  <span className="text-[10px] font-mono text-accent dark:text-[#D4AF37] font-bold uppercase tracking-wider block mb-1">Launch Partnership Reference</span>
+                  <h3 className="text-xl md:text-2xl font-bold font-display text-slate-900 dark:text-white">Ampotech – Proposed First Singapore Copilot Buyer</h3>
+                </div>
+              </div>
+              <p className="text-xs text-slate-600 dark:text-blue-100/65 leading-relaxed">
+                We are proud to collaborate with Ampotech in Singapore as our proposed first buyer of A8 Co-Pilot. A strategic partnership to set the benchmark for intelligent ACMV operations in Singapore.
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-2">
+                {[
+                  { title: 'Launch Partner', desc: 'Leading the way in AI-powered ACMV operations.', icon: Award },
+                  { title: 'Real-World Impact', desc: 'Driving measurable outcomes across their facilities.', icon: TrendingUp },
+                  { title: 'Future-Ready', desc: 'Building a smarter, more efficient and sustainable future together.', icon: Leaf }
+                ].map((ref, idx) => {
+                  const RefIcon = ref.icon;
+                  return (
+                    <div key={idx} className="space-y-2 p-5 bg-white dark:bg-white/[0.01] border border-slate-200 dark:border-white/5 rounded-xl hover:shadow-md transition-all">
+                      <div className="p-2 rounded-lg bg-accent/5 text-accent w-max">
+                        <RefIcon className="h-4 w-4" />
+                      </div>
+                      <h4 className="text-slate-950 dark:text-white text-xs font-bold font-display">{ref.title}</h4>
+                      <p className="text-[10px] text-slate-500 dark:text-blue-100/40 leading-relaxed">{ref.desc}</p>
+                    </div>
+                  );
+                })}
+              </div>
+            </div> */}
+
           </div>
         </Reveal3D>
       </section>

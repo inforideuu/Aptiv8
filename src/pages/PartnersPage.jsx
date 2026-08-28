@@ -1,10 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Shield, Sparkles, Network, ArrowRight, Building, Award, CheckCircle, ChevronRight } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
 
 export default function PartnersPage() {
-  const partnerTypes = [
+  const [dbPartners, setDbPartners] = useState([]);
+
+  useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/cms/');
+        if (response.ok) {
+          const data = await response.json();
+          setDbPartners(data.partners || []);
+        }
+      } catch (err) {
+        console.error('Error fetching CMS partners:', err);
+      }
+    };
+    fetchPartners();
+  }, []);
+
+  const partnerTypesStatic = [
     {
       title: 'Technology Partners',
       description: 'Integrators extending our model distributions into Revit, IFC, and Autodesk environments.',
@@ -21,6 +38,14 @@ export default function PartnersPage() {
       partners: ['NUS Cognitive Architecture', 'GovTech Singapore', 'IMDA SGDigital', 'A*STAR Research']
     }
   ];
+
+  const partnerTypes = dbPartners.length > 0
+    ? dbPartners.map(p => ({
+        title: p.title,
+        description: p.description,
+        partners: p.partners ? p.partners.split(',') : []
+      }))
+    : partnerTypesStatic;
 
   const benefits = [
     { title: 'Data Sovereignty', desc: 'Secure custom-trained local nodes deployed in private sandboxes for enhanced data privacy and enterprise security.' },

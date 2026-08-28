@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Filter, BookOpen, FileText, Video, Calendar, ArrowRight, Eye } from 'lucide-react';
 import { svgs } from '../data/websiteData';
@@ -7,6 +7,22 @@ import Reveal3D from '../components/Reveal3D';
 export default function ResourcesPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');
+  const [dbResources, setDbResources] = useState([]);
+
+  useEffect(() => {
+    const fetchResources = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/cms/');
+        if (response.ok) {
+          const data = await response.json();
+          setDbResources(data.resources || []);
+        }
+      } catch (err) {
+        console.error('Error fetching CMS resources:', err);
+      }
+    };
+    fetchResources();
+  }, []);
 
   const resources = [
     {
@@ -77,10 +93,34 @@ export default function ResourcesPage() {
     }
   ];
 
+  const mapResourceSvg = (imgKey) => {
+    if (imgKey === 'sustainability') return svgs.sustainability;
+    if (imgKey === 'fireSafety') return svgs.fireSafety;
+    if (imgKey === 'compliance') return svgs.compliance;
+    if (imgKey === 'strata') return svgs.strata;
+    if (imgKey === 'cortex') return svgs.cortex;
+    if (imgKey === 'bidPrep') return svgs.bidPrep;
+    return svgs.sustainability;
+  };
+
+  const activeResources = dbResources.length > 0
+    ? dbResources.map(r => ({
+        id: r.resource_id,
+        title: r.title,
+        category: r.category,
+        summary: r.summary,
+        image: mapResourceSvg(r.image),
+        date: r.date,
+        trending: r.trending,
+        featured: r.featured,
+        readTime: r.read_time
+      }))
+    : resources;
+
   const categories = ['All', 'Articles', 'White Papers', 'Research Papers', 'Tech Docs', 'Insights'];
 
   // Filters
-  const filteredResources = resources.filter(res => {
+  const filteredResources = activeResources.filter(res => {
     const matchesSearch = res.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                           res.summary.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCat = activeCategory === 'All' || res.category === activeCategory;

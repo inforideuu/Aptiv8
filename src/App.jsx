@@ -14,6 +14,7 @@ import ResourcesPage from './pages/ResourcesPage';
 import ContactPage from './pages/ContactPage';
 import ServicesPage from './pages/ServicesPage';
 import ProjectsPage from './pages/ProjectsPage';
+import AdminPage from './pages/AdminPage';
 
 // Scroll to top on navigation helper
 function ScrollToTop() {
@@ -79,24 +80,34 @@ function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-300">
-        <Navbar theme={theme} toggleTheme={toggleTheme} />
-        <Routes>
-          <Route path="/" element={<Page3DReveal><HomePage theme={theme} /></Page3DReveal>} />
-          <Route path="/about" element={<Page3DReveal><AboutPage /></Page3DReveal>} />
-          <Route path="/services" element={<Page3DReveal><ServicesPage /></Page3DReveal>} />
-          <Route path="/projects" element={<Page3DReveal><ProjectsPage /></Page3DReveal>} />
-          <Route path="/solutions" element={<Page3DReveal><SolutionsPage /></Page3DReveal>} />
-          <Route path="/products" element={<Page3DReveal><ProductsPage /></Page3DReveal>} />
-          <Route path="/case-studies" element={<Page3DReveal><CaseStudiesPage /></Page3DReveal>} />
-          <Route path="/industries" element={<Page3DReveal><IndustriesPage /></Page3DReveal>} />
-          <Route path="/partners" element={<Page3DReveal><PartnersPage /></Page3DReveal>} />
-          <Route path="/resources" element={<Page3DReveal><ResourcesPage /></Page3DReveal>} />
-          <Route path="/contact" element={<Page3DReveal><ContactPage /></Page3DReveal>} />
-        </Routes>
-        <Footer />
-      </div>
+      <AppContent theme={theme} toggleTheme={toggleTheme} />
     </Router>
+  );
+}
+
+function AppContent({ theme, toggleTheme }) {
+  const location = useLocation();
+  const showFooter = location.pathname !== '/admin';
+
+  return (
+    <div className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-300">
+      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      <Routes>
+        <Route path="/" element={<Page3DReveal><HomePage theme={theme} /></Page3DReveal>} />
+        <Route path="/about" element={<Page3DReveal><AboutPage /></Page3DReveal>} />
+        <Route path="/services" element={<Page3DReveal><ServicesPage /></Page3DReveal>} />
+        <Route path="/projects" element={<Page3DReveal><ProjectsPage /></Page3DReveal>} />
+        <Route path="/solutions" element={<Page3DReveal><SolutionsPage /></Page3DReveal>} />
+        <Route path="/products" element={<Page3DReveal><ProductsPage /></Page3DReveal>} />
+        <Route path="/case-studies" element={<Page3DReveal><CaseStudiesPage /></Page3DReveal>} />
+        <Route path="/industries" element={<Page3DReveal><IndustriesPage /></Page3DReveal>} />
+        <Route path="/partners" element={<Page3DReveal><PartnersPage /></Page3DReveal>} />
+        <Route path="/resources" element={<Page3DReveal><ResourcesPage /></Page3DReveal>} />
+        <Route path="/contact" element={<Page3DReveal><ContactPage /></Page3DReveal>} />
+        <Route path="/admin" element={<Page3DReveal><AdminPage /></Page3DReveal>} />
+      </Routes>
+      {showFooter && <Footer />}
+    </div>
   );
 }
 

@@ -153,6 +153,27 @@ function TiltCard({ children, className }) {
 }
 
 export default function AboutPage() {
+  const [aboutData, setAboutData] = useState({ hero: null, items: [] });
+
+  useEffect(() => {
+    const fetchAboutData = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/about/');
+        if (response.ok) {
+          const data = await response.json();
+          setAboutData(data);
+        }
+      } catch (err) {
+        console.error('Error fetching dynamic about data:', err);
+      }
+    };
+    fetchAboutData();
+  }, []);
+
+  const iconMap = {
+    Building2, Users, Award, ShieldCheck, Heart, Lightbulb, Zap, TrendingUp, Briefcase, Cpu, Settings
+  };
+
   // Timeline State
   const [activeYear, setActiveYear] = useState('2018');
 
@@ -251,6 +272,69 @@ export default function AboutPage() {
     }
   ];
 
+  const defaultOverview = {
+    overview: {
+      title: 'AI-Powered Innovation for the Built Environment',
+      paragraph_1: '• Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products for the Built Environment (BE) sector.',
+      paragraph_2: '• Our tools automate compliance, optimize engineering, and elevate facilities management across Singapore and Malaysia.',
+      paragraph_3: '• Our priority is delivering widely adopted, revenue-generating tools that practitioners use in their daily work.'
+    },
+    challenges: {
+      title: 'Unlocking Efficiency Across the Built Environment Value Chain',
+      paragraph_1: '• The BE value chain — from design, through tendering, construction, operations & maintenance, and real estate management — is characterized by significant pain points.',
+      paragraph_2: '• They are regulatory complexity, fragmented and non-standardized data, abortive work from late-stage rejections, and low productivity in compliance.',
+      paragraph_3: '• Aptiv8 positions Agentic AI to relieve these bottlenecks at scale.'
+    },
+    adaptability: {
+      title: 'Building Industry-Ready Gen AI & Agentic AI Solutions',
+      paragraph_1: '• Aptiv8 acts as an engineering delivery partner, co-developing Gen AI / Agentic AI projects with domain experts.',
+      paragraph_2: '• Some projects are proofs-of-concept already built by Aptiv8; others are in active development or seeking partners.',
+      paragraph_3: '• We also apply our Agentic platform to customer service, telecommunications, and aerospace MRO solutions.'
+    }
+  };
+
+  const ovBlocks = { ...defaultOverview };
+  (aboutData.overview || []).forEach(item => {
+    if (ovBlocks[item.block_key]) {
+      ovBlocks[item.block_key] = {
+        title: item.title,
+        paragraph_1: item.paragraph_1 ? `• ${item.paragraph_1}` : '',
+        paragraph_2: item.paragraph_2 ? `• ${item.paragraph_2}` : '',
+        paragraph_3: item.paragraph_3 ? `• ${item.paragraph_3}` : ''
+      };
+    }
+  });
+
+  const timelineToRender = aboutData.timeline && aboutData.timeline.length > 0
+    ? aboutData.timeline.map(item => ({
+        year: item.year,
+        title: item.title,
+        description: item.description,
+        icon: iconMap[item.icon_name] || Award
+      }))
+    : timelineEvents;
+
+  const visionText = aboutData.mission_vision?.vision_text || "To be the trusted AI partner in the AEC and FM sectors in Singapore and SE Asia.";
+  const missionText = aboutData.mission_vision?.mission_text || "To drive AI transformation and innovation in the built environment.";
+
+  const statsToRender = aboutData.stats && aboutData.stats.length > 0
+    ? aboutData.stats
+    : [
+        { label: 'Projects Completed', value: '150+' },
+        { label: 'AI Solutions', value: '12+' },
+        { label: 'Industries Served', value: '7' },
+        { label: 'Years Experience', value: '8' }
+      ];
+
+  const leadershipToRender = aboutData.leadership && aboutData.leadership.length > 0
+    ? aboutData.leadership.map(item => ({
+        name: item.name,
+        role: item.role,
+        bio: item.bio,
+        icon: iconMap[item.icon_name] || Briefcase
+      }))
+    : leadership;
+
   return (
     <div className="relative pt-20">
       
@@ -333,7 +417,6 @@ export default function AboutPage() {
             {/* Single Consolidate Card with image - Hover 3D Red Border and Shadow */}
             <div className="bg-white/60 dark:bg-bg-primary/40 backdrop-blur-xl p-8 md:p-12 rounded-[32px] border border-border-color shadow-2xl grid grid-cols-1 lg:grid-cols-12 gap-12 items-stretch hover:shadow-[0_20px_45px_rgba(239,68,68,0.15),_0_6px_0_0_#ef4444] hover:border-red-500 transition-all duration-500 transform hover:-translate-y-2">
               
-              {/* Left Side: 3 Content blocks stacked in separate premium cards */}
               <div className="lg:col-span-7 flex flex-col gap-6 justify-between">
                 {/* Block 1 Card */}
                 <motion.div
@@ -346,19 +429,13 @@ export default function AboutPage() {
                     <Sparkles className="h-3 w-3 animate-pulse" /> Overview
                   </div>
                   <h3 className="text-xl font-bold font-display text-text-primary leading-tight mb-2">
-                    AI-Powered Innovation for the Built Environment
+                    {ovBlocks.overview.title}
                   </h3>
                   <div className="flex flex-col text-xs md:text-sm text-text-secondary leading-relaxed text-justify">
                     <p className="text-text-primary font-semibold mb-2">Hover card to reveal details:</p>
-                    <motion.p variants={itemVariants}>
-                      • Aptiv8 IT Solutions Pte Ltd builds and commercializes Generative AI and Agentic AI advisor products for the Built Environment (BE) sector.
-                    </motion.p>
-                    <motion.p variants={itemVariants}>
-                      • Our tools automate compliance, optimize engineering, and elevate facilities management across Singapore and Malaysia.
-                    </motion.p>
-                    <motion.p variants={itemVariants}>
-                      • Our priority is delivering widely adopted, revenue-generating tools that practitioners use in their daily work.
-                    </motion.p>
+                    {ovBlocks.overview.paragraph_1 && <motion.p variants={itemVariants}>{ovBlocks.overview.paragraph_1}</motion.p>}
+                    {ovBlocks.overview.paragraph_2 && <motion.p variants={itemVariants}>{ovBlocks.overview.paragraph_2}</motion.p>}
+                    {ovBlocks.overview.paragraph_3 && <motion.p variants={itemVariants}>{ovBlocks.overview.paragraph_3}</motion.p>}
                   </div>
                 </motion.div>
 
@@ -373,19 +450,13 @@ export default function AboutPage() {
                     <Cpu className="h-3 w-3 animate-pulse" /> Challenges
                   </div>
                   <h3 className="text-xl font-bold font-display text-text-primary leading-tight mb-2">
-                    Unlocking Efficiency Across the Built Environment Value Chain
+                    {ovBlocks.challenges.title}
                   </h3>
                   <div className="flex flex-col text-xs md:text-sm text-text-secondary leading-relaxed text-justify">
                     <p className="text-text-primary font-semibold mb-2">Hover card to reveal details:</p>
-                    <motion.p variants={itemVariants}>
-                      • The BE value chain — from design, through tendering, construction, operations & maintenance, and real estate management — is characterized by significant pain points.
-                    </motion.p>
-                    <motion.p variants={itemVariants}>
-                      • They are regulatory complexity, fragmented and non-standardized data, abortive work from late-stage rejections, and low productivity in compliance.
-                    </motion.p>
-                    <motion.p variants={itemVariants}>
-                      • Aptiv8 positions Agentic AI to relieve these bottlenecks at scale.
-                    </motion.p>
+                    {ovBlocks.challenges.paragraph_1 && <motion.p variants={itemVariants}>{ovBlocks.challenges.paragraph_1}</motion.p>}
+                    {ovBlocks.challenges.paragraph_2 && <motion.p variants={itemVariants}>{ovBlocks.challenges.paragraph_2}</motion.p>}
+                    {ovBlocks.challenges.paragraph_3 && <motion.p variants={itemVariants}>{ovBlocks.challenges.paragraph_3}</motion.p>}
                   </div>
                 </motion.div>
 
@@ -400,19 +471,13 @@ export default function AboutPage() {
                     <Briefcase className="h-3 w-3 animate-pulse" /> Adaptability
                   </div>
                   <h3 className="text-xl font-bold font-display text-text-primary leading-tight mb-2">
-                    Building Industry-Ready Gen AI & Agentic AI Solutions
+                    {ovBlocks.adaptability.title}
                   </h3>
                   <div className="flex flex-col text-xs md:text-sm text-text-secondary leading-relaxed text-justify">
                     <p className="text-text-primary font-semibold mb-2">Hover card to reveal details:</p>
-                    <motion.p variants={itemVariants}>
-                      • Aptiv8 acts as an engineering delivery partner, co-developing Gen AI / Agentic AI projects with domain experts.
-                    </motion.p>
-                    <motion.p variants={itemVariants}>
-                      • Some projects are proofs-of-concept already built by Aptiv8; others are in active development or seeking partners.
-                    </motion.p>
-                    <motion.p variants={itemVariants}>
-                      • We also apply our Agentic platform to customer service, telecommunications, and aerospace MRO solutions.
-                    </motion.p>
+                    {ovBlocks.adaptability.paragraph_1 && <motion.p variants={itemVariants}>{ovBlocks.adaptability.paragraph_1}</motion.p>}
+                    {ovBlocks.adaptability.paragraph_2 && <motion.p variants={itemVariants}>{ovBlocks.adaptability.paragraph_2}</motion.p>}
+                    {ovBlocks.adaptability.paragraph_3 && <motion.p variants={itemVariants}>{ovBlocks.adaptability.paragraph_3}</motion.p>}
                   </div>
                 </motion.div>
               </div>
@@ -481,8 +546,8 @@ export default function AboutPage() {
               <div className="absolute left-6 top-0 bottom-0 w-[2px] bg-slate-200 dark:bg-slate-800 rounded-full md:hidden" />
 
               <div className="space-y-8 relative">
-                {timelineEvents.map((event, idx) => {
-                  const IconComponent = event.icon;
+                {timelineToRender.map((event, idx) => {
+                  const IconComponent = event.icon || Award;
                   const isLeft = idx % 2 === 0;
 
                   // Configure red vs blue theme elements as shown in the user's design image
@@ -666,7 +731,7 @@ export default function AboutPage() {
                 Our Vision
               </h3>
               <p className="text-sm md:text-base text-white/95 leading-relaxed font-light">
-                To be the trusted AI partner in the AEC and FM sectors in Singapore and SE Asia.
+                {visionText}
               </p>
             </div>
           </div>
@@ -689,7 +754,7 @@ export default function AboutPage() {
                 Our Mission
               </h3>
               <p className="text-sm md:text-base text-white/95 leading-relaxed font-light">
-                To drive AI transformation and innovation in the built environment.
+                {missionText}
               </p>
             </div>
           </div>
@@ -741,10 +806,9 @@ export default function AboutPage() {
         <Reveal3D>
           <div className="max-w-5xl mx-auto">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <Counter endValue="150+" label="Projects Completed" />
-            <Counter endValue="12+" label="AI Solutions" />
-            <Counter endValue="7" label="Industries Served" />
-            <Counter endValue="8" label="Years Experience" />
+            {statsToRender.map((stat, idx) => (
+              <Counter key={idx} endValue={stat.value} label={stat.label} />
+            ))}
           </div>
         </div>
         </Reveal3D>
@@ -798,11 +862,13 @@ export default function AboutPage() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {leadership.map((l, idx) => (
-              <div key={idx} className="bg-bg-secondary border border-border-color rounded-2xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-accent/40 transition-all duration-300 group">
-                <div className="w-16 h-16 rounded-2xl bg-accent/5 border border-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-white transition-all duration-300">
-                  <l.icon className="h-7 w-7" />
-                </div>
+            {leadershipToRender.map((l, idx) => {
+              const LeaderIcon = l.icon;
+              return (
+                <div key={idx} className="bg-bg-secondary border border-border-color rounded-2xl p-8 flex flex-col items-center text-center shadow-sm hover:shadow-md hover:border-accent/40 transition-all duration-300 group">
+                  <div className="w-16 h-16 rounded-2xl bg-accent/5 border border-accent/10 flex items-center justify-center text-accent mb-4 group-hover:bg-accent group-hover:text-white transition-all duration-300">
+                    <LeaderIcon className="h-7 w-7" />
+                  </div>
                 <h3 className="font-display font-bold text-lg text-text-primary">
                   {l.name}
                 </h3>
@@ -813,8 +879,9 @@ export default function AboutPage() {
                   {l.bio}
                 </p>
               </div>
-            ))}
-          </div>
+            );
+          })}
+        </div>
         </div>
         </Reveal3D>
       </section>

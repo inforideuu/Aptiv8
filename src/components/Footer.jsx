@@ -56,6 +56,7 @@ export default function Footer() {
               <li><a href="/products" className="hover:text-white transition-colors">AI Products Suite</a></li>
               <li><a href="/case-studies" className="hover:text-white transition-colors">Case Studies</a></li>
               <li><a href="/industries" className="hover:text-white transition-colors">Industries</a></li>
+              <li><a href="/admin" className="text-red-400 hover:text-red-300 font-semibold transition-colors">Admin Console</a></li>
             </ul>
           </div>
 

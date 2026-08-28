@@ -7,6 +7,34 @@ import Reveal3D from '../components/Reveal3D';
 
 export default function ProductsPage() {
   const [filter, setFilter] = useState('All');
+  const [dbProducts, setDbProducts] = useState([]);
+  const [dbShowcases, setDbShowcases] = useState([]);
+
+  React.useEffect(() => {
+    const fetchCmsData = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/cms/');
+        if (response.ok) {
+          const data = await response.json();
+          setDbProducts(data.products || []);
+          setDbShowcases(data.showcases || []);
+        }
+      } catch (err) {
+        console.error('Error fetching CMS data:', err);
+      }
+    };
+    fetchCmsData();
+
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    }
+  }, []);
 
   const productsList = [
     // Built Environment — Planning & Design
@@ -200,9 +228,20 @@ export default function ProductsPage() {
     'Other Sectors'
   ];
 
+  const products = dbProducts.length > 0
+    ? dbProducts.map(p => ({
+        id: p.product_id,
+        title: p.title,
+        category: p.category,
+        status: p.status,
+        description: p.description,
+        image: p.image
+      }))
+    : productsList;
+
   const filteredProducts = filter === 'All'
-    ? productsList
-    : productsList.filter(p => p.category === filter);
+    ? products
+    : products.filter(p => p.category === filter);
 
   return (
     <div className="relative pt-20">
@@ -323,7 +362,7 @@ export default function ProductsPage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {[
+              {(dbShowcases.length > 0 ? dbShowcases : [
                 {
                   title: "GenAI DC Design",
                   video: "/DC_design.mp4",
@@ -352,7 +391,7 @@ export default function ProductsPage() {
                   category: "Telecommunications & Field Support",
                   description: "Supporting field engineers and network designers with automated document search and interactive network topology queries."
                 }
-              ].map((showcase, index) => (
+              ]).map((showcase, index) => (
                 <div
                   key={index}
                   className="group relative bg-gradient-to-br from-bg-secondary via-bg-secondary to-bg-tertiary/40 border border-border-color/80 hover:border-accent/60 rounded-3xl overflow-hidden shadow-lg hover:shadow-[0_20px_40px_rgba(239,68,68,0.06)] hover:-translate-y-1.5 transition-all duration-500 ease-out flex flex-col justify-between"

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   Users, Layers, TrendingUp, Settings, ShieldCheck,
@@ -7,7 +7,28 @@ import {
 import Reveal3D from '../components/Reveal3D';
 
 export default function ServicesPage() {
-  const services = [
+  const [dbServices, setDbServices] = useState([]);
+
+  useEffect(() => {
+    const fetchServices = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/cms/');
+        if (response.ok) {
+          const data = await response.json();
+          setDbServices(data.services || []);
+        }
+      } catch (err) {
+        console.error('Error fetching CMS services:', err);
+      }
+    };
+    fetchServices();
+  }, []);
+
+  const iconMap = {
+    Users, Layers, TrendingUp, Settings, ShieldCheck, Cpu, Code2, Network
+  };
+
+  const servicesStatic = [
     {
       id: 'co-development',
       title: 'Gen AI / Agentic AI Co-Development Partnership',
@@ -59,6 +80,19 @@ export default function ServicesPage() {
       highlights: ['Regulatory content ingestion', 'BCA code mapping', 'Fire-safety mentor backend', 'MRO compliance integration']
     }
   ];
+
+  const services = dbServices.length > 0
+    ? dbServices.map(s => ({
+        id: s.service_id,
+        title: s.title,
+        badge: s.badge,
+        description: s.description,
+        icon: iconMap[s.service_id] || Users,
+        color: s.color || 'from-blue-500 to-cyan-500',
+        image: s.image,
+        highlights: s.highlights ? s.highlights.split(',') : []
+      }))
+    : servicesStatic;
 
   return (
     <div className="relative pt-20 overflow-hidden">

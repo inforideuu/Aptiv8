@@ -34,11 +34,11 @@ export const featuredSolutions = [
     image: '/sdsa.png',
   },
   {
-    id: 'compliance',
-    title: 'Gen AI Chatbot & Assistant for Regulatory Compliance',
+    id: 'akira-datacenter',
+    title: 'Akira – Data Centre Design Assistant',
     category: 'Planning & Design',
-    description: 'Helps consultants navigate 6,300+ rules, regulations, codes and circulars under Singapore\'s CORENET X digital submission regime.',
-    image: svgs.compliance,
+    description: 'Gen AI assistant specifically tailored for optimizing and efficiently accelerating complex data centre layout and technical designs.',
+    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80',
   },
   {
     id: 'fire-safety',
@@ -186,6 +186,8 @@ export const industries = [
   // { name: 'Infrastructure', image: svgs.infrastructure },
   { name: 'Real Estate', image: svgs.realEstate },
   { name: 'Data Centers', image: svgs.dataCenters },
+  { name: 'Aerospace', image: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=800&q=80', isOtherSector: true },
+  { name: 'Telco Mobile', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80', isOtherSector: true },
 ];
 
 export const caseStudies = [

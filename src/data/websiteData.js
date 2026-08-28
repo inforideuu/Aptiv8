@@ -227,3 +227,288 @@ export const chatbotAnswers = [
     answer: 'Our Fire Safety AI Mentor and Compliance Chatbot automate checking regulations against BIM standards (IFC and Revit), verifying exits, ventilation shafts, and structural dimensions dynamically.',
   },
 ];
+
+export const productsList = [
+  // Built Environment — Planning & Design
+  {
+    id: 'compliance-chatbot',
+    title: 'Gen AI Chatbot & Assistant for Regulatory and Codes Compliance',
+    category: 'Planning & Design',
+    status: 'Proof-of-concept completed',
+    description: 'Helps consultants navigate 6,300+ rules, regulations, codes and circulars across seven government agencies under Singapore\'s CORENET X digital submission regime — retrieving, interpreting and contextualizing relevant clauses to reduce Plan Reject Letters.',
+    image: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'fire-safety-advisor',
+    title: 'Gen AI Specialist Advisor for Fire Safety and Protection Compliance',
+    category: 'Planning & Design',
+    status: 'Exploring with partner',
+    description: 'A mentor-style tool guiding project teams through SCDF fire-safety regulatory requirements, reflecting real enforcement practice rather than a literal code reading. Anchored by a former SCDF Director of Fire Safety.',
+    image: 'gen_ai.png'
+  },
+  {
+    id: 'pe-ge-checker-mentor',
+    title: 'Gen AI Mentor for Professional Engineers, Geotechnical Engineers and Accredited Checkers',
+    category: 'Planning & Design',
+    status: 'Seeking partners',
+    description: 'Combines CORENET X submission-process coaching with technical guidance grounded in the Eurocodes and Singapore National Annexes, for structural and geotechnical designs.',
+    image: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'greensip',
+    title: 'GreenSIP — Green Mark Sustainability Intelligence Platform',
+    category: 'Planning & Design',
+    status: 'Phase 1 live; Phase 2 in progress',
+    description: 'Extends Aptiv8\'s Sustainable Design Smart Advisor (SDSA) into a full BCA Green Mark V7 co-pilot, with a Malaysia market extension (GreenRE, MyCREST, GBI) planned. Seeking SIT POD as engineering delivery partner.',
+    image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'sdsa',
+    title: 'Sustainability Design Smart Advisor (SDSA)',
+    category: 'Planning & Design',
+    status: 'Video in production',
+    description: 'The design-stage sustainability advisor underpinning Green Mark Sustainability Intelligence Platform; a video is being produced for BEXAsia 2026.',
+    image: '/sdsa.png'
+  },
+
+  // Built Environment — Pre-Construction
+  {
+    id: 'bid-tender-prep',
+    title: 'AI Assistant for Bid Preparation & Tender Evaluation',
+    category: 'Pre-Construction',
+    status: 'In development',
+    description: 'Helps contractors assemble compliant, competitive bids and helps clients/consultants evaluate submissions fairly against technical and commercial criteria.',
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'specs-manager',
+    title: 'AI Assistant for Managing Specifications',
+    category: 'Pre-Construction',
+    status: 'Conceptual stage',
+    description: 'Helps draft, cross-check and maintain construction and FM specifications, flagging inconsistencies and supporting handover of specification intent into FM contracts.',
+    image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80'
+  },
+
+  // Built Environment — Construction
+  {
+    id: 'site-supervisor-assistant',
+    title: 'Site Supervisor / Manager Assistant',
+    category: 'Construction',
+    status: 'Active',
+    description: 'Supports workplace safety and health (WSH), safety monitoring, and productivity on site (e.g. real-time logistics, hazard detection from live video, weather-impact prediction).',
+    image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=80'
+  },
+
+  // Built Environment — Operations & Maintenance
+  {
+    id: 'aptiv8-cortex-cmms',
+    title: 'A8 — Agentic AI-Powered CMMS Platform',
+    category: 'Operations & Maintenance',
+    status: 'Advisory roadmap completed',
+    description: 'Adds an agentic AI layer to A8 CMMS already live across 200+ sites and 2,000+ users. An orchestrator directs nine specialist agents — work-order triage, asset onboarding, vendor/inventory reconciliation, compliance & certification tracking, predictive maintenance, energy monitoring, technician troubleshooting copilot, multilingual document parsing, and a conversational FM assistant — each with a human-approval checkpoint by default. Hosted within Aptiv8\'s Singapore-based, CSA-STAR-certified AWS environment.',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'cmms-integration',
+    title: 'Gen AI Integration with CMMS',
+    category: 'Operations & Maintenance',
+    status: 'Under direct development',
+    description: 'Three components: a dynamic Gen AI dashboard summarizing maintenance/asset/fault data in plain language; AI-enhanced natural-language fault reporting with automatic classification and routing; and an AI knowledge-base assistant giving technicians instant access to manuals and troubleshooting guidance.',
+    image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'Aptiv8-copilots',
+    title: 'Aptiv8 Co-Pilots for Smart Energy Management & Thermal Comfort Optimization',
+    category: 'Operations & Maintenance',
+    status: 'Videos available',
+    description: 'Optimizes thermal comfort and smart energy management. Short YouTube demonstration videos are already available.',
+    image: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'dragonfly-controller',
+    title: 'Dragonfly — Robotic Mosquito Controller',
+    category: 'Operations & Maintenance',
+    status: 'Marketed by Uniqix',
+    description: 'A robotic solution for vector control. Product demonstration videos and brochure are already available. Marketed by Uniqix, our sister company.',
+    image: 'dragon.png'
+  },
+  {
+    id: 'mro-ai-aero',
+    title: 'MRO AI (Aeronautics Proof-of-concept)',
+    category: 'Operations & Maintenance',
+    status: 'Proof-of-concept completed',
+    description: 'Specialist aviation maintenance, repair, and overhaul compliance system. See also the dedicated Aerospace MRO solution under other sectors.',
+    image: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'sor-pricing',
+    title: 'AI Assistant for SOR (Schedule of Rates) Pricing and Bid Preparation',
+    category: 'Operations & Maintenance',
+    status: 'Video planned',
+    description: 'Automates pricing evaluation and schedule of rates calculations. Demonstration video is planned.',
+    image: 'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=800&q=80'
+  },
+
+  // Other Sectors — Customer Service, Telco, Hospitality, Aerospace
+  {
+    id: 'customer-service-ai',
+    title: 'Autonomous AI Customer Service (multi-channel AI Concierge)',
+    category: 'Other Sectors',
+    status: 'Production-ready',
+    description: 'Autonomous AI agents handling customer chat, voice, and email across industries — instant resolution of routine requests, with escalation to a human for what needs one. Positioned around industry data showing $350B spent annually on CX labor versus $50B on CX technology, with clear opportunity to automate routine tasks and reallocate resources.',
+    image: 'https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'telco-support-concierge',
+    title: 'AI Concierge for Telco Mobile Support',
+    category: 'Other Sectors',
+    status: 'Production-ready',
+    description: 'A conversational concierge handling mobile plan guidance, network troubleshooting/support, personalized upgrade and add-on recommendations, and general account support — designed as a starting-point framework for a telco\'s own AI Agent Services Concierge.',
+    image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'airbnb-rental-ecosystem',
+    title: 'AI Agent Ecosystem for Airbnb-style Short-Term Rentals',
+    category: 'Other Sectors',
+    status: 'Production-ready',
+    description: 'Six coordinated agents: Guest Interaction Agent (24/7 concierge), Dynamic Pricing Agent (nightly-rate optimization), Smart Listing Agent (high-conversion listing generation), Host Operations Agent (back-office automation), Guest Experience Agent (stay/review enhancement), and Compliance Agent (regulatory adherence).',
+    image: 'https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'aerospace-mro-agent',
+    title: 'AI Agent for Aerospace MRO (Maintenance, Repair and Overhaul)',
+    category: 'Other Sectors',
+    status: 'Production-ready',
+    description: 'A suite of specialist agents — Compliance Ingestion & Classification, Aircraft Data & Scheduling, Work Card Generation, Inventory & Parts Forecasting, Technician Assistant, Compliance Closure & Audit, Reporting & Analytics, and Knowledge/Chatbot — addressing high fleet complexity, frequent regulatory updates (CAAM, with FAA/EASA for international operations), manual work-card generation, and compliance-gap risk in MRO operations.',
+    image: 'https://images.unsplash.com/photo-1540962351504-03099e0a754b?auto=format&fit=crop&w=800&q=80'
+  }
+];
+
+export const projectsData = [
+  {
+    id: 'a8-ai-powered-cmms',
+    title: 'A8 AI Powered CMMS',
+    category: 'Built Environment',
+    status: 'Cost Saving',
+    description: 'Aptiv8\'s Computerized Maintenance Management System, empowering data-driven transition for the advanced A8 AI Powered CMMS asset lifecycle.',
+    clientIndustry: 'Government (BCA, JTC, HDB), Data Centre, Building (TEL, XJE, ELTE, RP, Tampines Express) Contractors (MURP, Lum Chang)',
+    keyFeatures: 'Analyzing maintenance documents, pilot projects proposed for technology reference identification',
+    image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'akira-datacenter',
+    title: 'Akira – Data Centre Design Assistant',
+    category: 'Built Environment',
+    status: 'Design',
+    description: 'Gen AI assistant specifically tailored for optimizing and efficiently accelerating complex data centre layout and technical designs.',
+    clientIndustry: 'Design Consultants / Tier Certified Cloud',
+    keyFeatures: 'When online (Natural) on-standby or standby on optional',
+    image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'compliance-chatbot',
+    title: 'Compliance Chatbot',
+    category: 'Built Environment',
+    status: 'Future Ready',
+    description: 'An AI assistant with Generative AI for immersive and verify design against authority rules under Singapore\'s CORENET X system.',
+    clientIndustry: 'BCA / Consultants / AEC works Singapore',
+    keyFeatures: 'No inequalities reference identified',
+    image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'sdsa-beamp',
+    title: 'BEAMP Cycle & Challenge – Sustainability Design Smart Advisor (SDSA)',
+    category: 'Built Environment',
+    status: 'Featured Solution',
+    description: 'Developing sustainability advisor embodiment into the existing BEAMP Cycle & Challenge to enhance Green Mark transitional assessments.',
+    clientIndustry: 'Built Environment sustainability consultants',
+    keyFeatures: 'New rules to be produced for BEXAsia 2024',
+    image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'dragonfly',
+    title: 'Dragonfly',
+    category: 'Built Environment',
+    status: 'Cost Saving',
+    description: 'Robotic Mosquito Controller — a vision-of-record robotic solution for intelligent vector control used in modern rental residential 0buildings, designed to automate monitoring, detection, targeted intervention',
+    clientIndustry: 'Building Management / Facilities Management (FM)',
+    keyFeatures: 'When already available',
+    image: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'ai-powered-cmms',
+    title: 'AI-Powered CMMS',
+    category: 'Built Environment',
+    status: 'High Performance',
+    description: 'Advanced version process of A8 AI Powered CMMS on a wider IoT platform, with integration of Real Time and Thermal Comfort Management Corporation.',
+    clientIndustry: 'Built Environment / Facilities Management (FM)',
+    keyFeatures: 'When on the cloud. No alter where now considered value to pipeline',
+    image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'public-sector-cs',
+    title: 'Public Sector Customer Service Center',
+    category: 'Public & Other Sectors',
+    status: 'Digital',
+    description: 'AI-powered customer service platform integrated into a public sector service centres to enhance efficiency, engagement and resident satisfaction.',
+    clientIndustry: 'Public sectors / Centralized Operations',
+    keyFeatures: 'No inequalities reference identified',
+    image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'ai-value-be-video',
+    title: '"AI Value for the Built Environment" Video',
+    category: 'Media & Storyboards',
+    status: 'Insights & Analytics',
+    description: 'A 60–100 second brand video and storyboard production showcasing how AI, Data Engineering, Crypto + Token + ComplyDrive + CMMS drive solution.',
+    clientIndustry: 'Prospective new development partners and clients across APAC',
+    keyFeatures: 'Production-ready script & storyboard document',
+    image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80'
+  },
+  {
+    id: 'gen-ai-other-sectors-video',
+    title: '"Gen AI for Other Sectors" Video',
+    category: 'Media & Storyboards',
+    status: 'Why Aptiv8',
+    description: 'AI showcase brand video for Agriculture and Advanced Tech & Creative (Advertise / Short-Film Festival), and Aerospace MRO Agents.',
+    clientIndustry: 'Customer service, Sales, Hospitality, Cloud tech core market, Aviation & Aerospace (MRO)',
+    keyFeatures: 'Production-ready script & storyboard document',
+    image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80'
+  }
+];
+
+export const showcasesList = [
+  {
+    id: 'showcase-1',
+    title: "GenAI DC Design",
+    video: "/DC_design.mp4",
+    poster: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80",
+    category: "Infrastructure & Design",
+    description: "Intelligent workflows automating data center layouts, cooling simulations, and validation against strict engineering codes."
+  },
+  {
+    id: 'showcase-2',
+    title: "GenAI for Construction Contract Management",
+    video: "/construction.mp4",
+    poster: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80",
+    category: "Operations & Procurement",
+    description: "Automated analysis, risk screening, and regulatory mapping for construction agreements, tenders, and building codes."
+  },
+  {
+    id: 'showcase-3',
+    title: "GenAI for MRO",
+    video: "/MRO.mp4",
+    poster: "https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=80",
+    category: "Maintenance & Operations",
+    description: "Next-generation MRO co-pilot helping technical teams parse manuals, draft reports, and troubleshoot machinery on-site."
+  },
+  {
+    id: 'showcase-4',
+    title: "GenAI for Telco",
+    video: "/Telco.mp4",
+    poster: "https://images.unsplash.com/photo-1562408590-e32931084e23?auto=format&fit=crop&w=800&q=80",
+    category: "Telecommunications & Field Support",
+    description: "Supporting field engineers and network designers with automated document search and interactive network topology queries."
+  }
+];
+

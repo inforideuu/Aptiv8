@@ -6,6 +6,8 @@ import {
   Lock, Eye, EyeOff, FileText, Users, Heart, Edit3, X, Play, Video,
   ChevronRight, Network
 } from 'lucide-react';
+import { productsList, projectsData, showcasesList } from '../data/websiteData';
+
 
 export default function AdminPage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -592,6 +594,39 @@ export default function AdminPage() {
     );
   }
 
+  const mergedProducts = (() => {
+    const map = {};
+    productsList.forEach(p => {
+      map[p.id] = { id: p.id, product_id: p.id, title: p.title, category: p.category, status: p.status, description: p.description, image: p.image };
+    });
+    products.forEach(p => {
+      map[p.product_id] = p;
+    });
+    return Object.values(map);
+  })();
+
+  const mergedProjects = (() => {
+    const map = {};
+    projectsData.forEach(p => {
+      map[p.id] = { id: p.id, project_id: p.id, title: p.title, category: p.category, status: p.status, description: p.description, client_industry: p.clientIndustry, key_features: p.keyFeatures, image: p.image };
+    });
+    projects.forEach(p => {
+      map[p.project_id] = p;
+    });
+    return Object.values(map);
+  })();
+
+  const mergedShowcases = (() => {
+    const map = {};
+    showcasesList.forEach(s => {
+      map[s.title] = { id: s.id || s.title, title: s.title, video: s.video, poster: s.poster, category: s.category, description: s.description };
+    });
+    showcases.forEach(s => {
+      map[s.title] = s;
+    });
+    return Object.values(map);
+  })();
+
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col md:flex-row relative overflow-hidden pt-20">
       
@@ -962,7 +997,7 @@ export default function AdminPage() {
                       </button>
                     </div>
                     <div className="space-y-3">
-                      {products.map(prod => (
+                      {mergedProducts.map(prod => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={prod.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
                           <div>
                             <strong className="text-slate-900">{prod.title}</strong>
@@ -991,7 +1026,7 @@ export default function AdminPage() {
                       </button>
                     </div>
                     <div className="space-y-3">
-                      {showcases.map(sh => (
+                      {mergedShowcases.map(sh => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={sh.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
                           <div>
                             <strong className="text-slate-900">{sh.title}</strong>
@@ -1020,7 +1055,7 @@ export default function AdminPage() {
                       </button>
                     </div>
                     <div className="space-y-3">
-                      {projects.map(pj => (
+                      {mergedProjects.map(pj => (
                         <motion.div initial={{ opacity: 0, y: 15 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} key={pj.id} className="p-4 bg-white border border-slate-200 rounded-2xl flex justify-between items-center shadow-xs">
                           <div>
                             <strong className="text-slate-900">{pj.title}</strong>

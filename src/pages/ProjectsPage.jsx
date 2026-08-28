@@ -4,6 +4,7 @@ import {
   LayoutGrid, Building, Globe, Video, Cpu, Sparkles, ArrowRight, SlidersHorizontal, ChevronDown, ChevronRight
 } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
+import { projectsData } from '../data/websiteData';
 
 export default function ProjectsPage() {
   const [filter, setFilter] = useState('All');
@@ -23,6 +24,16 @@ export default function ProjectsPage() {
       }
     };
     fetchProjects();
+
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 120);
+      }
+    }
   }, []);
 
   const categories = [
@@ -32,111 +43,23 @@ export default function ProjectsPage() {
     { name: 'Media & Storyboards', icon: Video, value: 'Media & Storyboards' }
   ];
 
-  const projectsData = [
-    {
-      id: 'a8-ai-powered-cmms',
-      title: 'A8 AI Powered CMMS',
-      category: 'Built Environment',
-      status: 'Cost Saving',
-      description: 'Aptiv8\'s Computerized Maintenance Management System, empowering data-driven transition for the advanced A8 AI Powered CMMS asset lifecycle.',
-      clientIndustry: 'Government (BCA, JTC, HDB), Data Centre, Building (TEL, XJE, ELTE, RP, Tampines Express) Contractors (MURP, Lum Chang)',
-      keyFeatures: 'Analyzing maintenance documents, pilot projects proposed for technology reference identification',
-      image: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'akira-datacenter',
-      title: 'Akira – Data Centre Design Assistant',
-      category: 'Built Environment',
-      status: 'Design',
-      description: 'Gen AI assistant specifically tailored for optimizing and efficiently accelerating complex data centre layout and technical designs.',
-      clientIndustry: 'Design Consultants / Tier Certified Cloud',
-      keyFeatures: 'When online (Natural) on-standby or standby on optional',
-      image: 'https://images.unsplash.com/photo-1563770660941-20978e870e26?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'compliance-chatbot',
-      title: 'Compliance Chatbot',
-      category: 'Built Environment',
-      status: 'Future Ready',
-      description: 'An AI assistant with Generative AI for immersive and verify design against authority rules under Singapore\'s CORENET X system.',
-      clientIndustry: 'BCA / Consultants / AEC works Singapore',
-      keyFeatures: 'No inequalities reference identified',
-      image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'sdsa-beamp',
-      title: 'BEAMP Cycle & Challenge – Sustainability Design Smart Advisor (SDSA)',
-      category: 'Built Environment',
-      status: 'Featured Solution',
-      description: 'Developing sustainability advisor embodiment into the existing BEAMP Cycle & Challenge to enhance Green Mark transitional assessments.',
-      clientIndustry: 'Built Environment sustainability consultants',
-      keyFeatures: 'New rules to be produced for BEXAsia 2024',
-      image: 'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'dragonfly',
-      title: 'Dragonfly',
-      category: 'Built Environment',
-      status: 'Cost Saving',
-      description: 'Robotic Mosquito Controller — a vision-of-record robotic solution for intelligent vector control used in modern rental residential 0buildings, designed to automate monitoring, detection, targeted intervention',
-      clientIndustry: 'Building Management / Facilities Management (FM)',
-      keyFeatures: 'When already available',
-      image: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'ai-powered-cmms',
-      title: 'AI-Powered CMMS',
-      category: 'Built Environment',
-      status: 'High Performance',
-      description: 'Advanced version process of A8 AI Powered CMMS on a wider IoT platform, with integration of Real Time and Thermal Comfort Management Corporation.',
-      clientIndustry: 'Built Environment / Facilities Management (FM)',
-      keyFeatures: 'When on the cloud. No alter where now considered value to pipeline',
-      image: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'public-sector-cs',
-      title: 'Public Sector Customer Service Center',
-      category: 'Public & Other Sectors',
-      status: 'Digital',
-      description: 'AI-powered customer service platform integrated into a public sector service centres to enhance efficiency, engagement and resident satisfaction.',
-      clientIndustry: 'Public sectors / Centralized Operations',
-      keyFeatures: 'No inequalities reference identified',
-      image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'ai-value-be-video',
-      title: '"AI Value for the Built Environment" Video',
-      category: 'Media & Storyboards',
-      status: 'Insights & Analytics',
-      description: 'A 60–100 second brand video and storyboard production showcasing how AI, Data Engineering, Crypto + Token + ComplyDrive + CMMS drive solution.',
-      clientIndustry: 'Prospective new development partners and clients across APAC',
-      keyFeatures: 'Production-ready script & storyboard document',
-      image: 'https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-      id: 'gen-ai-other-sectors-video',
-      title: '"Gen AI for Other Sectors" Video',
-      category: 'Media & Storyboards',
-      status: 'Why Aptiv8',
-      description: 'AI showcase brand video for Agriculture and Advanced Tech & Creative (Advertise / Short-Film Festival), and Aerospace MRO Agents.',
-      clientIndustry: 'Customer service, Sales, Hospitality, Cloud tech core market, Aviation & Aerospace (MRO)',
-      keyFeatures: 'Production-ready script & storyboard document',
-      image: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=800&q=80'
-    }
-  ];
-
-  const projects = dbProjects.length > 0
-    ? dbProjects.map(p => ({
-        id: p.project_id,
-        title: p.title,
-        category: p.category,
-        status: p.status,
-        description: p.description,
-        clientIndustry: p.client_industry,
-        keyFeatures: p.key_features,
-        image: p.image
-      }))
-    : projectsData;
+  const mergedProjectsMap = {};
+  projectsData.forEach(p => {
+    mergedProjectsMap[p.id] = p;
+  });
+  dbProjects.forEach(p => {
+    mergedProjectsMap[p.project_id] = {
+      id: p.project_id,
+      title: p.title,
+      category: p.category,
+      status: p.status,
+      description: p.description,
+      clientIndustry: p.client_industry,
+      keyFeatures: p.key_features,
+      image: p.image
+    };
+  });
+  const projects = Object.values(mergedProjectsMap);
 
   const filteredProjects = filter === 'All'
     ? projects

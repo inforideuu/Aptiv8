@@ -57,8 +57,8 @@ function App() {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('theme');
     if (saved) return saved;
-    // default to dark mode for modern AI company premium feel
-    return 'dark';
+    // default to light mode
+    return 'light';
   });
 
   useEffect(() => {

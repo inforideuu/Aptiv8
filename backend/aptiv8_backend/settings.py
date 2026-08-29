@@ -50,17 +50,18 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'aptiv8_backend.wsgi.application'
 
+import os
 import certifi
 
 # Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test',
-        'USER': 'Ha1WttZuMavT5Tb.root',
-        'PASSWORD': '3a1EyzJFotBHmjAD',
-        'HOST': 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
-        'PORT': '4000',
+        'NAME': os.environ.get('DB_NAME', 'test'),
+        'USER': os.environ.get('DB_USER', 'Ha1WttZuMavT5Tb.root'),
+        'PASSWORD': os.environ.get('DB_PASSWORD', '3a1EyzJFotBHmjAD'),
+        'HOST': os.environ.get('DB_HOST', 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com'),
+        'PORT': os.environ.get('DB_PORT', '4000'),
         'OPTIONS': {
             'ssl': {
                 'ca': certifi.where(),

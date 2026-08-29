@@ -47,6 +47,11 @@ export default function PartnersPage() {
       }))
     : partnerTypesStatic;
 
+  const defaultMarqueeLogos = ['Autodesk Developer', 'Bentley Systems', 'NUS Research', 'GovTech SG', 'OpenAI Network', 'Microsoft Cloud', 'IMDA SGDigital', 'BCA SG'];
+  const marqueeLogos = dbPartners.length > 0
+    ? dbPartners.flatMap(p => p.partners ? p.partners.split(',').map(s => s.trim()) : [])
+    : defaultMarqueeLogos;
+
   const benefits = [
     { title: 'Data Sovereignty', desc: 'Secure custom-trained local nodes deployed in private sandboxes for enhanced data privacy and enterprise security.' },
     { title: 'BCA Compliance Sync', desc: 'Real-time updates mapped directly to the latest Singapore regulatory code changes.' },
@@ -116,13 +121,13 @@ export default function PartnersPage() {
       {/* INFINITE LOGO SLIDER */}
       <section className="py-12 bg-bg-primary border-b border-border-color overflow-hidden">
         <div className="animate-marquee flex gap-16 py-4">
-          {['Autodesk Developer', 'Bentley Systems', 'NUS Research', 'GovTech SG', 'OpenAI Network', 'Microsoft Cloud', 'IMDA SGDigital', 'BCA SG'].map((logo, idx) => (
+          {marqueeLogos.map((logo, idx) => (
             <div key={idx} className="flex items-center gap-2 font-display text-sm font-bold text-text-secondary/40 hover:text-red-500 transition-colors shrink-0 cursor-default">
               <Building className="h-5 w-5" />
               <span>{logo}</span>
             </div>
           ))}
-          {['Autodesk Developer', 'Bentley Systems', 'NUS Research', 'GovTech SG', 'OpenAI Network', 'Microsoft Cloud', 'IMDA SGDigital', 'BCA SG'].map((logo, idx) => (
+          {marqueeLogos.map((logo, idx) => (
             <div key={`dup-${idx}`} className="flex items-center gap-2 font-display text-sm font-bold text-text-secondary/40 hover:text-red-500 transition-colors shrink-0 cursor-default">
               <Building className="h-5 w-5" />
               <span>{logo}</span>

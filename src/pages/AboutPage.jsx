@@ -145,7 +145,7 @@ function TiltCard({ children, className }) {
         transformStyle: 'preserve-3d',
         transition: 'transform 0.1s ease-out, background-color 0.3s, border-color 0.3s, box-shadow 0.3s'
       }}
-      className={`${className} hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(239,68,68,0.08)] hover:border-red-500/80 hover:bg-white`}
+      className={`${className} hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(239,68,68,0.08)] dark:hover:shadow-[0_20px_40px_rgba(255,59,71,0.08)] hover:border-accent hover:bg-bg-secondary`}
     >
       {children}
     </div>
@@ -782,13 +782,13 @@ export default function AboutPage() {
                   key={idx} 
                   className="p-6 bg-bg-primary border border-border-color rounded-2xl group cursor-pointer transition-colors duration-300"
                 >
-                  <div className="p-3 rounded-xl bg-accent-glow text-accent w-max mb-4 group-hover:bg-red-50 group-hover:text-red-500 transition-colors">
+                  <div className="p-3 rounded-xl bg-accent-glow text-accent w-max mb-4 group-hover:bg-accent group-hover:text-white transition-colors">
                     <ValIcon className="h-6 w-6" />
                   </div>
-                  <h3 className="font-display font-bold text-lg text-text-primary mb-2 group-hover:text-slate-900 transition-colors">
+                  <h3 className="font-display font-bold text-lg text-text-primary mb-2 group-hover:text-accent transition-colors">
                     {val.title}
                   </h3>
-                  <p className="text-xs text-text-secondary leading-relaxed group-hover:text-slate-600 transition-colors">
+                  <p className="text-xs text-text-secondary leading-relaxed group-hover:text-text-primary transition-colors">
                     {val.description}
                   </p>
                 </TiltCard>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -17,9 +17,30 @@ import {
   caseStudies,
   chatbotAnswers
 } from '../data/websiteData';
-
 export default function HomePage({ theme }) {
   const navigate = useNavigate();
+  const [dbPartners, setDbPartners] = useState([]);
+  useEffect(() => {
+    const fetchPartners = async () => {
+      try {
+        const response = await fetch('http://localhost:8000/api/cms/');
+        if (response.ok) {
+          const data = await response.json();
+          if (data.partners) {
+            setDbPartners(data.partners);
+          }
+        }
+      } catch (err) {
+        console.error('Error fetching partners in homepage:', err);
+      }
+    };
+    fetchPartners();
+  }, []);
+
+  const defaultPartners = ['Autodesk partner', 'Bentley dev', 'BCA SG registered', 'Notion for Enterprise', 'OpenAI partner', 'Sands Expo 2026', 'GovTech SG'];
+  const marqueeLogos = dbPartners.length > 0
+    ? dbPartners.flatMap(p => p.partners ? p.partners.split(',').map(s => s.trim()) : [])
+    : defaultPartners;
 
   const homeProducts = [
     // {
@@ -1074,7 +1095,7 @@ transition-all duration-500"> */}
           {/* Architectural backdrop line */}
           <div className="absolute top-0 right-0 w-96 h-96 border border-accent/10 rounded-full -mr-20 -mt-20 pointer-events-none" />
 
-          <div className="max-w-5xl mx-auto bg-gradient-to-r from-accent to-accent-hover rounded-[32px] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
+          <div className="max-w-5xl mx-auto bg-gradient-to-r from-accent to-accent-hover dark:from-bg-tertiary dark:to-bg-secondary dark:border dark:border-accent/30 rounded-[32px] p-8 md:p-12 text-white relative shadow-2xl overflow-hidden flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="flex flex-col gap-4 relative z-10 max-w-2xl">
               <div className="flex flex-wrap gap-2.5 items-center">
                 <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-white text-xs font-semibold uppercase tracking-wider w-max">
@@ -1115,7 +1136,7 @@ transition-all duration-500"> */}
               </span>
               <a
                 href="/contact"
-                className="w-full lg:w-auto px-8 py-4 bg-white text-accent hover:bg-white/90 rounded-full font-bold transition-all text-center shadow-lg hover:shadow-xl"
+                className="w-full lg:w-auto px-8 py-4 bg-white text-accent hover:bg-white/90 dark:bg-accent dark:text-white dark:hover:bg-accent-hover rounded-full font-bold transition-all text-center shadow-lg hover:shadow-xl"
               >
                 Book a Strategy Session
               </a>
@@ -1136,14 +1157,14 @@ transition-all duration-500"> */}
         <div className="relative w-full flex items-center overflow-hidden">
           <div className="animate-marquee flex gap-12 py-4">
             {/* Set 1 */}
-            {['Autodesk partner', 'Bentley dev', 'BCA SG registered', 'Notion for Enterprise', 'OpenAI partner', 'Sands Expo 2026', 'GovTech SG'].map((partner, idx) => (
+            {marqueeLogos.map((partner, idx) => (
               <div key={idx} className="flex items-center gap-2 font-display text-base font-bold text-text-secondary/50 shrink-0 transition-all duration-300 hover:text-accent hover:scale-[1.08] cursor-pointer">
                 <Building className="h-5 w-5" />
                 <span>{partner}</span>
               </div>
             ))}
             {/* Set 2 */}
-            {['Autodesk partner', 'Bentley dev', 'BCA SG registered', 'Notion for Enterprise', 'OpenAI partner', 'Sands Expo 2026', 'GovTech SG'].map((partner, idx) => (
+            {marqueeLogos.map((partner, idx) => (
               <div key={`dup-${idx}`} className="flex items-center gap-2 font-display text-base font-bold text-text-secondary/50 shrink-0 transition-all duration-300 hover:text-accent hover:scale-[1.08] cursor-pointer">
                 <Building className="h-5 w-5" />
                 <span>{partner}</span>

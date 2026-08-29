@@ -261,81 +261,72 @@ export default function ProductsPage() {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               <motion.div
                 whileHover={{
-                  y: [0, -10, 0],
-                  backgroundColor: '#ffffff',
-                  borderColor: 'rgba(239, 68, 68, 0.8)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)'
+                  y: [0, -10, 0]
                 }}
                 transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                className="bg-bg-primary p-8 rounded-3xl border border-border-color transition-all duration-300 group cursor-pointer"
+                className="bg-bg-primary p-8 rounded-3xl border border-border-color hover:bg-bg-secondary hover:border-accent hover:shadow-lg dark:hover:shadow-[0_20px_40px_rgba(255,59,71,0.08)] transition-all duration-300 group cursor-pointer"
               >
-                <h3 className="text-lg font-bold font-display text-text-primary mb-4 group-hover:text-slate-900 transition-colors">Aptiv8 GenAI Low-Code Platform</h3>
-                <ul className="space-y-4 text-xs text-text-secondary group-hover:text-slate-600 transition-colors">
+                <h3 className="text-lg font-bold font-display text-text-primary mb-4 group-hover:text-accent transition-colors">Aptiv8 GenAI Low-Code Platform</h3>
+                <ul className="space-y-4 text-xs text-text-secondary group-hover:text-text-primary transition-colors">
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                    <span><strong className="group-hover:text-slate-900 transition-colors">Chatflow Orchestration:</strong> LLM orchestration connecting models with custom memory, data loaders, caching layers, and moderation guardrails.</span>
+                    <span><strong className="group-hover:text-text-primary transition-colors">Chatflow Orchestration:</strong> LLM orchestration connecting models with custom memory, data loaders, caching layers, and moderation guardrails.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                    <span><strong className="group-hover:text-slate-900 transition-colors">Agents & Assistants:</strong> Autonomous agent models utilizing custom external tools, OpenAI Assistant API, and functional routing.</span>
+                    <span><strong className="group-hover:text-text-primary transition-colors">Agents & Assistants:</strong> Autonomous agent models utilizing custom external tools, OpenAI Assistant API, and functional routing.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                    <span><strong className="group-hover:text-slate-900 transition-colors">Developer Toolkits:</strong> Developer-friendly APIs, SDK integrations, and secure embeddable chat widgets for client web apps.</span>
+                    <span><strong className="group-hover:text-text-primary transition-colors">Developer Toolkits:</strong> Developer-friendly APIs, SDK integrations, and secure embeddable chat widgets for client web apps.</span>
                   </li>
                 </ul>
               </motion.div>
 
               <motion.div
                 whileHover={{
-                  y: [0, -10, 0],
-                  backgroundColor: '#ffffff',
-                  borderColor: 'rgba(239, 68, 68, 0.8)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)'
+                  y: [0, -10, 0]
                 }}
                 transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                className="bg-bg-primary p-8 rounded-3xl border border-border-color transition-all duration-300 group cursor-pointer"
+                className="bg-bg-primary p-8 rounded-3xl border border-border-color hover:bg-bg-secondary hover:border-accent hover:shadow-lg dark:hover:shadow-[0_20px_40px_rgba(255,59,71,0.08)] transition-all duration-300 group cursor-pointer"
               >
-                <h3 className="text-lg font-bold font-display text-text-primary mb-4 group-hover:text-slate-900 transition-colors">Platform-Agnostic Deployment</h3>
-                <ul className="space-y-4 text-xs text-text-secondary group-hover:text-slate-600 transition-colors">
+                <h3 className="text-lg font-bold font-display text-text-primary mb-4 group-hover:text-accent transition-colors">Platform-Agnostic Deployment</h3>
+                <ul className="space-y-4 text-xs text-text-secondary group-hover:text-text-primary transition-colors">
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                    <span><strong className="group-hover:text-slate-900 transition-colors">Open-Source LLMs:</strong> Native support for models like Llama 2, Mistral, Vicuna, Orca, and Llava hosted via HuggingFace, Ollama, LocalAI, or Replicate.</span>
+                    <span><strong className="group-hover:text-text-primary transition-colors">Open-Source LLMs:</strong> Native support for models like Llama 2, Mistral, Vicuna, Orca, and Llava hosted via HuggingFace, Ollama, LocalAI, or Replicate.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                    <span><strong className="group-hover:text-slate-900 transition-colors">Infrastructure Sovereignty:</strong> Secure self-hosting configurations across AWS, Microsoft Azure, or Google Cloud.</span>
+                    <span><strong className="group-hover:text-text-primary transition-colors">Infrastructure Sovereignty:</strong> Secure self-hosting configurations across AWS, Microsoft Azure, or Google Cloud.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                    <span><strong className="group-hover:text-slate-900 transition-colors">Air-Gapped Deployments:</strong> Fully isolated local hosting solutions for secure defense, public government, or enterprise requirements.</span>
+                    <span><strong className="group-hover:text-text-primary transition-colors">Air-Gapped Deployments:</strong> Fully isolated local hosting solutions for secure defense, public government, or enterprise requirements.</span>
                   </li>
                 </ul>
               </motion.div>
 
               <motion.div
                 whileHover={{
-                  y: [0, -10, 0],
-                  backgroundColor: '#ffffff',
-                  borderColor: 'rgba(239, 68, 68, 0.8)',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.08)'
+                  y: [0, -10, 0]
                 }}
                 transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
-                className="bg-bg-primary p-8 rounded-3xl border border-border-color transition-all duration-300 group cursor-pointer"
+                className="bg-bg-primary p-8 rounded-3xl border border-border-color hover:bg-bg-secondary hover:border-accent hover:shadow-lg dark:hover:shadow-[0_20px_40px_rgba(255,59,71,0.08)] transition-all duration-300 group cursor-pointer"
               >
-                <h3 className="text-lg font-bold font-display text-text-primary mb-4 group-hover:text-slate-900 transition-colors">Enterprise Architecture Components</h3>
-                <ul className="space-y-4 text-xs text-text-secondary group-hover:text-slate-600 transition-colors">
+                <h3 className="text-lg font-bold font-display text-text-primary mb-4 group-hover:text-accent transition-colors">Enterprise Architecture Components</h3>
+                <ul className="space-y-4 text-xs text-text-secondary group-hover:text-text-primary transition-colors">
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                    <span><strong className="group-hover:text-slate-900 transition-colors">Cognitive Retrieval:</strong> Vector/graph database engines and Cognitive Search for grounding models in enterprise manuals.</span>
+                    <span><strong className="group-hover:text-text-primary transition-colors">Cognitive Retrieval:</strong> Vector/graph database engines and Cognitive Search for grounding models in enterprise manuals.</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                    <span><strong className="group-hover:text-slate-900 transition-colors">Fine-Tuning Services:</strong> Custom fine-tuning and training services supporting specialized domain models (e.g. MRO, Fleet, and Work Order Domain Models).</span>
+                    <span><strong className="group-hover:text-text-primary transition-colors">Fine-Tuning Services:</strong> Custom fine-tuning and training services supporting specialized domain models (e.g. MRO, Fleet, and Work Order Domain Models).</span>
                   </li>
                   <li className="flex items-start gap-2.5">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 shrink-0" />
-                    <span><strong className="group-hover:text-slate-900 transition-colors">Guardrail Services:</strong> Advanced prompt validation, safety boundaries, PII redactors, and token optimization filters.</span>
+                    <span><strong className="group-hover:text-text-primary transition-colors">Guardrail Services:</strong> Advanced prompt validation, safety boundaries, PII redactors, and token optimization filters.</span>
                   </li>
                 </ul>
               </motion.div>

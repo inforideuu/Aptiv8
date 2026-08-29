@@ -162,7 +162,7 @@ export default function IndustriesPage() {
                       ease: "easeInOut"
                     }
                   }}
-                  className={`lg:col-span-6 p-8 bg-bg-primary hover:bg-white border border-border-color rounded-[24px] shadow-sm hover:shadow-[0_15px_30px_rgba(239,68,68,0.15),_0_5px_0_0_#ef4444] hover:border-red-500 transition-all duration-300 flex flex-col gap-6 cursor-default ${
+                  className={`lg:col-span-6 p-8 bg-bg-primary hover:bg-bg-secondary border border-border-color rounded-[24px] shadow-sm hover:shadow-lg dark:hover:shadow-[0_15px_30px_rgba(255,59,71,0.15)] hover:border-accent transition-all duration-300 flex flex-col gap-6 cursor-default ${
                     isEven ? 'lg:order-2' : 'lg:order-1'
                   }`}
                 >

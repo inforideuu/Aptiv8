@@ -10,6 +10,12 @@ def upload_file(request):
     if request.method == 'POST' and request.FILES.get('file'):
         try:
             uploaded_file = request.FILES['file']
+            
+            # Enforce 20MB limit
+            limit = 20 * 1024 * 1024  # 20MB
+            if uploaded_file.size > limit:
+                return JsonResponse({'error': 'File size exceeds the 20MB limit.'}, status=400)
+                
             public_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..', 'public'))
             uploads_dir = os.path.join(public_dir, 'uploads')
             if not os.path.exists(uploads_dir):
@@ -558,42 +564,166 @@ def get_cms_content(request):
             )
 
         # Seed Case Studies
-        if CaseStudy.objects.count() == 0:
+        if CaseStudy.objects.count() < 5:
+            CaseStudy.objects.all().delete()
             CaseStudy.objects.create(
                 case_id="case-arch",
                 industry="Architecture",
                 title="Automating BCA Code Compliance for Marina Bay High-Rises",
-                problem="Architectural checks for Singapore BCA compliance consumed up to 6 weeks per design iteration.",
-                solution="Deployed the Aptiv8 Gen AI Chatbot & Assistant for Regulatory Compliance.",
-                implementation="Trained model on SG regulatory documents to verify structural dimensions and clearances.",
-                results="Compliance check times reduced from 6 weeks to 4 hours.",
-                impact="Saved $240K in developer drafting overheads and fast-tracked final BCA design permits.",
+                problem="Architectural checks for Singapore BCA compliance consumed up to 6 weeks per design iteration, delaying approvals and inflating engineer billable hours.",
+                solution="Deployed the Aptiv8 Gen AI Chatbot & Assistant for Regulatory Compliance integrated directly with design elements.",
+                implementation="Trained model on SG regulatory documents to verify structural dimensions and ventilation clearance dynamically in IFC layers.",
+                results="Compliance check times reduced from 6 weeks to 4 hours with 99.8% verification accuracy.",
+                impact="Saved $240K in developer drafting overheads and fast-tracked final BCA design permits by 45 days.",
                 before="6 Weeks Manual Check",
                 after="4 Hours Automated Check",
                 image="planning",
                 video_url="https://www.w3schools.com/html/mov_bbb.mp4"
             )
+            CaseStudy.objects.create(
+                case_id="case-eng",
+                industry="Engineering",
+                title="Fire Safety Evacuation Simulations in Dense Urban Infrastructure",
+                problem="Traditional layout checks struggled to anticipate crowd congestion during emergencies, requiring expensive architectural changes late in pre-construction.",
+                solution="Configured the Gen AI Advisor for Fire Safety & Protection simulation engine.",
+                implementation="Calculated crowd dynamics using spatial density grids, highlighting bottlenecks and advising exit door widths.",
+                results="Identified 3 major compliance failures during early planning stages.",
+                impact="Secured structural safety approval on first filing, eliminating $180K in potential rebuild costs.",
+                before="High Congestion Risks",
+                after="Zero Fire Code Failures",
+                image="fireSafety",
+                video_url="https://www.w3schools.com/html/movie.mp4"
+            )
+            CaseStudy.objects.create(
+                case_id="case-const",
+                industry="Construction",
+                title="Accelerating Tender Preparation for Public Works Bids",
+                problem="Quantity takeoffs and structural specifications estimates took weeks, introducing cost variances that threatened margins.",
+                solution="Deployed the AI Assistant for Bid & Tender Evaluation.",
+                implementation="Parsed historical public contracts to output line items, matching unit cost averages against live raw material markets.",
+                results="Variance dropped from 8% down to 0.8%, reducing compilation time to 2 days.",
+                impact="Secured a $42M public infrastructure tender with high confidence margins.",
+                before="8% Price Estimate Variance",
+                after="0.8% Accurate Takeoffs",
+                image="bidPrep",
+                video_url="https://www.w3schools.com/html/mov_bbb.mp4"
+            )
+            CaseStudy.objects.create(
+                case_id="case-fac",
+                industry="Facilities Management",
+                title="Predictive CMMS & Sensory Twin Link for Chiller Operations",
+                problem="Commercial building Chillers suffered frequent breakdowns, resulting in tenant complaints and high emergency maintenance rates.",
+                solution="Linked A8 — Agentic AI-Powered CMMS Platform with Gen AI Integration with CMMS sensor arrays.",
+                implementation="Tracked live vibration and heat signals to predict failures 72 hours before operational threshold breach.",
+                results="Downtime decreased by 42%, while preventative repair tickets were scheduled automatically.",
+                impact="Saved $160K in annual chiller utility bills and extended asset life by 5 years.",
+                before="Frequent Chiller Failures",
+                after="42% Operational Uptime Gain",
+                image="operations",
+                video_url="https://www.w3schools.com/html/movie.mp4"
+            )
+            CaseStudy.objects.create(
+                case_id="case-real",
+                industry="Real Estate",
+                title="NLP Lease Scanning and Strata Compliance Automation",
+                problem="Managing 400+ lease renewals manually led to missed rent review dates and compliance errors in strata governance filings.",
+                solution="Integrated Lease Management Assistant and Strata Title & Maintenance Assistant.",
+                implementation="Scanned legal agreements to extract dates, indexing units against local strata governance schedules.",
+                results="Automated 100% of rent reviews, sending alerts 30 days ahead.",
+                impact="Eliminated rental review oversights, boosting portfolio revenue by 7.4%.",
+                before="Missed Review Milestones",
+                after="100% On-Time Lease Alerts",
+                image="realEstate",
+                video_url="https://www.w3schools.com/html/mov_bbb.mp4"
+            )
 
         # Seed Partner Types
-        if PartnerType.objects.count() == 0:
+        if PartnerType.objects.count() < 3:
+            PartnerType.objects.all().delete()
             PartnerType.objects.create(
                 title="Technology Partners",
                 description="Integrators extending our model distributions into Revit, IFC, and Autodesk environments.",
                 partners="Autodesk Developer,Bentley Systems Dev,OpenAI API Network,Microsoft Cloud Partner"
             )
+            PartnerType.objects.create(
+                title="Industry Partners",
+                description="Built Environment operators implementing smart code checking on tier-1 developments.",
+                partners="Singapore Land Authority,BCA SG Registered Providers,Sands Expo Holdings,CapitalLand Group"
+            )
+            PartnerType.objects.create(
+                title="Research & Government Initiatives",
+                description="Academic and government agencies co-developing Green Mark and structural fatigue standards.",
+                partners="NUS Cognitive Architecture,GovTech Singapore,IMDA SGDigital,A*STAR Research"
+            )
 
         # Seed Resources
-        if Resource.objects.count() == 0:
+        if Resource.objects.count() < 6:
+            Resource.objects.all().delete()
             Resource.objects.create(
                 resource_id="res-1",
                 title="Singapore BCA Green Mark Platinum: A Design Guide using AI Advisors",
                 category="White Papers",
-                summary="An in-depth guide demonstrating how model orientation variables and glass envelope ratios are checked.",
+                summary="An in-depth guide demonstrating how model orientation variables and glass envelope ratios are checked dynamically to achieve BCA Platinum parameters.",
                 image="sustainability",
                 date="Aug 12, 2026",
                 trending=True,
                 featured=True,
                 read_time="12 min read"
+            )
+            Resource.objects.create(
+                resource_id="res-2",
+                title="Automated Fire Evacuation Routing in Dense Urban Commercial Spans",
+                category="Research Papers",
+                summary="Research paper simulating evacuation pathing dynamically inside Autodesk layouts, flagging bottleneck exits prior to final structural approval.",
+                image="fireSafety",
+                date="Aug 08, 2026",
+                trending=True,
+                featured=False,
+                read_time="18 min read"
+            )
+            Resource.objects.create(
+                resource_id="res-3",
+                title="Integrating CodeCheck API with Native Revit Workspaces",
+                category="Tech Docs",
+                summary="Technical documentation detailing endpoints, validation payload structures, and element mapping schemas for professional engineers.",
+                image="compliance",
+                date="Jul 28, 2026",
+                trending=False,
+                featured=False,
+                read_time="6 min read"
+            )
+            Resource.objects.create(
+                resource_id="res-4",
+                title="The Future of Strata Governance: AI share valuations and Bylaws Audits",
+                category="Articles",
+                summary="Exploring how property managers deploy natural language models to extract unit share metrics and flag council audit anomalies.",
+                image="strata",
+                date="Jul 15, 2026",
+                trending=False,
+                featured=False,
+                read_time="8 min read"
+            )
+            Resource.objects.create(
+                resource_id="res-5",
+                title="Aptiv8 Cortex Sensor Twin Integration Guidelines",
+                category="Tech Docs",
+                summary="How to register telemetry endpoints and connect thermal/vibration sensors directly to the active operational twin.",
+                image="cortex",
+                date="Jun 30, 2026",
+                trending=True,
+                featured=False,
+                read_time="10 min read"
+            )
+            Resource.objects.create(
+                resource_id="res-6",
+                title="Securing Public Infrastructure Tenders with AI Bid Estimation",
+                category="Insights",
+                summary="Evaluating how bidding teams run historical takeoffs to identify pricing anomalies and cost estimations in SG GovTech proposals.",
+                image="bidPrep",
+                date="Jun 12, 2026",
+                trending=False,
+                featured=False,
+                read_time="5 min read"
             )
 
         services = list(Service.objects.all().values())

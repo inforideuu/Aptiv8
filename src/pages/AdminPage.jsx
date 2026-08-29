@@ -4,19 +4,51 @@ import {
   Calendar, Layers, Clock, Mail, Phone, Trash2, Plus, Save,
   Sparkles, RefreshCw, BarChart3, Database, ShieldAlert, Award, 
   Lock, Eye, EyeOff, FileText, Users, Heart, Edit3, X, Play, Video,
-  ChevronRight, Network
+  ChevronRight, Network, User, Bell, Menu, Filter, LogOut
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { productsList, projectsData, showcasesList } from '../data/websiteData';
+import ThreeWireframe from '../components/ThreeWireframe';
 
 
-export default function AdminPage() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const navLinks = [
+  { name: 'Home', href: '/' },
+  { name: 'About Us', href: '/about' },
+  { name: 'Services Offered', href: '/services' },
+  { name: 'AI Products Suite', href: '/products' },
+  { name: 'Co-Developed Projects', href: '/projects' },
+  { name: 'A8 CMMS & ACMV', href: '/solutions' },    
+  { name: 'Case Studies', href: '/case-studies' },
+  { name: 'Industries We Serve', href: '/industries' },
+  { name: 'Partners Ecosystem', href: '/partners' },
+  { name: 'Resources & Insights', href: '/resources' },
+  { name: 'Book Consultation', href: '/contact' },
+  { name: 'Admin Console', href: '/admin' },
+];
+
+export default function AdminPage({ theme, toggleTheme }) {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('isAdminAuthenticated') === 'true';
+  });
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState('');
+  const [isNavDrawerOpen, setIsNavDrawerOpen] = useState(false);
 
   const [bookings, setBookings] = useState([]);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      fetchData();
+    }
+  }, [isAuthenticated]);
+  
+  // Bell & Filter States
+  const [notifications, setNotifications] = useState([]);
+  const [showNotifDropdown, setShowNotifDropdown] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [showSearch, setShowSearch] = useState(false);
   
   // CMS Content States
   const [overviews, setOverviews] = useState({
@@ -130,6 +162,33 @@ export default function AdminPage() {
     }
   };
 
+  const handleVideoUpload = async (file, setterKey, stateSetter) => {
+    if (!file) return;
+    const limit = 20 * 1024 * 1024; // 20MB limit
+    if (file.size > limit) {
+      alert('Video file size exceeds the 20MB limit.');
+      return;
+    }
+    const formData = new FormData();
+    formData.append('file', file);
+    try {
+      const response = await fetch('http://localhost:8000/api/upload/', {
+        method: 'POST',
+        body: formData
+      });
+      if (response.ok) {
+        const data = await response.json();
+        stateSetter(prev => ({ ...prev, [setterKey]: data.url }));
+      } else {
+        const errorData = await response.json();
+        alert(errorData.error || 'Failed to upload video.');
+      }
+    } catch (err) {
+      console.error(err);
+      alert('Error uploading video.');
+    }
+  };
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   
@@ -139,8 +198,9 @@ export default function AdminPage() {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    if (username === 'admin' && password === 'admin') {
+    if (username === 'aptiv8admin' && password === 'a8singapore') {
       setIsAuthenticated(true);
+      localStorage.setItem('isAdminAuthenticated', 'true');
       setLoginError('');
       fetchData();
     } else {
@@ -155,7 +215,20 @@ export default function AdminPage() {
       const adminRes = await fetch('http://localhost:8000/api/admin-data/');
       if (adminRes.ok) {
         const adminData = await adminRes.json();
-        setBookings(adminData.bookings || []);
+        const list = adminData.bookings || [];
+        setBookings(list);
+        
+        // Dynamically build notifications from bookings list (e.g. most recent 3)
+        const savedCleared = localStorage.getItem('clearedNotificationIds');
+        const clearedIds = savedCleared ? JSON.parse(savedCleared) : [];
+        const activeNotifs = list.slice(0, 3)
+          .map((b) => ({
+            id: b.id,
+            text: `New consultation request from ${b.company}`,
+            time: b.date ? `${b.date} • ${b.time}` : 'Recently'
+          }))
+          .filter(n => !clearedIds.includes(n.id));
+        setNotifications(activeNotifs);
       }
 
       // Fetch About content
@@ -628,123 +701,361 @@ export default function AdminPage() {
   })();
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col md:flex-row relative overflow-hidden pt-20">
+    <div className="admin-panel admin-panel-bg min-h-screen text-slate-800 flex flex-col md:flex-row relative overflow-hidden pt-0">
       
       {/* SIDEBAR NAVIGATION */}
-      <aside className="w-full md:w-72 bg-white border-r border-slate-200 p-6 flex flex-col justify-between shrink-0 z-10 shadow-sm">
-        <div className="flex flex-col gap-8">
-          <div className="border-b border-slate-100 pb-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/5 border border-accent/20 text-accent text-[10px] font-semibold uppercase tracking-wider mb-3 font-mono shadow-sm">
-              <Database className="h-3 w-3" />
-              Aptiv8 Command Console
+      <aside className="w-full md:w-80 bg-gradient-to-b from-[#0e131f] via-[#080b12] to-black border-r border-[#1e293b]/50 p-6 flex flex-col justify-between shrink-0 z-10 shadow-xl relative overflow-hidden">
+        {/* Ambient glow red graphics at top and bottom */}
+        <div className="absolute top-0 left-0 w-full h-32 bg-[radial-gradient(circle_at_top_left,rgba(227,6,19,0.15),transparent_60%)] pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-full h-32 bg-[radial-gradient(circle_at_bottom_left,rgba(227,6,19,0.12),transparent_60%)] pointer-events-none" />
+        
+        <div className="flex flex-col gap-8 relative z-10">
+          <div className="pb-6 border-b border-slate-800/40">
+            {/* Logo and Subtitle */}
+            <div className="flex flex-col mb-4">
+              <img src="/logo.png" alt="Aptiv8 logo" className="h-10 w-max object-contain mb-1" />
+              <span className="text-[10px] uppercase tracking-[0.25em] text-[#e30613] font-bold block ml-1 font-mono">DIGITALISE IT</span>
             </div>
-            <h2 className="text-xl font-bold font-display text-slate-900 leading-tight">Admin Dashboard</h2>
-            <p className="text-[10px] text-slate-500 mt-1">Live Database Synchronization</p>
+            
+            {/* Pulsing Command Console Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#111827]/80 border border-slate-800 text-[9px] font-semibold text-slate-300 uppercase font-mono tracking-wider shadow-sm">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse shrink-0" />
+              APTIV8 COMMAND CONSOLE
+            </div>
+            
+            <h2 className="text-xl font-bold font-display text-white mt-5 leading-tight">Admin Dashboard</h2>
+            <p className="text-[10px] text-slate-400 mt-1.5 flex items-center gap-1.5">
+              Live Database Synchronization 
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" /> 
+              <span className="text-emerald-500 font-bold">Live</span>
+            </p>
           </div>
 
+          {/* Navigation Items */}
           <nav className="flex flex-col gap-2.5">
             <button
               onClick={() => setActiveTab('bookings')}
-              className={`flex flex-row items-center gap-3.5 px-5 py-4 rounded-2xl text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+              className={`flex items-center justify-between px-5 py-4 rounded-2xl text-sm font-semibold transition-all duration-300 cursor-pointer ${
                 activeTab === 'bookings'
-                  ? 'bg-accent text-white shadow-md shadow-accent/20'
-                  : 'text-slate-600 hover:text-slate-950 hover:bg-slate-50'
+                  ? 'bg-accent text-white shadow-lg shadow-accent/20'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Calendar className="h-5 w-5 shrink-0" />
-              <span>Bookings ({bookings.length})</span>
+              <div className="flex items-center gap-3.5">
+                <Calendar className="h-5 w-5 shrink-0" />
+                <span>Bookings ({bookings.length})</span>
+              </div>
+              {activeTab === 'bookings' && <ChevronRight className="h-4 w-4" />}
             </button>
 
             <button
               onClick={() => setActiveTab('cms-editor')}
-              className={`flex flex-row items-center gap-3.5 px-5 py-4 rounded-2xl text-sm font-semibold transition-all cursor-pointer whitespace-nowrap ${
+              className={`flex items-center justify-between px-5 py-4 rounded-2xl text-sm font-semibold transition-all duration-300 cursor-pointer ${
                 activeTab === 'cms-editor'
-                  ? 'bg-accent text-white shadow-md shadow-accent/20'
-                  : 'text-slate-600 hover:text-slate-950 hover:bg-slate-50'
+                  ? 'bg-accent text-white shadow-lg shadow-accent/20'
+                  : 'text-slate-400 hover:text-white hover:bg-white/5'
               }`}
             >
-              <Edit3 className="h-5 w-5 shrink-0" />
-              <span>Page Contents CMS</span>
+              <div className="flex items-center gap-3.5">
+                <Edit3 className="h-5 w-5 shrink-0" />
+                <span>Page Contents CMS</span>
+              </div>
+              {activeTab === 'cms-editor' && <ChevronRight className="h-4 w-4 text-slate-500" />}
             </button>
           </nav>
         </div>
 
-        <div className="pt-6 border-t border-slate-100 flex flex-col gap-3">
+        {/* City Skyline SVG Silhouette Faintly at the bottom */}
+        <div className="relative z-10 mt-auto pt-6 border-t border-slate-800/40 flex flex-col gap-4">
+          <div className="w-full opacity-10 pointer-events-none absolute bottom-[100px] left-0 right-0 px-4">
+            <svg viewBox="0 0 100 30" className="w-full h-auto text-white fill-current">
+              <path d="M0,30 L5,30 L5,20 L8,20 L8,30 L12,30 L12,15 L18,15 L18,30 L22,30 L22,10 L30,10 L30,30 L35,30 L35,5 L42,5 L42,30 L45,30 L45,18 L50,18 L50,30 L55,30 L55,12 L60,12 L60,30 L65,30 L65,8 L70,8 L70,30 L75,30 L75,15 L82,15 L82,30 L85,30 L85,5 L92,5 L92,30 L100,30 Z" />
+            </svg>
+          </div>
+          
           <button
             onClick={fetchData}
-            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-xl border border-slate-200 hover:border-accent hover:bg-accent/5 font-semibold text-xs uppercase tracking-wider font-mono text-slate-600 hover:text-accent transition-all duration-300"
+            className="flex items-center justify-center gap-2 w-full py-3.5 rounded-2xl border border-slate-800 hover:border-accent bg-[#0e1626]/80 hover:bg-accent/5 font-semibold text-xs uppercase tracking-wider font-mono text-slate-300 hover:text-accent transition-all duration-300 cursor-pointer shadow-md"
           >
             <RefreshCw className={`h-4.5 w-4.5 ${loading ? 'animate-spin' : ''}`} />
             Refresh Data
           </button>
-          <div className="text-[9px] text-slate-400 font-mono text-center">
-            Database Status: <span className="text-green-600 font-bold">ONLINE</span>
+          <div className="text-[10px] text-slate-500 font-mono text-center flex items-center justify-center gap-1.5">
+            Database Status: <span className="text-emerald-500 font-bold">ONLINE</span>
           </div>
+          <button
+            onClick={() => {
+              setIsAuthenticated(false);
+              localStorage.removeItem('isAdminAuthenticated');
+            }}
+            className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl border border-dashed border-slate-800 hover:border-red-500/50 bg-[#0e1626]/20 hover:bg-red-500/5 text-slate-400 hover:text-red-400 text-xs font-semibold transition-all duration-300 cursor-pointer relative z-10"
+          >
+            <LogOut className="h-4 w-4" />
+            Sign Out
+          </button>
         </div>
       </aside>
 
       {/* MAIN CONTENT AREA */}
-      <main className="flex-grow p-6 md:p-12 overflow-y-auto max-h-[calc(100vh-80px)]">
-        
-        {loading ? (
-          <div className="flex flex-col items-center justify-center py-24 text-slate-400 font-mono text-sm gap-3">
-            <RefreshCw className="h-8 w-8 animate-spin text-accent" />
-            <span>Fetching secure database records...</span>
+      <main className="flex-grow flex flex-col min-h-screen overflow-y-auto max-h-screen relative bg-[#f8fafc] dark:bg-[#080b11]">
+        {/* Top Header Bar */}
+        <header className="h-20 border-b border-slate-200/60 dark:border-slate-800/40 px-8 flex items-center justify-between bg-white/50 dark:bg-bg-secondary/40 backdrop-blur-md sticky top-0 z-30 shrink-0">
+          <div className="flex items-center gap-4">
+            <button className="p-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-bg-secondary text-slate-600 dark:text-slate-300 shadow-xs cursor-pointer hover:border-accent transition-colors">
+              <Menu className="h-4.5 w-4.5" />
+            </button>
           </div>
-        ) : (
-          <AnimatePresence mode="wait">
+          
+          <div className="flex items-center gap-4">
+
             
-            {/* BOOKINGS VIEW */}
-            {activeTab === 'bookings' && (
-              <motion.div
-                key="bookings"
-                initial={{ opacity: 0, y: 15 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -15 }}
-                className="space-y-6"
+            {/* Theme Toggle (Capsule shape) */}
+            <div 
+              onClick={toggleTheme} 
+              className="flex items-center justify-between bg-slate-100 dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-full px-2 py-1 cursor-pointer transition-all w-16 h-8 relative"
+            >
+              <span className="text-xs">🌙</span>
+              <span className="text-xs">☀️</span>
+              <motion.div 
+                className="w-6 h-6 rounded-full bg-white dark:bg-bg-secondary shadow-md flex items-center justify-center absolute"
+                layout
+                animate={{ left: theme === 'dark' ? 4 : 32 }}
+                transition={{ type: 'spring', stiffness: 500, damping: 30 }}
+              />
+            </div>
+            
+            {/* Notification Bell */}
+            <div className="relative">
+              <button 
+                onClick={() => setShowNotifDropdown(!showNotifDropdown)} 
+                className="p-2.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-bg-secondary text-slate-600 dark:text-slate-300 shadow-xs relative cursor-pointer hover:border-accent transition-colors"
               >
-                <div className="border-b border-slate-200 pb-4 mb-6">
-                  <h3 className="text-2xl font-bold font-display text-slate-900">Consultation Bookings</h3>
-                </div>
+                <Bell className="h-4.5 w-4.5" />
+                {notifications.length > 0 && (
+                  <span className="absolute -top-1 -right-1 w-4.5 h-4.5 rounded-full bg-red-600 text-[9px] font-bold text-white flex items-center justify-center border border-white">
+                    {notifications.length}
+                  </span>
+                )}
+              </button>
 
-                <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                  {bookings.length === 0 ? (
-                    <div className="col-span-2 text-center py-16 bg-white border border-slate-200 rounded-3xl text-slate-400">
-                      No bookings found.
+              <AnimatePresence>
+                {showNotifDropdown && (
+                  <motion.div 
+                    initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                    className="absolute right-0 mt-2.5 w-80 bg-white dark:bg-bg-secondary border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl p-4 z-50 text-slate-800 dark:text-slate-100"
+                  >
+                    <div className="flex justify-between items-center border-b border-slate-100 dark:border-slate-800/80 pb-2 mb-2">
+                      <span className="text-xs font-bold font-display">Notifications</span>
+                      {notifications.length > 0 && (
+                        <button 
+                          onClick={() => {
+                            const savedCleared = localStorage.getItem('clearedNotificationIds');
+                            const existingCleared = savedCleared ? JSON.parse(savedCleared) : [];
+                            const newCleared = [...existingCleared, ...notifications.map(n => n.id)];
+                            localStorage.setItem('clearedNotificationIds', JSON.stringify(newCleared));
+                            setNotifications([]);
+                          }} 
+                          className="text-[10px] text-accent hover:underline font-semibold cursor-pointer"
+                        >
+                          Clear All
+                        </button>
+                      )}
                     </div>
-                  ) : (
-                    bookings.map((booking) => (
-                      <div key={booking.id} className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm hover:border-accent/40 transition-all duration-300 flex flex-col justify-between">
-                        <div>
-                          <div className="flex justify-between items-start mb-6">
-                            <div>
-                              <span className="text-[10px] font-mono text-accent uppercase tracking-widest block mb-1">Corporate Booking</span>
-                              <h4 className="text-2xl font-bold font-display text-slate-900">{booking.company}</h4>
-                            </div>
-                            <button onClick={() => handleDeleteBooking(booking.id)} className="p-2.5 rounded-xl bg-accent/5 border border-accent/10 text-accent hover:bg-accent hover:text-white transition-all cursor-pointer">
-                              <Trash2 className="h-4.5 w-4.5" />
-                            </button>
-                          </div>
-
-                          <div className="space-y-3.5 text-slate-600 text-sm border-t border-slate-100 pt-4 mb-6">
-                            <div>Representative: <strong className="text-slate-900">{booking.name}</strong></div>
-                            <div>Email: <a href={`mailto:${booking.email}`} className="hover:underline hover:text-accent">{booking.email}</a></div>
-                            <div>Phone: {booking.phone}</div>
-                            <div>Date & Time: <strong className="text-slate-900">{booking.date} at {booking.time}</strong></div>
-                          </div>
-
-                          {booking.details && (
-                            <div className="p-4 bg-slate-50 rounded-2xl border border-slate-100 text-xs text-slate-500 italic">
-                              {booking.details}
-                            </div>
-                          )}
-                        </div>
+                    {notifications.length === 0 ? (
+                      <div className="text-center py-4 text-xs text-slate-400">
+                        No new notifications.
                       </div>
-                    ))
+                    ) : (
+                      <div className="space-y-2 max-h-60 overflow-y-auto">
+                        {notifications.map(n => (
+                          <div key={n.id} className="p-2 bg-slate-50 dark:bg-bg-tertiary/40 rounded-xl text-xs flex flex-col gap-0.5 border border-slate-100 dark:border-slate-800/40">
+                            <span className="text-slate-700 dark:text-slate-200">{n.text}</span>
+                            <span className="text-[9px] text-slate-400 font-mono">{n.time}</span>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+            
+            {/* Menu Dropdown */}
+            <button 
+              onClick={() => setIsNavDrawerOpen(true)}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full bg-accent hover:bg-accent-hover text-white text-xs font-bold uppercase transition-colors shadow-sm cursor-pointer"
+            >
+              <span>MENU</span>
+              <Menu className="h-4 w-4" />
+            </button>
+          </div>
+        </header>
+
+        {/* Content Container */}
+        <div className="p-6 md:p-12 flex-grow space-y-8 max-w-7xl w-full mx-auto">
+          {loading ? (
+            <div className="flex flex-col items-center justify-center py-24 text-slate-400 font-mono text-sm gap-3">
+              <RefreshCw className="h-8 w-8 animate-spin text-accent" />
+              <span>Fetching secure database records...</span>
+            </div>
+          ) : (
+            <AnimatePresence mode="wait">
+              
+              {/* BOOKINGS VIEW */}
+              {activeTab === 'bookings' && (
+                <motion.div
+                  key="bookings"
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: -15 }}
+                  className="space-y-6 relative"
+                >
+                  {/* Interactive 3D Wireframe Grid Background */}
+                  <ThreeWireframe theme={theme} />
+
+                  <div className="flex justify-between items-start border-b border-slate-200/60 dark:border-slate-800/40 pb-6 mb-8 relative">
+                    {/* wavy vector lines backdrop */}
+                    <div className="absolute top-0 right-0 w-64 h-20 opacity-10 pointer-events-none">
+                      <svg viewBox="0 0 100 20" className="w-full h-full text-slate-400 fill-none stroke-current stroke-1">
+                        <path d="M0,10 Q25,0 50,10 T100,10" />
+                        <path d="M0,15 Q25,5 50,15 T100,15" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="text-3xl md:text-4xl font-bold font-display text-slate-900 dark:text-white leading-tight">Consultation Bookings</h3>
+                      <p className="text-sm text-slate-500 dark:text-slate-400 mt-1">Manage and view consultation requests seamlessly.</p>
+                      <div className="w-16 h-1 bg-red-500 mt-4 rounded-full" />
+                    </div>
+                    <button 
+                      onClick={() => setShowSearch(!showSearch)} 
+                      className={`p-3 rounded-xl border transition-all cursor-pointer relative z-10 ${
+                        showSearch 
+                          ? 'bg-accent/15 border-accent text-accent shadow-inner' 
+                          : 'border-slate-200 dark:border-slate-800 bg-white dark:bg-bg-secondary text-slate-600 dark:text-slate-300 shadow-xs hover:border-accent'
+                      }`}
+                    >
+                      <Filter className="h-4.5 w-4.5" />
+                    </button>
+                  </div>
+
+                  {showSearch && (
+                    <motion.div 
+                      initial={{ opacity: 0, height: 0 }} 
+                      animate={{ opacity: 1, height: 'auto' }} 
+                      className="mb-6 relative z-10"
+                    >
+                      <input
+                        type="text"
+                        placeholder="Search bookings by representative, email, company, date or time..."
+                        value={searchQuery}
+                        onChange={(e) => setSearchQuery(e.target.value)}
+                        className="w-full px-4 py-3 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-bg-secondary text-slate-800 dark:text-slate-100 text-sm focus:outline-none focus:border-accent shadow-md"
+                        autoFocus
+                      />
+                    </motion.div>
                   )}
-                </div>
-              </motion.div>
-            )}
+
+                  {(() => {
+                    const filteredBookings = bookings.filter(b => {
+                      const q = searchQuery.toLowerCase();
+                      return (
+                        b.name.toLowerCase().includes(q) ||
+                        b.company.toLowerCase().includes(q) ||
+                        b.email.toLowerCase().includes(q) ||
+                        b.phone.toLowerCase().includes(q) ||
+                        (b.date && b.date.toLowerCase().includes(q)) ||
+                        (b.time && b.time.toLowerCase().includes(q))
+                      );
+                    });
+
+                    return (
+                      <div className="grid grid-cols-1 gap-8 relative z-10">
+                        {filteredBookings.length === 0 ? (
+                          <div className="text-center py-16 bg-white/80 dark:bg-bg-secondary/80 backdrop-blur-md border border-slate-200 dark:border-slate-800 rounded-3xl text-slate-400">
+                            No bookings found matching query.
+                          </div>
+                        ) : (
+                          filteredBookings.map((booking) => (
+                            <div key={booking.id} className="max-w-4xl mx-auto w-full p-6 bg-gradient-to-br from-white/95 via-white/90 to-amber-50/20 dark:from-bg-secondary/95 dark:via-bg-secondary/90 dark:to-amber-950/5 backdrop-blur-md border-l-4 border-l-amber-500 border border-slate-200/80 dark:border-slate-800/50 rounded-2xl shadow-lg hover:shadow-xl hover:border-amber-500/30 transition-all duration-500 flex flex-col justify-between relative overflow-hidden">
+                              <div className="flex justify-between items-center mb-4">
+                                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gradient-to-r from-amber-600 via-yellow-500 to-red-600 text-[8px] font-black text-white uppercase tracking-widest font-mono shadow-sm">
+                                  <Layers className="h-2.5 w-2.5" />
+                                  CORPORATE BOOKING
+                                </span>
+                                
+                                <button onClick={() => handleDeleteBooking(booking.id)} className="p-2 rounded-full border border-amber-200 dark:border-amber-900/30 text-amber-600 dark:text-amber-400 hover:bg-amber-500 hover:text-white hover:border-amber-500 transition-all cursor-pointer shadow-xs">
+                                  <Trash2 className="h-4 w-4" />
+                                </button>
+                              </div>
+                              
+                              <h4 className="text-xl md:text-2xl font-extrabold font-display bg-clip-text text-transparent bg-gradient-to-r from-slate-900 via-amber-700 to-slate-900 dark:from-white dark:via-amber-400 dark:to-white mb-4 drop-shadow-xs">{booking.company}</h4>
+                              
+                              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                                {/* Left details grid */}
+                                <div className="lg:col-span-7 grid grid-cols-1 md:grid-cols-2 gap-3">
+                                  {/* Rep */}
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-950/30 dark:to-amber-900/10 border border-amber-200/30 dark:border-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+                                      <User className="h-3.5 w-3.5" />
+                                    </div>
+                                    <div>
+                                      <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold block">Representative</span>
+                                      <span className="text-xs font-bold text-slate-800 dark:text-slate-100">{booking.name}</span>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Email */}
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-950/30 dark:to-amber-900/10 border border-amber-200/30 dark:border-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+                                      <Mail className="h-3.5 w-3.5" />
+                                    </div>
+                                    <div>
+                                      <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold block">Email</span>
+                                      <a href={`mailto:${booking.email}`} className="text-xs font-bold text-slate-800 dark:text-slate-100 hover:text-amber-500 hover:underline break-all">{booking.email}</a>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Phone */}
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-950/30 dark:to-amber-900/10 border border-amber-200/30 dark:border-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+                                      <Phone className="h-3.5 w-3.5" />
+                                    </div>
+                                    <div>
+                                      <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold block">Phone</span>
+                                      <span className="text-xs font-bold text-slate-800 dark:text-slate-100">{booking.phone}</span>
+                                    </div>
+                                  </div>
+                                  
+                                  {/* Date & Time */}
+                                  <div className="flex items-center gap-3">
+                                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-50 to-amber-100 dark:from-amber-950/30 dark:to-amber-900/10 border border-amber-200/30 dark:border-amber-900/20 flex items-center justify-center text-amber-600 dark:text-amber-400 shrink-0">
+                                      <Calendar className="h-3.5 w-3.5" />
+                                    </div>
+                                    <div>
+                                      <span className="text-[9px] uppercase tracking-wider text-slate-400 font-bold block">Date & Time</span>
+                                      <span className="text-xs font-bold text-slate-800 dark:text-slate-100">{booking.date} • {booking.time}</span>
+                                    </div>
+                                  </div>
+                                </div>
+                                
+                                {/* Right quote block */}
+                                <div className="lg:col-span-5 p-4 bg-slate-50 dark:bg-bg-tertiary/40 rounded-xl border border-slate-100 dark:border-slate-800/40 relative min-h-[100px] flex items-center justify-center overflow-hidden">
+                                  <span className="absolute top-2 left-2 text-2xl font-serif text-amber-500/40">“</span>
+                                  <p className="text-xs text-slate-500 dark:text-slate-400 italic text-center px-4 leading-relaxed relative z-10">
+                                    {booking.details || "No consultation details provided."}
+                                  </p>
+                                </div>
+                              </div>
+                            </div>
+                          ))
+                        )}
+                      </div>
+                    );
+                  })()}
+                </motion.div>
+              )}
 
             {/* UNIFIED CMS EDITOR */}
             {activeTab === 'cms-editor' && (
@@ -1017,7 +1328,7 @@ export default function AdminPage() {
                 {cmsSubTab === 'showcases' && (
                   <div className="p-8 bg-white border border-slate-200 rounded-3xl shadow-sm space-y-6">
                     <div className="flex justify-between items-center border-b border-slate-100 pb-3 mb-6">
-                      <h4 className="text-lg font-bold text-slate-900">Showcases List</h4>
+                      <h4 className="text-lg font-bold text-slate-900">AI Solutions for other Sectors</h4>
                       <button
                         onClick={() => { resetForms(); openModal('showcase'); }}
                         className="px-4 py-2 bg-accent hover:bg-accent-hover text-white rounded-xl text-xs uppercase font-semibold flex items-center gap-1.5 cursor-pointer shadow-sm transition-all"
@@ -1163,7 +1474,7 @@ export default function AdminPage() {
 
           </AnimatePresence>
         )}
-
+        </div>
       </main>
 
       {/* MODAL OVERLAY FOR EDITOR FORMS */}
@@ -1385,8 +1696,20 @@ export default function AdminPage() {
                       <input type="text" value={newShowcase.category} onChange={(e) => setNewShowcase(prev => ({ ...prev, category: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Category" required />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-500 mb-1">Video URL / Path</label>
-                      <input type="text" value={newShowcase.video} onChange={(e) => setNewShowcase(prev => ({ ...prev, video: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="e.g. /DC_design.mp4" required />
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Video Demo (Upload max 20MB)</label>
+                      <div className="flex flex-col gap-1.5">
+                        <input 
+                          type="file" 
+                          accept="video/*"
+                          onChange={(e) => handleVideoUpload(e.target.files[0], 'video', setNewShowcase)}
+                          className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer"
+                        />
+                        {newShowcase.video && (
+                          <span className="text-[11px] text-emerald-600 font-mono break-all bg-emerald-50 dark:bg-emerald-950/20 px-2 py-1 rounded-md">
+                            Uploaded: {newShowcase.video}
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <div>
                       <label className="block text-xs font-bold text-slate-500 mb-1">Poster Image Upload</label>
@@ -1491,17 +1814,39 @@ export default function AdminPage() {
                       <input type="text" value={newCaseStudy.after} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, after: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Metrics After" required />
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-500 mb-1">Video URL</label>
-                      <input type="text" value={newCaseStudy.video_url} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, video_url: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm" placeholder="Video URL" required />
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Video (Upload max 20MB)</label>
+                      <div className="flex flex-col gap-1.5">
+                        <input 
+                          type="file" 
+                          accept="video/*"
+                          onChange={(e) => handleVideoUpload(e.target.files[0], 'video_url', setNewCaseStudy)}
+                          className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer"
+                        />
+                        {newCaseStudy.video_url && (
+                          <span className="text-[11px] text-emerald-600 font-mono break-all bg-emerald-50 dark:bg-emerald-950/20 px-2 py-1 rounded-md">
+                            Uploaded: {newCaseStudy.video_url}
+                          </span>
+                        )}
+                      </div>
                     </div>
                     <div>
-                      <label className="block text-xs font-bold text-slate-500 mb-1">Image Representation</label>
-                      <select value={newCaseStudy.image} onChange={(e) => setNewCaseStudy(prev => ({ ...prev, image: e.target.value }))} className="w-full px-4 py-2.5 rounded-xl border border-slate-200 bg-white text-sm">
-                        <option value="planning">planning (Architectural Vector)</option>
-                        <option value="fireSafety">fireSafety (Flame Safety Icon)</option>
-                        <option value="compliance">compliance (Authority Shield)</option>
-                        <option value="strata">strata (Strata Blueprint)</option>
-                      </select>
+                      <label className="block text-xs font-bold text-slate-500 mb-1">Image Representation (Upload)</label>
+                      <div className="flex items-center gap-3">
+                        <input 
+                          type="file" 
+                          accept="image/*"
+                          onChange={(e) => handleImageUpload(e.target.files[0], 'image', setNewCaseStudy)}
+                          className="w-full text-xs text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-accent/10 file:text-accent hover:file:bg-accent/20 cursor-pointer"
+                        />
+                        {newCaseStudy.image && (
+                          <img 
+                            src={newCaseStudy.image.startsWith('/') || newCaseStudy.image.startsWith('http') ? newCaseStudy.image : ''} 
+                            className="h-10 w-10 object-cover rounded-xl shadow-xs shrink-0" 
+                            alt="Preview" 
+                            onError={(e) => { e.target.style.display = 'none'; }} 
+                          />
+                        )}
+                      </div>
                     </div>
                     <div className="col-span-2">
                       <label className="block text-xs font-bold text-slate-500 mb-1">Problem Details</label>
@@ -1612,9 +1957,88 @@ export default function AdminPage() {
                   </button>
                 </form>
               )}
-
             </motion.div>
           </div>
+        )}
+      </AnimatePresence>
+      {/* Corporate Navigation Directory Drawer Overlay */}
+      <AnimatePresence>
+        {isNavDrawerOpen && (
+          <>
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 z-50 bg-black/60 backdrop-blur-xs cursor-pointer"
+              onClick={() => setIsNavDrawerOpen(false)}
+            />
+
+            {/* Right Drawer */}
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 z-55 w-full sm:w-[400px] max-w-full bg-white dark:bg-bg-secondary border-l border-slate-200 dark:border-slate-800 shadow-2xl p-6 sm:p-8 pt-28 pb-8 flex flex-col justify-between overflow-y-auto text-slate-800 dark:text-slate-100"
+            >
+              {/* Close Button */}
+              <button 
+                onClick={() => setIsNavDrawerOpen(false)}
+                className="absolute right-6 top-6 p-2 rounded-xl text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition-all cursor-pointer shadow-xs"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              <div className="w-full relative z-10">
+                <span className="text-[10px] uppercase tracking-widest text-accent font-semibold block mb-6 font-display">
+                  Corporate Navigation Directory
+                </span>
+
+                <motion.div 
+                  variants={{
+                    hidden: {},
+                    show: {
+                      transition: {
+                        staggerChildren: 0.05,
+                        delayChildren: 0.08
+                      }
+                    }
+                  }}
+                  initial="hidden"
+                  animate="show"
+                  className="flex flex-col gap-1.5"
+                >
+                  {navLinks.map((link) => (
+                    <motion.div
+                      key={link.name}
+                      variants={{
+                        hidden: { opacity: 0, x: 25 },
+                        show: { opacity: 1, x: 0, transition: { type: 'spring', stiffness: 120, damping: 14 } }
+                      }}
+                    >
+                      <Link
+                        to={link.href}
+                        className="group flex items-center justify-between py-2.5 border-b border-slate-100 dark:border-slate-850 hover:border-accent/40 transition-colors cursor-pointer"
+                      >
+                        <span className="text-lg font-bold font-display group-hover:text-accent transition-colors text-slate-800 dark:text-slate-100">
+                          {link.name}
+                        </span>
+                        <span className="text-xs font-semibold text-accent/0 group-hover:text-accent/100 transform translate-x-[-10px] group-hover:translate-x-0 transition-all font-display">
+                          Explore →
+                        </span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </div>
+
+              <div className="mt-8 text-center text-[10px] text-slate-400 font-mono">
+                APTIV8 &copy; {new Date().getFullYear()}
+              </div>
+            </motion.div>
+          </>
         )}
       </AnimatePresence>
 

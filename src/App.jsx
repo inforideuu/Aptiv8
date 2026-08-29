@@ -91,7 +91,7 @@ function AppContent({ theme, toggleTheme }) {
 
   return (
     <div className="min-h-screen bg-bg-primary text-text-primary transition-colors duration-300">
-      <Navbar theme={theme} toggleTheme={toggleTheme} />
+      {location.pathname !== '/admin' && <Navbar theme={theme} toggleTheme={toggleTheme} />}
       <Routes>
         <Route path="/" element={<Page3DReveal><HomePage theme={theme} /></Page3DReveal>} />
         <Route path="/about" element={<Page3DReveal><AboutPage /></Page3DReveal>} />
@@ -104,7 +104,7 @@ function AppContent({ theme, toggleTheme }) {
         <Route path="/partners" element={<Page3DReveal><PartnersPage /></Page3DReveal>} />
         <Route path="/resources" element={<Page3DReveal><ResourcesPage /></Page3DReveal>} />
         <Route path="/contact" element={<Page3DReveal><ContactPage /></Page3DReveal>} />
-        <Route path="/admin" element={<Page3DReveal><AdminPage /></Page3DReveal>} />
+        <Route path="/admin" element={<Page3DReveal><AdminPage theme={theme} toggleTheme={toggleTheme} /></Page3DReveal>} />
       </Routes>
       {showFooter && <Footer />}
     </div>

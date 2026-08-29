@@ -50,16 +50,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'aptiv8_backend.wsgi.application'
 
+import certifi
+
 # Database
-# Using MySQL with root password 'root' as requested
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'aptiv8_db',
-        'USER': 'root',
-        'PASSWORD': 'root',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
+        'NAME': 'test',
+        'USER': 'Ha1WttZuMavT5Tb.root',
+        'PASSWORD': '3a1EyzJFotBHmjAD',
+        'HOST': 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
+        'PORT': '4000',
+        'OPTIONS': {
+            'ssl': {
+                'ca': certifi.where(),
+            }
+        }
     }
 }
 

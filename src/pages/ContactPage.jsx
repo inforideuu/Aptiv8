@@ -22,6 +22,8 @@ export default function ContactPage() {
     time: '',
     details: ''
   });
+  const [isCustomTime, setIsCustomTime] = useState(false);
+  const [customTime, setCustomTime] = useState('');
   const [booked, setBooked] = useState(false);
 
   // FAQ Accordion State
@@ -275,11 +277,19 @@ export default function ContactPage() {
                       />
                     </div>
                   </div>
-                  <div className="flex flex-col gap-2">
+                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Time Slot</label>
                     <select
-                      value={bookingForm.time}
-                      onChange={(e) => setBookingForm({ ...bookingForm, time: e.target.value })}
+                      value={isCustomTime ? 'custom' : bookingForm.time}
+                      onChange={(e) => {
+                        if (e.target.value === 'custom') {
+                          setIsCustomTime(true);
+                          setBookingForm({ ...bookingForm, time: '' });
+                        } else {
+                          setIsCustomTime(false);
+                          setBookingForm({ ...bookingForm, time: e.target.value });
+                        }
+                      }}
                       className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent"
                       required
                     >
@@ -288,7 +298,22 @@ export default function ContactPage() {
                       <option value="11:00 AM">11:00 AM</option>
                       <option value="02:00 PM">02:00 PM</option>
                       <option value="04:00 PM">04:00 PM</option>
+                      <option value="custom">Custom Time Slot...</option>
                     </select>
+
+                    {isCustomTime && (
+                      <input
+                        type="text"
+                        placeholder="e.g., 10:30 AM or Afternoon"
+                        value={customTime}
+                        onChange={(e) => {
+                          setCustomTime(e.target.value);
+                          setBookingForm({ ...bookingForm, time: e.target.value });
+                        }}
+                        className="bg-bg-primary text-text-primary border border-border-color rounded-xl p-3 text-xs focus:outline-none focus:border-accent mt-1"
+                        required
+                      />
+                    )}
                   </div>
                   <div className="flex flex-col gap-2">
                     <label className="text-[10px] font-bold text-text-primary uppercase tracking-wider">Consultation Details</label>

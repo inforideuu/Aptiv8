@@ -153,7 +153,7 @@ export default function CaseStudiesPage() {
     if (imgKey === 'fireSafety') return svgs.fireSafety;
     if (imgKey === 'compliance') return svgs.compliance;
     if (imgKey === 'strata') return svgs.strata;
-    return svgs.planning;
+    return imgKey || svgs.planning;
   };
 
   const caseStudies = dbCaseStudies.length > 0

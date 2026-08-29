@@ -233,3 +233,120 @@ p, span, li, a, button, input, select, textarea {
 .animate-slow-bounce:hover {
   animation-play-state: paused;
 }
+
+/* Dark theme overrides for Admin page */
+.dark .admin-panel {
+  background-color: var(--bg-primary) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .admin-panel aside {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark .admin-panel aside h2,
+.dark .admin-panel aside h3,
+.dark .admin-panel aside span,
+.dark .admin-panel aside strong {
+  color: var(--text-primary) !important;
+}
+
+.dark .admin-panel aside .text-slate-500,
+.dark .admin-panel aside .text-slate-600 {
+  color: var(--text-secondary) !important;
+}
+
+.dark .admin-panel aside button {
+  border-color: var(--border-color) !important;
+}
+
+.dark .admin-panel aside button:not(.bg-accent) {
+  color: var(--text-secondary) !important;
+}
+
+.dark .admin-panel aside button:not(.bg-accent):hover {
+  background-color: var(--bg-tertiary) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Card components inside admin panel */
+.dark .admin-panel .bg-white,
+.dark .admin-panel .bg-slate-50 {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+.dark .admin-panel .text-slate-900,
+.dark .admin-panel .text-slate-800,
+.dark .admin-panel h3,
+.dark .admin-panel h4,
+.dark .admin-panel strong {
+  color: var(--text-primary) !important;
+}
+
+.dark .admin-panel .text-slate-600,
+.dark .admin-panel .text-slate-500,
+.dark .admin-panel p,
+.dark .admin-panel span:not(.text-accent):not(.text-green-600):not(.text-white) {
+  color: var(--text-secondary) !important;
+}
+
+.dark .admin-panel .border-slate-200,
+.dark .admin-panel .border-slate-100 {
+  border-color: var(--border-color) !important;
+}
+
+/* Forms and Inputs */
+.dark .admin-panel input,
+.dark .admin-panel select,
+.dark .admin-panel textarea {
+  background-color: var(--bg-tertiary) !important;
+  border-color: var(--border-color) !important;
+  color: #ffffff !important;
+}
+
+.dark .admin-panel input::placeholder,
+.dark .admin-panel textarea::placeholder {
+  color: var(--text-secondary) !important;
+  opacity: 0.6;
+}
+
+.dark .admin-panel .bg-slate-50 {
+  background-color: var(--bg-tertiary) !important;
+}
+
+/* Modals inside Admin panel */
+.dark .admin-panel .fixed.inset-0.bg-black\/50 {
+  background-color: rgba(0, 0, 0, 0.75) !important;
+}
+
+.dark .admin-panel .fixed.inset-0.bg-black\/50 .bg-white {
+  background-color: var(--bg-secondary) !important;
+  border-color: var(--border-color) !important;
+  color: var(--text-primary) !important;
+}
+
+/* Creative Admin Panel Background with Grid overlay and Ambient Lights */
+.admin-panel-bg {
+  background-color: var(--bg-primary) !important;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(227, 6, 19, 0.04) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.03) 0%, transparent 40%),
+    linear-gradient(rgba(15, 23, 42, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(15, 23, 42, 0.015) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 40px 40px, 40px 40px;
+  background-attachment: fixed;
+}
+
+.dark .admin-panel-bg {
+  background-color: #080b11 !important;
+  background-image: 
+    radial-gradient(circle at 15% 15%, rgba(255, 59, 71, 0.05) 0%, transparent 45%),
+    radial-gradient(circle at 85% 85%, rgba(99, 102, 241, 0.03) 0%, transparent 45%),
+    linear-gradient(rgba(255, 255, 255, 0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.012) 1px, transparent 1px) !important;
+  background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+}
+

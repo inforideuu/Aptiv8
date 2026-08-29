@@ -34,6 +34,7 @@ export default function Navbar({ theme, toggleTheme }) {
     { name: 'Partners Ecosystem', href: '/partners' },
     { name: 'Resources & Insights', href: '/resources' },
     { name: 'Book Consultation', href: '/contact' },
+    { name: 'Admin Console', href: '/admin' },
   ];
 
   return (
@@ -63,10 +64,10 @@ export default function Navbar({ theme, toggleTheme }) {
                 to="/contact"
                 className="group p-[1px] rounded-full bg-border-color hover:bg-gradient-to-r hover:from-accent hover:to-[#ff3b46] transition-all duration-300 cursor-pointer block"
               >
-                <div className="px-4 py-2 rounded-full bg-bg-secondary text-text-primary group-hover:text-accent transition-colors duration-300 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider font-display">
+                {/* <div className="px-4 py-2 rounded-full bg-bg-secondary text-text-primary group-hover:text-accent transition-colors duration-300 flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider font-display">
                   <span>Ask AI</span>
                   <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                </div>
+                </div> */}
               </Link>
 
               <ThemeSwitcher theme={theme} toggleTheme={toggleTheme} />

@@ -1,0 +1,5 @@
+django
+pymysql
+certifi
+django-cors-headers
+gunicorn

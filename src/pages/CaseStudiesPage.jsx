@@ -54,6 +54,8 @@ function AnimatedCounterCard({ target, suffix, label }) {
   );
 }
 
+import { API_BASE_URL } from '../config';
+
 export default function CaseStudiesPage() {
   const [activeIndustry, setActiveIndustry] = useState('All');
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -63,7 +65,7 @@ export default function CaseStudiesPage() {
   useEffect(() => {
     const fetchCaseStudies = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/cms/');
+        const response = await fetch(`${API_BASE_URL}/api/cms/`);
         if (response.ok) {
           const data = await response.json();
           setDbCaseStudies(data.case_studies || []);

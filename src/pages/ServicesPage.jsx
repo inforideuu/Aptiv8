@@ -6,13 +6,15 @@ import {
 } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
 
+import { API_BASE_URL } from '../config';
+
 export default function ServicesPage() {
   const [dbServices, setDbServices] = useState([]);
 
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/cms/');
+        const response = await fetch(`${API_BASE_URL}/api/cms/`);
         if (response.ok) {
           const data = await response.json();
           setDbServices(data.services || []);

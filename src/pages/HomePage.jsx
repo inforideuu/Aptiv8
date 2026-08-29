@@ -17,13 +17,15 @@ import {
   caseStudies,
   chatbotAnswers
 } from '../data/websiteData';
+import { API_BASE_URL } from '../config';
+
 export default function HomePage({ theme }) {
   const navigate = useNavigate();
   const [dbPartners, setDbPartners] = useState([]);
   useEffect(() => {
     const fetchPartners = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/cms/');
+        const response = await fetch(`${API_BASE_URL}/api/cms/`);
         if (response.ok) {
           const data = await response.json();
           if (data.partners) {

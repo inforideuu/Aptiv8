@@ -3,6 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Clock, MapPin, Send, HelpCircle, Sparkles, Calendar, BookOpen, Layers, CheckCircle2, Phone } from 'lucide-react';
 import Reveal3D from '../components/Reveal3D';
 
+import { API_BASE_URL } from '../config';
+
 export default function ContactPage() {
   // Requirement Analyzer State
   const [industry, setIndustry] = useState('');
@@ -52,7 +54,7 @@ export default function ContactPage() {
     setAnalysisResult(null);
 
     try {
-      const response = await fetch('http://localhost:8000/api/analyze/', {
+      const response = await fetch(`${API_BASE_URL}/api/analyze/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -87,7 +89,7 @@ export default function ContactPage() {
     const { name, company, email, phone, date, time, details } = bookingForm;
     if (name && company && email && phone && date && time) {
       try {
-        const response = await fetch('http://localhost:8000/api/book/', {
+        const response = await fetch(`${API_BASE_URL}/api/book/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

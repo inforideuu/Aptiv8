@@ -5,6 +5,8 @@ import Card from '../components/Card';
 import { svgs, productsList, showcasesList } from '../data/websiteData';
 import Reveal3D from '../components/Reveal3D';
 
+import { API_BASE_URL } from '../config';
+
 export default function ProductsPage() {
   const [filter, setFilter] = useState('All');
   const [dbProducts, setDbProducts] = useState([]);
@@ -13,7 +15,7 @@ export default function ProductsPage() {
   React.useEffect(() => {
     const fetchCmsData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/cms/');
+        const response = await fetch(`${API_BASE_URL}/api/cms/`);
         if (response.ok) {
           const data = await response.json();
           setDbProducts(data.products || []);

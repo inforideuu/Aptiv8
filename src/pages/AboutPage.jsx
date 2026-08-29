@@ -152,13 +152,15 @@ function TiltCard({ children, className }) {
   );
 }
 
+import { API_BASE_URL } from '../config';
+
 export default function AboutPage() {
   const [aboutData, setAboutData] = useState({ hero: null, items: [] });
 
   useEffect(() => {
     const fetchAboutData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api/about/');
+        const response = await fetch(`${API_BASE_URL}/api/about/`);
         if (response.ok) {
           const data = await response.json();
           setAboutData(data);

@@ -9,7 +9,7 @@ import {
 import { Link } from 'react-router-dom';
 import { productsList, projectsData, showcasesList } from '../data/websiteData';
 import ThreeWireframe from '../components/ThreeWireframe';
-
+import { API_BASE_URL } from '../config';
 
 const navLinks = [
   { name: 'Home', href: '/' },
@@ -146,7 +146,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     const formData = new FormData();
     formData.append('file', file);
     try {
-      const response = await fetch('http://localhost:8000/api/upload/', {
+      const response = await fetch(`${API_BASE_URL}/api/upload/`, {
         method: 'POST',
         body: formData
       });
@@ -172,7 +172,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     const formData = new FormData();
     formData.append('file', file);
     try {
-      const response = await fetch('http://localhost:8000/api/upload/', {
+      const response = await fetch(`${API_BASE_URL}/api/upload/`, {
         method: 'POST',
         body: formData
       });
@@ -212,7 +212,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     setLoading(true);
     setError(null);
     try {
-      const adminRes = await fetch('http://localhost:8000/api/admin-data/');
+      const adminRes = await fetch(`${API_BASE_URL}/api/admin-data/`);
       if (adminRes.ok) {
         const adminData = await adminRes.json();
         const list = adminData.bookings || [];
@@ -232,7 +232,7 @@ export default function AdminPage({ theme, toggleTheme }) {
       }
 
       // Fetch About content
-      const aboutRes = await fetch('http://localhost:8000/api/about/');
+      const aboutRes = await fetch(`${API_BASE_URL}/api/about/`);
       if (aboutRes.ok) {
         const aboutData = await aboutRes.json();
         const ovData = {
@@ -251,7 +251,7 @@ export default function AdminPage({ theme, toggleTheme }) {
       }
 
       // Fetch dynamic CMS data
-      const cmsRes = await fetch('http://localhost:8000/api/cms/');
+      const cmsRes = await fetch(`${API_BASE_URL}/api/cms/`);
       if (cmsRes.ok) {
         const cmsData = await cmsRes.json();
         setServices(cmsData.services || []);
@@ -280,7 +280,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteBooking = async (id) => {
     if (!window.confirm('Are you sure you want to delete this booking?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/bookings/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/bookings/${id}/`, { method: 'DELETE' });
       if (response.ok) setBookings(prev => prev.filter(b => b.id !== id));
     } catch (err) { console.error(err); }
   };
@@ -289,7 +289,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleSaveOverview = async (blockKey) => {
     try {
       const block = overviews[blockKey];
-      const response = await fetch('http://localhost:8000/api/about/overview/', {
+      const response = await fetch(`${API_BASE_URL}/api/about/overview/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ block_key: blockKey, ...block })
@@ -303,7 +303,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingEventId ? { id: editingEventId, ...newEvent } : newEvent;
-      const response = await fetch('http://localhost:8000/api/about/timeline/', {
+      const response = await fetch(`${API_BASE_URL}/api/about/timeline/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -323,7 +323,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteTimeline = async (id) => {
     if (!window.confirm('Delete this event?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/about/timeline/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/about/timeline/${id}/`, { method: 'DELETE' });
       if (response.ok) {
         setTimeline(prev => prev.filter(i => i.id !== id));
         if (editingEventId === id) setEditingEventId(null);
@@ -335,7 +335,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleSaveMissionVision = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch('http://localhost:8000/api/about/mission-vision/', {
+      const response = await fetch(`${API_BASE_URL}/api/about/mission-vision/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(missionVision)
@@ -349,7 +349,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingStatId ? { id: editingStatId, ...newStat } : newStat;
-      const response = await fetch('http://localhost:8000/api/about/stats/', {
+      const response = await fetch(`${API_BASE_URL}/api/about/stats/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -369,7 +369,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteStat = async (id) => {
     if (!window.confirm('Delete this stat?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/about/stats/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/about/stats/${id}/`, { method: 'DELETE' });
       if (response.ok) setStats(prev => prev.filter(i => i.id !== id));
     } catch (err) { console.error(err); }
   };
@@ -379,7 +379,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingLeaderId ? { id: editingLeaderId, ...newLeader } : newLeader;
-      const response = await fetch('http://localhost:8000/api/about/leadership/', {
+      const response = await fetch(`${API_BASE_URL}/api/about/leadership/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -399,7 +399,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteLeader = async (id) => {
     if (!window.confirm('Delete member?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/about/leadership/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/about/leadership/${id}/`, { method: 'DELETE' });
       if (response.ok) setLeadership(prev => prev.filter(i => i.id !== id));
     } catch (err) { console.error(err); }
   };
@@ -409,7 +409,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingServiceId ? { id: editingServiceId, ...newService } : newService;
-      const response = await fetch('http://localhost:8000/api/cms/services/', {
+      const response = await fetch(`${API_BASE_URL}/api/cms/services/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -425,7 +425,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteService = async (id) => {
     if (!window.confirm('Delete this service?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/cms/services/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/cms/services/${id}/`, { method: 'DELETE' });
       if (response.ok) setServices(prev => prev.filter(i => i.id !== id));
     } catch (err) { console.error(err); }
   };
@@ -435,7 +435,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingProductId ? { id: editingProductId, ...newProduct } : newProduct;
-      const response = await fetch('http://localhost:8000/api/cms/products/', {
+      const response = await fetch(`${API_BASE_URL}/api/cms/products/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -451,7 +451,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteProduct = async (id) => {
     if (!window.confirm('Delete this product?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/cms/products/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/cms/products/${id}/`, { method: 'DELETE' });
       if (response.ok) setProducts(prev => prev.filter(i => i.id !== id));
     } catch (err) { console.error(err); }
   };
@@ -461,7 +461,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingShowcaseId ? { id: editingShowcaseId, ...newShowcase } : newShowcase;
-      const response = await fetch('http://localhost:8000/api/cms/showcases/', {
+      const response = await fetch(`${API_BASE_URL}/api/cms/showcases/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -477,7 +477,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteShowcase = async (id) => {
     if (!window.confirm('Delete this showcase?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/cms/showcases/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/cms/showcases/${id}/`, { method: 'DELETE' });
       if (response.ok) setShowcases(prev => prev.filter(i => i.id !== id));
     } catch (err) { console.error(err); }
   };
@@ -487,7 +487,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingProjectId ? { id: editingProjectId, ...newProject } : newProject;
-      const response = await fetch('http://localhost:8000/api/cms/projects/', {
+      const response = await fetch(`${API_BASE_URL}/api/cms/projects/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -503,7 +503,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteProject = async (id) => {
     if (!window.confirm('Delete this project?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/cms/projects/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/cms/projects/${id}/`, { method: 'DELETE' });
       if (response.ok) setProjects(prev => prev.filter(i => i.id !== id));
     } catch (err) { console.error(err); }
   };
@@ -513,7 +513,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingCaseStudyId ? { id: editingCaseStudyId, ...newCaseStudy } : newCaseStudy;
-      const response = await fetch('http://localhost:8000/api/cms/casestudies/', {
+      const response = await fetch(`${API_BASE_URL}/api/cms/casestudies/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -529,7 +529,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteCaseStudy = async (id) => {
     if (!window.confirm('Delete this case study?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/cms/casestudies/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/cms/casestudies/${id}/`, { method: 'DELETE' });
       if (response.ok) setCaseStudies(prev => prev.filter(i => i.id !== id));
     } catch (err) { console.error(err); }
   };
@@ -539,7 +539,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingPartnerId ? { id: editingPartnerId, ...newPartner } : newPartner;
-      const response = await fetch('http://localhost:8000/api/cms/partners/', {
+      const response = await fetch(`${API_BASE_URL}/api/cms/partners/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -555,7 +555,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeletePartner = async (id) => {
     if (!window.confirm('Delete this partner category?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/cms/partners/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/cms/partners/${id}/`, { method: 'DELETE' });
       if (response.ok) setPartners(prev => prev.filter(i => i.id !== id));
     } catch (err) { console.error(err); }
   };
@@ -565,7 +565,7 @@ export default function AdminPage({ theme, toggleTheme }) {
     e.preventDefault();
     try {
       const payload = editingResourceId ? { id: editingResourceId, ...newResource } : newResource;
-      const response = await fetch('http://localhost:8000/api/cms/resources/', {
+      const response = await fetch(`${API_BASE_URL}/api/cms/resources/`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(payload)
@@ -581,7 +581,7 @@ export default function AdminPage({ theme, toggleTheme }) {
   const handleDeleteResource = async (id) => {
     if (!window.confirm('Delete this resource?')) return;
     try {
-      const response = await fetch(`http://localhost:8000/api/cms/resources/${id}/`, { method: 'DELETE' });
+      const response = await fetch(`${API_BASE_URL}/api/cms/resources/${id}/`, { method: 'DELETE' });
       if (response.ok) setResources(prev => prev.filter(i => i.id !== id));
     } catch (err) { console.error(err); }
   };

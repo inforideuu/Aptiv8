@@ -124,6 +124,20 @@ export default function Footer() {
                   className="absolute inset-0 opacity-90"
                 ></iframe>
               </div>
+              <div style={{
+                marginTop: '20px',
+                color: '#e30613',
+                fontSize: '12px',
+                fontFamily: 'Arial',
+                fontWeight: 'bold',
+                textTransform: 'uppercase',
+                letterSpacing: '1px'
+              }}>
+                <h4 className="text-xs font-bold uppercase tracking-wider text-white font-display mb-2">
+                  Powered by
+                </h4>
+                <a href="https://zenelaitinfotech.com/" target='__blank'><img src="/zenelaitinfotech_logo.png" alt="zenelait infotech" style={{ height: '60px', borderRadius:'8px'}} /></a>
+              </div>
             </div>
           </div>
         </div>

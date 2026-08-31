@@ -160,12 +160,12 @@ export default function ServicesPage() {
             </a>
 
             {/* Explore Solutions Transparent Outline Button */}
-            <a 
+            {/* <a 
               href="/solutions" 
               className="w-full sm:w-auto px-8 py-3.5 rounded-lg border border-white/20 hover:border-white/50 hover:bg-white/5 text-white font-semibold text-sm transition-all duration-300 flex items-center justify-center"
             >
               Explore Solutions
-            </a>
+            </a> */}
           </motion.div>
         </div>
       </section>

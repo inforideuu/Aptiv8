@@ -151,11 +151,7 @@ export default function CaseStudiesPage() {
   ];
 
   const mapSvgImage = (imgKey) => {
-    if (imgKey === 'planning') return svgs.planning;
-    if (imgKey === 'fireSafety') return svgs.fireSafety;
-    if (imgKey === 'compliance') return svgs.compliance;
-    if (imgKey === 'strata') return svgs.strata;
-    return imgKey || svgs.planning;
+    return svgs[imgKey] || imgKey || svgs.planning;
   };
 
   const caseStudies = dbCaseStudies.length > 0
